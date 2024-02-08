@@ -1,6 +1,9 @@
-.sudoku-cell {
+.sudoku-text-field {
+    -fx-font-size: 18px;
+    -fx-alignment: center;
     -fx-border-color: black;
     -fx-border-width: 0.5;
+    -fx-padding: 0 0 0 0;
 }
 
 .bottom-border-thick {
@@ -27,9 +30,10 @@
     -fx-border-width: 0.5 0.5 2.5 2.5;
 }
 
-.up-right-border-thick{
+.up-right-border-thick {
     -fx-border-width: 2.5 2.5 0.5 0.5;
 }
-.bottom-right-border-thick{
+
+.bottom-right-border-thick {
     -fx-border-width: 0.5 2.5 2.5 0.5;
 }

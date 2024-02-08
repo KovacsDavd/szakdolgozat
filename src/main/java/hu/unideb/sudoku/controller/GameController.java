@@ -7,10 +7,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -20,15 +19,11 @@ import java.util.Objects;
 
 public class GameController {
     private GameModel model = new GameModel();
+    private TextField[][] textFields = new TextField[9][9];
 
     @FXML
     private Label levelLabel;
-    @FXML
-    private Button solveBtn;
-    @FXML
-    private Button hintBtn;
-    @FXML
-    private Button endBtn;
+
     @FXML
     private GridPane board;
 
@@ -40,17 +35,31 @@ public class GameController {
     private void createBoard() {
         for (int row = 0; row < 9; row++) {
             for (int col = 0; col < 9; col++) {
-                Pane cell = new Pane();
+                TextField textField = new TextField();
+                textField.setPrefHeight(40);
+                textField.setPrefWidth(40);
+
                 List<String> styles = determineBorderStyles(row, col);
-                cell.getStyleClass().addAll(styles);
-                board.add(cell, col, row);
+                textField.getStyleClass().addAll(styles);
+                setupTextField(textField);
+
+                board.add(textField, col, row);
+                textFields[row][col] = textField;
             }
         }
     }
 
+    private void setupTextField(TextField textField) {
+        textField.textProperty().addListener((obs, oldVal, newVal) -> {
+            if (!newVal.matches("([1-9]|)") || newVal.length() > 1) {
+                textField.setText(oldVal);
+            }
+        });
+    }
+
     private List<String> determineBorderStyles(int row, int col) {
         List<String> styles = new ArrayList<>();
-        styles.add("sudoku-cell");
+        styles.add("sudoku-text-field");
 
         // Speciális esetek kezelése külön metódusokkal
         addSpecialBorderStyle(styles, row, col);
