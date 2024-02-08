@@ -1,0 +1,35 @@
+.sudoku-cell {
+    -fx-border-color: black;
+    -fx-border-width: 0.5;
+}
+
+.bottom-border-thick {
+    -fx-border-width: 0.5 0.5 2.5 0.5;
+}
+
+.right-border-thick {
+    -fx-border-width: 0.5 2.5 0.5 0.5;
+}
+
+.up-border-thick {
+    -fx-border-width: 2.5 0.5 0.5 0.5;
+}
+
+.left-border-thick {
+    -fx-border-width: 0.5 0.5 0.5 2.5;
+}
+
+.up-left-border-thick {
+    -fx-border-width: 2.5 0.5 0.5 2.5;
+}
+
+.bottom-left-border-thick {
+    -fx-border-width: 0.5 0.5 2.5 2.5;
+}
+
+.up-right-border-thick{
+    -fx-border-width: 2.5 2.5 0.5 0.5;
+}
+.bottom-right-border-thick{
+    -fx-border-width: 0.5 2.5 2.5 0.5;
+}
