@@ -38,7 +38,7 @@
       <Label fx:id="levelLabel" layoutX="85.0" layoutY="69.0" />
       <Button fx:id="endBtn" onAction="#backToLevelChooser" layoutX="25.0" layoutY="200.0" mnemonicParsing="false" text="End" focusTraversable="false"/>
       <Button fx:id="hintBtn" layoutX="24.0" layoutY="247.0" mnemonicParsing="false" text="Hint" focusTraversable="false"/>
-      <Button fx:id="solveBtn" layoutX="24.0" layoutY="300.0" mnemonicParsing="false" text="Solve" focusTraversable="false"/>
+      <Button fx:id="solveBtn" onAction="#solveSudoku" layoutX="24.0" layoutY="300.0" mnemonicParsing="false" text="Solve" focusTraversable="false"/>
     </children>
     <stylesheets>
         <URL value="@sudoku-style.css" />

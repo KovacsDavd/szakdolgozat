@@ -21,6 +21,7 @@ public class GameController {
     private GameModel model = new GameModel();
     private TextField[][] textFields = new TextField[9][9];
 
+
     @FXML
     private Label levelLabel;
 
@@ -29,10 +30,16 @@ public class GameController {
 
     public void initialize() {
         levelLabel.setText(GameModel.getDifficult().toString());
+        generateSudoku();
         createBoard();
     }
 
+    private void generateSudoku() {
+        model.generateSudoku();
+    }
+
     private void createBoard() {
+        int[][] sudokuBoard = model.getSudokuBoard();
         for (int row = 0; row < 9; row++) {
             for (int col = 0; col < 9; col++) {
                 TextField textField = new TextField();
@@ -42,6 +49,7 @@ public class GameController {
                 List<String> styles = determineBorderStyles(row, col);
                 textField.getStyleClass().addAll(styles);
                 setupTextField(textField);
+                textField.setText(String.valueOf(sudokuBoard[row][col]));
 
                 board.add(textField, col, row);
                 textFields[row][col] = textField;
@@ -100,6 +108,20 @@ public class GameController {
 
     private boolean isThickBorderCol(int col) {
         return col == 2 || col == 5 || col == 8;
+    }
+
+    @FXML
+    public void solveSudoku(ActionEvent event) {
+        model.solveSudoku();
+        updateViewWithSudokuBoard(model.getSudokuBoard());
+    }
+
+    private void updateViewWithSudokuBoard(int[][] sudokuBoard) {
+        for (int row = 0; row < 9; row++) {
+            for (int col = 0; col < 9; col++) {
+                textFields[row][col].setText(String.valueOf(sudokuBoard[row][col]));
+            }
+        }
     }
 
     @FXML
