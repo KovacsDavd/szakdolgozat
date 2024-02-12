@@ -47,6 +47,11 @@ public class GameController {
                 textField.setPrefWidth(40);
 
                 List<String> styles = determineBorderStyles(row, col);
+
+                if (sudokuBoard[row][col] != 0) {
+                    styles.add("initial-number");
+                }
+
                 textField.getStyleClass().addAll(styles);
                 setupTextField(textField);
                 textField.setText(String.valueOf(sudokuBoard[row][col]));
@@ -63,6 +68,10 @@ public class GameController {
                 textField.setText(oldVal);
             }
         });
+
+        if (textField.getStyleClass().contains("initial-number")) {
+            textField.setEditable(false);
+        }
     }
 
     private List<String> determineBorderStyles(int row, int col) {

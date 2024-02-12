@@ -4,6 +4,7 @@
     -fx-border-color: black;
     -fx-border-width: 0.5;
     -fx-padding: 0 0 0 0;
+    -fx-text-fill: gray;
 }
 
 .bottom-border-thick {
@@ -36,4 +37,8 @@
 
 .bottom-right-border-thick {
     -fx-border-width: 0.5 2.5 2.5 0.5;
+}
+
+.initial-number {
+    -fx-text-fill: black;
 }

@@ -5,6 +5,9 @@ import java.util.Random;
 public class GameModel {
     private static GameDifficult difficult;
     private static final int SIZE = 9;
+    private static final int EASY_MOD_REVOME_DIGITS = 36;
+    private static final int MEDIUM_MOD_REVOME_DIGITS = 43;
+    private static final int HARD_MOD_REVOME_DIGITS = 49;
     private int[][] sudokuBoard;
     private static final Random rand = new Random();
 
@@ -16,7 +19,13 @@ public class GameModel {
         sudokuBoard = new int[SIZE][SIZE];
         fillDiagonal();
         fillRemaining(0, 3);
-        removeDigits();
+        if (difficult == GameDifficult.EASY) {
+            removeDigits(EASY_MOD_REVOME_DIGITS);
+        } else if (difficult==GameDifficult.MEDIUM) {
+            removeDigits(MEDIUM_MOD_REVOME_DIGITS);
+        } else {
+            removeDigits(HARD_MOD_REVOME_DIGITS);
+        }
     }
 
     private void fillDiagonal() {
@@ -37,14 +46,14 @@ public class GameModel {
         for (int i = 0; i < 3; i++)
             for (int j = 0; j < 3; j++) {
                 do {
-                    num = randomGenerator(9);
+                    num = randomGenerator();
                 } while (!unUsedInBox(row, col, num));
                 sudokuBoard[row + i][col + j] = num;
             }
     }
 
-    private int randomGenerator(int num) {
-        return rand.nextInt(num) + 1;
+    private int randomGenerator() {
+        return rand.nextInt(9) + 1;
     }
 
 
@@ -79,12 +88,11 @@ public class GameModel {
         return false;
     }
 
-    private void removeDigits() {
-        int count = 36;
+    private void removeDigits(int count) {
 
         while (count != 0) {
-            int i = randomGenerator(9) - 1;
-            int j = randomGenerator(9) - 1;
+            int i = randomGenerator() - 1;
+            int j = randomGenerator() - 1;
             if (sudokuBoard[i][j] != 0) {
                 count--;
                 sudokuBoard[i][j] = 0;
