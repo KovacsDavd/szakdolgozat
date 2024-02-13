@@ -18,8 +18,8 @@ import java.util.List;
 import java.util.Objects;
 
 public class GameController {
-    private GameModel model = new GameModel();
-    private TextField[][] textFields = new TextField[9][9];
+    private final GameModel model = new GameModel();
+    private final TextField[][] textFields = new TextField[9][9];
 
 
     @FXML
@@ -120,7 +120,7 @@ public class GameController {
     }
 
     @FXML
-    public void solveSudoku(ActionEvent event) {
+    public void solveSudoku() {
         model.solveSudoku();
         updateViewWithSudokuBoard(model.getSudokuBoard());
     }
@@ -134,8 +134,8 @@ public class GameController {
     }
 
     @FXML
-    public void backToLevelChooser(ActionEvent event) throws IOException {
-        Parent gameView = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("ChooseLevelView.fxml")));
+    public void backToMainMenu(ActionEvent event) throws IOException {
+        Parent gameView = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("StarterView.fxml")));
         Scene gameScene = new Scene(gameView);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(gameScene);

@@ -1,5 +1,5 @@
 package hu.unideb.sudoku.model;
 
 public enum GameDifficult {
-    EASY, MEDIUM, HARD;
+    EASY, MEDIUM, HARD
 }

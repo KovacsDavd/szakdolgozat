@@ -1,46 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import java.net.URL?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
-
-<AnchorPane prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.unideb.sudoku.controller.GameController">
-    <children>
-        <GridPane fx:id="board" layoutX="180.0" layoutY="163.0" prefHeight="500.0" prefWidth="500.0" AnchorPane.bottomAnchor="-62.200000000000045" AnchorPane.leftAnchor="180.0" AnchorPane.rightAnchor="-79.20000000000005" AnchorPane.topAnchor="163.0">
-            <columnConstraints>
-                <ColumnConstraints percentWidth="8" />
-                <ColumnConstraints percentWidth="8" />
-                <ColumnConstraints percentWidth="8" />
-                <ColumnConstraints percentWidth="8" />
-                <ColumnConstraints percentWidth="8" />
-                <ColumnConstraints percentWidth="8" />
-                <ColumnConstraints percentWidth="8" />
-                <ColumnConstraints percentWidth="8" />
-                <ColumnConstraints percentWidth="8" />
-            </columnConstraints>
-            <rowConstraints>
-                <RowConstraints percentHeight="8" />
-                <RowConstraints percentHeight="8" />
-                <RowConstraints percentHeight="8" />
-                <RowConstraints percentHeight="8" />
-                <RowConstraints percentHeight="8" />
-                <RowConstraints percentHeight="8" />
-                <RowConstraints percentHeight="8" />
-                <RowConstraints percentHeight="8" />
-                <RowConstraints percentHeight="8" />
-            </rowConstraints>
-        </GridPane>
-      <Label layoutX="28.0" layoutY="69.0" text="Level:" />
-      <Label fx:id="levelLabel" layoutX="85.0" layoutY="69.0" />
-      <Button fx:id="endBtn" onAction="#backToLevelChooser" layoutX="25.0" layoutY="200.0" mnemonicParsing="false" text="End" focusTraversable="false"/>
-      <Button fx:id="hintBtn" layoutX="24.0" layoutY="247.0" mnemonicParsing="false" text="Hint" focusTraversable="false"/>
-      <Button fx:id="solveBtn" onAction="#solveSudoku" layoutX="24.0" layoutY="300.0" mnemonicParsing="false" text="Solve" focusTraversable="false"/>
-    </children>
+<AnchorPane prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="hu.unideb.sudoku.controller.GameController">
     <stylesheets>
-        <URL value="@sudoku-style.css" />
+        <URL value="@sudoku-style.css"/>
     </stylesheets>
+    <GridPane fx:id="board" layoutX="180.0" layoutY="163.0" prefHeight="500.0" prefWidth="500.0"
+              AnchorPane.bottomAnchor="-62.200000000000045" AnchorPane.leftAnchor="180.0"
+              AnchorPane.rightAnchor="-79.20000000000005" AnchorPane.topAnchor="163.0">
+        <columnConstraints>
+            <ColumnConstraints percentWidth="8"/>
+            <ColumnConstraints percentWidth="8"/>
+            <ColumnConstraints percentWidth="8"/>
+            <ColumnConstraints percentWidth="8"/>
+            <ColumnConstraints percentWidth="8"/>
+            <ColumnConstraints percentWidth="8"/>
+            <ColumnConstraints percentWidth="8"/>
+            <ColumnConstraints percentWidth="8"/>
+            <ColumnConstraints percentWidth="8"/>
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints percentHeight="8"/>
+            <RowConstraints percentHeight="8"/>
+            <RowConstraints percentHeight="8"/>
+            <RowConstraints percentHeight="8"/>
+            <RowConstraints percentHeight="8"/>
+            <RowConstraints percentHeight="8"/>
+            <RowConstraints percentHeight="8"/>
+            <RowConstraints percentHeight="8"/>
+            <RowConstraints percentHeight="8"/>
+        </rowConstraints>
+    </GridPane>
+    <Label layoutX="28.0" layoutY="69.0" text="Level:"/>
+    <Label fx:id="levelLabel" layoutX="85.0" layoutY="69.0"/>
+    <Button onAction="#backToMainMenu" layoutX="25.0" layoutY="200.0" mnemonicParsing="false" text="Vége"
+            focusTraversable="false"/>
+    <Button layoutX="24.0" layoutY="247.0" mnemonicParsing="false" text="Segítség"
+            focusTraversable="false"/>
+    <Button onAction="#solveSudoku" layoutX="24.0" layoutY="300.0" mnemonicParsing="false"
+            text="Megold" focusTraversable="false"/>
 </AnchorPane>

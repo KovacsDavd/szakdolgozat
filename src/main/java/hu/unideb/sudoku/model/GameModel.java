@@ -21,7 +21,7 @@ public class GameModel {
         fillRemaining(0, 3);
         if (difficult == GameDifficult.EASY) {
             removeDigits(EASY_MOD_REVOME_DIGITS);
-        } else if (difficult==GameDifficult.MEDIUM) {
+        } else if (difficult == GameDifficult.MEDIUM) {
             removeDigits(MEDIUM_MOD_REVOME_DIGITS);
         } else {
             removeDigits(HARD_MOD_REVOME_DIGITS);

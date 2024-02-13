@@ -26,6 +26,15 @@ public class ChooseLevelController {
     }
 
     @FXML
+    private void backToMainMenu(ActionEvent event) throws IOException {
+        Parent gameView = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("StarterView.fxml")));
+        Scene gameScene = new Scene(gameView);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(gameScene);
+        window.show();
+    }
+
+    @FXML
     public void handleEasyButtonAction(ActionEvent event) throws IOException {
         loadGameScreen(GameDifficult.EASY, event);
     }

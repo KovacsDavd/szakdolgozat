@@ -20,4 +20,10 @@ public class StarterController {
         window.setScene(scene);
         window.show();
     }
+
+    @FXML
+    public void exit(ActionEvent event) {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.close();
+    }
 }
