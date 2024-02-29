@@ -1,5 +1,6 @@
 package hu.unideb.sudoku.controller;
 
+import hu.unideb.sudoku.model.CellPosition;
 import hu.unideb.sudoku.model.GameModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -21,7 +22,6 @@ public class GameController {
     private final GameModel model = new GameModel();
     private final TextField[][] textFields = new TextField[9][9];
 
-
     @FXML
     private Label levelLabel;
 
@@ -39,7 +39,7 @@ public class GameController {
     }
 
     private void createBoard() {
-        int[][] sudokuBoard = model.getSudokuBoard();
+        CellPosition[][] sudokuBoard = model.getSudokuBoard();
         for (int row = 0; row < 9; row++) {
             for (int col = 0; col < 9; col++) {
                 TextField textField = new TextField();
@@ -48,13 +48,13 @@ public class GameController {
 
                 List<String> styles = determineBorderStyles(row, col);
 
-                if (sudokuBoard[row][col] != 0) {
+                if (sudokuBoard[row][col].getValue() != 0) {
                     styles.add("initial-number");
                 }
 
                 textField.getStyleClass().addAll(styles);
                 setupTextField(textField);
-                textField.setText(String.valueOf(sudokuBoard[row][col]));
+                textField.setText(String.valueOf(sudokuBoard[row][col].getValue()));
 
                 board.add(textField, col, row);
                 textFields[row][col] = textField;
@@ -78,10 +78,7 @@ public class GameController {
         List<String> styles = new ArrayList<>();
         styles.add("sudoku-text-field");
 
-        // Speciális esetek kezelése külön metódusokkal
         addSpecialBorderStyle(styles, row, col);
-
-        // Általános esetek kezelése
         addGeneralBorderStyle(styles, row, col);
 
         return styles;
@@ -122,7 +119,7 @@ public class GameController {
     @FXML
     public void solveSudoku() {
         model.solveSudoku();
-        updateViewWithSudokuBoard(model.getSudokuBoard());
+        updateViewWithSudokuBoard(model.getSudokuBoardValues());
     }
 
     private void updateViewWithSudokuBoard(int[][] sudokuBoard) {
