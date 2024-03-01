@@ -1,6 +1,8 @@
 package hu.unideb.sudoku.model;
 
+import java.util.HashSet;
 import java.util.Random;
+import java.util.Set;
 
 public class GameModel {
     private static GameDifficult difficult;
@@ -21,10 +23,9 @@ public class GameModel {
         generateSudoku();
     }
 
-    public void generateSudoku() {
-        sudokuBoard = new CellPosition[SIZE][SIZE];  // Módosítás: CellPosition típusú tömb
+    private void generateSudoku() {
+        sudokuBoard = new CellPosition[SIZE][SIZE];
 
-        // Töltsd fel a táblát CellPosition objektumokkal
         for (int i = 0; i < SIZE; i++) {
             for (int j = 0; j < SIZE; j++) {
                 sudokuBoard[i][j] = new CellPosition();
@@ -41,7 +42,64 @@ public class GameModel {
         } else {
             removeDigits(HARD_MOD_REVOME_DIGITS);
         }
+        storePossibleValues();
         printCurrentBoardState();
+    }
+
+    public void storePossibleValues() {
+        for (int i = 0; i < SIZE; i++) {
+            for (int j = 0; j < SIZE; j++) {
+                if (sudokuBoard[i][j].getValue() == 0) {
+                    Set<Integer> possibleValues = getPossibleValues(i, j);
+                    sudokuBoard[i][j].setPossibleValues(possibleValues);
+                }
+            }
+        }
+    }
+
+    public void setPlayerValue(int row, int col, int playerValue) {
+        sudokuBoard[row][col].setPlayerValue(playerValue);
+    }
+
+    public int getPlayerValueAt(int row, int col) {
+        return sudokuBoard[row][col].getPlayerValue();
+    }
+
+
+    public Set<Integer> getPossibleValues(int row, int col) {
+        boolean[] usedValues = new boolean[SIZE + 1];
+
+        // Ellenőrizze a sorban lévő értékeket
+        for (int j = 0; j < SIZE; j++) {
+            int value = sudokuBoard[row][j].getValue();
+            usedValues[value] = true;
+        }
+
+        // Ellenőrizze az oszlopban lévő értékeket
+        for (int i = 0; i < SIZE; i++) {
+            int value = sudokuBoard[i][col].getValue();
+            usedValues[value] = true;
+        }
+
+        // Ellenőrizze a 3x3-as blokkban lévő értékeket
+        int boxStartRow = row - row % 3;
+        int boxStartCol = col - col % 3;
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                int value = sudokuBoard[boxStartRow + i][boxStartCol + j].getValue();
+                usedValues[value] = true;
+            }
+        }
+
+        // Gyűjtsd össze a lehetséges értékeket
+        Set<Integer> possibleValues = new HashSet<>();
+        for (int num = 1; num <= SIZE; num++) {
+            if (!usedValues[num]) {
+                possibleValues.add(num);
+            }
+        }
+
+        return possibleValues;
     }
 
     private void fillDiagonal() {
@@ -200,12 +258,12 @@ public class GameModel {
         return true;
     }
 
-    public int[][] getSudokuBoardValues() {
-        int[][] sudokuValues = new int[SIZE][SIZE];
+    public CellPosition[][] getSudokuBoardValues() {
+        CellPosition[][] sudokuValues = new CellPosition[SIZE][SIZE];
 
         for (int i = 0; i < SIZE; i++) {
             for (int j = 0; j < SIZE; j++) {
-                sudokuValues[i][j] = sudokuBoard[i][j].getValue();
+                sudokuValues[i][j] = sudokuBoard[i][j];
             }
         }
 
@@ -229,7 +287,12 @@ public class GameModel {
         for (int i = 0; i < SIZE; i++) {
             for (int j = 0; j < SIZE; j++) {
                 int value = sudokuBoard[i][j].getValue();
-                if (value != 0) {
+                Set<Integer> possibleValues = sudokuBoard[i][j].getPossibleValues();
+
+                if (value == 0) {
+                    System.out.println("[" + i + "][" + j + "] = Empty");
+                    System.out.println("Possible Values: " + possibleValues);
+                } else {
                     System.out.println("[" + i + "][" + j + "] = " + value);
                 }
             }

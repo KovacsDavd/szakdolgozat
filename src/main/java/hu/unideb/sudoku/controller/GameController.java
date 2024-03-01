@@ -1,3 +1,4 @@
+
 package hu.unideb.sudoku.controller;
 
 import hu.unideb.sudoku.model.CellPosition;
@@ -9,18 +10,16 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.TextArea;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class GameController {
     private final GameModel model = new GameModel();
-    private final TextField[][] textFields = new TextField[9][9];
+    private final TextArea[][] textAreas = new TextArea[9][9];
 
     @FXML
     private Label levelLabel;
@@ -30,53 +29,99 @@ public class GameController {
 
     public void initialize() {
         levelLabel.setText(GameModel.getDifficult().toString());
-        generateSudoku();
         createBoard();
     }
 
-    private void generateSudoku() {
-        model.generateSudoku();
-    }
 
     private void createBoard() {
         CellPosition[][] sudokuBoard = model.getSudokuBoard();
         for (int row = 0; row < 9; row++) {
             for (int col = 0; col < 9; col++) {
-                TextField textField = new TextField();
-                textField.setPrefHeight(40);
-                textField.setPrefWidth(40);
-
+                TextArea textArea = new TextArea();
                 List<String> styles = determineBorderStyles(row, col);
 
                 if (sudokuBoard[row][col].getValue() != 0) {
+                    textArea.setText(String.valueOf(sudokuBoard[row][col].getValue()));
                     styles.add("initial-number");
+                    textArea.setEditable(false);
+                } else {
+                    String possibleValuesText = getPossibleValuesText(sudokuBoard[row][col].getPossibleValues());
+                    textArea.setText(possibleValuesText);
+                    textArea.getStyleClass().add("possible-values");
+                    textArea.setEditable(true);
                 }
 
-                textField.getStyleClass().addAll(styles);
-                setupTextField(textField);
-                textField.setText(String.valueOf(sudokuBoard[row][col].getValue()));
-
-                board.add(textField, col, row);
-                textFields[row][col] = textField;
+                textAreas[row][col] = textArea;
+                textArea.getStyleClass().addAll(styles);
+                setupTextArea(textArea, row, col);
+                board.add(textArea, col, row);
             }
         }
     }
 
-    private void setupTextField(TextField textField) {
-        textField.textProperty().addListener((obs, oldVal, newVal) -> {
-            if (!newVal.matches("([1-9]|)") || newVal.length() > 1) {
-                textField.setText(oldVal);
+    private void setupTextArea(TextArea textArea, int row, int col) {
+        if (!textArea.getStyleClass().contains("initial-number")) {
+            textArea.textProperty().addListener((obs, oldVal, newVal) -> {
+                if (!newVal.matches("([1-9,\\n ]*)")) {
+                    textArea.setText(oldVal);
+                }
+            });
+        } else {
+            textArea.setEditable(false);
+        }
+
+        textArea.focusedProperty().addListener((obs, oldVal, newVal) -> {
+            if (Boolean.FALSE.equals(newVal)) {
+                handleCellFocusLost(textArea, row, col);
             }
         });
+    }
 
-        if (textField.getStyleClass().contains("initial-number")) {
-            textField.setEditable(false);
+    private void handleCellFocusLost(TextArea textArea, int row, int col) {
+        String text = textArea.getText().trim();
+        if (!textArea.getStyleClass().contains("initial-number")) {
+            if (text.matches("\\d")) {
+                // Ha pontosan egy szám van a TextArea-ban, frissítjük a modellt
+                int playerValue = Integer.parseInt(text);
+                model.setPlayerValue(row, col, playerValue);
+                textArea.getStyleClass().add("user-input");
+            } else {
+                // Ha nem egy szám van, vagy üres, visszaállítjuk az eredeti lehetséges értékeket
+                Set<Integer> possibleValues = model.getPossibleValues(row, col);
+                String possibleValuesText = getPossibleValuesText(possibleValues);
+                textArea.setText(possibleValuesText);
+                textArea.getStyleClass().remove("user-input");
+                textArea.getStyleClass().add("possible-values");
+            }
         }
     }
+
+    private String getPossibleValuesText(Set<Integer> possibleValues) {
+        StringBuilder sb = new StringBuilder();
+        List<Integer> sortedValues = new ArrayList<>(possibleValues);
+        Collections.sort(sortedValues);
+
+        int count = 0;
+        for (int value : sortedValues) {
+            sb.append(value);
+            count++;
+
+            if (count < sortedValues.size() && count % 3 != 0) {
+                sb.append(" ");
+            }
+
+            if (count % 3 == 0) {
+                sb.append("\n");
+            }
+        }
+
+        return sb.toString();
+    }
+
 
     private List<String> determineBorderStyles(int row, int col) {
         List<String> styles = new ArrayList<>();
-        styles.add("sudoku-text-field");
+        styles.add("sudoku-text-area");
 
         addSpecialBorderStyle(styles, row, col);
         addGeneralBorderStyle(styles, row, col);
@@ -122,10 +167,12 @@ public class GameController {
         updateViewWithSudokuBoard(model.getSudokuBoardValues());
     }
 
-    private void updateViewWithSudokuBoard(int[][] sudokuBoard) {
+    private void updateViewWithSudokuBoard(CellPosition[][] sudokuBoard) {
         for (int row = 0; row < 9; row++) {
             for (int col = 0; col < 9; col++) {
-                textFields[row][col].setText(String.valueOf(sudokuBoard[row][col]));
+                if (sudokuBoard[row][col].getValue() != 0) {
+                    textAreas[row][col].setText(String.valueOf(sudokuBoard[row][col].getValue()));
+                }
             }
         }
     }

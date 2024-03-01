@@ -1,5 +1,5 @@
-.sudoku-text-field {
-    -fx-font-size: 18px;
+.sudoku-text-area {
+    -fx-font-size: 22px;
     -fx-alignment: center;
     -fx-border-color: black;
     -fx-border-width: 0.5;
@@ -41,4 +41,28 @@
 
 .initial-number {
     -fx-text-fill: black;
+}
+
+.possible-values {
+    -fx-font-size: 12px;
+    -fx-text-fill: green;
+}
+
+.sudoku-text-area .text {
+    -fx-text-alignment: center;
+}
+
+.text-area .scroll-bar:vertical {
+    -fx-pref-width: 1;
+    -fx-opacity: 0;
+}
+
+.text-area .scroll-bar:horizontal {
+    -fx-pref-height: 1;
+    -fx-opacity: 0;
+}
+
+.user-input {
+    -fx-font-size: 22px;
+    -fx-text-fill: red; /* vagy bármilyen szín, amit ki szeretnél emelni */
 }

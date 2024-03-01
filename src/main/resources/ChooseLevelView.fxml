@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
-<AnchorPane prefHeight="600.0" fx:controller="hu.unideb.sudoku.controller.ChooseLevelController" prefWidth="600.0"
+<AnchorPane prefHeight="700.0" fx:controller="hu.unideb.sudoku.controller.ChooseLevelController" prefWidth="700.0"
             style="-fx-background-color: #3498db;" xmlns="http://javafx.com/javafx/21"
             xmlns:fx="http://javafx.com/fxml/1">
     <VBox alignment="CENTER" layoutX="241.0" layoutY="85.0" spacing="20.0">
