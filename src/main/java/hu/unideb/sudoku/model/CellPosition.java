@@ -6,11 +6,14 @@ import java.util.Set;
 public class CellPosition {
     private int value;
     private Set<Integer> possibleValues;
-    private int playerValue;
 
 
     public CellPosition() {
         this.possibleValues = new HashSet<>();
+    }
+    public CellPosition(int value, Set<Integer> possibleValues) {
+        this.value = value;
+        this.possibleValues = new HashSet<>(possibleValues);
     }
 
     public int getValue() {
@@ -28,22 +31,5 @@ public class CellPosition {
 
     public void setPossibleValues(Set<Integer> possibleValues) {
         this.possibleValues = (possibleValues != null) ? possibleValues : new HashSet<>();
-    }
-
-    public int getPlayerValue() {
-        return playerValue;
-    }
-
-    public void setPlayerValue(int playerValue) {
-        this.playerValue = playerValue;
-        this.possibleValues.clear();
-    }
-
-    public void removePossibleValue(int value) {
-        possibleValues.remove(value);
-    }
-
-    public void addPossibleValue(int value) {
-        possibleValues.add(value);
     }
 }

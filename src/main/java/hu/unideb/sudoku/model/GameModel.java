@@ -11,6 +11,7 @@ public class GameModel {
     private static final int MEDIUM_MOD_REVOME_DIGITS = 43;
     private static final int HARD_MOD_REVOME_DIGITS = 49;
     private CellPosition[][] sudokuBoard;
+    private CellPosition[][] solvedBoard;
     private static final Random rand = new Random();
 
     public GameModel() {
@@ -35,6 +36,13 @@ public class GameModel {
         fillDiagonal();
         fillRemaining(0, 3);
 
+        solvedBoard = new CellPosition[SIZE][SIZE];
+        for (int i = 0; i < SIZE; i++) {
+            for (int j = 0; j < SIZE; j++) {
+                solvedBoard[i][j] = new CellPosition(sudokuBoard[i][j].getValue(), new HashSet<>(sudokuBoard[i][j].getPossibleValues()));
+            }
+        }
+
         if (difficult == GameDifficult.EASY) {
             removeDigits(EASY_MOD_REVOME_DIGITS);
         } else if (difficult == GameDifficult.MEDIUM) {
@@ -57,12 +65,22 @@ public class GameModel {
         }
     }
 
-    public void setPlayerValue(int row, int col, int playerValue) {
-        sudokuBoard[row][col].setPlayerValue(playerValue);
+    public void setPossibleValuesAt(int row, int col, Set<Integer> values) {
+        System.out.println("\nbefore: " + sudokuBoard[row][col].getPossibleValues());
+        sudokuBoard[row][col].setPossibleValues(values);
+        System.out.println("after: " + sudokuBoard[row][col].getPossibleValues());
     }
 
-    public int getPlayerValueAt(int row, int col) {
-        return sudokuBoard[row][col].getPlayerValue();
+    public Set<Integer> getPossibleValuesAt(int row, int col) {
+        return sudokuBoard[row][col].getPossibleValues();
+    }
+
+    public void setValueAt(int row, int col, int vaue) {
+        sudokuBoard[row][col].setValue(vaue);
+    }
+
+    public int getValueAt(int row, int col) {
+        return sudokuBoard[row][col].getValue();
     }
 
 
@@ -172,66 +190,6 @@ public class GameModel {
         }
     }
 
-    public void solveSudoku() {
-        CellPosition[][] copyBoard = new CellPosition[SIZE][SIZE];
-
-        for (int i = 0; i < SIZE; i++) {
-            for (int j = 0; j < SIZE; j++) {
-                copyBoard[i][j] = new CellPosition();
-            }
-        }
-
-        copyBoardValues(copyBoard, sudokuBoard);
-
-        if (solve(copyBoard)) {
-            copyBoardValues(sudokuBoard, copyBoard);
-        }
-    }
-
-    private void copyBoardValues(CellPosition[][] destination, CellPosition[][] source) {
-        for (int i = 0; i < SIZE; i++) {
-            for (int j = 0; j < SIZE; j++) {
-                destination[i][j].setValue(source[i][j].getValue());
-            }
-        }
-    }
-
-    private boolean solve(CellPosition[][] board) {
-        int[] nextEmpty = findEmptyLocation(board);
-
-        if (nextEmpty.length == 0) {
-            return true;
-        }
-
-        int row = nextEmpty[0];
-        int col = nextEmpty[1];
-
-        for (int num = 1; num <= SIZE; num++) {
-            if (checkIfSafe(board, row, col, num)) {
-                board[row][col].setValue(num);
-
-                if (solve(board)) {
-                    return true;
-                }
-
-                board[row][col].setValue(0);
-            }
-        }
-
-        return false;
-    }
-
-    private int[] findEmptyLocation(CellPosition[][] board) {
-        for (int row = 0; row < SIZE; row++) {
-            for (int col = 0; col < SIZE; col++) {
-                if (board[row][col].getValue() == 0) {
-                    return new int[]{row, col};
-                }
-            }
-        }
-        return new int[0];
-    }
-
     private boolean checkIfSafe(CellPosition[][] board, int row, int col, int num) {
         return (unUsedInRow(board, row, num) &&
                 unUsedInCol(board, col, num) &&
@@ -262,9 +220,7 @@ public class GameModel {
         CellPosition[][] sudokuValues = new CellPosition[SIZE][SIZE];
 
         for (int i = 0; i < SIZE; i++) {
-            for (int j = 0; j < SIZE; j++) {
-                sudokuValues[i][j] = sudokuBoard[i][j];
-            }
+            System.arraycopy(sudokuBoard[i], 0, sudokuValues[i], 0, SIZE);
         }
 
         return sudokuValues;
@@ -280,6 +236,10 @@ public class GameModel {
 
     public static void setDifficult(GameDifficult dif) {
         difficult = dif;
+    }
+
+    public CellPosition[][] getSolvedBoard() {
+        return solvedBoard;
     }
 
     public void printCurrentBoardState() {

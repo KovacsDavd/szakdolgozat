@@ -20,6 +20,7 @@ import java.util.*;
 public class GameController {
     private final GameModel model = new GameModel();
     private final TextArea[][] textAreas = new TextArea[9][9];
+    private static final String INITIAL_NUMBER = "initial-number";
 
     @FXML
     private Label levelLabel;
@@ -32,7 +33,6 @@ public class GameController {
         createBoard();
     }
 
-
     private void createBoard() {
         CellPosition[][] sudokuBoard = model.getSudokuBoard();
         for (int row = 0; row < 9; row++) {
@@ -42,10 +42,10 @@ public class GameController {
 
                 if (sudokuBoard[row][col].getValue() != 0) {
                     textArea.setText(String.valueOf(sudokuBoard[row][col].getValue()));
-                    styles.add("initial-number");
+                    styles.add(INITIAL_NUMBER);
                     textArea.setEditable(false);
                 } else {
-                    String possibleValuesText = getPossibleValuesText(sudokuBoard[row][col].getPossibleValues());
+                    String possibleValuesText = formatNumbers(sudokuBoard[row][col].getPossibleValues());
                     textArea.setText(possibleValuesText);
                     textArea.getStyleClass().add("possible-values");
                     textArea.setEditable(true);
@@ -60,7 +60,7 @@ public class GameController {
     }
 
     private void setupTextArea(TextArea textArea, int row, int col) {
-        if (!textArea.getStyleClass().contains("initial-number")) {
+        if (!textArea.getStyleClass().contains(INITIAL_NUMBER)) {
             textArea.textProperty().addListener((obs, oldVal, newVal) -> {
                 if (!newVal.matches("([1-9,\\n ]*)")) {
                     textArea.setText(oldVal);
@@ -71,7 +71,7 @@ public class GameController {
         }
 
         textArea.focusedProperty().addListener((obs, oldVal, newVal) -> {
-            if (Boolean.FALSE.equals(newVal)) {
+            if (Boolean.FALSE.equals(newVal)) { // elveszti a focust ha newVal false lesz.
                 handleCellFocusLost(textArea, row, col);
             }
         });
@@ -79,42 +79,53 @@ public class GameController {
 
     private void handleCellFocusLost(TextArea textArea, int row, int col) {
         String text = textArea.getText().trim();
-        if (!textArea.getStyleClass().contains("initial-number")) {
-            if (text.matches("\\d")) {
-                // Ha pontosan egy szám van a TextArea-ban, frissítjük a modellt
-                int playerValue = Integer.parseInt(text);
-                model.setPlayerValue(row, col, playerValue);
+        if (!textArea.getStyleClass().contains(INITIAL_NUMBER)) {
+            if (text.matches("\\d")) { // Ha pontosan egy szám van a TextArea-ban
+                int value = Integer.parseInt(text);
+                model.setValueAt(row, col, value);
                 textArea.getStyleClass().add("user-input");
             } else {
-                // Ha nem egy szám van, vagy üres, visszaállítjuk az eredeti lehetséges értékeket
-                Set<Integer> possibleValues = model.getPossibleValues(row, col);
-                String possibleValuesText = getPossibleValuesText(possibleValues);
-                textArea.setText(possibleValuesText);
-                textArea.getStyleClass().remove("user-input");
-                textArea.getStyleClass().add("possible-values");
+                Set<Integer> newPossibleValues = extractNumbers(text);
+                if (!newPossibleValues.equals(model.getPossibleValuesAt(row, col))) {
+                    boolean isValid = newPossibleValues.stream().allMatch(num -> num >= 1 && num <= 9);
+                    if (isValid) {
+                        textArea.setText(formatNumbers(newPossibleValues));
+                        model.setPossibleValuesAt(row, col, newPossibleValues);
+                    } else {
+                        textArea.setText(formatNumbers(model.getPossibleValuesAt(row,col)));
+                    }
+                } else {
+                    textArea.setText(formatNumbers(model.getPossibleValuesAt(row,col)));
+                }
             }
         }
     }
 
-    private String getPossibleValuesText(Set<Integer> possibleValues) {
+    private Set<Integer> extractNumbers(String text) {
+        Set<Integer> numbers = new HashSet<>();
+        String[] parts = text.split("[,\\s\\n]+");
+        for (String part : parts) {
+
+            int number = Integer.parseInt(part);
+            numbers.add(number);
+
+        }
+        return numbers;
+    }
+
+    private String formatNumbers(Set<Integer> numbers) {
         StringBuilder sb = new StringBuilder();
-        List<Integer> sortedValues = new ArrayList<>(possibleValues);
+        List<Integer> sortedValues = new ArrayList<>(numbers);
         Collections.sort(sortedValues);
 
-        int count = 0;
-        for (int value : sortedValues) {
-            sb.append(value);
-            count++;
-
-            if (count < sortedValues.size() && count % 3 != 0) {
+        for (int i = 0; i < sortedValues.size(); i++) {
+            sb.append(sortedValues.get(i));
+            if ((i + 1) % 3 == 0 && i < sortedValues.size() - 1) {
+                sb.append("\n");
+            } else if (i < sortedValues.size() - 1) {
                 sb.append(" ");
             }
-
-            if (count % 3 == 0) {
-                sb.append("\n");
-            }
         }
-
         return sb.toString();
     }
 
@@ -163,8 +174,7 @@ public class GameController {
 
     @FXML
     public void solveSudoku() {
-        model.solveSudoku();
-        updateViewWithSudokuBoard(model.getSudokuBoardValues());
+        updateViewWithSudokuBoard(model.getSolvedBoard());
     }
 
     private void updateViewWithSudokuBoard(CellPosition[][] sudokuBoard) {
@@ -172,6 +182,7 @@ public class GameController {
             for (int col = 0; col < 9; col++) {
                 if (sudokuBoard[row][col].getValue() != 0) {
                     textAreas[row][col].setText(String.valueOf(sudokuBoard[row][col].getValue()));
+                    textAreas[row][col].getStyleClass().remove("possible-values");
                 }
             }
         }
