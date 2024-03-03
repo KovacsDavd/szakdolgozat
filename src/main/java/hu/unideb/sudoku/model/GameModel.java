@@ -76,7 +76,9 @@ public class GameModel {
     }
 
     public void setValueAt(int row, int col, int vaue) {
+        System.out.println("\nbefore: " + sudokuBoard[row][col].getValue());
         sudokuBoard[row][col].setValue(vaue);
+        System.out.println("after: " + sudokuBoard[row][col].getValue());
     }
 
     public int getValueAt(int row, int col) {

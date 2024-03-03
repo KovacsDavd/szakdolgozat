@@ -21,6 +21,7 @@ public class GameController {
     private final GameModel model = new GameModel();
     private final TextArea[][] textAreas = new TextArea[9][9];
     private static final String INITIAL_NUMBER = "initial-number";
+    private static final String POSSIBLE_VALUES = "possible-values";
 
     @FXML
     private Label levelLabel;
@@ -47,7 +48,7 @@ public class GameController {
                 } else {
                     String possibleValuesText = formatNumbers(sudokuBoard[row][col].getPossibleValues());
                     textArea.setText(possibleValuesText);
-                    textArea.getStyleClass().add("possible-values");
+                    textArea.getStyleClass().add(POSSIBLE_VALUES);
                     textArea.setEditable(true);
                 }
 
@@ -79,27 +80,66 @@ public class GameController {
 
     private void handleCellFocusLost(TextArea textArea, int row, int col) {
         String text = textArea.getText().trim();
-        if (!textArea.getStyleClass().contains(INITIAL_NUMBER)) {
-            if (text.matches("\\d")) { // Ha pontosan egy szám van a TextArea-ban
-                int value = Integer.parseInt(text);
-                model.setValueAt(row, col, value);
-                textArea.getStyleClass().add("user-input");
+        if (!isInitialNumber(textArea)) {
+            if (isSingleDigit(text)) {
+                processSingleDigit(textArea, row, col, text);
             } else {
-                Set<Integer> newPossibleValues = extractNumbers(text);
-                if (!newPossibleValues.equals(model.getPossibleValuesAt(row, col))) {
-                    boolean isValid = newPossibleValues.stream().allMatch(num -> num >= 1 && num <= 9);
-                    if (isValid) {
-                        textArea.setText(formatNumbers(newPossibleValues));
-                        model.setPossibleValuesAt(row, col, newPossibleValues);
-                    } else {
-                        textArea.setText(formatNumbers(model.getPossibleValuesAt(row,col)));
-                    }
-                } else {
-                    textArea.setText(formatNumbers(model.getPossibleValuesAt(row,col)));
-                }
+                processPossibleValues(textArea, row, col, text);
             }
         }
     }
+
+    private boolean isInitialNumber(TextArea textArea) {
+        return textArea.getStyleClass().contains(INITIAL_NUMBER);
+    }
+
+    private boolean isSingleDigit(String text) {
+        return text.matches("\\d");
+    }
+
+    private void processSingleDigit(TextArea textArea, int row, int col, String text) {
+        int value = Integer.parseInt(text);
+        model.setValueAt(row, col, value);
+        updateTextArea(textArea, text, false);
+    }
+
+    private void processPossibleValues(TextArea textArea, int row, int col, String text) {
+        Set<Integer> newPossibleValues = extractNumbers(text);
+        if (!newPossibleValues.equals(model.getPossibleValuesAt(row, col))) {
+            if (isValid(newPossibleValues)) {
+                updateTextAreaWithPossibleValues(textArea, row, col, newPossibleValues);
+            } else {
+                revertTextAreaToModelValues(textArea, row, col);
+            }
+        } else {
+            revertTextAreaToModelValues(textArea, row, col);
+        }
+    }
+
+    private boolean isValid(Set<Integer> possibleValues) {
+        return possibleValues.stream().allMatch(num -> num >= 1 && num <= 9);
+    }
+
+    private void updateTextAreaWithPossibleValues(TextArea textArea, int row, int col, Set<Integer> newPossibleValues) {
+        model.setPossibleValuesAt(row, col, newPossibleValues);
+        updateTextArea(textArea, formatNumbers(newPossibleValues), true);
+    }
+
+    private void revertTextAreaToModelValues(TextArea textArea, int row, int col) {
+        Set<Integer> possibleValues = model.getPossibleValuesAt(row, col);
+        String text = possibleValues.isEmpty() ? formatNumbers(Collections.singleton(model.getValueAt(row, col))) : formatNumbers(possibleValues);
+        updateTextArea(textArea, text, !possibleValues.isEmpty());
+    }
+
+    private void updateTextArea(TextArea textArea, String text, boolean addPossibleValuesClass) {
+        textArea.setText(text);
+        if (addPossibleValuesClass && !textArea.getStyleClass().contains(POSSIBLE_VALUES)) {
+            textArea.getStyleClass().add(POSSIBLE_VALUES);
+        } else if (!addPossibleValuesClass) {
+            textArea.getStyleClass().remove(POSSIBLE_VALUES);
+        }
+    }
+
 
     private Set<Integer> extractNumbers(String text) {
         Set<Integer> numbers = new HashSet<>();
@@ -182,7 +222,7 @@ public class GameController {
             for (int col = 0; col < 9; col++) {
                 if (sudokuBoard[row][col].getValue() != 0) {
                     textAreas[row][col].setText(String.valueOf(sudokuBoard[row][col].getValue()));
-                    textAreas[row][col].getStyleClass().remove("possible-values");
+                    textAreas[row][col].getStyleClass().remove(POSSIBLE_VALUES);
                 }
             }
         }

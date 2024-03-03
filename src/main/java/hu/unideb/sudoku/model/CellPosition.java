@@ -31,5 +31,6 @@ public class CellPosition {
 
     public void setPossibleValues(Set<Integer> possibleValues) {
         this.possibleValues = (possibleValues != null) ? possibleValues : new HashSet<>();
+        this.value = 0;
     }
 }
