@@ -9,6 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.GridPane;
@@ -29,9 +30,13 @@ public class GameController {
     @FXML
     private GridPane board;
 
+    @FXML
+    private CheckBox possibleValuesCheckbox;
+
     public void initialize() {
         levelLabel.setText(GameModel.getDifficult().toString());
         createBoard();
+        addCheckboxListener();
     }
 
     private void createBoard() {
@@ -49,13 +54,39 @@ public class GameController {
                     String possibleValuesText = formatNumbers(sudokuBoard[row][col].getPossibleValues());
                     textArea.setText(possibleValuesText);
                     textArea.getStyleClass().add(POSSIBLE_VALUES);
-                    textArea.setEditable(true);
                 }
 
                 textAreas[row][col] = textArea;
                 textArea.getStyleClass().addAll(styles);
                 setupTextArea(textArea, row, col);
                 board.add(textArea, col, row);
+            }
+        }
+    }
+
+    private void addCheckboxListener() {
+        possibleValuesCheckbox.setSelected(true);
+        possibleValuesCheckbox.selectedProperty().addListener((observable, oldValue, newValue) -> {
+            togglePossibleValuesDisplay(newValue);
+        });
+    }
+
+    private void togglePossibleValuesDisplay(boolean show) {
+        for (int row = 0; row < 9; row++) {
+            for (int col = 0; col < 9; col++) {
+                TextArea textArea = textAreas[row][col];
+                if (!textArea.getStyleClass().contains(INITIAL_NUMBER) && textArea.getStyleClass().contains(POSSIBLE_VALUES)) {
+                    if (show) {
+                        Set<Integer> possibleValues = model.getPossibleValues(row, col);
+                        String possibleValuesText = formatNumbers(possibleValues);
+                        textArea.setText(possibleValuesText);
+                        if (!textArea.getStyleClass().contains(POSSIBLE_VALUES)) {
+                            textArea.getStyleClass().add(POSSIBLE_VALUES);
+                        }
+                    } else {
+                        textArea.setText("");
+                    }
+                }
             }
         }
     }
@@ -81,7 +112,9 @@ public class GameController {
     private void handleCellFocusLost(TextArea textArea, int row, int col) {
         String text = textArea.getText().trim();
         if (!isInitialNumber(textArea)) {
-            if (isSingleDigit(text)) {
+            if (text.isEmpty()) {
+                revertTextAreaToModelValues(textArea, row, col);
+            } else if (isSingleDigit(text)) {
                 processSingleDigit(textArea, row, col, text);
             } else {
                 processPossibleValues(textArea, row, col, text);

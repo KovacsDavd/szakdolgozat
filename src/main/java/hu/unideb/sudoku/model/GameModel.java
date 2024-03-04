@@ -51,7 +51,6 @@ public class GameModel {
             removeDigits(HARD_MOD_REVOME_DIGITS);
         }
         storePossibleValues();
-        printCurrentBoardState();
     }
 
     public void storePossibleValues() {
@@ -65,19 +64,10 @@ public class GameModel {
         }
     }
 
-    public void setPossibleValuesAt(int row, int col, Set<Integer> values) {
-        System.out.println("\nbefore: " + sudokuBoard[row][col].getPossibleValues());
-        sudokuBoard[row][col].setPossibleValues(values);
-        System.out.println("after: " + sudokuBoard[row][col].getPossibleValues());
-    }
 
-    public Set<Integer> getPossibleValuesAt(int row, int col) {
-        return sudokuBoard[row][col].getPossibleValues();
-    }
-
-    public void setValueAt(int row, int col, int vaue) {
+    public void setValueAt(int row, int col, int value) {
         System.out.println("\nbefore: " + sudokuBoard[row][col].getValue());
-        sudokuBoard[row][col].setValue(vaue);
+        sudokuBoard[row][col].setValue(value);
         System.out.println("after: " + sudokuBoard[row][col].getValue());
     }
 
@@ -85,6 +75,15 @@ public class GameModel {
         return sudokuBoard[row][col].getValue();
     }
 
+    public void setPossibleValuesAt(int row, int col, Set<Integer> values) {
+        System.out.println("\nbefore: " + sudokuBoard[row][col].getPossibleValues());
+        sudokuBoard[row][col].setPossibleValues(values);
+        System.out.println("after: " + sudokuBoard[row][col].getPossibleValues());
+    }
+
+    public Set<Integer> getPossibleValuesAt(int row, int col) { // nem kell újra számolni
+        return sudokuBoard[row][col].getPossibleValues();
+    }
 
     public Set<Integer> getPossibleValues(int row, int col) {
         boolean[] usedValues = new boolean[SIZE + 1];
@@ -242,23 +241,5 @@ public class GameModel {
 
     public CellPosition[][] getSolvedBoard() {
         return solvedBoard;
-    }
-
-    public void printCurrentBoardState() {
-        System.out.println("Current Sudoku board state:");
-        for (int i = 0; i < SIZE; i++) {
-            for (int j = 0; j < SIZE; j++) {
-                int value = sudokuBoard[i][j].getValue();
-                Set<Integer> possibleValues = sudokuBoard[i][j].getPossibleValues();
-
-                if (value == 0) {
-                    System.out.println("[" + i + "][" + j + "] = Empty");
-                    System.out.println("Possible Values: " + possibleValues);
-                } else {
-                    System.out.println("[" + i + "][" + j + "] = " + value);
-                }
-            }
-        }
-        System.out.println("End of current Sudoku board state");
     }
 }
