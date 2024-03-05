@@ -253,12 +253,29 @@ public class GameController {
     private void updateViewWithSudokuBoard(CellPosition[][] sudokuBoard) {
         for (int row = 0; row < 9; row++) {
             for (int col = 0; col < 9; col++) {
-                if (sudokuBoard[row][col].getValue() != 0) {
-                    textAreas[row][col].setText(String.valueOf(sudokuBoard[row][col].getValue()));
-                    textAreas[row][col].getStyleClass().remove(POSSIBLE_VALUES);
-                }
+                String textValue = sudokuBoard[row][col].getValue() != 0 ?
+                        String.valueOf(sudokuBoard[row][col].getValue()) :
+                        formatNumbers(sudokuBoard[row][col].getPossibleValues());
+
+                textAreas[row][col].setText(textValue);
+                updateTextAreaStyles(textAreas[row][col], sudokuBoard[row][col].getValue(), sudokuBoard[row][col].getPossibleValues());
             }
         }
+    }
+
+    private void updateTextAreaStyles(TextArea textArea, int value, Set<Integer> possibleValues) {
+        if (value != 0) {
+            textArea.getStyleClass().remove(POSSIBLE_VALUES);
+        } else if (!possibleValues.isEmpty() && (!textArea.getStyleClass().contains(POSSIBLE_VALUES))) {
+                textArea.getStyleClass().add(POSSIBLE_VALUES);
+
+        }
+    }
+
+    @FXML
+    public void updatePossibleValues() {
+        model.storePossibleValues();
+        togglePossibleValuesDisplay(true);
     }
 
     @FXML
@@ -268,5 +285,11 @@ public class GameController {
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(gameScene);
         window.show();
+    }
+
+    @FXML
+    public void resetBoard() {
+        model.resetBoard();
+        updateViewWithSudokuBoard(model.getOriginalBoard());
     }
 }

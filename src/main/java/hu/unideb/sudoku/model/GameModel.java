@@ -12,6 +12,7 @@ public class GameModel {
     private static final int HARD_MOD_REVOME_DIGITS = 49;
     private CellPosition[][] sudokuBoard;
     private CellPosition[][] solvedBoard;
+    private CellPosition[][] originalBoard;
     private static final Random rand = new Random();
 
     public GameModel() {
@@ -51,6 +52,13 @@ public class GameModel {
             removeDigits(HARD_MOD_REVOME_DIGITS);
         }
         storePossibleValues();
+
+        originalBoard = new CellPosition[SIZE][SIZE];
+        for (int i = 0; i < SIZE; i++) {
+            for (int j = 0; j < SIZE; j++) {
+                originalBoard[i][j] = new CellPosition(sudokuBoard[i][j].getValue(), new HashSet<>(sudokuBoard[i][j].getPossibleValues()));
+            }
+        }
     }
 
     public void storePossibleValues() {
@@ -241,5 +249,17 @@ public class GameModel {
 
     public CellPosition[][] getSolvedBoard() {
         return solvedBoard;
+    }
+
+    public CellPosition[][] getOriginalBoard() {
+        return originalBoard;
+    }
+
+    public void resetBoard() {
+        for (int i = 0; i < SIZE; i++) {
+            for (int j = 0; j < SIZE; j++) {
+                sudokuBoard[i][j] = new CellPosition(originalBoard[i][j].getValue(), new HashSet<>(originalBoard[i][j].getPossibleValues()));
+            }
+        }
     }
 }
