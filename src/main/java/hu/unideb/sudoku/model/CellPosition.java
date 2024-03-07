@@ -11,6 +11,7 @@ public class CellPosition {
     public CellPosition() {
         this.possibleValues = new HashSet<>();
     }
+
     public CellPosition(int value, Set<Integer> possibleValues) {
         this.value = value;
         this.possibleValues = new HashSet<>(possibleValues);

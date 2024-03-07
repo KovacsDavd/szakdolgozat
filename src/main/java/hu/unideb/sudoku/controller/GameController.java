@@ -137,14 +137,18 @@ public class GameController {
 
     private void processPossibleValues(TextArea textArea, int row, int col, String text) {
         Set<Integer> newPossibleValues = extractNumbers(text);
-        if (!newPossibleValues.equals(model.getPossibleValuesAt(row, col))) {
-            if (isValid(newPossibleValues)) {
-                updateTextAreaWithPossibleValues(textArea, row, col, newPossibleValues);
+        if (newPossibleValues.size() == 1) {
+            revertTextAreaToModelValues(textArea, row, col);
+        } else {
+            if (!newPossibleValues.equals(model.getPossibleValuesAt(row, col))) {
+                if (isValid(newPossibleValues)) {
+                    updateTextAreaWithPossibleValues(textArea, row, col, newPossibleValues);
+                } else {
+                    revertTextAreaToModelValues(textArea, row, col);
+                }
             } else {
                 revertTextAreaToModelValues(textArea, row, col);
             }
-        } else {
-            revertTextAreaToModelValues(textArea, row, col);
         }
     }
 
@@ -171,7 +175,6 @@ public class GameController {
             textArea.getStyleClass().remove(POSSIBLE_VALUES);
         }
     }
-
 
     private Set<Integer> extractNumbers(String text) {
         Set<Integer> numbers = new HashSet<>();
@@ -267,7 +270,7 @@ public class GameController {
         if (value != 0) {
             textArea.getStyleClass().remove(POSSIBLE_VALUES);
         } else if (!possibleValues.isEmpty() && (!textArea.getStyleClass().contains(POSSIBLE_VALUES))) {
-                textArea.getStyleClass().add(POSSIBLE_VALUES);
+            textArea.getStyleClass().add(POSSIBLE_VALUES);
         }
     }
 

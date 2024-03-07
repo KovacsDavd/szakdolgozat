@@ -137,7 +137,7 @@ public class GameModel {
             for (int j = 0; j < 3; j++) {
                 do {
                     num = randomGenerator();
-                } while (!unUsedInBox(sudokuBoard,row, col, num));
+                } while (!unUsedInBox(sudokuBoard, row, col, num));
 
                 sudokuBoard[row + i][col + j].setValue(num);
             }
