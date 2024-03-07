@@ -11,12 +11,15 @@ public class GameModel {
     private static final int MEDIUM_MOD_REVOME_DIGITS = 43;
     private static final int HARD_MOD_REVOME_DIGITS = 49;
     private CellPosition[][] sudokuBoard;
-    private CellPosition[][] solvedBoard;
-    private CellPosition[][] originalBoard;
+    private final CellPosition[][] solvedBoard;
+    private final CellPosition[][] originalBoard;
     private static final Random rand = new Random();
 
     public GameModel() {
         sudokuBoard = new CellPosition[SIZE][SIZE];
+        solvedBoard = new CellPosition[SIZE][SIZE];
+        originalBoard = new CellPosition[SIZE][SIZE];
+
         for (int i = 0; i < SIZE; i++) {
             for (int j = 0; j < SIZE; j++) {
                 sudokuBoard[i][j] = new CellPosition();
@@ -37,12 +40,7 @@ public class GameModel {
         fillDiagonal();
         fillRemaining(0, 3);
 
-        solvedBoard = new CellPosition[SIZE][SIZE];
-        for (int i = 0; i < SIZE; i++) {
-            for (int j = 0; j < SIZE; j++) {
-                solvedBoard[i][j] = new CellPosition(sudokuBoard[i][j].getValue(), new HashSet<>(sudokuBoard[i][j].getPossibleValues()));
-            }
-        }
+        deepCopy(sudokuBoard, solvedBoard);
 
         if (difficult == GameDifficult.EASY) {
             removeDigits(EASY_MOD_REVOME_DIGITS);
@@ -53,10 +51,13 @@ public class GameModel {
         }
         storePossibleValues();
 
-        originalBoard = new CellPosition[SIZE][SIZE];
+        deepCopy(sudokuBoard, originalBoard);
+    }
+
+    public void deepCopy(CellPosition[][] source, CellPosition[][] destination) {
         for (int i = 0; i < SIZE; i++) {
             for (int j = 0; j < SIZE; j++) {
-                originalBoard[i][j] = new CellPosition(sudokuBoard[i][j].getValue(), new HashSet<>(sudokuBoard[i][j].getPossibleValues()));
+                destination[i][j] = new CellPosition(source[i][j].getValue(), new HashSet<>(source[i][j].getPossibleValues()));
             }
         }
     }
@@ -74,9 +75,7 @@ public class GameModel {
 
 
     public void setValueAt(int row, int col, int value) {
-        System.out.println("\nbefore: " + sudokuBoard[row][col].getValue());
         sudokuBoard[row][col].setValue(value);
-        System.out.println("after: " + sudokuBoard[row][col].getValue());
     }
 
     public int getValueAt(int row, int col) {
@@ -84,9 +83,7 @@ public class GameModel {
     }
 
     public void setPossibleValuesAt(int row, int col, Set<Integer> values) {
-        System.out.println("\nbefore: " + sudokuBoard[row][col].getPossibleValues());
         sudokuBoard[row][col].setPossibleValues(values);
-        System.out.println("after: " + sudokuBoard[row][col].getPossibleValues());
     }
 
     public Set<Integer> getPossibleValuesAt(int row, int col) { // nem kell újra számolni
@@ -134,21 +131,13 @@ public class GameModel {
             fillBox(i, i);
     }
 
-    private boolean unUsedInBox(int rowStart, int colStart, int num) {
-        for (int i = 0; i < 3; i++)
-            for (int j = 0; j < 3; j++)
-                if (sudokuBoard[rowStart + i][colStart + j].getValue() == num)
-                    return false;
-        return true;
-    }
-
     private void fillBox(int row, int col) {
         int num;
         for (int i = 0; i < 3; i++)
             for (int j = 0; j < 3; j++) {
                 do {
                     num = randomGenerator();
-                } while (!unUsedInBox(row, col, num));
+                } while (!unUsedInBox(sudokuBoard,row, col, num));
 
                 sudokuBoard[row + i][col + j].setValue(num);
             }
@@ -225,14 +214,8 @@ public class GameModel {
         return true;
     }
 
-    public CellPosition[][] getSudokuBoardValues() {
-        CellPosition[][] sudokuValues = new CellPosition[SIZE][SIZE];
-
-        for (int i = 0; i < SIZE; i++) {
-            System.arraycopy(sudokuBoard[i], 0, sudokuValues[i], 0, SIZE);
-        }
-
-        return sudokuValues;
+    public void solve() {
+        deepCopy(solvedBoard, sudokuBoard);
     }
 
     public CellPosition[][] getSudokuBoard() {

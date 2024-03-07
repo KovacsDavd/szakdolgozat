@@ -66,9 +66,8 @@ public class GameController {
 
     private void addCheckboxListener() {
         possibleValuesCheckbox.setSelected(true);
-        possibleValuesCheckbox.selectedProperty().addListener((observable, oldValue, newValue) -> {
-            togglePossibleValuesDisplay(newValue);
-        });
+        possibleValuesCheckbox.selectedProperty().addListener((observable, oldValue, newValue) ->
+                togglePossibleValuesDisplay(newValue));
     }
 
     private void togglePossibleValuesDisplay(boolean show) {
@@ -247,6 +246,7 @@ public class GameController {
 
     @FXML
     public void solveSudoku() {
+        model.solve();
         updateViewWithSudokuBoard(model.getSolvedBoard());
     }
 
@@ -268,7 +268,6 @@ public class GameController {
             textArea.getStyleClass().remove(POSSIBLE_VALUES);
         } else if (!possibleValues.isEmpty() && (!textArea.getStyleClass().contains(POSSIBLE_VALUES))) {
                 textArea.getStyleClass().add(POSSIBLE_VALUES);
-
         }
     }
 
