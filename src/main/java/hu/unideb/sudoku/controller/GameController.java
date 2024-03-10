@@ -76,19 +76,17 @@ public class GameController {
         for (int row = 0; row < 9; row++) {
             for (int col = 0; col < 9; col++) {
                 TextArea textArea = textAreas[row][col];
-                if (!textArea.getStyleClass().contains(INITIAL_NUMBER) && textArea.getStyleClass().contains(POSSIBLE_VALUES)) {
+                if (!isInitialNumber(textArea) && textArea.getStyleClass().contains(POSSIBLE_VALUES)) {
                     if (show) {
                         Set<Integer> possibleValues = model.getNewPossibleValues(row, col);
                         String possibleValuesText = formatNumbers(possibleValues);
                         textArea.setText(possibleValuesText);
                         if (possibleValues.isEmpty()) {
-                            // Ha üres a lehetséges értékek halmaza, alkalmazzuk a "error" stílusosztályt
                             if (!textArea.getStyleClass().contains("error")) {
                                 textArea.getStyleClass().add("error");
                             }
                             hasError = true;
                         } else {
-                            // Ha vannak lehetséges értékek, távolítsuk el az "error" stílusosztályt, ha szükséges
                             textArea.getStyleClass().remove("error");
                         }
                         if (!textArea.getStyleClass().contains(POSSIBLE_VALUES)) {
@@ -102,13 +100,13 @@ public class GameController {
             }
         }
         if (hasError) {
-            showAlert("Hiba", "A cellában nincsenek lehetséges értékek.");
+            showAlert("A cellában nincsenek lehetséges értékek.");
         }
     }
 
-    private void showAlert(String title, String message) {
+    private void showAlert(String message) {
         Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setTitle(title);
+        alert.setTitle("HIBA");
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
@@ -116,7 +114,7 @@ public class GameController {
 
 
     private void setupTextArea(TextArea textArea, int row, int col) {
-        if (!textArea.getStyleClass().contains(INITIAL_NUMBER)) {
+        if (!isInitialNumber(textArea)) {
             textArea.textProperty().addListener((obs, oldVal, newVal) -> {
                 if (!newVal.matches("([1-9,\\n ]*)")) {
                     textArea.setText(oldVal);
@@ -155,10 +153,19 @@ public class GameController {
     }
 
     private void processSingleDigit(TextArea textArea, int row, int col, String text) {
-        textArea.getStyleClass().remove("error");
         int value = Integer.parseInt(text);
-        model.setValueAt(row, col, value);
-        updateTextArea(textArea, text, false);
+
+        if (value != model.getValueAt(row, col)) {
+            textArea.getStyleClass().remove("error");
+            updateTextArea(textArea, text, false);
+
+            if (model.isValueValid(row, col, value)) {
+                model.setValueAt(row, col, value);
+            } else {
+                textArea.getStyleClass().add("error");
+                showAlert("A(z) " + value + " szám már szerepel a sorban, oszlopban, vagy a 3x3-as dobozban.");
+            }
+        }
     }
 
     private void processPossibleValues(TextArea textArea, int row, int col, String text) {

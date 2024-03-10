@@ -86,26 +86,26 @@ public class GameModel {
         sudokuBoard[row][col].setPossibleValues(values);
     }
 
-    public Set<Integer> getCurrentPossibleValuesAt(int row, int col) { // nem kell újra számolni
+    public Set<Integer> getCurrentPossibleValuesAt(int row, int col) {
         return sudokuBoard[row][col].getPossibleValues();
     }
 
     public Set<Integer> getNewPossibleValues(int row, int col) {
         boolean[] usedValues = new boolean[SIZE + 1];
 
-        // Ellenőrizze a sorban lévő értékeket
+        // Ellenőrizzi a sorban lévő értékeket
         for (int j = 0; j < SIZE; j++) {
             int value = sudokuBoard[row][j].getValue();
             usedValues[value] = true;
         }
 
-        // Ellenőrizze az oszlopban lévő értékeket
+        // Ellenőrizzi az oszlopban lévő értékeket
         for (int i = 0; i < SIZE; i++) {
             int value = sudokuBoard[i][col].getValue();
             usedValues[value] = true;
         }
 
-        // Ellenőrizze a 3x3-as blokkban lévő értékeket
+        // Ellenőrizzi a 3x3-as blokkban lévő értékeket
         int boxStartRow = row - row % 3;
         int boxStartCol = col - col % 3;
         for (int i = 0; i < 3; i++) {
@@ -115,7 +115,6 @@ public class GameModel {
             }
         }
 
-        // Gyűjtsd össze a lehetséges értékeket
         Set<Integer> possibleValues = new HashSet<>();
         for (int num = 1; num <= SIZE; num++) {
             if (!usedValues[num]) {
@@ -124,6 +123,32 @@ public class GameModel {
         }
 
         return possibleValues;
+    }
+
+    public boolean isValueValid(int row, int col, int value) {
+        // Ellenőrizzük a sort
+        for (int j = 0; j < 9; j++) {
+            if (sudokuBoard[row][j].getValue() == value) {
+                return false;
+            }
+        }
+        // Ellenőrizzük az oszlopot
+        for (int i = 0; i < 9; i++) {
+            if (sudokuBoard[i][col].getValue() == value) {
+                return false;
+            }
+        }
+        // Ellenőrizzük a 3x3-as dobozt
+        int boxRowStart = row - row % 3;
+        int boxColStart = col - col % 3;
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                if (sudokuBoard[boxRowStart + i][boxColStart + j].getValue() == value) {
+                    return false;
+                }
+            }
+        }
+        return true; // A szám érvényes az adott cellában
     }
 
     private void fillDiagonal() {
