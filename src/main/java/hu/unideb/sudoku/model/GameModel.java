@@ -66,7 +66,7 @@ public class GameModel {
         for (int i = 0; i < SIZE; i++) {
             for (int j = 0; j < SIZE; j++) {
                 if (sudokuBoard[i][j].getValue() == 0) {
-                    Set<Integer> possibleValues = getPossibleValues(i, j);
+                    Set<Integer> possibleValues = getNewPossibleValues(i, j);
                     sudokuBoard[i][j].setPossibleValues(possibleValues);
                 }
             }
@@ -86,11 +86,11 @@ public class GameModel {
         sudokuBoard[row][col].setPossibleValues(values);
     }
 
-    public Set<Integer> getPossibleValuesAt(int row, int col) { // nem kell újra számolni
+    public Set<Integer> getCurrentPossibleValuesAt(int row, int col) { // nem kell újra számolni
         return sudokuBoard[row][col].getPossibleValues();
     }
 
-    public Set<Integer> getPossibleValues(int row, int col) {
+    public Set<Integer> getNewPossibleValues(int row, int col) {
         boolean[] usedValues = new boolean[SIZE + 1];
 
         // Ellenőrizze a sorban lévő értékeket
