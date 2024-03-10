@@ -62,7 +62,6 @@
     -fx-opacity: 0;
 }
 
-.user-input {
-    -fx-font-size: 22px;
-    -fx-text-fill: red; /* vagy bármilyen szín, amit ki szeretnél emelni */
+.text-area.error {
+    -fx-control-inner-background: #FFCCCC;
 }

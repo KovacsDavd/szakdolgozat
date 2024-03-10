@@ -9,6 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -71,6 +72,7 @@ public class GameController {
     }
 
     private void togglePossibleValuesDisplay(boolean show) {
+        boolean hasError = false;
         for (int row = 0; row < 9; row++) {
             for (int col = 0; col < 9; col++) {
                 TextArea textArea = textAreas[row][col];
@@ -79,16 +81,39 @@ public class GameController {
                         Set<Integer> possibleValues = model.getPossibleValues(row, col);
                         String possibleValuesText = formatNumbers(possibleValues);
                         textArea.setText(possibleValuesText);
+                        if (possibleValues.isEmpty()) {
+                            // Ha üres a lehetséges értékek halmaza, alkalmazzuk a "error" stílusosztályt
+                            if (!textArea.getStyleClass().contains("error")) {
+                                textArea.getStyleClass().add("error");
+                            }
+                            hasError = true;
+                        } else {
+                            // Ha vannak lehetséges értékek, távolítsuk el az "error" stílusosztályt, ha szükséges
+                            textArea.getStyleClass().remove("error");
+                        }
                         if (!textArea.getStyleClass().contains(POSSIBLE_VALUES)) {
                             textArea.getStyleClass().add(POSSIBLE_VALUES);
                         }
                     } else {
                         textArea.setText("");
+                        textArea.getStyleClass().remove("error");
                     }
                 }
             }
         }
+        if (hasError) {
+            showAlert("Hiba", "A cellában nincsenek lehetséges értékek.");
+        }
     }
+
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
 
     private void setupTextArea(TextArea textArea, int row, int col) {
         if (!textArea.getStyleClass().contains(INITIAL_NUMBER)) {
@@ -130,12 +155,14 @@ public class GameController {
     }
 
     private void processSingleDigit(TextArea textArea, int row, int col, String text) {
+        textArea.getStyleClass().remove("error");
         int value = Integer.parseInt(text);
         model.setValueAt(row, col, value);
         updateTextArea(textArea, text, false);
     }
 
     private void processPossibleValues(TextArea textArea, int row, int col, String text) {
+        textArea.getStyleClass().remove("error");
         Set<Integer> newPossibleValues = extractNumbers(text);
         if (newPossibleValues.size() == 1) {
             revertTextAreaToModelValues(textArea, row, col);
@@ -162,6 +189,7 @@ public class GameController {
     }
 
     private void revertTextAreaToModelValues(TextArea textArea, int row, int col) {
+        textArea.getStyleClass().remove("error");
         Set<Integer> possibleValues = model.getPossibleValuesAt(row, col);
         String text = possibleValues.isEmpty() ? formatNumbers(Collections.singleton(model.getValueAt(row, col))) : formatNumbers(possibleValues);
         updateTextArea(textArea, text, !possibleValues.isEmpty());
@@ -261,6 +289,7 @@ public class GameController {
                         formatNumbers(sudokuBoard[row][col].getPossibleValues());
 
                 textAreas[row][col].setText(textValue);
+                textAreas[row][col].getStyleClass().remove("error");
                 updateTextAreaStyles(textAreas[row][col], sudokuBoard[row][col].getValue(), sudokuBoard[row][col].getPossibleValues());
             }
         }
