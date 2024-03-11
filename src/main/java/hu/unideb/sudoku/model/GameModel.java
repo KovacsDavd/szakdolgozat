@@ -3,8 +3,7 @@ package hu.unideb.sudoku.model;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
-//TODO:
-// NYERT: gombra ellenőriz, kiírjuk, mennyi van jó helyen, mennyi ninc. Ha mind jó helyen van akkor kiírjuk, hogy nyert-e
+
 public class GameModel {
     private static GameDifficult difficult;
     private static final int SIZE = 9;
@@ -151,7 +150,7 @@ public class GameModel {
                 }
             }
         }
-        return true; // A szám érvényes az adott cellában
+        return true;
     }
 
     private void fillDiagonal() {

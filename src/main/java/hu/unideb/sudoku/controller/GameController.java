@@ -118,6 +118,7 @@ public class GameController {
         if (model.isComplete()) {
             if (model.isCorrect()) {
                 showAlert("Gratulálunk!", "Sikeresen megoldottad a Sudoku-t!");
+                setEditingEnabled(false);
             } else {
                 showAlert("Hiba", "Helytelen megoldás");
             }
@@ -338,5 +339,17 @@ public class GameController {
     public void resetBoard() {
         model.resetBoard();
         updateViewWithSudokuBoard(model.getOriginalBoard());
+        setEditingEnabled(true);
+    }
+
+    private void setEditingEnabled(boolean enabled) {
+        for (int row = 0; row < 9; row++) {
+            for (int col = 0; col < 9; col++) {
+                TextArea textArea = textAreas[row][col];
+                if (!textArea.getStyleClass().contains(INITIAL_NUMBER)) {
+                    textArea.setEditable(enabled);
+                }
+            }
+        }
     }
 }
