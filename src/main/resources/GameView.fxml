@@ -1,50 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
 <?import java.net.URL?>
-<AnchorPane prefHeight="700.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="hu.unideb.sudoku.controller.GameController">
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<AnchorPane prefHeight="700.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.unideb.sudoku.controller.GameController">
     <stylesheets>
-        <URL value="@sudoku-style.css"/>
+        <URL value="@sudoku-style.css" />
     </stylesheets>
-    <GridPane fx:id="board" layoutX="140.0" layoutY="153.0" prefHeight="500.0" prefWidth="500.0"
-              AnchorPane.bottomAnchor="-52.200000000000045" AnchorPane.leftAnchor="140.0"
-              AnchorPane.rightAnchor="-39.19999999999993" AnchorPane.topAnchor="153.0">
+    <GridPane fx:id="board" layoutX="140.0" layoutY="153.0" prefHeight="500.0" prefWidth="500.0" AnchorPane.bottomAnchor="-52.200000000000045" AnchorPane.leftAnchor="140.0" AnchorPane.rightAnchor="-39.19999999999993" AnchorPane.topAnchor="153.0">
         <columnConstraints>
-            <ColumnConstraints percentWidth="9.5"/>
-            <ColumnConstraints percentWidth="9.5"/>
-            <ColumnConstraints percentWidth="9.5"/>
-            <ColumnConstraints percentWidth="9.5"/>
-            <ColumnConstraints percentWidth="9.5"/>
-            <ColumnConstraints percentWidth="9.5"/>
-            <ColumnConstraints percentWidth="9.5"/>
-            <ColumnConstraints percentWidth="9.5"/>
-            <ColumnConstraints percentWidth="9.5"/>
+            <ColumnConstraints percentWidth="9.5" />
+            <ColumnConstraints percentWidth="9.5" />
+            <ColumnConstraints percentWidth="9.5" />
+            <ColumnConstraints percentWidth="9.5" />
+            <ColumnConstraints percentWidth="9.5" />
+            <ColumnConstraints percentWidth="9.5" />
+            <ColumnConstraints percentWidth="9.5" />
+            <ColumnConstraints percentWidth="9.5" />
+            <ColumnConstraints percentWidth="9.5" />
         </columnConstraints>
         <rowConstraints>
-            <RowConstraints percentHeight="9.5"/>
-            <RowConstraints percentHeight="9.5"/>
-            <RowConstraints percentHeight="9.5"/>
-            <RowConstraints percentHeight="9.5"/>
-            <RowConstraints percentHeight="9.5"/>
-            <RowConstraints percentHeight="9.5"/>
-            <RowConstraints percentHeight="9.5"/>
-            <RowConstraints percentHeight="9.5"/>
-            <RowConstraints percentHeight="9.5"/>
+            <RowConstraints percentHeight="9.5" />
+            <RowConstraints percentHeight="9.5" />
+            <RowConstraints percentHeight="9.5" />
+            <RowConstraints percentHeight="9.5" />
+            <RowConstraints percentHeight="9.5" />
+            <RowConstraints percentHeight="9.5" />
+            <RowConstraints percentHeight="9.5" />
+            <RowConstraints percentHeight="9.5" />
+            <RowConstraints percentHeight="9.5" />
         </rowConstraints>
     </GridPane>
-    <Label layoutX="28.0" layoutY="69.0" text="Level:"/>
-    <Label fx:id="levelLabel" layoutX="85.0" layoutY="69.0"/>
-    <Button focusTraversable="false" layoutX="23.0" layoutY="197.0" mnemonicParsing="false" onAction="#backToMainMenu"
-            prefHeight="26.0" prefWidth="58.0" text="Vége"/>
-    <Button focusTraversable="false" layoutX="334.0" layoutY="107.0" mnemonicParsing="false" text="Segítség"/>
-    <Button focusTraversable="false" layoutX="23.0" layoutY="246.0" mnemonicParsing="false" onAction="#solveSudoku"
-            prefHeight="26.0" prefWidth="58.0" text="Megold"/>
-    <CheckBox fx:id="possibleValuesCheckbox" layoutX="20.0" layoutY="111.0" mnemonicParsing="false"
-              text="Lehetséges értékek"/>
-    <Button layoutX="166.0" layoutY="107.0" mnemonicParsing="false" onAction="#updatePossibleValues"
-            text="Értékek újra számolása"/>
-    <Button onAction="#resetBoard" layoutX="21.0" layoutY="296.0" mnemonicParsing="false" prefHeight="26.0"
-            prefWidth="62.0" text="Újra"/>
+    <Label layoutX="28.0" layoutY="69.0" text="Level:" />
+    <Label fx:id="levelLabel" layoutX="85.0" layoutY="69.0" />
+    <Button focusTraversable="false" layoutX="23.0" layoutY="197.0" mnemonicParsing="false" onAction="#backToMainMenu" prefHeight="26.0" prefWidth="58.0" text="Vége" />
+    <Button focusTraversable="false" layoutX="334.0" layoutY="107.0" mnemonicParsing="false" text="Segítség" />
+    <Button focusTraversable="false" layoutX="23.0" layoutY="246.0" mnemonicParsing="false" onAction="#solveSudoku" prefHeight="26.0" prefWidth="58.0" text="Megold" />
+    <CheckBox fx:id="possibleValuesCheckbox" layoutX="20.0" layoutY="111.0" mnemonicParsing="false" text="Lehetséges értékek" />
+    <Button layoutX="166.0" layoutY="107.0" mnemonicParsing="false" onAction="#updatePossibleValues" text="Értékek újra számolása" />
+    <Button layoutX="21.0" layoutY="296.0" mnemonicParsing="false" onAction="#resetBoard" prefHeight="26.0" prefWidth="62.0" text="Újra" />
+   <Button layoutX="22.0" layoutY="350.0" mnemonicParsing="false" onAction="#checkSudoku" text="Ellenőriz" />
 </AnchorPane>

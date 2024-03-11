@@ -24,6 +24,7 @@ public class GameController {
     private final TextArea[][] textAreas = new TextArea[9][9];
     private static final String INITIAL_NUMBER = "initial-number";
     private static final String POSSIBLE_VALUES = "possible-values";
+    private static final String ERROR = "error";
 
     @FXML
     private Label levelLabel;
@@ -82,36 +83,48 @@ public class GameController {
                         String possibleValuesText = formatNumbers(possibleValues);
                         textArea.setText(possibleValuesText);
                         if (possibleValues.isEmpty()) {
-                            if (!textArea.getStyleClass().contains("error")) {
-                                textArea.getStyleClass().add("error");
+                            if (!textArea.getStyleClass().contains(ERROR)) {
+                                textArea.getStyleClass().add(ERROR);
                             }
                             hasError = true;
                         } else {
-                            textArea.getStyleClass().remove("error");
+                            textArea.getStyleClass().remove(ERROR);
                         }
                         if (!textArea.getStyleClass().contains(POSSIBLE_VALUES)) {
                             textArea.getStyleClass().add(POSSIBLE_VALUES);
                         }
                     } else {
                         textArea.setText("");
-                        textArea.getStyleClass().remove("error");
+                        textArea.getStyleClass().remove(ERROR);
                     }
                 }
             }
         }
         if (hasError) {
-            showAlert("A cellában nincsenek lehetséges értékek.");
+            showAlert("Hiba", "A cellában nincsenek lehetséges értékek.");
         }
     }
 
-    private void showAlert(String message) {
+    private void showAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setTitle("HIBA");
+        alert.setTitle(title);
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
     }
 
+    @FXML
+    private void checkSudoku() {
+        if (model.isComplete()) {
+            if (model.isCorrect()) {
+                showAlert("Gratulálunk!", "Sikeresen megoldottad a Sudoku-t!");
+            } else {
+                showAlert("Hiba", "Helytelen megoldás");
+            }
+        } else {
+            showAlert("Hiba", "A megoldás befejezetlen.");
+        }
+    }
 
     private void setupTextArea(TextArea textArea, int row, int col) {
         if (!isInitialNumber(textArea)) {
@@ -154,22 +167,18 @@ public class GameController {
 
     private void processSingleDigit(TextArea textArea, int row, int col, String text) {
         int value = Integer.parseInt(text);
+        textArea.getStyleClass().remove(ERROR);
+        updateTextArea(textArea, text, false);
 
-        if (value != model.getValueAt(row, col)) {
-            textArea.getStyleClass().remove("error");
-            updateTextArea(textArea, text, false);
-
-            if (model.isValueValid(row, col, value)) {
-                model.setValueAt(row, col, value);
-            } else {
-                textArea.getStyleClass().add("error");
-                showAlert("A(z) " + value + " szám már szerepel a sorban, oszlopban, vagy a 3x3-as dobozban.");
-            }
+        if (!model.isValueValid(row, col, value)) {
+            textArea.getStyleClass().add(ERROR);
+            showAlert("Hiba", "A(z) " + value + " szám már szerepel a sorban, oszlopban, vagy a 3x3-as dobozban.");
         }
+        model.setValueAt(row, col, value);
     }
 
     private void processPossibleValues(TextArea textArea, int row, int col, String text) {
-        textArea.getStyleClass().remove("error");
+        textArea.getStyleClass().remove(ERROR);
         Set<Integer> newPossibleValues = extractNumbers(text);
         if (newPossibleValues.size() == 1) {
             revertTextAreaToModelValues(textArea, row, col);
@@ -196,7 +205,7 @@ public class GameController {
     }
 
     private void revertTextAreaToModelValues(TextArea textArea, int row, int col) {
-        textArea.getStyleClass().remove("error");
+        textArea.getStyleClass().remove(ERROR);
         Set<Integer> possibleValues = model.getCurrentPossibleValuesAt(row, col);
         String text = possibleValues.isEmpty() ? formatNumbers(Collections.singleton(model.getValueAt(row, col))) : formatNumbers(possibleValues);
         updateTextArea(textArea, text, !possibleValues.isEmpty());
@@ -296,7 +305,7 @@ public class GameController {
                         formatNumbers(sudokuBoard[row][col].getPossibleValues());
 
                 textAreas[row][col].setText(textValue);
-                textAreas[row][col].getStyleClass().remove("error");
+                textAreas[row][col].getStyleClass().remove(ERROR);
                 updateTextAreaStyles(textAreas[row][col], sudokuBoard[row][col].getValue(), sudokuBoard[row][col].getPossibleValues());
             }
         }

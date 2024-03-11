@@ -3,11 +3,12 @@ package hu.unideb.sudoku.model;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
-
+//TODO:
+// NYERT: gombra ellenőriz, kiírjuk, mennyi van jó helyen, mennyi ninc. Ha mind jó helyen van akkor kiírjuk, hogy nyert-e
 public class GameModel {
     private static GameDifficult difficult;
     private static final int SIZE = 9;
-    private static final int EASY_MOD_REVOME_DIGITS = 36;
+    private static final int EASY_MOD_REVOME_DIGITS = 2;
     private static final int MEDIUM_MOD_REVOME_DIGITS = 43;
     private static final int HARD_MOD_REVOME_DIGITS = 49;
     private CellPosition[][] sudokuBoard;
@@ -128,13 +129,13 @@ public class GameModel {
     public boolean isValueValid(int row, int col, int value) {
         // Ellenőrizzük a sort
         for (int j = 0; j < 9; j++) {
-            if (sudokuBoard[row][j].getValue() == value) {
+            if (j != col && sudokuBoard[row][j].getValue() == value) {
                 return false;
             }
         }
         // Ellenőrizzük az oszlopot
         for (int i = 0; i < 9; i++) {
-            if (sudokuBoard[i][col].getValue() == value) {
+            if (i != row && sudokuBoard[i][col].getValue() == value) {
                 return false;
             }
         }
@@ -143,8 +144,10 @@ public class GameModel {
         int boxColStart = col - col % 3;
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
-                if (sudokuBoard[boxRowStart + i][boxColStart + j].getValue() == value) {
-                    return false;
+                if (boxRowStart + i != row || boxColStart + j != col) {
+                    if (sudokuBoard[boxRowStart + i][boxColStart + j].getValue() == value) {
+                        return false;
+                    }
                 }
             }
         }
@@ -269,5 +272,30 @@ public class GameModel {
                 sudokuBoard[i][j] = new CellPosition(originalBoard[i][j].getValue(), new HashSet<>(originalBoard[i][j].getPossibleValues()));
             }
         }
+    }
+
+    public boolean isComplete() {
+        for (int i = 0; i < SIZE; i++) {
+            for (int j = 0; j < SIZE; j++) {
+                int value = sudokuBoard[i][j].getValue();
+                if (value == 0) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    public boolean isCorrect() {
+        for (int i = 0; i < SIZE; i++) {
+            for (int j = 0; j < SIZE; j++) {
+                int value = sudokuBoard[i][j].getValue();
+                int correctValue = solvedBoard[i][j].getValue();
+                if (value != correctValue) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 }
