@@ -3,6 +3,9 @@ package hu.unideb.sudoku.controller;
 
 import hu.unideb.sudoku.model.CellPosition;
 import hu.unideb.sudoku.model.GameModel;
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,6 +18,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.io.IOException;
 import java.util.*;
@@ -26,6 +30,9 @@ public class GameController {
     private static final String POSSIBLE_VALUES = "possible-values";
     private static final String ERROR = "error";
 
+    private Timeline timeline;
+    private Duration time = Duration.ZERO;
+
     @FXML
     private Label levelLabel;
 
@@ -35,10 +42,36 @@ public class GameController {
     @FXML
     private CheckBox possibleValuesCheckbox;
 
+    @FXML
+    private Label timerLabel;
+
     public void initialize() {
         levelLabel.setText(GameModel.getDifficult().toString());
         createBoard();
         addCheckboxListener();
+        startTimer();
+    }
+
+    private void startTimer() {
+        if (timeline != null) {
+            timeline.stop();
+        }
+        time = Duration.ZERO;
+        timeline = new Timeline(
+                new KeyFrame(Duration.seconds(1), e -> updateTimer())
+        );
+        timeline.setCycleCount(Animation.INDEFINITE);
+        timeline.play();
+    }
+
+    private void updateTimer() {
+        time = time.add(Duration.seconds(1));
+        timerLabel.setText(formatDuration(time));
+    }
+
+    private String formatDuration(Duration duration) {
+        long seconds = (long) duration.toSeconds();
+        return String.format("%d:%02d", seconds / 60, seconds % 60);
     }
 
     private void createBoard() {
@@ -117,6 +150,7 @@ public class GameController {
     private void checkSudoku() {
         if (model.isComplete()) {
             if (model.isCorrect()) {
+                timeline.stop();
                 showAlert("Gratulálunk!", "Sikeresen megoldottad a Sudoku-t!");
                 setEditingEnabled(false);
             } else {
