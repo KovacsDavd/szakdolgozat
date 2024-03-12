@@ -40,7 +40,7 @@
     <Label layoutX="28.0" layoutY="69.0" text="Level:" />
     <Label fx:id="levelLabel" layoutX="85.0" layoutY="69.0" />
     <Button focusTraversable="false" layoutX="23.0" layoutY="197.0" mnemonicParsing="false" onAction="#backToMainMenu" prefHeight="26.0" prefWidth="58.0" text="Vége" />
-    <Button focusTraversable="false" layoutX="334.0" layoutY="107.0" mnemonicParsing="false" text="Segítség" />
+    <Button focusTraversable="false" layoutX="334.0" layoutY="107.0" mnemonicParsing="false" onAction="#helpStrategy" text="Segítség" />
     <Button focusTraversable="false" layoutX="23.0" layoutY="246.0" mnemonicParsing="false" onAction="#solveSudoku" prefHeight="26.0" prefWidth="58.0" text="Megold" />
     <CheckBox fx:id="possibleValuesCheckbox" layoutX="20.0" layoutY="111.0" mnemonicParsing="false" text="Lehetséges értékek" />
     <Button layoutX="166.0" layoutY="107.0" mnemonicParsing="false" onAction="#updatePossibleValues" text="Értékek újra számolása" />

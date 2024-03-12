@@ -1,8 +1,8 @@
 package hu.unideb.sudoku.model;
 
-import java.util.HashSet;
-import java.util.Random;
-import java.util.Set;
+import javafx.util.Pair;
+
+import java.util.*;
 
 public class GameModel {
     private static GameDifficult difficult;
@@ -86,11 +86,11 @@ public class GameModel {
         sudokuBoard[row][col].setPossibleValues(values);
     }
 
-    public Set<Integer> getCurrentPossibleValuesAt(int row, int col) {
+    public Set<Integer> getPossibleValuesAt(int row, int col) {
         return sudokuBoard[row][col].getPossibleValues();
     }
 
-    public Set<Integer> getNewPossibleValues(int row, int col) {
+    private Set<Integer> getNewPossibleValues(int row, int col) {
         boolean[] usedValues = new boolean[SIZE + 1];
 
         // Ellenőrizzi a sorban lévő értékeket
@@ -296,5 +296,71 @@ public class GameModel {
             }
         }
         return true;
+    }
+
+    public Set<Pair<Integer, Pair<Integer, Integer>>> checkFullHouse() {
+        Set<Pair<Integer, Pair<Integer, Integer>>> results = new HashSet<>();
+
+        // Sorok vizsgálata
+        results.addAll(checkFullHouseByRowORCol(results, true));
+
+        // Oszlopok vizsgálata
+        results.addAll(checkFullHouseByRowORCol(results, false));
+
+        // 3x3-as blokkok vizsgálata
+        results.addAll(checkFullHouseByBoxes(results));
+
+        return results;
+    }
+
+    private Set<Pair<Integer, Pair<Integer, Integer>>> checkFullHouseByRowORCol(Set<Pair<Integer, Pair<Integer, Integer>>> results, boolean isRowCheck) {
+        for (int i = 0; i < SIZE; i++) {
+            int emptyCount = 0;
+            int lastEmptyIndex = -1;
+            for (int j = 0; j < SIZE; j++) {
+                int row = isRowCheck ? i : j;
+                int col = isRowCheck ? j : i;
+                if (sudokuBoard[row][col].getValue() == 0) {
+                    emptyCount++;
+                    lastEmptyIndex = j;
+                }
+            }
+            if (emptyCount == 1) {
+                int targetRow = isRowCheck ? i : lastEmptyIndex;
+                int targetCol = isRowCheck ? lastEmptyIndex : i;
+                Set<Integer> possibleValues = getPossibleValuesAt(targetRow, targetCol);
+                if (possibleValues.size() == 1) {
+                    int value = possibleValues.iterator().next();
+                    results.add(new Pair<>(value, new Pair<>(targetRow, targetCol)));
+                }
+            }
+        }
+        return results;
+    }
+
+
+    private Set<Pair<Integer, Pair<Integer, Integer>>> checkFullHouseByBoxes(Set<Pair<Integer, Pair<Integer, Integer>>> results) {
+        for (int boxRow = 0; boxRow < SIZE; boxRow += 3) {
+            for (int boxCol = 0; boxCol < SIZE; boxCol += 3) {
+                int emptyCount = 0;
+                Pair<Integer, Integer> lastEmptyCell = null;
+                for (int i = 0; i < 3; i++) {
+                    for (int j = 0; j < 3; j++) {
+                        if (sudokuBoard[boxRow + i][boxCol + j].getValue() == 0) {
+                            emptyCount++;
+                            lastEmptyCell = new Pair<>(boxRow + i, boxCol + j);
+                        }
+                    }
+                }
+                if (emptyCount == 1 && lastEmptyCell != null) {
+                    Set<Integer> possibleValues = getPossibleValuesAt(lastEmptyCell.getKey(), lastEmptyCell.getValue());
+                    if (possibleValues.size() == 1) {
+                        int value = possibleValues.iterator().next();
+                        results.add(new Pair<>(value, lastEmptyCell));
+                                           }
+                }
+            }
+        }
+        return results;
     }
 }
