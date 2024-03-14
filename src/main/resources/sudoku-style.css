@@ -65,3 +65,6 @@
 .text-area.error {
     -fx-control-inner-background: #FFCCCC;
 }
+.hint {
+    -fx-text-fill: red;
+}

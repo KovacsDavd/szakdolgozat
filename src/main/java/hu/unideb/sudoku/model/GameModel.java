@@ -310,6 +310,7 @@ public class GameModel {
         // 3x3-as blokkok vizsgálata
         results.addAll(checkFullHouseByBoxes(results));
 
+        System.out.println("FULL HOUSE: " +results.size());
         return results;
     }
 
@@ -338,7 +339,6 @@ public class GameModel {
         return results;
     }
 
-
     private Set<Pair<Integer, Pair<Integer, Integer>>> checkFullHouseByBoxes(Set<Pair<Integer, Pair<Integer, Integer>>> results) {
         for (int boxRow = 0; boxRow < SIZE; boxRow += 3) {
             for (int boxCol = 0; boxCol < SIZE; boxCol += 3) {
@@ -363,4 +363,24 @@ public class GameModel {
         }
         return results;
     }
+
+    public Set<Pair<Integer, Pair<Integer, Integer>>> checkNakedSingles() {
+        Set<Pair<Integer, Pair<Integer, Integer>>> results = new HashSet<>();
+
+        for (int row = 0; row < SIZE; row++) {
+            for (int col = 0; col < SIZE; col++) {
+                if (sudokuBoard[row][col].getValue() == 0) {
+                    Set<Integer> possibleValues = getNewPossibleValues(row, col);
+
+                    if (possibleValues.size() == 1) {
+                        int value = possibleValues.iterator().next();
+                        results.add(new Pair<>(value, new Pair<>(row, col)));
+                    }
+                }
+            }
+        }
+        System.out.println("\n NAKED SINGLE: " + results.size());
+        return results;
+    }
+
 }

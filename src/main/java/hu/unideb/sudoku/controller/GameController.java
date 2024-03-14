@@ -19,6 +19,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import javafx.util.Pair;
 
 import java.io.IOException;
 import java.util.*;
@@ -374,6 +375,7 @@ public class GameController {
         model.resetBoard();
         updateViewWithSudokuBoard(model.getOriginalBoard());
         setEditingEnabled(true);
+        togglePossibleValuesDisplay(possibleValuesCheckbox.isSelected());
     }
 
     private void setEditingEnabled(boolean enabled) {
@@ -389,6 +391,28 @@ public class GameController {
 
     @FXML
     public void helpStrategy() {
-        model.checkFullHouse();
+        updatePossibleValues();
+        Set<Pair<Integer, Pair<Integer, Integer>>> resultSet = model.checkFullHouse();
+        if (resultSet.isEmpty()) {
+            resultSet = model.checkNakedSingles();
+            applyStyleToCells(resultSet);
+        } else {
+            applyStyleToCells(resultSet);
+        }
     }
+
+    public void applyStyleToCells(Set<Pair<Integer, Pair<Integer, Integer>>> cells) {
+        for (Pair<Integer, Pair<Integer, Integer>> cellInfo : cells) {
+            Pair<Integer, Integer> position = cellInfo.getValue();
+            int row = position.getKey();
+            int col = position.getValue();
+
+            TextArea cell = textAreas[row][col];
+
+            if (!cell.getStyleClass().contains("hint")) {
+                cell.getStyleClass().add("hint");
+            }
+        }
+    }
+
 }
