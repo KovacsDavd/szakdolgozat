@@ -253,6 +253,7 @@ public class GameController {
             textArea.getStyleClass().add(POSSIBLE_VALUES);
         } else if (!addPossibleValuesClass) {
             textArea.getStyleClass().remove(POSSIBLE_VALUES);
+            textArea.getStyleClass().remove("hint");
         }
     }
 

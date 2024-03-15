@@ -205,14 +205,58 @@ public class GameModel {
     }
 
     private void removeDigits(int count) {
-        while (count != 0) {
-            int i = randomGenerator() - 1;
-            int j = randomGenerator() - 1;
+        Set<Pair<Integer, Integer>> cellsToRemove = new HashSet<>();
+        while (cellsToRemove.size() < count) {
+            int i = rand.nextInt(SIZE);
+            int j = rand.nextInt(SIZE);
             if (sudokuBoard[i][j].getValue() != 0) {
-                count--;
+                int backup = sudokuBoard[i][j].getValue();
                 sudokuBoard[i][j].setValue(0);
+
+                // Ellenőrizze az egyediséget
+                if (!hasUniqueSolution()) {
+                    // Ha nincs egyedi megoldás, visszaállítja a számot
+                    sudokuBoard[i][j].setValue(backup);
+                } else {
+                    // Sikeres eltávolítás, hozzáadjuk a sethez
+                    cellsToRemove.add(new Pair<>(i, j));
+                }
             }
         }
+    }
+
+    public boolean hasUniqueSolution() {
+        int[] numberOfSolutions = new int[1]; // Egy tömb, hogy referencia típusként viselkedjen
+        solveSudoku(0, 0, numberOfSolutions);
+        return numberOfSolutions[0] == 1;
+    }
+
+    private boolean solveSudoku(int row, int col, int[] numberOfSolutions) {
+        if (row == SIZE) {
+            numberOfSolutions[0]++; // Egy lehetséges megoldás megtalálva
+            return numberOfSolutions[0] == 1; // Csak akkor tér vissza igaz értékkel, ha ez az első megoldás
+        }
+
+        int nextRow = (col == SIZE - 1) ? row + 1 : row;
+        int nextCol = (col == SIZE - 1) ? 0 : col + 1;
+
+        if (sudokuBoard[row][col].getValue() != 0) {
+            // Ugrás a következő cellára, ha ez már ki van töltve
+            return solveSudoku(nextRow, nextCol, numberOfSolutions);
+        } else {
+            for (int num = 1; num <= SIZE; num++) {
+                if (isValueValid(row, col, num)) {
+                    sudokuBoard[row][col].setValue(num);
+                    if (solveSudoku(nextRow, nextCol, numberOfSolutions)) {
+                        if (numberOfSolutions[0] > 1) {
+                            return false; // Már több mint egy megoldás van, nem kell többet keresni
+                        }
+                    }
+                    sudokuBoard[row][col].setValue(0); // Visszavonás (backtrack)
+                }
+            }
+        }
+        return numberOfSolutions[0] == 1;
     }
 
     private boolean checkIfSafe(CellPosition[][] board, int row, int col, int num) {
