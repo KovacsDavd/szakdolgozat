@@ -1,4 +1,3 @@
-
 package hu.unideb.sudoku.controller;
 
 import hu.unideb.sudoku.model.CellPosition;
@@ -58,9 +57,7 @@ public class GameController {
             timeline.stop();
         }
         time = Duration.ZERO;
-        timeline = new Timeline(
-                new KeyFrame(Duration.seconds(1), e -> updateTimer())
-        );
+        timeline = new Timeline(new KeyFrame(Duration.seconds(1), e -> updateTimer()));
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.play();
     }
@@ -102,8 +99,7 @@ public class GameController {
 
     private void addCheckboxListener() {
         possibleValuesCheckbox.setSelected(true);
-        possibleValuesCheckbox.selectedProperty().addListener((observable, oldValue, newValue) ->
-                togglePossibleValuesDisplay(newValue));
+        possibleValuesCheckbox.selectedProperty().addListener((observable, oldValue, newValue) -> togglePossibleValuesDisplay(newValue));
     }
 
     private void togglePossibleValuesDisplay(boolean show) {
@@ -337,9 +333,7 @@ public class GameController {
     private void updateViewWithSudokuBoard(CellPosition[][] sudokuBoard) {
         for (int row = 0; row < 9; row++) {
             for (int col = 0; col < 9; col++) {
-                String textValue = sudokuBoard[row][col].getValue() != 0 ?
-                        String.valueOf(sudokuBoard[row][col].getValue()) :
-                        formatNumbers(sudokuBoard[row][col].getPossibleValues());
+                String textValue = sudokuBoard[row][col].getValue() != 0 ? String.valueOf(sudokuBoard[row][col].getValue()) : formatNumbers(sudokuBoard[row][col].getPossibleValues());
 
                 textAreas[row][col].setText(textValue);
                 textAreas[row][col].getStyleClass().remove(ERROR);
@@ -393,11 +387,15 @@ public class GameController {
     @FXML
     public void helpStrategy() {
         updatePossibleValues();
-        Set<Pair<Integer, Pair<Integer, Integer>>> resultSet = model.checkFullHouse();
-        if (resultSet.isEmpty()) {
-            resultSet = model.checkNakedSingles();
-            applyStyleToCells(resultSet);
-        } else {
+        Set<Pair<Integer, Pair<Integer, Integer>>> resultSet = new HashSet<>();
+
+        if (!resultSet.addAll(model.checkFullHouse())) {
+            if (!resultSet.addAll(model.checkNakedSingles())) {
+                resultSet.addAll(model.checkHiddenSingles());
+            }
+        }
+
+        if (!resultSet.isEmpty()) {
             applyStyleToCells(resultSet);
         }
     }

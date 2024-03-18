@@ -2,7 +2,9 @@ package hu.unideb.sudoku.model;
 
 import javafx.util.Pair;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.Random;
+import java.util.Set;
 
 public class GameModel {
     private static GameDifficult difficult;
@@ -176,28 +178,24 @@ public class GameModel {
 
     private boolean unUsedInRow(CellPosition[][] board, int row, int num) {
         for (int j = 0; j < SIZE; j++)
-            if (board[row][j].getValue() == num)
-                return false;
+            if (board[row][j].getValue() == num) return false;
         return true;
     }
 
     private boolean fillRemaining(int i, int j) {
-        if (i == SIZE - 1 && j == SIZE)
-            return true;
+        if (i == SIZE - 1 && j == SIZE) return true;
 
         if (j == SIZE) {
             i++;
             j = 0;
         }
 
-        if (sudokuBoard[i][j].getValue() != 0)
-            return fillRemaining(i, j + 1);
+        if (sudokuBoard[i][j].getValue() != 0) return fillRemaining(i, j + 1);
 
         for (int num = 1; num <= SIZE; num++) {
             if (checkIfSafe(sudokuBoard, i, j, num)) {
                 sudokuBoard[i][j].setValue(num);
-                if (fillRemaining(i, j + 1))
-                    return true;
+                if (fillRemaining(i, j + 1)) return true;
                 sudokuBoard[i][j].setValue(0);
             }
         }
@@ -260,9 +258,7 @@ public class GameModel {
     }
 
     private boolean checkIfSafe(CellPosition[][] board, int row, int col, int num) {
-        return (unUsedInRow(board, row, num) &&
-                unUsedInCol(board, col, num) &&
-                unUsedInBox(board, row - row % 3, col - col % 3, num));
+        return (unUsedInRow(board, row, num) && unUsedInCol(board, col, num) && unUsedInBox(board, row - row % 3, col - col % 3, num));
     }
 
     private boolean unUsedInCol(CellPosition[][] board, int col, int num) {
@@ -354,7 +350,7 @@ public class GameModel {
         // 3x3-as blokkok vizsgálata
         results.addAll(checkFullHouseByBoxes(results));
 
-        System.out.println("FULL HOUSE: " +results.size());
+        System.out.println("FULL HOUSE: " + results.size());
         return results;
     }
 
@@ -401,7 +397,7 @@ public class GameModel {
                     if (possibleValues.size() == 1) {
                         int value = possibleValues.iterator().next();
                         results.add(new Pair<>(value, lastEmptyCell));
-                                           }
+                    }
                 }
             }
         }
@@ -414,7 +410,7 @@ public class GameModel {
         for (int row = 0; row < SIZE; row++) {
             for (int col = 0; col < SIZE; col++) {
                 if (sudokuBoard[row][col].getValue() == 0) {
-                    Set<Integer> possibleValues = getNewPossibleValues(row, col);
+                    Set<Integer> possibleValues = sudokuBoard[row][col].getPossibleValues();
 
                     if (possibleValues.size() == 1) {
                         int value = possibleValues.iterator().next();
@@ -425,6 +421,61 @@ public class GameModel {
         }
         System.out.println("\n NAKED SINGLE: " + results.size());
         return results;
+    }
+
+    public Set<Pair<Integer, Pair<Integer, Integer>>> checkHiddenSingles() {
+        Set<Pair<Integer, Pair<Integer, Integer>>> results = new HashSet<>();
+
+        for (int row = 0; row < SIZE; row++) {
+            for (int col = 0; col < SIZE; col++) {
+                CellPosition cell = sudokuBoard[row][col];
+                if (cell.getValue() == 0) {
+                    for (int value : cell.getPossibleValues()) {
+                        if (isHiddenSingleCell(row, col, value)) {
+                            results.add(new Pair<>(value, new Pair<>(row, col)));
+                        }
+                    }
+                }
+            }
+        }
+        System.out.println("\n HIDDEN SINGLE: " + results.size());
+        return results;
+    }
+
+    private boolean isHiddenSingleCell(int row, int col, int value) {
+        return !isValueInRow(row, col, value) && !isValueInCol(row, col, value) && !isValueInBox(row, col, value);
+    }
+
+    private boolean isValueInRow(int row, int col, int value) {
+        for (int c = 0; c < SIZE; c++) {
+            if (c != col && sudokuBoard[row][c].getPossibleValues().contains(value)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean isValueInCol(int row, int col, int value) {
+        for (int r = 0; r < SIZE; r++) {
+            if (r != row && sudokuBoard[r][col].getPossibleValues().contains(value)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean isValueInBox(int row, int col, int value) {
+        int boxRow = row - row % 3;
+        int boxCol = col - col % 3;
+
+        for (int r = boxRow; r < boxRow + 3; r++) {
+            for (int c = boxCol; c < boxCol + 3; c++) {
+                if ((r != row || c != col) && sudokuBoard[r][c].getPossibleValues().contains(value)) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
 }
