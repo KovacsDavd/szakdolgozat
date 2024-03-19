@@ -12,7 +12,7 @@
         <VBox alignment="CENTER_LEFT" spacing="10">
             <Button mnemonicParsing="false" onAction="#showChooseLevelScene" style="-fx-font-size: 16px;"
                     text="Új játék"/>
-            <Button mnemonicParsing="false" style="-fx-font-size: 16px;" text="Statisztika"/>
+            <Button mnemonicParsing="false" style="-fx-font-size: 16px;" onAction="#showHistoryView"  text="Előzmény"/>
             <Button onAction="#exit" mnemonicParsing="false" style="-fx-font-size: 16px;" text="Kilépés"/>
         </VBox>
     </VBox>

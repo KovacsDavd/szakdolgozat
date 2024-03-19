@@ -1,6 +1,8 @@
 package hu.unideb.sudoku.controller;
 
 import hu.unideb.sudoku.model.CellPosition;
+import hu.unideb.sudoku.model.GameHistory;
+import hu.unideb.sudoku.model.GameHistoryService;
 import hu.unideb.sudoku.model.GameModel;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -133,6 +135,13 @@ public class GameController {
         if (hasError) {
             showAlert("Hiba", "A cellában nincsenek lehetséges értékek.");
         }
+    }
+
+    @FXML
+    public void saveGame() {
+        long elapsedTimeSeconds = (long) time.toSeconds();
+        GameHistory gameHistory = new GameHistory(model.getOriginalBoard(), model.getSolvedBoard(), model.getSudokuBoard(), elapsedTimeSeconds);
+        GameHistoryService.saveGameHistory(gameHistory);
     }
 
     private void showAlert(String title, String message) {

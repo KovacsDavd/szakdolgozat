@@ -48,4 +48,5 @@
    <Button layoutX="22.0" layoutY="350.0" mnemonicParsing="false" onAction="#checkSudoku" text="Ellenőriz" />
    <Label fx:id="timerLabel" layoutX="306.0" layoutY="39.0" text="Label" />
    <Label layoutX="270.0" layoutY="39.0" text="IDŐ:" />
+   <Button layoutX="457.0" layoutY="107.0" mnemonicParsing="false" onAction="#saveGame" text="Mentés" />
 </AnchorPane>

@@ -30,6 +30,7 @@ public class GameModel {
         generateSudoku();
     }
 
+
     private void generateSudoku() {
         sudokuBoard = new CellPosition[SIZE][SIZE];
 
