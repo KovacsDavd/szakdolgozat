@@ -33,8 +33,12 @@ public class HistoryController {
     private TableColumn<GameHistory, String> replayColumn;
 
     @FXML
+    private TableColumn<GameHistory, String> difficultyColumn;
+
+    @FXML
     public void initialize() {
         timeColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getElapsedTimeFormatted()));
+        difficultyColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDifficulty()));
 
         indexColumn.setCellFactory(column -> new TableCell<>() {
             @Override

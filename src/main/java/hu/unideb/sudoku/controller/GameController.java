@@ -36,9 +36,6 @@ public class GameController {
     private Duration time = Duration.ZERO;
 
     @FXML
-    private Label levelLabel;
-
-    @FXML
     private GridPane board;
 
     @FXML
@@ -48,8 +45,6 @@ public class GameController {
     private Label timerLabel;
 
     public void initialize() {
-        //levelLabel.setText(GameModel.getDifficult().toString());
-
         if (!GameModel.isNeedHistoryLoad()) {
             createBoard();
             addCheckboxListener();
@@ -58,9 +53,9 @@ public class GameController {
     }
 
     public void initializeWithHistory(GameHistory history) {
-        model.loadGameFromHistory(history); // Betölti a modellt a történelmi adatokkal
+        model.loadGameFromHistory(history);
         GameModel.setNeedHistoryLoad(false);
-        initialize(); // Az eredeti initialize metódust hívja meg
+        initialize();
     }
 
     private void startTimer() {
@@ -149,11 +144,9 @@ public class GameController {
     @FXML
     public void saveGame() {
         long elapsedTimeSeconds = (long) time.toSeconds();
-        GameHistory gameHistory = new GameHistory(model.getOriginalBoard(), model.getSolvedBoard(), model.getSudokuBoard(), elapsedTimeSeconds);
+        GameHistory gameHistory = new GameHistory(model.getOriginalBoard(), model.getSolvedBoard(), model.getSudokuBoard(),
+                elapsedTimeSeconds, GameModel.getDifficult().toString());
         GameHistoryService.saveGameHistory(gameHistory);
-    }
-    public GameModel getModel() {
-        return model;
     }
 
     private void showAlert(String title, String message) {

@@ -8,15 +8,18 @@
 <AnchorPane prefHeight="700.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.unideb.sudoku.controller.HistoryController">
         <VBox alignment="CENTER" layoutX="100.0" layoutY="50.0" spacing="20.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="50.0">
                 <Label text="Előzmények" />
-                <TableView fx:id="historyTable" prefHeight="200.0" prefWidth="500.0">
+                <TableView fx:id="historyTable" prefHeight="202.0" prefWidth="500.0">
                     <columns>
-                        <TableColumn fx:id="indexColumn" prefWidth="166.6" text="Sorszám">
+                        <TableColumn fx:id="indexColumn" prefWidth="125" text="Sorszám">
                             <style>-fx-alignment: CENTER;</style>
                         </TableColumn>
-                        <TableColumn fx:id="timeColumn" prefWidth="166.6" text="Idő">
+                        <TableColumn fx:id="timeColumn" prefWidth="125" text="Idő">
                             <style>-fx-alignment: CENTER;</style>
                         </TableColumn>
-                        <TableColumn fx:id="replayColumn" prefWidth="166.6" text="Újra játszás">
+                        <TableColumn fx:id="difficultyColumn" prefWidth="125" text="Szint">
+                            <style>-fx-alignment: CENTER;</style>
+                        </TableColumn>
+                        <TableColumn fx:id="replayColumn" prefWidth="125" text="Újra játszás">
                             <style>-fx-alignment: CENTER;</style>
                         </TableColumn>
                     </columns>
