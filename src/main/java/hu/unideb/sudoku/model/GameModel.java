@@ -16,6 +16,7 @@ public class GameModel {
     private final CellPosition[][] solvedBoard;
     private final CellPosition[][] originalBoard;
     private static final Random rand = new Random();
+    private static boolean needHistoryLoad = false;
 
     public GameModel() {
         sudokuBoard = new CellPosition[SIZE][SIZE];
@@ -27,9 +28,24 @@ public class GameModel {
                 sudokuBoard[i][j] = new CellPosition();
             }
         }
-        generateSudoku();
+        if (!needHistoryLoad) {
+            generateSudoku();
+        }
     }
 
+    public void loadGameFromHistory(GameHistory history) {
+        deepCopy(history.getOriginalBoard(), originalBoard);
+        deepCopy(history.getSudokuBoard(), sudokuBoard);
+        deepCopy(history.getSolvedBoard(), solvedBoard);
+    }
+
+    public static void setNeedHistoryLoad(boolean needHistoryLoad) {
+        GameModel.needHistoryLoad = needHistoryLoad;
+    }
+
+    public static boolean isNeedHistoryLoad() {
+        return needHistoryLoad;
+    }
 
     private void generateSudoku() {
         sudokuBoard = new CellPosition[SIZE][SIZE];

@@ -2,14 +2,20 @@ package hu.unideb.sudoku.controller;
 
 import hu.unideb.sudoku.model.GameHistory;
 import hu.unideb.sudoku.model.GameHistoryService;
+import hu.unideb.sudoku.model.GameModel;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.stage.Stage;
 
 
+import java.io.IOException;
 import java.util.List;
 
 public class HistoryController {
@@ -68,8 +74,22 @@ public class HistoryController {
         loadHistories();
     }
 
+    @FXML
     private void replayGame(GameHistory history) {
-        // Megvalósítandó: a játéktörténet alapján a játék újratöltése
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("GameView.fxml"));
+            GameModel.setNeedHistoryLoad(true);
+            Parent gameView = loader.load();
+
+            GameController gameController = loader.getController();
+            gameController.initializeWithHistory(history);
+
+            Stage stage = (Stage) historyTable.getScene().getWindow();
+            stage.setScene(new Scene(gameView));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void loadHistories() {

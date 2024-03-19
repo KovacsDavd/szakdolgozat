@@ -48,10 +48,19 @@ public class GameController {
     private Label timerLabel;
 
     public void initialize() {
-        levelLabel.setText(GameModel.getDifficult().toString());
-        createBoard();
-        addCheckboxListener();
-        startTimer();
+        //levelLabel.setText(GameModel.getDifficult().toString());
+
+        if (!GameModel.isNeedHistoryLoad()) {
+            createBoard();
+            addCheckboxListener();
+            startTimer();
+        }
+    }
+
+    public void initializeWithHistory(GameHistory history) {
+        model.loadGameFromHistory(history); // Betölti a modellt a történelmi adatokkal
+        GameModel.setNeedHistoryLoad(false);
+        initialize(); // Az eredeti initialize metódust hívja meg
     }
 
     private void startTimer() {
@@ -142,6 +151,9 @@ public class GameController {
         long elapsedTimeSeconds = (long) time.toSeconds();
         GameHistory gameHistory = new GameHistory(model.getOriginalBoard(), model.getSolvedBoard(), model.getSudokuBoard(), elapsedTimeSeconds);
         GameHistoryService.saveGameHistory(gameHistory);
+    }
+    public GameModel getModel() {
+        return model;
     }
 
     private void showAlert(String title, String message) {
