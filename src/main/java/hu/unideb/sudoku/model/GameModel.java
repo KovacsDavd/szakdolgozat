@@ -1,6 +1,7 @@
 package hu.unideb.sudoku.model;
 
 import javafx.util.Pair;
+import org.tinylog.Logger;
 
 import java.util.HashSet;
 import java.util.Random;
@@ -9,9 +10,10 @@ import java.util.Set;
 public class GameModel {
     private static GameDifficult difficult;
     private static final int SIZE = 9;
-    private static final int EASY_MOD_REVOME_DIGITS = 2;
-    private static final int MEDIUM_MOD_REVOME_DIGITS = 43;
-    private static final int HARD_MOD_REVOME_DIGITS = 49;
+    private static final int EASY_MOD_REVOME_DIGITS = 40;
+    private static final int MEDIUM_MOD_REVOME_DIGITS = 48;
+    private static final int HARD_MOD_REVOME_DIGITS = 55;
+    private static final String LOG_FORMAT = "[{}][{}] = {}";
     private CellPosition[][] sudokuBoard;
     private final CellPosition[][] solvedBoard;
     private final CellPosition[][] originalBoard;
@@ -145,32 +147,40 @@ public class GameModel {
     }
 
     public boolean isValueValid(int row, int col, int value) {
-        // Ellenőrizzük a sort
+        return isValueUnusedInRow(row, col, value) && isValueUnusedInCol(row, col, value) && isValueUnusedInBox(row, col, value);
+    }
+
+    private boolean isValueUnusedInRow(int row, int col, int value) {
         for (int j = 0; j < 9; j++) {
             if (j != col && sudokuBoard[row][j].getValue() == value) {
                 return false;
             }
         }
-        // Ellenőrizzük az oszlopot
+        return true;
+    }
+
+    private boolean isValueUnusedInCol(int row, int col, int value) {
         for (int i = 0; i < 9; i++) {
             if (i != row && sudokuBoard[i][col].getValue() == value) {
                 return false;
             }
         }
-        // Ellenőrizzük a 3x3-as dobozt
+        return true;
+    }
+
+    private boolean isValueUnusedInBox(int row, int col, int value) {
         int boxRowStart = row - row % 3;
         int boxColStart = col - col % 3;
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
-                if (boxRowStart + i != row || boxColStart + j != col) {
-                    if (sudokuBoard[boxRowStart + i][boxColStart + j].getValue() == value) {
-                        return false;
-                    }
+                if ((boxRowStart + i != row || boxColStart + j != col) && sudokuBoard[boxRowStart + i][boxColStart + j].getValue() == value) {
+                    return false;
                 }
             }
         }
         return true;
     }
+
 
     private void fillDiagonal() {
         for (int i = 0; i < SIZE; i = i + 3)
@@ -262,12 +272,11 @@ public class GameModel {
             for (int num = 1; num <= SIZE; num++) {
                 if (isValueValid(row, col, num)) {
                     sudokuBoard[row][col].setValue(num);
-                    if (solveSudoku(nextRow, nextCol, numberOfSolutions)) {
-                        if (numberOfSolutions[0] > 1) {
-                            return false; // Már több mint egy megoldás van, nem kell többet keresni
-                        }
+                    if (solveSudoku(nextRow, nextCol, numberOfSolutions) && (numberOfSolutions[0] > 1)) {
+                        return false; // Már több mint egy megoldás van, nem kell többet keresni
+
                     }
-                    sudokuBoard[row][col].setValue(0); // Visszavonás (backtrack)
+                    sudokuBoard[row][col].setValue(0); // BackTrack
                 }
             }
         }
@@ -367,59 +376,86 @@ public class GameModel {
         // 3x3-as blokkok vizsgálata
         results.addAll(checkFullHouseByBoxes(results));
 
-        System.out.println("FULL HOUSE: " + results.size());
         return results;
     }
 
     private Set<Pair<Integer, Pair<Integer, Integer>>> checkFullHouseByRowORCol(Set<Pair<Integer, Pair<Integer, Integer>>> results, boolean isRowCheck) {
         for (int i = 0; i < SIZE; i++) {
-            int emptyCount = 0;
-            int lastEmptyIndex = -1;
-            for (int j = 0; j < SIZE; j++) {
-                int row = isRowCheck ? i : j;
-                int col = isRowCheck ? j : i;
-                if (sudokuBoard[row][col].getValue() == 0) {
-                    emptyCount++;
-                    lastEmptyIndex = j;
-                }
-            }
+            Pair<Integer, Integer> emptyInfo = getEmptyInfo(i, isRowCheck);
+            int emptyCount = emptyInfo.getKey();
+            int lastEmptyIndex = emptyInfo.getValue();
+
             if (emptyCount == 1) {
-                int targetRow = isRowCheck ? i : lastEmptyIndex;
-                int targetCol = isRowCheck ? lastEmptyIndex : i;
-                Set<Integer> possibleValues = getPossibleValuesAt(targetRow, targetCol);
-                if (possibleValues.size() == 1) {
-                    int value = possibleValues.iterator().next();
-                    results.add(new Pair<>(value, new Pair<>(targetRow, targetCol)));
+                addResultIfValid(results, i, lastEmptyIndex, isRowCheck);
+            }
+        }
+        return results;
+    }
+
+    private Pair<Integer, Integer> getEmptyInfo(int index, boolean isRowCheck) {
+        int emptyCount = 0;
+        int lastEmptyIndex = -1;
+        for (int j = 0; j < SIZE; j++) {
+            int row = isRowCheck ? index : j;
+            int col = isRowCheck ? j : index;
+            if (sudokuBoard[row][col].getValue() == 0) {
+                emptyCount++;
+                lastEmptyIndex = j;
+            }
+        }
+        return new Pair<>(emptyCount, lastEmptyIndex);
+    }
+
+    private void addResultIfValid(Set<Pair<Integer, Pair<Integer, Integer>>> results, int index, int lastEmptyIndex, boolean isRowCheck) {
+        int targetRow = isRowCheck ? index : lastEmptyIndex;
+        int targetCol = isRowCheck ? lastEmptyIndex : index;
+        Set<Integer> possibleValues = getPossibleValuesAt(targetRow, targetCol);
+
+        if (possibleValues.size() == 1) {
+            int value = possibleValues.iterator().next();
+            results.add(new Pair<>(value, new Pair<>(targetRow, targetCol)));
+            Logger.debug(LOG_FORMAT, targetRow, targetCol, value);
+        }
+    }
+
+    private Set<Pair<Integer, Pair<Integer, Integer>>> checkFullHouseByBoxes(Set<Pair<Integer, Pair<Integer, Integer>>> results) {
+        for (int boxRow = 0; boxRow < SIZE; boxRow += 3) {
+            for (int boxCol = 0; boxCol < SIZE; boxCol += 3) {
+                Pair<Integer, Pair<Integer, Integer>> emptyCellInfo = findSingleEmptyCellInBox(boxRow, boxCol);
+                int emptyCount = emptyCellInfo.getKey();
+                Pair<Integer, Integer> lastEmptyCell = emptyCellInfo.getValue();
+
+                if (emptyCount == 1) {
+                    addResultForBoxIfValid(results, lastEmptyCell);
                 }
             }
         }
         return results;
     }
 
-    private Set<Pair<Integer, Pair<Integer, Integer>>> checkFullHouseByBoxes(Set<Pair<Integer, Pair<Integer, Integer>>> results) {
-        for (int boxRow = 0; boxRow < SIZE; boxRow += 3) {
-            for (int boxCol = 0; boxCol < SIZE; boxCol += 3) {
-                int emptyCount = 0;
-                Pair<Integer, Integer> lastEmptyCell = null;
-                for (int i = 0; i < 3; i++) {
-                    for (int j = 0; j < 3; j++) {
-                        if (sudokuBoard[boxRow + i][boxCol + j].getValue() == 0) {
-                            emptyCount++;
-                            lastEmptyCell = new Pair<>(boxRow + i, boxCol + j);
-                        }
-                    }
-                }
-                if (emptyCount == 1 && lastEmptyCell != null) {
-                    Set<Integer> possibleValues = getPossibleValuesAt(lastEmptyCell.getKey(), lastEmptyCell.getValue());
-                    if (possibleValues.size() == 1) {
-                        int value = possibleValues.iterator().next();
-                        results.add(new Pair<>(value, lastEmptyCell));
-                    }
+    private Pair<Integer, Pair<Integer, Integer>> findSingleEmptyCellInBox(int boxRow, int boxCol) {
+        int emptyCount = 0;
+        Pair<Integer, Integer> lastEmptyCell = null;
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                if (sudokuBoard[boxRow + i][boxCol + j].getValue() == 0) {
+                    emptyCount++;
+                    lastEmptyCell = new Pair<>(boxRow + i, boxCol + j);
                 }
             }
         }
-        return results;
+        return new Pair<>(emptyCount, lastEmptyCell);
     }
+
+    private void addResultForBoxIfValid(Set<Pair<Integer, Pair<Integer, Integer>>> results, Pair<Integer, Integer> lastEmptyCell) {
+        Set<Integer> possibleValues = getPossibleValuesAt(lastEmptyCell.getKey(), lastEmptyCell.getValue());
+        if (possibleValues.size() == 1) {
+            int value = possibleValues.iterator().next();
+            results.add(new Pair<>(value, lastEmptyCell));
+            Logger.debug(LOG_FORMAT, lastEmptyCell.getKey(), lastEmptyCell.getValue(), value);
+        }
+    }
+
 
     public Set<Pair<Integer, Pair<Integer, Integer>>> checkNakedSingles() {
         Set<Pair<Integer, Pair<Integer, Integer>>> results = new HashSet<>();
@@ -432,11 +468,11 @@ public class GameModel {
                     if (possibleValues.size() == 1) {
                         int value = possibleValues.iterator().next();
                         results.add(new Pair<>(value, new Pair<>(row, col)));
+                        Logger.debug(LOG_FORMAT, row, col, value);
                     }
                 }
             }
         }
-        System.out.println("\n NAKED SINGLE: " + results.size());
         return results;
     }
 
@@ -450,12 +486,12 @@ public class GameModel {
                     for (int value : cell.getPossibleValues()) {
                         if (isHiddenSingleCell(row, col, value)) {
                             results.add(new Pair<>(value, new Pair<>(row, col)));
+                            Logger.debug(LOG_FORMAT, row, col, value);
                         }
                     }
                 }
             }
         }
-        System.out.println("\n HIDDEN SINGLE: " + results.size());
         return results;
     }
 

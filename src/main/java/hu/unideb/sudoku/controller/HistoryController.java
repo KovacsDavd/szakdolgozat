@@ -13,7 +13,7 @@ import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
-
+import org.tinylog.Logger;
 
 import java.io.IOException;
 import java.util.List;
@@ -52,28 +52,28 @@ public class HistoryController {
             }
         });
 
-        replayColumn.setCellFactory(col -> {
-            return new TableCell<>() {
-                private final Button btn = new Button("Újra játszás");
+        replayColumn.setCellFactory(col -> new TableCell<>() {
+            private final Button btn = new Button("Újra játszás");
 
-                {
-                    btn.setOnAction(event -> {
-                        GameHistory data = getTableView().getItems().get(getIndex());
-                        replayGame(data);
-                    });
-                }
+            // Inicializáló blokk
+            {
+                btn.setOnAction(event -> {
+                    GameHistory data = getTableView().getItems().get(getIndex());
+                    replayGame(data);
+                });
+            }
 
-                @Override
-                protected void updateItem(String item, boolean empty) {
-                    super.updateItem(item, empty);
-                    if (empty) {
-                        setGraphic(null);
-                    } else {
-                        setGraphic(btn);
-                    }
+            @Override
+            protected void updateItem(String item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty) {
+                    setGraphic(null);
+                } else {
+                    setGraphic(btn);
                 }
-            };
+            }
         });
+
 
         loadHistories();
     }
@@ -92,7 +92,7 @@ public class HistoryController {
             stage.setScene(new Scene(gameView));
             stage.show();
         } catch (IOException e) {
-            e.printStackTrace();
+            Logger.debug("Failed to load the game view", e);
         }
     }
 

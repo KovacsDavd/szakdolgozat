@@ -4,12 +4,11 @@ public class GameHistory {
     private final CellPosition[][] originalBoard;
     private final CellPosition[][] solvedBoard;
     private final CellPosition[][] sudokuBoard;
-    private final long  elapsedTimeSeconds;
+    private final long elapsedTimeSeconds;
 
     private final String difficulty;
 
-    public GameHistory(CellPosition[][] originalBoard, CellPosition[][] solvedBoard, CellPosition[][] sudokuBoard,
-                       long elapsedTimeSeconds, String difficulty) {
+    public GameHistory(CellPosition[][] originalBoard, CellPosition[][] solvedBoard, CellPosition[][] sudokuBoard, long elapsedTimeSeconds, String difficulty) {
         this.originalBoard = originalBoard;
         this.solvedBoard = solvedBoard;
         this.elapsedTimeSeconds = elapsedTimeSeconds;

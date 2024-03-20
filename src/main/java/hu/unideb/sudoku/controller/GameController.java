@@ -31,6 +31,7 @@ public class GameController {
     private static final String INITIAL_NUMBER = "initial-number";
     private static final String POSSIBLE_VALUES = "possible-values";
     private static final String ERROR = "error";
+    private static final String HINT = "hint";
 
     private Timeline timeline;
     private Duration time = Duration.ZERO;
@@ -112,27 +113,8 @@ public class GameController {
         boolean hasError = false;
         for (int row = 0; row < 9; row++) {
             for (int col = 0; col < 9; col++) {
-                TextArea textArea = textAreas[row][col];
-                if (!isInitialNumber(textArea) && textArea.getStyleClass().contains(POSSIBLE_VALUES)) {
-                    if (show) {
-                        Set<Integer> possibleValues = model.getPossibleValuesAt(row, col);
-                        String possibleValuesText = formatNumbers(possibleValues);
-                        textArea.setText(possibleValuesText);
-                        if (possibleValues.isEmpty()) {
-                            if (!textArea.getStyleClass().contains(ERROR)) {
-                                textArea.getStyleClass().add(ERROR);
-                            }
-                            hasError = true;
-                        } else {
-                            textArea.getStyleClass().remove(ERROR);
-                        }
-                        if (!textArea.getStyleClass().contains(POSSIBLE_VALUES)) {
-                            textArea.getStyleClass().add(POSSIBLE_VALUES);
-                        }
-                    } else {
-                        textArea.setText("");
-                        textArea.getStyleClass().remove(ERROR);
-                    }
+                if (updateTextAreaBasedOnVisibility(show, row, col)) {
+                    hasError = true;
                 }
             }
         }
@@ -141,11 +123,55 @@ public class GameController {
         }
     }
 
+    private boolean updateTextAreaBasedOnVisibility(boolean show, int row, int col) {
+        TextArea textArea = textAreas[row][col];
+        if (!isInitialNumber(textArea) && textArea.getStyleClass().contains(POSSIBLE_VALUES)) {
+            if (show) {
+                return updateForVisibleState(textArea, row, col);
+            } else {
+                clearTextArea(textArea);
+            }
+        }
+        return false;
+    }
+
+    private boolean updateForVisibleState(TextArea textArea, int row, int col) {
+        Set<Integer> possibleValues = model.getPossibleValuesAt(row, col);
+        String possibleValuesText = formatNumbers(possibleValues);
+        textArea.setText(possibleValuesText);
+        boolean hasError = false;
+        if (possibleValues.isEmpty()) {
+            addErrorStyleIfNeeded(textArea);
+            hasError = true;
+        } else {
+            textArea.getStyleClass().remove(ERROR);
+        }
+        ensurePossibleValuesStyle(textArea);
+        return hasError;
+    }
+
+    private void clearTextArea(TextArea textArea) {
+        textArea.setText("");
+        textArea.getStyleClass().remove(ERROR);
+    }
+
+    private void addErrorStyleIfNeeded(TextArea textArea) {
+        if (!textArea.getStyleClass().contains(ERROR)) {
+            textArea.getStyleClass().add(ERROR);
+        }
+    }
+
+    private void ensurePossibleValuesStyle(TextArea textArea) {
+        if (!textArea.getStyleClass().contains(POSSIBLE_VALUES)) {
+            textArea.getStyleClass().add(POSSIBLE_VALUES);
+        }
+    }
+
+
     @FXML
     public void saveGame() {
         long elapsedTimeSeconds = (long) time.toSeconds();
-        GameHistory gameHistory = new GameHistory(model.getOriginalBoard(), model.getSolvedBoard(), model.getSudokuBoard(),
-                elapsedTimeSeconds, GameModel.getDifficult().toString());
+        GameHistory gameHistory = new GameHistory(model.getOriginalBoard(), model.getSolvedBoard(), model.getSudokuBoard(), elapsedTimeSeconds, GameModel.getDifficult().toString());
         GameHistoryService.saveGameHistory(gameHistory);
     }
 
@@ -263,13 +289,13 @@ public class GameController {
             textArea.getStyleClass().add(POSSIBLE_VALUES);
         } else if (!addPossibleValuesClass) {
             textArea.getStyleClass().remove(POSSIBLE_VALUES);
-            textArea.getStyleClass().remove("hint");
+            textArea.getStyleClass().remove(HINT);
         }
     }
 
     private Set<Integer> extractNumbers(String text) {
         Set<Integer> numbers = new HashSet<>();
-        String[] parts = text.split("[,\\s\\n]+");
+        String[] parts = text.split("[,\\s]+");
         for (String part : parts) {
 
             int number = Integer.parseInt(part);
@@ -351,6 +377,7 @@ public class GameController {
 
                 textAreas[row][col].setText(textValue);
                 textAreas[row][col].getStyleClass().remove(ERROR);
+                textAreas[row][col].getStyleClass().remove(HINT);
                 updateTextAreaStyles(textAreas[row][col], sudokuBoard[row][col].getValue(), sudokuBoard[row][col].getPossibleValues());
             }
         }
@@ -403,10 +430,8 @@ public class GameController {
         updatePossibleValues();
         Set<Pair<Integer, Pair<Integer, Integer>>> resultSet = new HashSet<>();
 
-        if (!resultSet.addAll(model.checkFullHouse())) {
-            if (!resultSet.addAll(model.checkNakedSingles())) {
-                resultSet.addAll(model.checkHiddenSingles());
-            }
+        if (!resultSet.addAll(model.checkFullHouse()) && (!resultSet.addAll(model.checkNakedSingles()))) {
+            resultSet.addAll(model.checkHiddenSingles());
         }
 
         if (!resultSet.isEmpty()) {
@@ -422,8 +447,8 @@ public class GameController {
 
             TextArea cell = textAreas[row][col];
 
-            if (!cell.getStyleClass().contains("hint")) {
-                cell.getStyleClass().add("hint");
+            if (!cell.getStyleClass().contains(HINT)) {
+                cell.getStyleClass().add(HINT);
             }
         }
     }
