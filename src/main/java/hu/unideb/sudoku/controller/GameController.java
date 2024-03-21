@@ -368,6 +368,7 @@ public class GameController {
     public void solveSudoku() {
         model.solve();
         updateViewWithSudokuBoard(model.getSolvedBoard());
+        timeline.stop();
     }
 
     private void updateViewWithSudokuBoard(CellPosition[][] sudokuBoard) {
@@ -412,6 +413,7 @@ public class GameController {
         updateViewWithSudokuBoard(model.getOriginalBoard());
         setEditingEnabled(true);
         togglePossibleValuesDisplay(possibleValuesCheckbox.isSelected());
+        startTimer();
     }
 
     private void setEditingEnabled(boolean enabled) {
