@@ -1,28 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="700.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.unideb.sudoku.controller.HistoryController">
-        <VBox alignment="CENTER" layoutX="100.0" layoutY="50.0" spacing="20.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="50.0">
-                <Label text="Előzmények" />
-                <TableView fx:id="historyTable" prefHeight="202.0" prefWidth="500.0">
-                    <columns>
-                        <TableColumn fx:id="indexColumn" prefWidth="125" text="Sorszám">
-                            <style>-fx-alignment: CENTER;</style>
-                        </TableColumn>
-                        <TableColumn fx:id="timeColumn" prefWidth="125" text="Idő">
-                            <style>-fx-alignment: CENTER;</style>
-                        </TableColumn>
-                        <TableColumn fx:id="difficultyColumn" prefWidth="125" text="Szint">
-                            <style>-fx-alignment: CENTER;</style>
-                        </TableColumn>
-                        <TableColumn fx:id="replayColumn" prefWidth="125" text="Újra játszás">
-                            <style>-fx-alignment: CENTER;</style>
-                        </TableColumn>
-                    </columns>
-                </TableView>
-        </VBox>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+<AnchorPane prefHeight="700.0" prefWidth="700.0" stylesheets="@menu-style.css" xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.unideb.sudoku.controller.HistoryController">
+    <VBox alignment="CENTER" layoutX="100.0" layoutY="102.0" spacing="30.0">
+        <Text styleClass="title-text" text="Mentések"/>
+        <Region styleClass="region-spacing"/>
+        <TableView fx:id="historyTable" prefHeight="350.0" prefWidth="500.0" styleClass="table-view">
+            <columns>
+                <TableColumn fx:id="indexColumn" prefWidth="125" text="Sorszám"/>
+                <TableColumn fx:id="timeColumn" prefWidth="125" text="Idő"/>
+                <TableColumn fx:id="difficultyColumn" prefWidth="125" text="Szint"/>
+                <TableColumn fx:id="replayColumn" prefWidth="125" text="Újra játszás"/>
+            </columns>
+            <fixedCellSize>62</fixedCellSize>
+        </TableView>
+    </VBox>
 </AnchorPane>

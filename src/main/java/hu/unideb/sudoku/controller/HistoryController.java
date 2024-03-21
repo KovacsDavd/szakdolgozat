@@ -53,7 +53,7 @@ public class HistoryController {
         });
 
         replayColumn.setCellFactory(col -> new TableCell<>() {
-            private final Button btn = new Button("Újra játszás");
+            private final Button btn = new Button("Újra");
 
             // Inicializáló blokk
             {
@@ -61,6 +61,7 @@ public class HistoryController {
                     GameHistory data = getTableView().getItems().get(getIndex());
                     replayGame(data);
                 });
+                btn.getStyleClass().add("button-common");
             }
 
             @Override

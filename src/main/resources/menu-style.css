@@ -33,3 +33,47 @@
     -fx-border-color: transparent;
     -fx-font-size: 20px;
 }
+
+.table-view {
+    -fx-background-color: #34495e;
+    -fx-border-color: #ecf0f1;
+    -fx-border-radius: 5;
+}
+
+.table-view .column-header-background .label {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #ecf0f1;
+    -fx-background-color: #3498db;
+    -fx-padding: 5px;
+}
+
+.table-row-cell:filled:even {
+    -fx-background-color: #3E5060;
+}
+
+.table-row-cell:filled:odd {
+    -fx-background-color: #354A5B;
+}
+
+.table-row-cell:hover {
+    -fx-background-color: #41637e;
+}
+
+.table-view .table-cell {
+    -fx-text-fill: #ecf0f1;
+    -fx-alignment: CENTER;
+    -fx-padding: 10px;
+}
+
+.table-view .scroll-bar:vertical {
+    -fx-max-width: 0;
+    -fx-pref-width: 0;
+    -fx-min-width: 0;
+}
+
+.table-view .scroll-bar:horizontal {
+    -fx-max-height: 0;
+    -fx-pref-height: 0;
+    -fx-min-height: 0;
+}
