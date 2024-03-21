@@ -1,22 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
-<AnchorPane prefHeight="700.0" fx:controller="hu.unideb.sudoku.controller.ChooseLevelController" prefWidth="700.0"
-            style="-fx-background-color: #3498db;" xmlns="http://javafx.com/javafx/21"
-            xmlns:fx="http://javafx.com/fxml/1">
-    <VBox alignment="CENTER" layoutX="241.0" layoutY="85.0" spacing="20.0">
-        <Label style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: black;" text="Válassz szintet"/>
-        <Button mnemonicParsing="false" onAction="#handleEasyButtonAction"
-                style="-fx-font-size: 16px; -fx-padding: 10px;" text="Könnyű"/>
-        <Button mnemonicParsing="false" onAction="#handleMediumButtonAction"
-                style="-fx-font-size: 16px; -fx-padding: 10px;" text="Normál"/>
-        <Button mnemonicParsing="false" onAction="#handleHardButtonAction"
-                style="-fx-font-size: 16px; -fx-padding: 10px;" text="Nehéz"/>
+<?import javafx.scene.text.Text?>
+<AnchorPane prefHeight="700.0" prefWidth="700.0" stylesheets="@menu-style.css" xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.unideb.sudoku.controller.ChooseLevelController">
+    <VBox alignment="CENTER" layoutX="179.0" layoutY="172.0" spacing="30.0">
+        <Text styleClass="title-text" text="Válassz szintet!"/>
+        <Region styleClass="region-spacing"/>
+        <Button mnemonicParsing="false" onAction="#handleEasyButtonAction" styleClass="button-common" text="Könnyű"/>
+        <Button mnemonicParsing="false" onAction="#handleMediumButtonAction" styleClass="button-common" text="Normál"/>
+        <Button mnemonicParsing="false" onAction="#handleHardButtonAction" styleClass="button-common" text="Nehéz"/>
     </VBox>
-    <Button onAction="#backToMainMenu" layoutX="185.0" layoutY="71.0" mnemonicParsing="false" prefHeight="54.0"
-            prefWidth="56.0"
-            style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-font-size: 24px; -fx-text-fill: black;"
-            text="←"/>
+    <Button layoutX="120.0" layoutY="184.0" mnemonicParsing="false" onAction="#backToMainMenu" prefHeight="40.0"
+            prefWidth="50.0" styleClass="exit-button, back-button" text="←"/>
 </AnchorPane>
