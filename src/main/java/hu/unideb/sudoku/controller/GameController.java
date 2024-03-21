@@ -32,6 +32,7 @@ public class GameController {
     private static final String POSSIBLE_VALUES = "possible-values";
     private static final String ERROR = "error";
     private static final String HINT = "hint";
+    private boolean needMoreHelp = false;
 
     private Timeline timeline;
     private Duration time = Duration.ZERO;
@@ -414,6 +415,7 @@ public class GameController {
         setEditingEnabled(true);
         togglePossibleValuesDisplay(possibleValuesCheckbox.isSelected());
         startTimer();
+        needMoreHelp = false;
     }
 
     private void setEditingEnabled(boolean enabled) {
@@ -435,9 +437,26 @@ public class GameController {
         if (!resultSet.addAll(model.checkFullHouse()) && (!resultSet.addAll(model.checkNakedSingles()))) {
             resultSet.addAll(model.checkHiddenSingles());
         }
-
-        if (!resultSet.isEmpty()) {
-            applyStyleToCells(resultSet);
+        if (!needMoreHelp) {
+            if (!resultSet.isEmpty()) {
+                applyStyleToCells(resultSet);
+            }
+            needMoreHelp = true;
+        } else {
+            needMoreHelp = false;
+            for (Pair<Integer, Pair<Integer, Integer>> hint : resultSet) {
+                int value = hint.getKey();
+                Pair<Integer, Integer> position = hint.getValue();
+                int row = position.getKey();
+                int col = position.getValue();
+                if (value == model.getSolvedBoard()[row][col].getValue()) {
+                    TextArea textArea = textAreas[row][col];
+                    model.setValueAt(row, col, value);
+                    textArea.setText(String.valueOf(value));
+                    textArea.getStyleClass().remove(POSSIBLE_VALUES);
+                    textArea.getStyleClass().remove(HINT);
+                }
+            }
         }
     }
 
