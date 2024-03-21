@@ -433,13 +433,21 @@ public class GameController {
     public void helpStrategy() {
         updatePossibleValues();
         Set<Pair<Integer, Pair<Integer, Integer>>> resultSet = new HashSet<>();
+        Set<Pair<Set<Integer>, Pair<Integer, Integer>>> resultSetPair = new HashSet<>();
 
-        if (!resultSet.addAll(model.checkFullHouse()) && (!resultSet.addAll(model.checkNakedSingles()))) {
-            resultSet.addAll(model.checkHiddenSingles());
+        if (!resultSet.addAll(model.checkFullHouse()) && (!resultSet.addAll(model.checkNakedSingles())) &&
+                (!resultSet.addAll(model.checkHiddenSingles()))) {
+                resultSetPair.addAll(model.checkNakedPairs());
         }
         if (!needMoreHelp) {
             if (!resultSet.isEmpty()) {
                 applyStyleToCells(resultSet);
+            } else if (!resultSetPair.isEmpty()) {
+                Set<Pair<Integer, Pair<Integer, Integer>>> transformedSet = new HashSet<>();
+                resultSetPair.forEach(pair -> pair.getKey().forEach(value ->
+                        transformedSet.add(new Pair<>(value, pair.getValue()))));
+
+                applyStyleToCells(transformedSet);
             }
             needMoreHelp = true;
         } else {

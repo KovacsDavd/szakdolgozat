@@ -531,4 +531,51 @@ public class GameModel {
         return false;
     }
 
+    public Set<Pair<Set<Integer>, Pair<Integer, Integer>>> checkNakedPairs() {
+        Set<Pair<Set<Integer>, Pair<Integer, Integer>>> results = new HashSet<>();
+
+        // Iterálás a táblán
+        for (int row = 0; row < SIZE; row++) {
+            for (int col = 0; col < SIZE; col++) {
+                CellPosition cell = sudokuBoard[row][col];
+                // Csak a két lehetséges értékkel rendelkező cellák érdekelnek
+                if (cell.getPossibleValues().size() == 2) {
+                    Set<Integer> pairValues = cell.getPossibleValues();
+                    // Sorban keresés
+                    for (int j = 0; j < SIZE; j++) {
+                        if (j != col && sudokuBoard[row][j].getPossibleValues().equals(pairValues)) {
+                            //removeValuesFromPeers(row, col, row, j, pairValues);
+                            results.add(new Pair<>(pairValues, new Pair<>(row, col)));
+                            results.add(new Pair<>(pairValues, new Pair<>(row, j)));
+                            Logger.debug("Naked Pair found at ({}, {}) and ({}, {})", row, col, row, j);
+                        }
+                    }
+                    // Oszlopban keresés
+                    for (int i = 0; i < SIZE; i++) {
+                        if (i != row && sudokuBoard[i][col].getPossibleValues().equals(pairValues)) {
+                            //removeValuesFromPeers(row, col, i, col, pairValues);
+                            results.add(new Pair<>(pairValues, new Pair<>(row, col)));
+                            results.add(new Pair<>(pairValues, new Pair<>(i, col)));
+                            Logger.debug("Naked Pair found at ({}, {}) and ({}, {})", row, col, i, col);
+                        }
+                    }
+                    // 3x3-as blokkban keresés
+                    int startRow = row - row % 3;
+                    int startCol = col - col % 3;
+                    for (int i = startRow; i < startRow + 3; i++) {
+                        for (int j = startCol; j < startCol + 3; j++) {
+                            if ((i != row || j != col) && sudokuBoard[i][j].getPossibleValues().equals(pairValues)) {
+                                //removeValuesFromPeers(row, col, i, j, pairValues);
+                                results.add(new Pair<>(pairValues, new Pair<>(row, col)));
+                                results.add(new Pair<>(pairValues, new Pair<>(i, j)));
+                                Logger.debug("Naked Pair found at ({}, {}) and ({}, {})", row, col, i, j);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return results;
+    }
+
 }
