@@ -38,10 +38,10 @@
         </rowConstraints>
     </GridPane>
     <Button focusTraversable="false" layoutX="23.0" layoutY="197.0" mnemonicParsing="false" onAction="#backToMainMenu" prefHeight="26.0" prefWidth="58.0" styleClass="button-common, exit-button" text="Vége" />
-    <Button focusTraversable="false" layoutX="384.0" layoutY="107.0" mnemonicParsing="false" onAction="#helpStrategy" styleClass="button-common" text="Segítség" />
+    <Button fx:id="helpButton" focusTraversable="false" layoutX="384.0" layoutY="107.0" mnemonicParsing="false" onAction="#helpStrategy" styleClass="button-common" text="Segítség" />
     <Button focusTraversable="false" layoutX="23.0" layoutY="246.0" mnemonicParsing="false" onAction="#solveSudoku" prefHeight="26.0" prefWidth="58.0" styleClass="button-common" text="Megold" />
     <CheckBox fx:id="possibleValuesCheckbox" layoutX="20.0" layoutY="111.0" mnemonicParsing="false" styleClass="check-box" text="Lehetséges értékek" />
-    <Button layoutX="196.0" layoutY="107.0" mnemonicParsing="false" onAction="#updatePossibleValues" styleClass="button-common, button-special" text="Értékek újra számolása" />
+    <Button fx:id="recalculateButton" layoutX="196.0" layoutY="107.0" mnemonicParsing="false" onAction="#updatePossibleValues" styleClass="button-common, button-special" text="Értékek újra számolása" />
     <Button layoutX="21.0" layoutY="296.0" mnemonicParsing="false" onAction="#resetBoard" prefHeight="26.0" prefWidth="62.0" styleClass="button-common" text="Újra" />
     <Button layoutX="22.0" layoutY="350.0" mnemonicParsing="false" onAction="#checkSudoku" styleClass="button-common" text="Ellenőriz" />
     <Label fx:id="timerLabel" layoutX="306.0" layoutY="39.0" styleClass="label" text="Label" />

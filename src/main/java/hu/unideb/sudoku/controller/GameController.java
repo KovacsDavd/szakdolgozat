@@ -10,10 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -47,6 +44,12 @@ public class GameController {
 
     @FXML
     private Label timerLabel;
+
+    @FXML
+    private Button helpButton;
+
+    @FXML
+    private Button recalculateButton;
 
     public void initialize() {
         if (!GameModel.isNeedHistoryLoad()) {
@@ -110,6 +113,19 @@ public class GameController {
     private void addCheckboxListener() {
         possibleValuesCheckbox.setSelected(true);
         possibleValuesCheckbox.selectedProperty().addListener((observable, oldValue, newValue) -> togglePossibleValuesDisplay(newValue));
+        possibleValuesCheckbox.selectedProperty().addListener((observable, oldValue, newValue) -> {
+            getHelpButton().setDisable(!newValue);
+            getRecalculateButton().setDisable(!newValue);
+            togglePossibleValuesDisplay(newValue);
+        });
+    }
+
+    private Button getHelpButton() {
+        return helpButton;
+    }
+
+    private Button getRecalculateButton() {
+        return recalculateButton;
     }
 
     private void togglePossibleValuesDisplay(boolean show) {
@@ -469,6 +485,7 @@ public class GameController {
                         textArea.getStyleClass().remove(HINT);
                     }
                 }
+                singleHelpSet.clear();
             } else {
                 Set<Pair<Pair<Integer, Integer>, Set<Integer>>> removeSet = nakedPairsType.getRemoveSet();
                 Set<Pair<Integer, Integer>> nakedPairsPositionSet = nakedPairsType.getNakedPairsPositionSet();
@@ -489,6 +506,7 @@ public class GameController {
                     int col = pair.getValue();
                     textAreas[row][col].getStyleClass().remove(HINT);
                 }
+                nakedPairsType = new NakedPairsType();
             }
         }
     }
