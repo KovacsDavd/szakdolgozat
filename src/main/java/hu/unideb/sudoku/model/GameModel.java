@@ -3,9 +3,7 @@ package hu.unideb.sudoku.model;
 import javafx.util.Pair;
 import org.tinylog.Logger;
 
-import java.util.HashSet;
-import java.util.Random;
-import java.util.Set;
+import java.util.*;
 
 public class GameModel {
     private static GameDifficult difficult;
@@ -36,6 +34,7 @@ public class GameModel {
     }
 
     public void loadGameFromHistory(GameHistory history) {
+        difficult = GameDifficult.valueOf(history.getDifficulty());
         deepCopy(history.getOriginalBoard(), originalBoard);
         deepCopy(history.getSudokuBoard(), sudokuBoard);
         deepCopy(history.getSolvedBoard(), solvedBoard);
@@ -101,6 +100,14 @@ public class GameModel {
 
     public int getValueAt(int row, int col) {
         return sudokuBoard[row][col].getValue();
+    }
+
+    public void removePossibleValuesAt(int row, int col, Set<Integer> valuesToRemove) {
+        if (sudokuBoard[row][col] != null) {
+            Set<Integer> possibleValues = new HashSet<>(sudokuBoard[row][col].getPossibleValues());
+            possibleValues.removeAll(valuesToRemove);
+            sudokuBoard[row][col].setPossibleValues(possibleValues);
+        }
     }
 
     public void setPossibleValuesAt(int row, int col, Set<Integer> values) {
@@ -531,9 +538,13 @@ public class GameModel {
         return false;
     }
 
-    public Set<Pair<Set<Integer>, Pair<Integer, Integer>>> checkNakedPairs() {
-        Set<Pair<Set<Integer>, Pair<Integer, Integer>>> results = new HashSet<>();
+    //TODO: Pair<Set<Pair<szin>, Set<Pair<Pair<eltavolitando>>, ertek>
 
+    public NakedPairsType checkNakedPairs() {
+        NakedPairsType nakedPairsType = new NakedPairsType();
+
+        Set<Pair<Integer, Integer>> nakedPairsPositionSet = new HashSet<>();
+        Set<Pair<Pair<Integer, Integer>, Set<Integer>>> removeSet = new HashSet<>();
         // Iterálás a táblán
         for (int row = 0; row < SIZE; row++) {
             for (int col = 0; col < SIZE; col++) {
@@ -544,18 +555,18 @@ public class GameModel {
                     // Sorban keresés
                     for (int j = 0; j < SIZE; j++) {
                         if (j != col && sudokuBoard[row][j].getPossibleValues().equals(pairValues)) {
-                            //removeValuesFromPeers(row, col, row, j, pairValues);
-                            results.add(new Pair<>(pairValues, new Pair<>(row, col)));
-                            results.add(new Pair<>(pairValues, new Pair<>(row, j)));
-                            Logger.debug("Naked Pair found at ({}, {}) and ({}, {})", row, col, row, j);
+                            nakedPairsPositionSet.add(new Pair<>(row, col));
+                            nakedPairsPositionSet.add(new Pair<>(row, j));
+                            addRemovePostionAndValuesRow(row, col, j, pairValues, removeSet);
                         }
                     }
+
                     // Oszlopban keresés
                     for (int i = 0; i < SIZE; i++) {
                         if (i != row && sudokuBoard[i][col].getPossibleValues().equals(pairValues)) {
-                            //removeValuesFromPeers(row, col, i, col, pairValues);
-                            results.add(new Pair<>(pairValues, new Pair<>(row, col)));
-                            results.add(new Pair<>(pairValues, new Pair<>(i, col)));
+                            nakedPairsPositionSet.add(new Pair<>(row, col));
+                            nakedPairsPositionSet.add(new Pair<>(i, col));
+                            addRemovePostionAndValuesCol(row, col, i, pairValues, removeSet);
                             Logger.debug("Naked Pair found at ({}, {}) and ({}, {})", row, col, i, col);
                         }
                     }
@@ -565,9 +576,9 @@ public class GameModel {
                     for (int i = startRow; i < startRow + 3; i++) {
                         for (int j = startCol; j < startCol + 3; j++) {
                             if ((i != row || j != col) && sudokuBoard[i][j].getPossibleValues().equals(pairValues)) {
-                                //removeValuesFromPeers(row, col, i, j, pairValues);
-                                results.add(new Pair<>(pairValues, new Pair<>(row, col)));
-                                results.add(new Pair<>(pairValues, new Pair<>(i, j)));
+                                nakedPairsPositionSet.add(new Pair<>(row, col));
+                                nakedPairsPositionSet.add(new Pair<>(i, j));
+                                addRemovePositionAndValuesBox(startRow, startCol, pairValues, removeSet);
                                 Logger.debug("Naked Pair found at ({}, {}) and ({}, {})", row, col, i, j);
                             }
                         }
@@ -575,7 +586,80 @@ public class GameModel {
                 }
             }
         }
-        return results;
+        if (nakedPairsPositionSet.isEmpty()) {
+            return null;
+        }
+        nakedPairsType.setNakedPairsPositionSet(nakedPairsPositionSet);
+        nakedPairsType.setRemoveSet(removeSet);
+
+        return nakedPairsType;
+    }
+
+    private void addRemovePostionAndValuesRow(int row, int col, int j, Set<Integer> pairValues, Set<Pair<Pair<Integer, Integer>, Set<Integer>>> results) {
+        for (int i = 0; i < SIZE; i++) {
+            if (i != col && i != j) {
+                Set<Integer> removeValueSet = new HashSet<>();
+                for (int value : pairValues) {
+                    if (sudokuBoard[row][i].getPossibleValues().contains(value)) {
+                        removeValueSet.add(value);
+                    }
+                }
+                if (!removeValueSet.isEmpty()) {
+                    results.add(new Pair<>(new Pair<>(row, i), removeValueSet));
+                }
+            }
+        }
+    }
+
+    private void addRemovePostionAndValuesCol(int row, int col, int j, Set<Integer> pairValues, Set<Pair<Pair<Integer, Integer>, Set<Integer>>> results) {
+        for (int i = 0; i < SIZE; i++) {
+            if (i != row && i != j) {
+                Set<Integer> removeValueSet = new HashSet<>();
+                for (int value : pairValues) {
+                    if (sudokuBoard[i][col].getPossibleValues().contains(value)) {
+                        removeValueSet.add(value);
+                    }
+                }
+                if (!removeValueSet.isEmpty()) {
+                    results.add(new Pair<>(new Pair<>(i, col), removeValueSet));
+                }
+            }
+        }
+    }
+
+    private void addRemovePositionAndValuesBox(int row, int col, Set<Integer> pairValues, Set<Pair<Pair<Integer, Integer>, Set<Integer>>> results) {
+        // Meghatározzuk a 3x3-as blokk kezdő pozícióját
+        int startRow = row - row % 3;
+        int startCol = col - col % 3;
+
+        // Halmazok az eltávolítandó pozíciók és értékek tárolására
+        Set<Pair<Integer, Integer>> removePositionSet = new HashSet<>();
+        Set<Integer> removeValueSet = new HashSet<>();
+
+        // Végigmegyünk a 3x3-as blokkon
+        for (int i = startRow; i < startRow + 3; i++) {
+            for (int j = startCol; j < startCol + 3; j++) {
+                // Kizárjuk a meztelen pár celláit
+                if ((i == row && j == col) || sudokuBoard[i][j].getPossibleValues().equals(pairValues)) {
+                    continue;
+                }
+                // Ellenőrizzük, hogy mely értékeket kell eltávolítani
+                for (Integer value : pairValues) {
+                    if (sudokuBoard[i][j].getPossibleValues().contains(value)) {
+                        removeValueSet.add(value);
+                        removePositionSet.add(new Pair<>(i, j));
+                        break; // Ha egy értéket megtalálunk, nem kell továbbiakat keresnünk az adott cellában
+                    }
+                }
+            }
+        }
+
+        // Ha vannak eltávolítandó értékek, hozzáadjuk őket az eredményhalmazhoz
+        if (!removeValueSet.isEmpty()) {
+            for (Pair<Integer, Integer> position : removePositionSet) {
+                results.add(new Pair<>(position, new HashSet<>(removeValueSet)));
+            }
+        }
     }
 
 }

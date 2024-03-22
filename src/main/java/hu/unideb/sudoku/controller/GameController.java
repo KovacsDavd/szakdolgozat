@@ -1,9 +1,6 @@
 package hu.unideb.sudoku.controller;
 
-import hu.unideb.sudoku.model.CellPosition;
-import hu.unideb.sudoku.model.GameHistory;
-import hu.unideb.sudoku.model.GameHistoryService;
-import hu.unideb.sudoku.model.GameModel;
+import hu.unideb.sudoku.model.*;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -24,10 +21,15 @@ import javafx.util.Pair;
 
 import java.io.IOException;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class GameController {
     private final GameModel model = new GameModel();
     private final TextArea[][] textAreas = new TextArea[9][9];
+    private Set<Pair<Integer, Pair<Integer, Integer>>> singleHelpSet = new HashSet<>();
+
+    NakedPairsType nakedPairsType = new NakedPairsType();
+
     private static final String INITIAL_NUMBER = "initial-number";
     private static final String POSSIBLE_VALUES = "possible-values";
     private static final String ERROR = "error";
@@ -431,53 +433,74 @@ public class GameController {
 
     @FXML
     public void helpStrategy() {
-        updatePossibleValues();
-        Set<Pair<Integer, Pair<Integer, Integer>>> resultSet = new HashSet<>();
-        Set<Pair<Set<Integer>, Pair<Integer, Integer>>> resultSetPair = new HashSet<>();
-
-        if (!resultSet.addAll(model.checkFullHouse()) && (!resultSet.addAll(model.checkNakedSingles())) &&
-                (!resultSet.addAll(model.checkHiddenSingles()))) {
-                resultSetPair.addAll(model.checkNakedPairs());
-        }
         if (!needMoreHelp) {
-            if (!resultSet.isEmpty()) {
-                applyStyleToCells(resultSet);
-            } else if (!resultSetPair.isEmpty()) {
-                Set<Pair<Integer, Pair<Integer, Integer>>> transformedSet = new HashSet<>();
-                resultSetPair.forEach(pair -> pair.getKey().forEach(value ->
-                        transformedSet.add(new Pair<>(value, pair.getValue()))));
+            updatePossibleValues();
+            //TODO: MÁS KELL MERT ez meghívja az ujra szamolást, amely az alapján számol ujra, hogy mik vannak beírva
+            // Talán ki kellene ezt cserélni
+            // VAGY MARADHAT DE UGY MODOSÍTANi, hogy csak elvegyen, hozzáadni ne
 
-                applyStyleToCells(transformedSet);
+            if (!singleHelpSet.addAll(model.checkFullHouse()) && (!singleHelpSet.addAll(model.checkNakedSingles())) &&
+                    (!singleHelpSet.addAll(model.checkHiddenSingles()))) {
+                nakedPairsType = model.checkNakedPairs();
+            }
+            if (!singleHelpSet.isEmpty()) {
+                Set<Pair<Integer, Integer>> simplifiedSet = singleHelpSet.stream()
+                        .map(Pair::getValue)
+                        .collect(Collectors.toSet());
+                applyStyleToCells(simplifiedSet);
+
+            } else if (nakedPairsType != null) {
+                applyStyleToCells(nakedPairsType.getNakedPairsPositionSet());
             }
             needMoreHelp = true;
         } else {
             needMoreHelp = false;
-            for (Pair<Integer, Pair<Integer, Integer>> hint : resultSet) {
-                int value = hint.getKey();
-                Pair<Integer, Integer> position = hint.getValue();
-                int row = position.getKey();
-                int col = position.getValue();
-                if (value == model.getSolvedBoard()[row][col].getValue()) {
-                    TextArea textArea = textAreas[row][col];
-                    model.setValueAt(row, col, value);
-                    textArea.setText(String.valueOf(value));
-                    textArea.getStyleClass().remove(POSSIBLE_VALUES);
-                    textArea.getStyleClass().remove(HINT);
+            if (!singleHelpSet.isEmpty()) {
+                for (Pair<Integer, Pair<Integer, Integer>> hint : singleHelpSet) {
+                    int value = hint.getKey();
+                    Pair<Integer, Integer> position = hint.getValue();
+                    int row = position.getKey();
+                    int col = position.getValue();
+                    if (value == model.getSolvedBoard()[row][col].getValue()) {
+                        TextArea textArea = textAreas[row][col];
+                        model.setValueAt(row, col, value);
+                        textArea.setText(String.valueOf(value));
+                        textArea.getStyleClass().remove(POSSIBLE_VALUES);
+                        textArea.getStyleClass().remove(HINT);
+                    }
+                }
+            } else {
+                Set<Pair<Pair<Integer, Integer>, Set<Integer>>> removeSet = nakedPairsType.getRemoveSet();
+                Set<Pair<Integer, Integer>> nakedPairsPositionSet = nakedPairsType.getNakedPairsPositionSet();
+
+                for (Pair<Pair<Integer, Integer>, Set<Integer>> removeEntry : removeSet) {
+                    Pair<Integer, Integer> position = removeEntry.getKey();
+                    Set<Integer> valuesToRemove = removeEntry.getValue();
+
+                    int row = position.getKey();
+                    int col = position.getValue();
+
+                    model.removePossibleValuesAt(row, col, valuesToRemove);
+
+                    togglePossibleValuesDisplay(true);
+                }
+                for (Pair<Integer, Integer> pair: nakedPairsPositionSet) {
+                    int row = pair.getKey();
+                    int col = pair.getValue();
+                    textAreas[row][col].getStyleClass().remove(HINT);
                 }
             }
         }
     }
 
-    public void applyStyleToCells(Set<Pair<Integer, Pair<Integer, Integer>>> cells) {
-        for (Pair<Integer, Pair<Integer, Integer>> cellInfo : cells) {
-            Pair<Integer, Integer> position = cellInfo.getValue();
-            int row = position.getKey();
-            int col = position.getValue();
+    public void applyStyleToCells(Set<Pair<Integer, Integer>> cells) {
+        for (Pair<Integer, Integer> cell : cells) {
+            int row = cell.getKey();
+            int col = cell.getValue();
 
-            TextArea cell = textAreas[row][col];
-
-            if (!cell.getStyleClass().contains(HINT)) {
-                cell.getStyleClass().add(HINT);
+            TextArea textArea = textAreas[row][col];
+            if (!textArea.getStyleClass().contains(HINT)) {
+                textArea.getStyleClass().add(HINT);
             }
         }
     }
