@@ -118,7 +118,7 @@ public class GameModel {
         return sudokuBoard[row][col].getPossibleValues();
     }
 
-    private Set<Integer> getNewPossibleValues(int row, int col) {
+    public Set<Integer> getNewPossibleValues(int row, int col) {
         boolean[] usedValues = new boolean[SIZE + 1];
 
         // Ellenőrizzi a sorban lévő értékeket

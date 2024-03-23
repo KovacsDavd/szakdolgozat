@@ -112,7 +112,6 @@ public class GameController {
 
     private void addCheckboxListener() {
         possibleValuesCheckbox.setSelected(true);
-        possibleValuesCheckbox.selectedProperty().addListener((observable, oldValue, newValue) -> togglePossibleValuesDisplay(newValue));
         possibleValuesCheckbox.selectedProperty().addListener((observable, oldValue, newValue) -> {
             getHelpButton().setDisable(!newValue);
             getRecalculateButton().setDisable(!newValue);
@@ -129,6 +128,7 @@ public class GameController {
     }
 
     private void togglePossibleValuesDisplay(boolean show) {
+        model.storePossibleValues();
         boolean hasError = false;
         for (int row = 0; row < 9; row++) {
             for (int col = 0; col < 9; col++) {
@@ -297,9 +297,11 @@ public class GameController {
 
     private void revertTextAreaToModelValues(TextArea textArea, int row, int col) {
         textArea.getStyleClass().remove(ERROR);
-        Set<Integer> possibleValues = model.getPossibleValuesAt(row, col);
-        String text = possibleValues.isEmpty() ? formatNumbers(Collections.singleton(model.getValueAt(row, col))) : formatNumbers(possibleValues);
-        updateTextArea(textArea, text, !possibleValues.isEmpty());
+        Set<Integer> possibleValues = model.getNewPossibleValues(row, col);
+        if (possibleValuesCheckbox.isSelected()) {
+            String text = possibleValues.isEmpty() ? formatNumbers(Collections.singleton(model.getValueAt(row, col))) : formatNumbers(possibleValues);
+            updateTextArea(textArea, text, !possibleValues.isEmpty());
+        }
     }
 
     private void updateTextArea(TextArea textArea, String text, boolean addPossibleValuesClass) {
@@ -451,8 +453,7 @@ public class GameController {
     // Talán ki kellene ezt cserélni
     // VAGY MARADHAT DE UGY MODOSÍTANi, hogy csak elvegyen, hozzáadni ne
 
-    // Segítségnél csak elvegyen
-    // Lehetségés értékek mutatása
+    // Segítségnél, ujraszámolásnál csak elvegyen
     // Lehetséges értékek reset (de ez elveszi a nakedpair-t is): letárolni honnan mit vett el, ezt ne rakja vissza
     @FXML
     public void helpStrategy() {
@@ -461,7 +462,7 @@ public class GameController {
 
             if (!singleHelpSet.addAll(model.checkFullHouse()) && (!singleHelpSet.addAll(model.checkNakedSingles())) &&
                     (!singleHelpSet.addAll(model.checkHiddenSingles()))) {
-                //nakedPairsType = model.checkNakedPairs();
+                nakedPairsType = model.checkNakedPairs();
                 if (nakedPairsType == null) {
                     nakedPairsType = model.checkHiddenPairs();
                 }
