@@ -5,482 +5,13 @@
         {
           "value": 0,
           "possibleValues": [
-            7,
-            9
-          ]
-        },
-        {
-          "value": 4,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            7,
-            8,
-            9
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            7
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            2,
-            7
-          ]
-        },
-        {
-          "value": 5,
-          "possibleValues": []
-        },
-        {
-          "value": 6,
-          "possibleValues": []
-        },
-        {
-          "value": 3,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            7,
-            9
-          ]
-        }
-      ],
-      [
-        {
-          "value": 0,
-          "possibleValues": [
-            3,
-            5,
-            6,
-            7,
-            9
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            3,
-            6,
-            7,
-            9
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            3,
-            5,
-            7,
-            9
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            3,
             4,
-            7
+            5
           ]
         },
         {
           "value": 0,
           "possibleValues": [
-            1,
-            2,
-            4,
-            7
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            4
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            7,
-            9
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            5,
-            7
-          ]
-        },
-        {
-          "value": 8,
-          "possibleValues": []
-        }
-      ],
-      [
-        {
-          "value": 0,
-          "possibleValues": [
-            3,
-            5,
-            7
-          ]
-        },
-        {
-          "value": 1,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            3,
-            5,
-            7
-          ]
-        },
-        {
-          "value": 6,
-          "possibleValues": []
-        },
-        {
-          "value": 8,
-          "possibleValues": []
-        },
-        {
-          "value": 9,
-          "possibleValues": []
-        },
-        {
-          "value": 2,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            5,
-            7
-          ]
-        },
-        {
-          "value": 4,
-          "possibleValues": []
-        }
-      ],
-      [
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            7,
-            9
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            7,
-            9
-          ]
-        },
-        {
-          "value": 6,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            5,
-            7,
-            8
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            5,
-            7
-          ]
-        },
-        {
-          "value": 3,
-          "possibleValues": []
-        },
-        {
-          "value": 4,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            2,
-            7
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            7
-          ]
-        }
-      ],
-      [
-        {
-          "value": 2,
-          "possibleValues": []
-        },
-        {
-          "value": 5,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            3,
-            4,
-            7
-          ]
-        },
-        {
-          "value": 9,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            4,
-            6,
-            7
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            4,
-            6,
-            8
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            3,
-            7,
-            8
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            6,
-            7
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            3,
-            6,
-            7
-          ]
-        }
-      ],
-      [
-        {
-          "value": 8,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            3,
-            7
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            3,
-            4,
-            7
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            4,
-            7
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            4,
-            6,
-            7
-          ]
-        },
-        {
-          "value": 2,
-          "possibleValues": []
-        },
-        {
-          "value": 5,
-          "possibleValues": []
-        },
-        {
-          "value": 9,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            3,
-            6,
-            7
-          ]
-        }
-      ],
-      [
-        {
-          "value": 0,
-          "possibleValues": [
-            4,
-            5,
-            6,
-            7,
-            9
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            6,
-            7,
-            8,
-            9
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            4,
-            5,
-            7,
-            8,
-            9
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            4,
-            5,
-            8
-          ]
-        },
-        {
-          "value": 3,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            4,
-            6,
-            8
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            7,
-            9
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            4,
-            5,
-            6,
-            7
-          ]
-        },
-        {
-          "value": 1,
-          "possibleValues": []
-        }
-      ],
-      [
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            3,
-            4,
-            5,
-            6,
-            9
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            3,
-            6,
-            9
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            3,
-            4,
-            5,
-            9
-          ]
-        },
-        {
-          "value": 2,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
             4,
             5,
             6,
@@ -492,87 +23,17 @@
           "possibleValues": []
         },
         {
-          "value": 0,
-          "possibleValues": [
-            3,
-            9
-          ]
+          "value": 1,
+          "possibleValues": []
         },
         {
-          "value": 8,
+          "value": 2,
           "possibleValues": []
         },
         {
           "value": 0,
           "possibleValues": [
             3,
-            5,
-            6,
-            9
-          ]
-        }
-      ],
-      [
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            3,
-            4,
-            5,
-            6,
-            7,
-            9
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            3,
-            6,
-            7,
-            8,
-            9
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            2,
-            3,
-            4,
-            5,
-            7,
-            8,
-            9
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            4,
-            5,
-            8
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            4,
-            5,
-            6,
-            9
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            4,
             6,
             8
           ]
@@ -580,790 +41,10 @@
         {
           "value": 0,
           "possibleValues": [
-            3,
-            7,
-            9
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            4,
             5,
-            6,
-            7
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            3,
-            5,
-            6,
-            7,
-            9
-          ]
-        }
-      ]
-    ],
-    "solvedBoard": [
-      [
-        {
-          "value": 7,
-          "possibleValues": []
-        },
-        {
-          "value": 4,
-          "possibleValues": []
-        },
-        {
-          "value": 8,
-          "possibleValues": []
-        },
-        {
-          "value": 1,
-          "possibleValues": []
-        },
-        {
-          "value": 2,
-          "possibleValues": []
-        },
-        {
-          "value": 5,
-          "possibleValues": []
-        },
-        {
-          "value": 6,
-          "possibleValues": []
-        },
-        {
-          "value": 3,
-          "possibleValues": []
-        },
-        {
-          "value": 9,
-          "possibleValues": []
-        }
-      ],
-      [
-        {
-          "value": 6,
-          "possibleValues": []
-        },
-        {
-          "value": 2,
-          "possibleValues": []
-        },
-        {
-          "value": 9,
-          "possibleValues": []
-        },
-        {
-          "value": 3,
-          "possibleValues": []
-        },
-        {
-          "value": 7,
-          "possibleValues": []
-        },
-        {
-          "value": 4,
-          "possibleValues": []
-        },
-        {
-          "value": 1,
-          "possibleValues": []
-        },
-        {
-          "value": 5,
-          "possibleValues": []
-        },
-        {
-          "value": 8,
-          "possibleValues": []
-        }
-      ],
-      [
-        {
-          "value": 3,
-          "possibleValues": []
-        },
-        {
-          "value": 1,
-          "possibleValues": []
-        },
-        {
-          "value": 5,
-          "possibleValues": []
-        },
-        {
-          "value": 6,
-          "possibleValues": []
-        },
-        {
-          "value": 8,
-          "possibleValues": []
-        },
-        {
-          "value": 9,
-          "possibleValues": []
-        },
-        {
-          "value": 2,
-          "possibleValues": []
-        },
-        {
-          "value": 7,
-          "possibleValues": []
-        },
-        {
-          "value": 4,
-          "possibleValues": []
-        }
-      ],
-      [
-        {
-          "value": 1,
-          "possibleValues": []
-        },
-        {
-          "value": 9,
-          "possibleValues": []
-        },
-        {
-          "value": 6,
-          "possibleValues": []
-        },
-        {
-          "value": 8,
-          "possibleValues": []
-        },
-        {
-          "value": 5,
-          "possibleValues": []
-        },
-        {
-          "value": 3,
-          "possibleValues": []
-        },
-        {
-          "value": 4,
-          "possibleValues": []
-        },
-        {
-          "value": 2,
-          "possibleValues": []
-        },
-        {
-          "value": 7,
-          "possibleValues": []
-        }
-      ],
-      [
-        {
-          "value": 2,
-          "possibleValues": []
-        },
-        {
-          "value": 5,
-          "possibleValues": []
-        },
-        {
-          "value": 7,
-          "possibleValues": []
-        },
-        {
-          "value": 9,
-          "possibleValues": []
-        },
-        {
-          "value": 4,
-          "possibleValues": []
-        },
-        {
-          "value": 6,
-          "possibleValues": []
-        },
-        {
-          "value": 8,
-          "possibleValues": []
-        },
-        {
-          "value": 1,
-          "possibleValues": []
-        },
-        {
-          "value": 3,
-          "possibleValues": []
-        }
-      ],
-      [
-        {
-          "value": 8,
-          "possibleValues": []
-        },
-        {
-          "value": 3,
-          "possibleValues": []
-        },
-        {
-          "value": 4,
-          "possibleValues": []
-        },
-        {
-          "value": 7,
-          "possibleValues": []
-        },
-        {
-          "value": 1,
-          "possibleValues": []
-        },
-        {
-          "value": 2,
-          "possibleValues": []
-        },
-        {
-          "value": 5,
-          "possibleValues": []
-        },
-        {
-          "value": 9,
-          "possibleValues": []
-        },
-        {
-          "value": 6,
-          "possibleValues": []
-        }
-      ],
-      [
-        {
-          "value": 5,
-          "possibleValues": []
-        },
-        {
-          "value": 7,
-          "possibleValues": []
-        },
-        {
-          "value": 2,
-          "possibleValues": []
-        },
-        {
-          "value": 4,
-          "possibleValues": []
-        },
-        {
-          "value": 3,
-          "possibleValues": []
-        },
-        {
-          "value": 8,
-          "possibleValues": []
-        },
-        {
-          "value": 9,
-          "possibleValues": []
-        },
-        {
-          "value": 6,
-          "possibleValues": []
-        },
-        {
-          "value": 1,
-          "possibleValues": []
-        }
-      ],
-      [
-        {
-          "value": 4,
-          "possibleValues": []
-        },
-        {
-          "value": 6,
-          "possibleValues": []
-        },
-        {
-          "value": 1,
-          "possibleValues": []
-        },
-        {
-          "value": 2,
-          "possibleValues": []
-        },
-        {
-          "value": 9,
-          "possibleValues": []
-        },
-        {
-          "value": 7,
-          "possibleValues": []
-        },
-        {
-          "value": 3,
-          "possibleValues": []
-        },
-        {
-          "value": 8,
-          "possibleValues": []
-        },
-        {
-          "value": 5,
-          "possibleValues": []
-        }
-      ],
-      [
-        {
-          "value": 9,
-          "possibleValues": []
-        },
-        {
-          "value": 8,
-          "possibleValues": []
-        },
-        {
-          "value": 3,
-          "possibleValues": []
-        },
-        {
-          "value": 5,
-          "possibleValues": []
-        },
-        {
-          "value": 6,
-          "possibleValues": []
-        },
-        {
-          "value": 1,
-          "possibleValues": []
-        },
-        {
-          "value": 7,
-          "possibleValues": []
-        },
-        {
-          "value": 4,
-          "possibleValues": []
-        },
-        {
-          "value": 2,
-          "possibleValues": []
-        }
-      ]
-    ],
-    "sudokuBoard": [
-      [
-        {
-          "value": 0,
-          "possibleValues": [
-            7,
-            9
-          ]
-        },
-        {
-          "value": 4,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            7,
-            8,
-            9
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            7
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            2,
-            7
-          ]
-        },
-        {
-          "value": 5,
-          "possibleValues": []
-        },
-        {
-          "value": 6,
-          "possibleValues": []
-        },
-        {
-          "value": 3,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            7,
-            9
-          ]
-        }
-      ],
-      [
-        {
-          "value": 0,
-          "possibleValues": [
-            3,
-            5,
-            6,
-            7,
-            9
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            3,
-            6,
-            7,
-            9
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            3,
-            5,
-            7,
-            9
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            3,
-            4,
-            7
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            2,
-            4,
-            7
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            4
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            7,
-            9
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            5,
-            7
-          ]
-        },
-        {
-          "value": 8,
-          "possibleValues": []
-        }
-      ],
-      [
-        {
-          "value": 0,
-          "possibleValues": [
-            3,
-            5,
-            7
-          ]
-        },
-        {
-          "value": 1,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            3,
-            5,
-            7
-          ]
-        },
-        {
-          "value": 6,
-          "possibleValues": []
-        },
-        {
-          "value": 8,
-          "possibleValues": []
-        },
-        {
-          "value": 9,
-          "possibleValues": []
-        },
-        {
-          "value": 2,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            5,
-            7
-          ]
-        },
-        {
-          "value": 4,
-          "possibleValues": []
-        }
-      ],
-      [
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            7,
-            9
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            7,
-            9
-          ]
-        },
-        {
-          "value": 6,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            5,
-            7,
-            8
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            5,
-            7
-          ]
-        },
-        {
-          "value": 3,
-          "possibleValues": []
-        },
-        {
-          "value": 4,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            2,
-            7
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            7
-          ]
-        }
-      ],
-      [
-        {
-          "value": 2,
-          "possibleValues": []
-        },
-        {
-          "value": 5,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            3,
-            4,
-            7
-          ]
-        },
-        {
-          "value": 9,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            4,
-            6,
-            7
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            4,
             6,
             8
           ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            3,
-            7,
-            8
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            6,
-            7
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            3,
-            6,
-            7
-          ]
-        }
-      ],
-      [
-        {
-          "value": 8,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            3,
-            7
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            3,
-            4,
-            7
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            4,
-            7
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            4,
-            6,
-            7
-          ]
-        },
-        {
-          "value": 2,
-          "possibleValues": []
-        },
-        {
-          "value": 5,
-          "possibleValues": []
-        },
-        {
-          "value": 9,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            3,
-            6,
-            7
-          ]
-        }
-      ],
-      [
-        {
-          "value": 0,
-          "possibleValues": [
-            4,
-            5,
-            6,
-            7,
-            9
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            6,
-            7,
-            8,
-            9
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            4,
-            5,
-            7,
-            8,
-            9
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            4,
-            5,
-            8
-          ]
-        },
-        {
-          "value": 3,
-          "possibleValues": []
         },
         {
           "value": 0,
@@ -1376,636 +57,15 @@
         {
           "value": 0,
           "possibleValues": [
-            7,
-            9
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
             4,
-            5,
-            6,
-            7
-          ]
-        },
-        {
-          "value": 1,
-          "possibleValues": []
-        }
-      ],
-      [
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            3,
-            4,
-            5,
-            6,
-            9
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            3,
-            6,
-            9
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            3,
-            4,
-            5,
-            9
-          ]
-        },
-        {
-          "value": 2,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            4,
-            5,
-            6,
-            9
-          ]
-        },
-        {
-          "value": 7,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            3,
-            9
-          ]
-        },
-        {
-          "value": 8,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            3,
-            5,
-            6,
-            9
-          ]
-        }
-      ],
-      [
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            3,
-            4,
-            5,
-            6,
-            7,
-            9
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            3,
-            6,
-            7,
-            8,
-            9
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            2,
-            3,
-            4,
-            5,
-            7,
-            8,
-            9
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            4,
-            5,
-            8
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            4,
-            5,
-            6,
-            9
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            4,
-            6,
-            8
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            3,
-            7,
-            9
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            4,
-            5,
-            6,
-            7
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            3,
-            5,
-            6,
-            7,
-            9
-          ]
-        }
-      ]
-    ],
-    "elapsedTimeSeconds": 2,
-    "difficulty": "HARD"
-  },
-  {
-    "originalBoard": [
-      [
-        {
-          "value": 0,
-          "possibleValues": [
-            3,
-            8
-          ]
-        },
-        {
-          "value": 6,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            3,
-            4,
-            8,
-            9
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            2,
-            3
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            3,
-            4,
-            8,
-            9
-          ]
-        },
-        {
-          "value": 5,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            3,
-            7,
-            9
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            3,
-            7,
-            8
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            7,
-            8,
-            9
-          ]
-        }
-      ],
-      [
-        {
-          "value": 0,
-          "possibleValues": [
-            3,
-            5,
-            8
-          ]
-        },
-        {
-          "value": 1,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            3,
-            4,
-            5,
-            8,
-            9
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            3,
             6
           ]
-        },
-        {
-          "value": 7,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            3,
-            4,
-            6,
-            8,
-            9
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            3,
-            6,
-            9
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            3,
-            8
-          ]
-        },
-        {
-          "value": 2,
-          "possibleValues": []
         }
       ],
       [
-        {
-          "value": 0,
-          "possibleValues": [
-            3,
-            8
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            7,
-            8
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            3,
-            8,
-            9
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            2,
-            3,
-            6
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            3,
-            8,
-            9
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            2,
-            3,
-            6,
-            8,
-            9
-          ]
-        },
-        {
-          "value": 4,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            3,
-            7,
-            8
-          ]
-        },
-        {
-          "value": 5,
-          "possibleValues": []
-        }
-      ],
-      [
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            5
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            5
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            2,
-            5
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            2,
-            3,
-            5,
-            7
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            3,
-            4,
-            5,
-            9
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            2,
-            3,
-            4,
-            7,
-            9
-          ]
-        },
         {
           "value": 8,
           "possibleValues": []
-        },
-        {
-          "value": 6,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            4,
-            7,
-            9
-          ]
-        }
-      ],
-      [
-        {
-          "value": 4,
-          "possibleValues": []
-        },
-        {
-          "value": 3,
-          "possibleValues": []
-        },
-        {
-          "value": 7,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            5
-          ]
-        },
-        {
-          "value": 6,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            8,
-            9
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            9
-          ]
-        },
-        {
-          "value": 2,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            9
-          ]
-        }
-      ],
-      [
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            6,
-            8
-          ]
-        },
-        {
-          "value": 9,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            2,
-            6,
-            8
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            2,
-            3,
-            7
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            3,
-            4,
-            8
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            2,
-            3,
-            4,
-            7,
-            8
-          ]
-        },
-        {
-          "value": 5,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            3,
-            4,
-            7
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            4,
-            7
-          ]
-        }
-      ],
-      [
-        {
-          "value": 7,
-          "possibleValues": []
-        },
-        {
-          "value": 4,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            3,
-            5,
-            6
-          ]
-        },
-        {
-          "value": 8,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            3,
-            5
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            3,
-            6
-          ]
         },
         {
           "value": 0,
@@ -2016,861 +76,14 @@
           ]
         },
         {
-          "value": 9,
-          "possibleValues": []
-        },
-        {
           "value": 0,
           "possibleValues": [
-            1,
-            6
-          ]
-        }
-      ],
-      [
-        {
-          "value": 9,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            5,
-            8
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            5,
-            6,
-            8
-          ]
-        },
-        {
-          "value": 4,
-          "possibleValues": []
-        },
-        {
-          "value": 1,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            6,
-            7
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            6,
-            7
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            5,
-            7,
-            8
-          ]
-        },
-        {
-          "value": 3,
-          "possibleValues": []
-        }
-      ],
-      [
-        {
-          "value": 2,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            5,
-            8
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            3,
-            5,
-            6,
-            8
-          ]
-        },
-        {
-          "value": 9,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            3,
-            5
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            3,
-            6,
-            7
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            6,
-            7
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            4,
-            5,
-            7,
-            8
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            4,
-            6,
-            7,
-            8
-          ]
-        }
-      ]
-    ],
-    "solvedBoard": [
-      [
-        {
-          "value": 8,
-          "possibleValues": []
-        },
-        {
-          "value": 6,
-          "possibleValues": []
-        },
-        {
-          "value": 4,
-          "possibleValues": []
-        },
-        {
-          "value": 1,
-          "possibleValues": []
-        },
-        {
-          "value": 2,
-          "possibleValues": []
-        },
-        {
-          "value": 5,
-          "possibleValues": []
-        },
-        {
-          "value": 3,
-          "possibleValues": []
-        },
-        {
-          "value": 7,
-          "possibleValues": []
-        },
-        {
-          "value": 9,
-          "possibleValues": []
-        }
-      ],
-      [
-        {
-          "value": 5,
-          "possibleValues": []
-        },
-        {
-          "value": 1,
-          "possibleValues": []
-        },
-        {
-          "value": 9,
-          "possibleValues": []
-        },
-        {
-          "value": 3,
-          "possibleValues": []
-        },
-        {
-          "value": 7,
-          "possibleValues": []
-        },
-        {
-          "value": 4,
-          "possibleValues": []
-        },
-        {
-          "value": 6,
-          "possibleValues": []
-        },
-        {
-          "value": 8,
-          "possibleValues": []
-        },
-        {
-          "value": 2,
-          "possibleValues": []
-        }
-      ],
-      [
-        {
-          "value": 3,
-          "possibleValues": []
-        },
-        {
-          "value": 7,
-          "possibleValues": []
-        },
-        {
-          "value": 2,
-          "possibleValues": []
-        },
-        {
-          "value": 6,
-          "possibleValues": []
-        },
-        {
-          "value": 8,
-          "possibleValues": []
-        },
-        {
-          "value": 9,
-          "possibleValues": []
-        },
-        {
-          "value": 4,
-          "possibleValues": []
-        },
-        {
-          "value": 1,
-          "possibleValues": []
-        },
-        {
-          "value": 5,
-          "possibleValues": []
-        }
-      ],
-      [
-        {
-          "value": 1,
-          "possibleValues": []
-        },
-        {
-          "value": 2,
-          "possibleValues": []
-        },
-        {
-          "value": 5,
-          "possibleValues": []
-        },
-        {
-          "value": 7,
-          "possibleValues": []
-        },
-        {
-          "value": 9,
-          "possibleValues": []
-        },
-        {
-          "value": 3,
-          "possibleValues": []
-        },
-        {
-          "value": 8,
-          "possibleValues": []
-        },
-        {
-          "value": 6,
-          "possibleValues": []
-        },
-        {
-          "value": 4,
-          "possibleValues": []
-        }
-      ],
-      [
-        {
-          "value": 4,
-          "possibleValues": []
-        },
-        {
-          "value": 3,
-          "possibleValues": []
-        },
-        {
-          "value": 7,
-          "possibleValues": []
-        },
-        {
-          "value": 5,
-          "possibleValues": []
-        },
-        {
-          "value": 6,
-          "possibleValues": []
-        },
-        {
-          "value": 8,
-          "possibleValues": []
-        },
-        {
-          "value": 9,
-          "possibleValues": []
-        },
-        {
-          "value": 2,
-          "possibleValues": []
-        },
-        {
-          "value": 1,
-          "possibleValues": []
-        }
-      ],
-      [
-        {
-          "value": 6,
-          "possibleValues": []
-        },
-        {
-          "value": 9,
-          "possibleValues": []
-        },
-        {
-          "value": 8,
-          "possibleValues": []
-        },
-        {
-          "value": 2,
-          "possibleValues": []
-        },
-        {
-          "value": 4,
-          "possibleValues": []
-        },
-        {
-          "value": 1,
-          "possibleValues": []
-        },
-        {
-          "value": 5,
-          "possibleValues": []
-        },
-        {
-          "value": 3,
-          "possibleValues": []
-        },
-        {
-          "value": 7,
-          "possibleValues": []
-        }
-      ],
-      [
-        {
-          "value": 7,
-          "possibleValues": []
-        },
-        {
-          "value": 4,
-          "possibleValues": []
-        },
-        {
-          "value": 3,
-          "possibleValues": []
-        },
-        {
-          "value": 8,
-          "possibleValues": []
-        },
-        {
-          "value": 5,
-          "possibleValues": []
-        },
-        {
-          "value": 2,
-          "possibleValues": []
-        },
-        {
-          "value": 1,
-          "possibleValues": []
-        },
-        {
-          "value": 9,
-          "possibleValues": []
-        },
-        {
-          "value": 6,
-          "possibleValues": []
-        }
-      ],
-      [
-        {
-          "value": 9,
-          "possibleValues": []
-        },
-        {
-          "value": 8,
-          "possibleValues": []
-        },
-        {
-          "value": 6,
-          "possibleValues": []
-        },
-        {
-          "value": 4,
-          "possibleValues": []
-        },
-        {
-          "value": 1,
-          "possibleValues": []
-        },
-        {
-          "value": 7,
-          "possibleValues": []
-        },
-        {
-          "value": 2,
-          "possibleValues": []
-        },
-        {
-          "value": 5,
-          "possibleValues": []
-        },
-        {
-          "value": 3,
-          "possibleValues": []
-        }
-      ],
-      [
-        {
-          "value": 2,
-          "possibleValues": []
-        },
-        {
-          "value": 5,
-          "possibleValues": []
-        },
-        {
-          "value": 1,
-          "possibleValues": []
-        },
-        {
-          "value": 9,
-          "possibleValues": []
-        },
-        {
-          "value": 3,
-          "possibleValues": []
-        },
-        {
-          "value": 6,
-          "possibleValues": []
-        },
-        {
-          "value": 7,
-          "possibleValues": []
-        },
-        {
-          "value": 4,
-          "possibleValues": []
-        },
-        {
-          "value": 8,
-          "possibleValues": []
-        }
-      ]
-    ],
-    "sudokuBoard": [
-      [
-        {
-          "value": 0,
-          "possibleValues": [
-            3,
-            8
-          ]
-        },
-        {
-          "value": 6,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            3,
-            8,
-            9
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            2,
-            3
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            3,
-            8,
-            9
-          ]
-        },
-        {
-          "value": 5,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            3,
-            7,
-            9
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            3,
-            7,
-            8
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            7,
-            8,
-            9
-          ]
-        }
-      ],
-      [
-        {
-          "value": 0,
-          "possibleValues": [
-            3,
-            8
-          ]
-        },
-        {
-          "value": 1,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            3,
-            8,
-            9
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            3,
-            6
-          ]
-        },
-        {
-          "value": 7,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            3,
-            6,
-            8,
-            9
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            3,
-            6,
-            9
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            3,
-            8
-          ]
-        },
-        {
-          "value": 2,
-          "possibleValues": []
-        }
-      ],
-      [
-        {
-          "value": 0,
-          "possibleValues": [
-            3,
-            8
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            7,
-            8
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            3,
-            8,
-            9
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            2,
-            3,
-            6
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            3,
-            8,
-            9
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            2,
-            3,
-            6,
-            8,
-            9
-          ]
-        },
-        {
-          "value": 4,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            3,
-            7,
-            8
-          ]
-        },
-        {
-          "value": 5,
-          "possibleValues": []
-        }
-      ],
-      [
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            5
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            5
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            2,
-            5
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            2,
-            3,
-            5,
-            7
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            3,
-            4,
-            5,
-            9
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            2,
-            3,
-            4,
-            7,
-            9
-          ]
-        },
-        {
-          "value": 8,
-          "possibleValues": []
-        },
-        {
-          "value": 6,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            4,
-            7,
-            9
-          ]
-        }
-      ],
-      [
-        {
-          "value": 4,
-          "possibleValues": []
-        },
-        {
-          "value": 3,
-          "possibleValues": []
-        },
-        {
-          "value": 7,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            5
-          ]
-        },
-        {
-          "value": 6,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            8,
-            9
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            9
-          ]
-        },
-        {
-          "value": 2,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            9
-          ]
-        }
-      ],
-      [
-        {
-          "value": 0,
-          "possibleValues": [
-            1
-          ]
-        },
-        {
-          "value": 9,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
             2
           ]
         },
         {
-          "value": 0,
-          "possibleValues": [
-            1,
-            2,
-            3,
-            7
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            3,
-            4,
-            8
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            2,
-            3,
-            4,
-            7,
-            8
-          ]
+          "value": 4,
+          "possibleValues": []
         },
         {
           "value": 5,
@@ -2879,9 +92,7 @@
         {
           "value": 0,
           "possibleValues": [
-            1,
-            3,
-            4,
+            6,
             7
           ]
         },
@@ -2889,51 +100,8 @@
           "value": 0,
           "possibleValues": [
             1,
-            4,
+            6,
             7
-          ]
-        }
-      ],
-      [
-        {
-          "value": 7,
-          "possibleValues": []
-        },
-        {
-          "value": 4,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            5,
-            6
-          ]
-        },
-        {
-          "value": 8,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            3
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            3,
-            6
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            6
           ]
         },
         {
@@ -2941,53 +109,31 @@
           "possibleValues": []
         },
         {
-          "value": 0,
-          "possibleValues": [
-            1,
-            6
-          ]
+          "value": 3,
+          "possibleValues": []
         }
       ],
       [
         {
-          "value": 9,
+          "value": 3,
           "possibleValues": []
         },
         {
           "value": 0,
           "possibleValues": [
+            1,
+            2,
+            4,
             5,
-            8
+            6
           ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            5,
-            6,
-            8
-          ]
-        },
-        {
-          "value": 4,
-          "possibleValues": []
-        },
-        {
-          "value": 1,
-          "possibleValues": []
         },
         {
           "value": 0,
           "possibleValues": [
             2,
-            6
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            6,
-            7
+            4,
+            5
           ]
         },
         {
@@ -2998,8 +144,46 @@
           ]
         },
         {
-          "value": 3,
+          "value": 9,
           "possibleValues": []
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            1,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            1,
+            2,
+            4,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            1,
+            4,
+            6,
+            7
+          ]
         }
       ],
       [
@@ -3010,114 +194,6 @@
         {
           "value": 0,
           "possibleValues": [
-            5,
-            8
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            5,
-            6,
-            8
-          ]
-        },
-        {
-          "value": 9,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            3
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            3,
-            6
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            6,
-            7
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            7,
-            8
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            6,
-            7,
-            8
-          ]
-        }
-      ]
-    ],
-    "elapsedTimeSeconds": 318,
-    "difficulty": "HARD"
-  },
-  {
-    "originalBoard": [
-      [
-        {
-          "value": 0,
-          "possibleValues": [
-            3,
-            8
-          ]
-        },
-        {
-          "value": 6,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            3,
-            4,
-            8,
-            9
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            2,
-            3
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            3,
-            4,
-            8,
-            9
-          ]
-        },
-        {
-          "value": 5,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
             1,
             3,
             7,
@@ -3127,248 +203,16 @@
         {
           "value": 0,
           "possibleValues": [
-            1,
+            3,
+            9
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
             3,
             7,
-            8
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            7,
-            8,
             9
-          ]
-        }
-      ],
-      [
-        {
-          "value": 0,
-          "possibleValues": [
-            3,
-            5,
-            8
-          ]
-        },
-        {
-          "value": 1,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            3,
-            4,
-            5,
-            8,
-            9
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            3,
-            6
-          ]
-        },
-        {
-          "value": 7,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            3,
-            4,
-            6,
-            8,
-            9
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            3,
-            6,
-            9
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            3,
-            8
-          ]
-        },
-        {
-          "value": 2,
-          "possibleValues": []
-        }
-      ],
-      [
-        {
-          "value": 0,
-          "possibleValues": [
-            3,
-            8
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            7,
-            8
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            3,
-            8,
-            9
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            2,
-            3,
-            6
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            3,
-            8,
-            9
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            2,
-            3,
-            6,
-            8,
-            9
-          ]
-        },
-        {
-          "value": 4,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            3,
-            7,
-            8
-          ]
-        },
-        {
-          "value": 5,
-          "possibleValues": []
-        }
-      ],
-      [
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            5
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            5
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            2,
-            5
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            2,
-            3,
-            5,
-            7
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            3,
-            4,
-            5,
-            9
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            2,
-            3,
-            4,
-            7,
-            9
-          ]
-        },
-        {
-          "value": 8,
-          "possibleValues": []
-        },
-        {
-          "value": 6,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            4,
-            7,
-            9
-          ]
-        }
-      ],
-      [
-        {
-          "value": 4,
-          "possibleValues": []
-        },
-        {
-          "value": 3,
-          "possibleValues": []
-        },
-        {
-          "value": 7,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            5
           ]
         },
         {
@@ -3379,6 +223,37 @@
           "value": 0,
           "possibleValues": [
             1,
+            3,
+            7,
+            9
+          ]
+        },
+        {
+          "value": 4,
+          "possibleValues": []
+        },
+        {
+          "value": 5,
+          "possibleValues": []
+        },
+        {
+          "value": 8,
+          "possibleValues": []
+        }
+      ],
+      [
+        {
+          "value": 6,
+          "possibleValues": []
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            1,
+            3,
+            4,
+            5,
+            7,
             8,
             9
           ]
@@ -3386,7 +261,164 @@
         {
           "value": 0,
           "possibleValues": [
+            3,
+            4,
+            5,
+            8,
+            9
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            3,
+            7,
+            9
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            3,
+            7
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
             1,
+            3,
+            4,
+            7,
+            9
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            1,
+            7,
+            9
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            1,
+            3,
+            7
+          ]
+        },
+        {
+          "value": 2,
+          "possibleValues": []
+        }
+      ],
+      [
+        {
+          "value": 0,
+          "possibleValues": [
+            1,
+            4
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            1,
+            3,
+            4,
+            7,
+            9
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            3,
+            4,
+            9
+          ]
+        },
+        {
+          "value": 5,
+          "possibleValues": []
+        },
+        {
+          "value": 8,
+          "possibleValues": []
+        },
+        {
+          "value": 2,
+          "possibleValues": []
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            1,
+            6,
+            7,
+            9
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            1,
+            3,
+            6,
+            7
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            1,
+            6,
+            7,
+            9
+          ]
+        }
+      ],
+      [
+        {
+          "value": 0,
+          "possibleValues": [
+            5
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            3,
+            5,
+            8
+          ]
+        },
+        {
+          "value": 6,
+          "possibleValues": []
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            3,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "value": 4,
+          "possibleValues": []
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            3,
+            5,
+            7,
+            8,
             9
           ]
         },
@@ -3398,80 +430,16 @@
           "value": 0,
           "possibleValues": [
             1,
-            9
-          ]
-        }
-      ],
-      [
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            6,
-            8
-          ]
-        },
-        {
-          "value": 9,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            2,
-            6,
-            8
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            2,
-            3,
-            7
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            3,
-            4,
-            8
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            2,
-            3,
-            4,
             7,
             8
           ]
         },
         {
-          "value": 5,
-          "possibleValues": []
-        },
-        {
           "value": 0,
           "possibleValues": [
             1,
-            3,
-            4,
-            7
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            4,
-            7
+            7,
+            9
           ]
         }
       ],
@@ -3481,66 +449,9 @@
           "possibleValues": []
         },
         {
-          "value": 4,
-          "possibleValues": []
-        },
-        {
           "value": 0,
           "possibleValues": [
-            1,
-            3,
-            5,
-            6
-          ]
-        },
-        {
-          "value": 8,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            3,
-            5
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            3,
-            6
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            2,
-            6
-          ]
-        },
-        {
-          "value": 9,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            6
-          ]
-        }
-      ],
-      [
-        {
-          "value": 9,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
+            4,
             5,
             8
           ]
@@ -3548,13 +459,13 @@
         {
           "value": 0,
           "possibleValues": [
+            4,
             5,
-            6,
             8
           ]
         },
         {
-          "value": 4,
+          "value": 2,
           "possibleValues": []
         },
         {
@@ -3564,54 +475,33 @@
         {
           "value": 0,
           "possibleValues": [
-            2,
-            6,
-            7
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            6,
-            7
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
             5,
-            7,
-            8
+            8,
+            9
           ]
         },
         {
           "value": 3,
           "possibleValues": []
-        }
-      ],
-      [
-        {
-          "value": 2,
-          "possibleValues": []
         },
         {
           "value": 0,
           "possibleValues": [
-            5,
-            8
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            3,
-            5,
+            4,
             6,
             8
           ]
         },
+        {
+          "value": 0,
+          "possibleValues": [
+            4,
+            6,
+            9
+          ]
+        }
+      ],
+      [
         {
           "value": 9,
           "possibleValues": []
@@ -3619,32 +509,31 @@
         {
           "value": 0,
           "possibleValues": [
+            2,
             3,
-            5
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            3,
-            6,
-            7
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            6,
-            7
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
             4,
-            5,
+            8
+          ]
+        },
+        {
+          "value": 1,
+          "possibleValues": []
+        },
+        {
+          "value": 6,
+          "possibleValues": []
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            3,
+            7
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            3,
             7,
             8
           ]
@@ -3652,27 +541,36 @@
         {
           "value": 0,
           "possibleValues": [
-            1,
-            4,
-            6,
             7,
             8
           ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            4,
+            7,
+            8
+          ]
+        },
+        {
+          "value": 5,
+          "possibleValues": []
         }
       ]
     ],
     "solvedBoard": [
       [
         {
-          "value": 8,
-          "possibleValues": []
-        },
-        {
-          "value": 6,
-          "possibleValues": []
-        },
-        {
           "value": 4,
+          "possibleValues": []
+        },
+        {
+          "value": 9,
+          "possibleValues": []
+        },
+        {
+          "value": 7,
           "possibleValues": []
         },
         {
@@ -3684,243 +582,15 @@
           "possibleValues": []
         },
         {
-          "value": 5,
-          "possibleValues": []
-        },
-        {
           "value": 3,
           "possibleValues": []
         },
         {
-          "value": 7,
-          "possibleValues": []
-        },
-        {
-          "value": 9,
-          "possibleValues": []
-        }
-      ],
-      [
-        {
           "value": 5,
-          "possibleValues": []
-        },
-        {
-          "value": 1,
-          "possibleValues": []
-        },
-        {
-          "value": 9,
-          "possibleValues": []
-        },
-        {
-          "value": 3,
-          "possibleValues": []
-        },
-        {
-          "value": 7,
-          "possibleValues": []
-        },
-        {
-          "value": 4,
-          "possibleValues": []
-        },
-        {
-          "value": 6,
           "possibleValues": []
         },
         {
           "value": 8,
-          "possibleValues": []
-        },
-        {
-          "value": 2,
-          "possibleValues": []
-        }
-      ],
-      [
-        {
-          "value": 3,
-          "possibleValues": []
-        },
-        {
-          "value": 7,
-          "possibleValues": []
-        },
-        {
-          "value": 2,
-          "possibleValues": []
-        },
-        {
-          "value": 6,
-          "possibleValues": []
-        },
-        {
-          "value": 8,
-          "possibleValues": []
-        },
-        {
-          "value": 9,
-          "possibleValues": []
-        },
-        {
-          "value": 4,
-          "possibleValues": []
-        },
-        {
-          "value": 1,
-          "possibleValues": []
-        },
-        {
-          "value": 5,
-          "possibleValues": []
-        }
-      ],
-      [
-        {
-          "value": 1,
-          "possibleValues": []
-        },
-        {
-          "value": 2,
-          "possibleValues": []
-        },
-        {
-          "value": 5,
-          "possibleValues": []
-        },
-        {
-          "value": 7,
-          "possibleValues": []
-        },
-        {
-          "value": 9,
-          "possibleValues": []
-        },
-        {
-          "value": 3,
-          "possibleValues": []
-        },
-        {
-          "value": 8,
-          "possibleValues": []
-        },
-        {
-          "value": 6,
-          "possibleValues": []
-        },
-        {
-          "value": 4,
-          "possibleValues": []
-        }
-      ],
-      [
-        {
-          "value": 4,
-          "possibleValues": []
-        },
-        {
-          "value": 3,
-          "possibleValues": []
-        },
-        {
-          "value": 7,
-          "possibleValues": []
-        },
-        {
-          "value": 5,
-          "possibleValues": []
-        },
-        {
-          "value": 6,
-          "possibleValues": []
-        },
-        {
-          "value": 8,
-          "possibleValues": []
-        },
-        {
-          "value": 9,
-          "possibleValues": []
-        },
-        {
-          "value": 2,
-          "possibleValues": []
-        },
-        {
-          "value": 1,
-          "possibleValues": []
-        }
-      ],
-      [
-        {
-          "value": 6,
-          "possibleValues": []
-        },
-        {
-          "value": 9,
-          "possibleValues": []
-        },
-        {
-          "value": 8,
-          "possibleValues": []
-        },
-        {
-          "value": 2,
-          "possibleValues": []
-        },
-        {
-          "value": 4,
-          "possibleValues": []
-        },
-        {
-          "value": 1,
-          "possibleValues": []
-        },
-        {
-          "value": 5,
-          "possibleValues": []
-        },
-        {
-          "value": 3,
-          "possibleValues": []
-        },
-        {
-          "value": 7,
-          "possibleValues": []
-        }
-      ],
-      [
-        {
-          "value": 7,
-          "possibleValues": []
-        },
-        {
-          "value": 4,
-          "possibleValues": []
-        },
-        {
-          "value": 3,
-          "possibleValues": []
-        },
-        {
-          "value": 8,
-          "possibleValues": []
-        },
-        {
-          "value": 5,
-          "possibleValues": []
-        },
-        {
-          "value": 2,
-          "possibleValues": []
-        },
-        {
-          "value": 1,
-          "possibleValues": []
-        },
-        {
-          "value": 9,
           "possibleValues": []
         },
         {
@@ -3930,19 +600,7 @@
       ],
       [
         {
-          "value": 9,
-          "possibleValues": []
-        },
-        {
           "value": 8,
-          "possibleValues": []
-        },
-        {
-          "value": 6,
-          "possibleValues": []
-        },
-        {
-          "value": 4,
           "possibleValues": []
         },
         {
@@ -3950,15 +608,27 @@
           "possibleValues": []
         },
         {
-          "value": 7,
-          "possibleValues": []
-        },
-        {
           "value": 2,
           "possibleValues": []
         },
         {
+          "value": 4,
+          "possibleValues": []
+        },
+        {
           "value": 5,
+          "possibleValues": []
+        },
+        {
+          "value": 6,
+          "possibleValues": []
+        },
+        {
+          "value": 7,
+          "possibleValues": []
+        },
+        {
+          "value": 9,
           "possibleValues": []
         },
         {
@@ -3968,7 +638,11 @@
       ],
       [
         {
-          "value": 2,
+          "value": 3,
+          "possibleValues": []
+        },
+        {
+          "value": 6,
           "possibleValues": []
         },
         {
@@ -3976,7 +650,7 @@
           "possibleValues": []
         },
         {
-          "value": 1,
+          "value": 7,
           "possibleValues": []
         },
         {
@@ -3984,11 +658,75 @@
           "possibleValues": []
         },
         {
+          "value": 8,
+          "possibleValues": []
+        },
+        {
+          "value": 1,
+          "possibleValues": []
+        },
+        {
+          "value": 2,
+          "possibleValues": []
+        },
+        {
+          "value": 4,
+          "possibleValues": []
+        }
+      ],
+      [
+        {
+          "value": 2,
+          "possibleValues": []
+        },
+        {
+          "value": 7,
+          "possibleValues": []
+        },
+        {
           "value": 3,
           "possibleValues": []
         },
         {
+          "value": 9,
+          "possibleValues": []
+        },
+        {
           "value": 6,
+          "possibleValues": []
+        },
+        {
+          "value": 1,
+          "possibleValues": []
+        },
+        {
+          "value": 4,
+          "possibleValues": []
+        },
+        {
+          "value": 5,
+          "possibleValues": []
+        },
+        {
+          "value": 8,
+          "possibleValues": []
+        }
+      ],
+      [
+        {
+          "value": 6,
+          "possibleValues": []
+        },
+        {
+          "value": 5,
+          "possibleValues": []
+        },
+        {
+          "value": 8,
+          "possibleValues": []
+        },
+        {
+          "value": 3,
           "possibleValues": []
         },
         {
@@ -4000,603 +738,172 @@
           "possibleValues": []
         },
         {
+          "value": 9,
+          "possibleValues": []
+        },
+        {
+          "value": 1,
+          "possibleValues": []
+        },
+        {
+          "value": 2,
+          "possibleValues": []
+        }
+      ],
+      [
+        {
+          "value": 1,
+          "possibleValues": []
+        },
+        {
+          "value": 4,
+          "possibleValues": []
+        },
+        {
+          "value": 9,
+          "possibleValues": []
+        },
+        {
+          "value": 5,
+          "possibleValues": []
+        },
+        {
           "value": 8,
+          "possibleValues": []
+        },
+        {
+          "value": 2,
+          "possibleValues": []
+        },
+        {
+          "value": 6,
+          "possibleValues": []
+        },
+        {
+          "value": 3,
+          "possibleValues": []
+        },
+        {
+          "value": 7,
+          "possibleValues": []
+        }
+      ],
+      [
+        {
+          "value": 5,
+          "possibleValues": []
+        },
+        {
+          "value": 3,
+          "possibleValues": []
+        },
+        {
+          "value": 6,
+          "possibleValues": []
+        },
+        {
+          "value": 8,
+          "possibleValues": []
+        },
+        {
+          "value": 4,
+          "possibleValues": []
+        },
+        {
+          "value": 9,
+          "possibleValues": []
+        },
+        {
+          "value": 2,
+          "possibleValues": []
+        },
+        {
+          "value": 7,
+          "possibleValues": []
+        },
+        {
+          "value": 1,
+          "possibleValues": []
+        }
+      ],
+      [
+        {
+          "value": 7,
+          "possibleValues": []
+        },
+        {
+          "value": 8,
+          "possibleValues": []
+        },
+        {
+          "value": 4,
+          "possibleValues": []
+        },
+        {
+          "value": 2,
+          "possibleValues": []
+        },
+        {
+          "value": 1,
+          "possibleValues": []
+        },
+        {
+          "value": 5,
+          "possibleValues": []
+        },
+        {
+          "value": 3,
+          "possibleValues": []
+        },
+        {
+          "value": 6,
+          "possibleValues": []
+        },
+        {
+          "value": 9,
+          "possibleValues": []
+        }
+      ],
+      [
+        {
+          "value": 9,
+          "possibleValues": []
+        },
+        {
+          "value": 2,
+          "possibleValues": []
+        },
+        {
+          "value": 1,
+          "possibleValues": []
+        },
+        {
+          "value": 6,
+          "possibleValues": []
+        },
+        {
+          "value": 3,
+          "possibleValues": []
+        },
+        {
+          "value": 7,
+          "possibleValues": []
+        },
+        {
+          "value": 8,
+          "possibleValues": []
+        },
+        {
+          "value": 4,
+          "possibleValues": []
+        },
+        {
+          "value": 5,
           "possibleValues": []
         }
       ]
     ],
-    "sudokuBoard": [
-      [
-        {
-          "value": 0,
-          "possibleValues": [
-            3,
-            8
-          ]
-        },
-        {
-          "value": 6,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            3,
-            4,
-            8,
-            9
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            2,
-            3
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            3,
-            4,
-            8,
-            9
-          ]
-        },
-        {
-          "value": 5,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            3,
-            7,
-            9
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            3,
-            7,
-            8
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            7,
-            8,
-            9
-          ]
-        }
-      ],
-      [
-        {
-          "value": 0,
-          "possibleValues": [
-            3,
-            5,
-            8
-          ]
-        },
-        {
-          "value": 1,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            3,
-            4,
-            5,
-            8,
-            9
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            3,
-            6
-          ]
-        },
-        {
-          "value": 7,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            3,
-            4,
-            6,
-            8,
-            9
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            3,
-            6,
-            9
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            3,
-            8
-          ]
-        },
-        {
-          "value": 2,
-          "possibleValues": []
-        }
-      ],
-      [
-        {
-          "value": 0,
-          "possibleValues": [
-            3,
-            8
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            7,
-            8
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            3,
-            8,
-            9
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            2,
-            3,
-            6
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            3,
-            8,
-            9
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            2,
-            3,
-            6,
-            8,
-            9
-          ]
-        },
-        {
-          "value": 4,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            3,
-            7,
-            8
-          ]
-        },
-        {
-          "value": 5,
-          "possibleValues": []
-        }
-      ],
-      [
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            5
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            5
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            2,
-            5
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            2,
-            3,
-            5,
-            7
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            3,
-            4,
-            5,
-            9
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            2,
-            3,
-            4,
-            7,
-            9
-          ]
-        },
-        {
-          "value": 8,
-          "possibleValues": []
-        },
-        {
-          "value": 6,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            4,
-            7,
-            9
-          ]
-        }
-      ],
-      [
-        {
-          "value": 4,
-          "possibleValues": []
-        },
-        {
-          "value": 3,
-          "possibleValues": []
-        },
-        {
-          "value": 7,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            5
-          ]
-        },
-        {
-          "value": 6,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            8,
-            9
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            9
-          ]
-        },
-        {
-          "value": 2,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            9
-          ]
-        }
-      ],
-      [
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            6,
-            8
-          ]
-        },
-        {
-          "value": 9,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            2,
-            6,
-            8
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            2,
-            3,
-            7
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            3,
-            4,
-            8
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            2,
-            3,
-            4,
-            7,
-            8
-          ]
-        },
-        {
-          "value": 5,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            3,
-            4,
-            7
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            4,
-            7
-          ]
-        }
-      ],
-      [
-        {
-          "value": 7,
-          "possibleValues": []
-        },
-        {
-          "value": 4,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            3,
-            5,
-            6
-          ]
-        },
-        {
-          "value": 8,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            3,
-            5
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            3,
-            6
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            2,
-            6
-          ]
-        },
-        {
-          "value": 9,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            6
-          ]
-        }
-      ],
-      [
-        {
-          "value": 9,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            5,
-            8
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            5,
-            6,
-            8
-          ]
-        },
-        {
-          "value": 4,
-          "possibleValues": []
-        },
-        {
-          "value": 1,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            6,
-            7
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            6,
-            7
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            5,
-            7,
-            8
-          ]
-        },
-        {
-          "value": 3,
-          "possibleValues": []
-        }
-      ],
-      [
-        {
-          "value": 2,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            5,
-            8
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            3,
-            5,
-            6,
-            8
-          ]
-        },
-        {
-          "value": 9,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            3,
-            5
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            3,
-            6,
-            7
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            6,
-            7
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            4,
-            5,
-            7,
-            8
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            4,
-            6,
-            7,
-            8
-          ]
-        }
-      ]
-    ],
-    "elapsedTimeSeconds": 635,
+    "elapsedTimeSeconds": 20,
     "difficulty": "HARD"
   },
   {
@@ -4607,6 +914,45 @@
           "possibleValues": []
         },
         {
+          "value": 4,
+          "possibleValues": []
+        },
+        {
+          "value": 7,
+          "possibleValues": []
+        },
+        {
+          "value": 2,
+          "possibleValues": []
+        },
+        {
+          "value": 1,
+          "possibleValues": []
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            5,
+            9
+          ]
+        },
+        {
+          "value": 3,
+          "possibleValues": []
+        },
+        {
+          "value": 6,
+          "possibleValues": []
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            5
+          ]
+        }
+      ],
+      [
+        {
           "value": 5,
           "possibleValues": []
         },
@@ -4617,9 +963,34 @@
         {
           "value": 0,
           "possibleValues": [
-            1,
             2,
-            4
+            3,
+            9
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            7,
+            9
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            3,
+            4,
+            7,
+            8,
+            9
           ]
         },
         {
@@ -4627,10 +998,27 @@
           "possibleValues": [
             1,
             2,
-            3,
-            4
+            7
           ]
         },
+        {
+          "value": 0,
+          "possibleValues": [
+            1,
+            4,
+            7
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            2,
+            4,
+            7
+          ]
+        }
+      ],
+      [
         {
           "value": 0,
           "possibleValues": [
@@ -4639,85 +1027,214 @@
           ]
         },
         {
+          "value": 0,
+          "possibleValues": [
+            2,
+            3
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            2,
+            3
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            5,
+            7
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            5,
+            6,
+            7
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            3,
+            4,
+            5,
+            6,
+            7
+          ]
+        },
+        {
+          "value": 8,
+          "possibleValues": []
+        },
+        {
+          "value": 9,
+          "possibleValues": []
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            2,
+            4,
+            5,
+            7
+          ]
+        }
+      ],
+      [
+        {
+          "value": 0,
+          "possibleValues": [
+            3,
+            4
+          ]
+        },
+        {
+          "value": 5,
+          "possibleValues": []
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            3,
+            4,
+            8
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            1,
+            7,
+            9
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            2,
+            6,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            1,
+            2,
+            6,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            2,
+            7,
+            9
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            3,
+            4,
+            7,
+            8
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            2,
+            3,
+            4,
+            7,
+            8,
+            9
+          ]
+        }
+      ],
+      [
+        {
+          "value": 2,
+          "possibleValues": []
+        },
+        {
           "value": 7,
           "possibleValues": []
         },
         {
           "value": 0,
           "possibleValues": [
-            2,
-            3,
+            4,
+            8
+          ]
+        },
+        {
+          "value": 3,
+          "possibleValues": []
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            5,
+            8,
             9
           ]
         },
         {
           "value": 0,
           "possibleValues": [
-            2,
-            4,
+            5,
+            8,
             9
           ]
+        },
+        {
+          "value": 6,
+          "possibleValues": []
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            4,
+            8
+          ]
+        },
+        {
+          "value": 1,
+          "possibleValues": []
         }
       ],
       [
         {
           "value": 9,
           "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            4
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            3,
-            4,
-            7
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            4,
-            5,
-            7
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            3,
-            4,
-            5,
-            6
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            3,
-            6,
-            7
-          ]
         },
         {
           "value": 1,
           "possibleValues": []
         },
         {
+          "value": 6,
+          "possibleValues": []
+        },
+        {
+          "value": 4,
+          "possibleValues": []
+        },
+        {
           "value": 0,
           "possibleValues": [
             2,
-            3,
-            5,
-            6,
+            7,
             8
           ]
         },
@@ -4725,8 +1242,27 @@
           "value": 0,
           "possibleValues": [
             2,
-            4,
-            6,
+            7,
+            8
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            2,
+            7
+          ]
+        },
+        {
+          "value": 5,
+          "possibleValues": []
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            2,
+            3,
+            7,
             8
           ]
         }
@@ -4735,42 +1271,67 @@
         {
           "value": 0,
           "possibleValues": [
-            1,
-            2,
-            3,
             7
           ]
         },
         {
           "value": 0,
           "possibleValues": [
-            1,
             2,
-            4
+            9
           ]
         },
         {
-          "value": 0,
-          "possibleValues": [
-            2,
-            3,
-            4,
-            7
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            2,
-            4,
-            5,
-            7
-          ]
-        },
-        {
-          "value": 9,
+          "value": 5,
           "possibleValues": []
+        },
+        {
+          "value": 6,
+          "possibleValues": []
+        },
+        {
+          "value": 3,
+          "possibleValues": []
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            1,
+            2,
+            7,
+            9
+          ]
+        },
+        {
+          "value": 4,
+          "possibleValues": []
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            1,
+            7,
+            8
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            7,
+            8,
+            9
+          ]
+        }
+      ],
+      [
+        {
+          "value": 0,
+          "possibleValues": [
+            3,
+            4,
+            6,
+            7
+          ]
         },
         {
           "value": 8,
@@ -4782,166 +1343,15 @@
             2,
             3,
             4,
-            5
+            9
           ]
         },
         {
           "value": 0,
           "possibleValues": [
-            2,
-            3,
+            1,
             5,
-            6
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            4,
-            6
-          ]
-        }
-      ],
-      [
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            2,
-            6
-          ]
-        },
-        {
-          "value": 7,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            4,
-            8
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            2,
-            8
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            2,
-            3,
-            6,
-            8
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            3,
-            6
-          ]
-        },
-        {
-          "value": 9,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            2,
-            8
-          ]
-        },
-        {
-          "value": 5,
-          "possibleValues": []
-        }
-      ],
-      [
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            2
-          ]
-        },
-        {
-          "value": 3,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            8,
-            9
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            2,
             7,
-            8,
-            9
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            2,
-            8
-          ]
-        },
-        {
-          "value": 5,
-          "possibleValues": []
-        },
-        {
-          "value": 6,
-          "possibleValues": []
-        },
-        {
-          "value": 4,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            2,
-            8
-          ]
-        }
-      ],
-      [
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            2,
-            6
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            2,
-            6,
-            8,
             9
           ]
         },
@@ -4950,17 +1360,7 @@
           "possibleValues": [
             2,
             5,
-            8,
-            9
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            2,
             7,
-            8,
             9
           ]
         },
@@ -4969,94 +1369,35 @@
           "possibleValues": [
             1,
             2,
+            5,
+            7,
+            9
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            1,
+            5,
+            7,
+            9
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            1,
+            3,
+            7
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            3,
+            5,
             6,
-            8
-          ]
-        },
-        {
-          "value": 4,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            2,
             7,
-            8
-          ]
-        },
-        {
-          "value": 3,
-          "possibleValues": []
-        }
-      ],
-      [
-        {
-          "value": 5,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            8,
-            9
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            3,
-            8,
-            9
-          ]
-        },
-        {
-          "value": 6,
-          "possibleValues": []
-        },
-        {
-          "value": 7,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            9
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            3,
-            4
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            2,
-            3,
-            9
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            2,
-            4,
             9
           ]
         }
@@ -5065,17 +1406,15 @@
         {
           "value": 0,
           "possibleValues": [
-            2,
             3,
-            6
+            6,
+            7
           ]
         },
         {
           "value": 0,
           "possibleValues": [
-            2,
-            6,
-            8,
+            3,
             9
           ]
         },
@@ -5084,53 +1423,9 @@
           "possibleValues": []
         },
         {
-          "value": 0,
-          "possibleValues": [
-            4,
-            5,
-            8,
-            9
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            4,
-            5,
-            8
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            9
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            3,
-            4,
-            5
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            3,
-            5,
-            6,
-            9
-          ]
-        },
-        {
-          "value": 7,
+          "value": 8,
           "possibleValues": []
-        }
-      ],
-      [
+        },
         {
           "value": 4,
           "possibleValues": []
@@ -5138,26 +1433,17 @@
         {
           "value": 0,
           "possibleValues": [
-            6,
-            9
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
+            5,
             7,
             9
           ]
         },
         {
-          "value": 3,
-          "possibleValues": []
-        },
-        {
           "value": 0,
           "possibleValues": [
-            1,
-            5
+            5,
+            7,
+            9
           ]
         },
         {
@@ -5165,23 +1451,12 @@
           "possibleValues": []
         },
         {
-          "value": 8,
-          "possibleValues": []
-        },
-        {
           "value": 0,
           "possibleValues": [
-            1,
+            3,
             5,
             6,
-            9
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            6,
+            7,
             9
           ]
         }
@@ -5194,15 +1469,11 @@
           "possibleValues": []
         },
         {
-          "value": 5,
+          "value": 4,
           "possibleValues": []
         },
         {
-          "value": 6,
-          "possibleValues": []
-        },
-        {
-          "value": 1,
+          "value": 7,
           "possibleValues": []
         },
         {
@@ -5210,113 +1481,11 @@
           "possibleValues": []
         },
         {
-          "value": 3,
-          "possibleValues": []
-        },
-        {
-          "value": 7,
+          "value": 1,
           "possibleValues": []
         },
         {
           "value": 9,
-          "possibleValues": []
-        },
-        {
-          "value": 4,
-          "possibleValues": []
-        }
-      ],
-      [
-        {
-          "value": 9,
-          "possibleValues": []
-        },
-        {
-          "value": 4,
-          "possibleValues": []
-        },
-        {
-          "value": 3,
-          "possibleValues": []
-        },
-        {
-          "value": 5,
-          "possibleValues": []
-        },
-        {
-          "value": 6,
-          "possibleValues": []
-        },
-        {
-          "value": 7,
-          "possibleValues": []
-        },
-        {
-          "value": 1,
-          "possibleValues": []
-        },
-        {
-          "value": 2,
-          "possibleValues": []
-        },
-        {
-          "value": 8,
-          "possibleValues": []
-        }
-      ],
-      [
-        {
-          "value": 7,
-          "possibleValues": []
-        },
-        {
-          "value": 1,
-          "possibleValues": []
-        },
-        {
-          "value": 2,
-          "possibleValues": []
-        },
-        {
-          "value": 4,
-          "possibleValues": []
-        },
-        {
-          "value": 9,
-          "possibleValues": []
-        },
-        {
-          "value": 8,
-          "possibleValues": []
-        },
-        {
-          "value": 3,
-          "possibleValues": []
-        },
-        {
-          "value": 5,
-          "possibleValues": []
-        },
-        {
-          "value": 6,
-          "possibleValues": []
-        }
-      ],
-      [
-        {
-          "value": 1,
-          "possibleValues": []
-        },
-        {
-          "value": 7,
-          "possibleValues": []
-        },
-        {
-          "value": 4,
-          "possibleValues": []
-        },
-        {
-          "value": 2,
           "possibleValues": []
         },
         {
@@ -5328,25 +1497,17 @@
           "possibleValues": []
         },
         {
-          "value": 9,
-          "possibleValues": []
-        },
-        {
-          "value": 8,
-          "possibleValues": []
-        },
-        {
           "value": 5,
           "possibleValues": []
         }
       ],
       [
         {
-          "value": 2,
+          "value": 5,
           "possibleValues": []
         },
         {
-          "value": 3,
+          "value": 6,
           "possibleValues": []
         },
         {
@@ -5362,6 +1523,36 @@
           "possibleValues": []
         },
         {
+          "value": 3,
+          "possibleValues": []
+        },
+        {
+          "value": 1,
+          "possibleValues": []
+        },
+        {
+          "value": 4,
+          "possibleValues": []
+        },
+        {
+          "value": 2,
+          "possibleValues": []
+        }
+      ],
+      [
+        {
+          "value": 1,
+          "possibleValues": []
+        },
+        {
+          "value": 2,
+          "possibleValues": []
+        },
+        {
+          "value": 3,
+          "possibleValues": []
+        },
+        {
           "value": 5,
           "possibleValues": []
         },
@@ -5374,11 +1565,81 @@
           "possibleValues": []
         },
         {
-          "value": 1,
+          "value": 8,
+          "possibleValues": []
+        },
+        {
+          "value": 9,
+          "possibleValues": []
+        },
+        {
+          "value": 7,
           "possibleValues": []
         }
       ],
       [
+        {
+          "value": 3,
+          "possibleValues": []
+        },
+        {
+          "value": 5,
+          "possibleValues": []
+        },
+        {
+          "value": 8,
+          "possibleValues": []
+        },
+        {
+          "value": 1,
+          "possibleValues": []
+        },
+        {
+          "value": 2,
+          "possibleValues": []
+        },
+        {
+          "value": 6,
+          "possibleValues": []
+        },
+        {
+          "value": 9,
+          "possibleValues": []
+        },
+        {
+          "value": 7,
+          "possibleValues": []
+        },
+        {
+          "value": 4,
+          "possibleValues": []
+        }
+      ],
+      [
+        {
+          "value": 2,
+          "possibleValues": []
+        },
+        {
+          "value": 7,
+          "possibleValues": []
+        },
+        {
+          "value": 4,
+          "possibleValues": []
+        },
+        {
+          "value": 3,
+          "possibleValues": []
+        },
+        {
+          "value": 9,
+          "possibleValues": []
+        },
+        {
+          "value": 5,
+          "possibleValues": []
+        },
         {
           "value": 6,
           "possibleValues": []
@@ -5388,9 +1649,11 @@
           "possibleValues": []
         },
         {
-          "value": 5,
+          "value": 1,
           "possibleValues": []
-        },
+        }
+      ],
+      [
         {
           "value": 9,
           "possibleValues": []
@@ -5400,11 +1663,11 @@
           "possibleValues": []
         },
         {
-          "value": 4,
+          "value": 6,
           "possibleValues": []
         },
         {
-          "value": 2,
+          "value": 4,
           "possibleValues": []
         },
         {
@@ -5412,67 +1675,25 @@
           "possibleValues": []
         },
         {
-          "value": 3,
+          "value": 8,
           "possibleValues": []
-        }
-      ],
-      [
+        },
+        {
+          "value": 2,
+          "possibleValues": []
+        },
         {
           "value": 5,
           "possibleValues": []
         },
         {
-          "value": 9,
-          "possibleValues": []
-        },
-        {
-          "value": 8,
-          "possibleValues": []
-        },
-        {
-          "value": 6,
-          "possibleValues": []
-        },
-        {
-          "value": 7,
-          "possibleValues": []
-        },
-        {
-          "value": 1,
-          "possibleValues": []
-        },
-        {
-          "value": 4,
-          "possibleValues": []
-        },
-        {
           "value": 3,
-          "possibleValues": []
-        },
-        {
-          "value": 2,
           "possibleValues": []
         }
       ],
       [
         {
-          "value": 3,
-          "possibleValues": []
-        },
-        {
-          "value": 2,
-          "possibleValues": []
-        },
-        {
-          "value": 1,
-          "possibleValues": []
-        },
-        {
-          "value": 8,
-          "possibleValues": []
-        },
-        {
-          "value": 4,
+          "value": 7,
           "possibleValues": []
         },
         {
@@ -5488,7 +1709,23 @@
           "possibleValues": []
         },
         {
-          "value": 7,
+          "value": 3,
+          "possibleValues": []
+        },
+        {
+          "value": 2,
+          "possibleValues": []
+        },
+        {
+          "value": 4,
+          "possibleValues": []
+        },
+        {
+          "value": 1,
+          "possibleValues": []
+        },
+        {
+          "value": 8,
           "possibleValues": []
         }
       ],
@@ -5498,7 +1735,23 @@
           "possibleValues": []
         },
         {
-          "value": 6,
+          "value": 8,
+          "possibleValues": []
+        },
+        {
+          "value": 2,
+          "possibleValues": []
+        },
+        {
+          "value": 9,
+          "possibleValues": []
+        },
+        {
+          "value": 5,
+          "possibleValues": []
+        },
+        {
+          "value": 1,
           "possibleValues": []
         },
         {
@@ -5510,11 +1763,21 @@
           "possibleValues": []
         },
         {
-          "value": 5,
+          "value": 6,
+          "possibleValues": []
+        }
+      ],
+      [
+        {
+          "value": 6,
           "possibleValues": []
         },
         {
-          "value": 2,
+          "value": 3,
+          "possibleValues": []
+        },
+        {
+          "value": 1,
           "possibleValues": []
         },
         {
@@ -5522,7 +1785,19 @@
           "possibleValues": []
         },
         {
-          "value": 1,
+          "value": 4,
+          "possibleValues": []
+        },
+        {
+          "value": 7,
+          "possibleValues": []
+        },
+        {
+          "value": 5,
+          "possibleValues": []
+        },
+        {
+          "value": 2,
           "possibleValues": []
         },
         {
@@ -5531,542 +1806,84 @@
         }
       ]
     ],
-    "sudokuBoard": [
-      [
-        {
-          "value": 8,
-          "possibleValues": []
-        },
-        {
-          "value": 5,
-          "possibleValues": []
-        },
-        {
-          "value": 6,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            2,
-            4
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            2,
-            4
-          ]
-        },
-        {
-          "value": 3,
-          "possibleValues": []
-        },
-        {
-          "value": 7,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            9
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            4,
-            9
-          ]
-        }
-      ],
-      [
-        {
-          "value": 9,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            4
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            3,
-            4
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            4,
-            5
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            4,
-            6
-          ]
-        },
-        {
-          "value": 7,
-          "possibleValues": []
-        },
-        {
-          "value": 1,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            3,
-            5,
-            6,
-            8
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            4,
-            6,
-            8
-          ]
-        }
-      ],
-      [
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            2,
-            3,
-            7
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            2,
-            4
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            3,
-            4,
-            7
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            2,
-            4,
-            5
-          ]
-        },
-        {
-          "value": 9,
-          "possibleValues": []
-        },
-        {
-          "value": 8,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            3,
-            4,
-            5
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            3,
-            5,
-            6
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            4,
-            6
-          ]
-        }
-      ],
-      [
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            2
-          ]
-        },
-        {
-          "value": 7,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            4,
-            8
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            2,
-            8
-          ]
-        },
-        {
-          "value": 3,
-          "possibleValues": []
-        },
-        {
-          "value": 6,
-          "possibleValues": []
-        },
-        {
-          "value": 9,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            8
-          ]
-        },
-        {
-          "value": 5,
-          "possibleValues": []
-        }
-      ],
-      [
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            2
-          ]
-        },
-        {
-          "value": 3,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            8,
-            9
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            2,
-            7,
-            8,
-            9
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            2,
-            8
-          ]
-        },
-        {
-          "value": 5,
-          "possibleValues": []
-        },
-        {
-          "value": 6,
-          "possibleValues": []
-        },
-        {
-          "value": 4,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            8
-          ]
-        }
-      ],
-      [
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            6
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            6,
-            8,
-            9
-          ]
-        },
-        {
-          "value": 5,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            7,
-            8,
-            9
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            8
-          ]
-        },
-        {
-          "value": 4,
-          "possibleValues": []
-        },
-        {
-          "value": 2,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            7,
-            8
-          ]
-        },
-        {
-          "value": 3,
-          "possibleValues": []
-        }
-      ],
-      [
-        {
-          "value": 5,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            8,
-            9
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            3,
-            8,
-            9
-          ]
-        },
-        {
-          "value": 6,
-          "possibleValues": []
-        },
-        {
-          "value": 7,
-          "possibleValues": []
-        },
-        {
-          "value": 1,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            3,
-            4
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            3,
-            9
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            4,
-            9
-          ]
-        }
-      ],
-      [
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            3,
-            6
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            6,
-            8
-          ]
-        },
-        {
-          "value": 1,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            4,
-            8
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            4,
-            8
-          ]
-        },
-        {
-          "value": 9,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            3,
-            4,
-            5
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            3,
-            5,
-            6
-          ]
-        },
-        {
-          "value": 7,
-          "possibleValues": []
-        }
-      ],
-      [
-        {
-          "value": 4,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            6,
-            9
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            7,
-            9
-          ]
-        },
-        {
-          "value": 3,
-          "possibleValues": []
-        },
-        {
-          "value": 5,
-          "possibleValues": []
-        },
-        {
-          "value": 2,
-          "possibleValues": []
-        },
-        {
-          "value": 8,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            6,
-            9
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            6,
-            9
-          ]
-        }
-      ]
-    ],
-    "elapsedTimeSeconds": 18,
+    "elapsedTimeSeconds": 7,
     "difficulty": "HARD"
   },
   {
     "originalBoard": [
       [
         {
-          "value": 8,
+          "value": 0,
+          "possibleValues": [
+            2,
+            5,
+            8
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            2,
+            5,
+            8
+          ]
+        },
+        {
+          "value": 3,
+          "possibleValues": []
+        },
+        {
+          "value": 1,
+          "possibleValues": []
+        },
+        {
+          "value": 4,
+          "possibleValues": []
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            6,
+            8
+          ]
+        },
+        {
+          "value": 7,
+          "possibleValues": []
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            2,
+            5,
+            8
+          ]
+        },
+        {
+          "value": 9,
+          "possibleValues": []
+        }
+      ],
+      [
+        {
+          "value": 0,
+          "possibleValues": [
+            2,
+            7,
+            8
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            1,
+            2,
+            7,
+            8
+          ]
+        },
+        {
+          "value": 6,
           "possibleValues": []
         },
         {
@@ -6074,7 +1891,37 @@
           "possibleValues": []
         },
         {
-          "value": 6,
+          "value": 0,
+          "possibleValues": [
+            9
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            8,
+            9
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            1,
+            2
+          ]
+        },
+        {
+          "value": 3,
+          "possibleValues": []
+        },
+        {
+          "value": 4,
+          "possibleValues": []
+        }
+      ],
+      [
+        {
+          "value": 4,
           "possibleValues": []
         },
         {
@@ -6082,22 +1929,24 @@
           "possibleValues": [
             1,
             2,
-            4
+            5,
+            8
           ]
+        },
+        {
+          "value": 9,
+          "possibleValues": []
         },
         {
           "value": 0,
           "possibleValues": [
-            1,
             2,
-            3,
-            4
+            8
           ]
         },
         {
           "value": 0,
           "possibleValues": [
-            1,
             3
           ]
         },
@@ -6108,68 +1957,26 @@
         {
           "value": 0,
           "possibleValues": [
+            1,
             2,
-            3,
-            9
+            5
           ]
         },
         {
           "value": 0,
           "possibleValues": [
+            1,
             2,
-            4,
-            9
+            5,
+            8
           ]
+        },
+        {
+          "value": 6,
+          "possibleValues": []
         }
       ],
       [
-        {
-          "value": 9,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            4
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            3,
-            4,
-            7
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            4,
-            5,
-            7
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            3,
-            4,
-            5,
-            6
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            3,
-            6,
-            7
-          ]
-        },
         {
           "value": 1,
           "possibleValues": []
@@ -6179,61 +1986,37 @@
           "possibleValues": [
             2,
             3,
-            5,
-            6,
-            8
+            4,
+            5
           ]
         },
         {
           "value": 0,
           "possibleValues": [
             2,
+            4,
+            5
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
             4,
             6,
-            8
-          ]
-        }
-      ],
-      [
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            2,
-            3,
-            7
+            9
           ]
         },
         {
-          "value": 0,
-          "possibleValues": [
-            1,
-            2,
-            4
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            3,
-            4,
-            7
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            2,
-            4,
-            5,
-            7
-          ]
-        },
-        {
-          "value": 9,
+          "value": 7,
           "possibleValues": []
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            4,
+            6,
+            9
+          ]
         },
         {
           "value": 8,
@@ -6243,16 +2026,7 @@
           "value": 0,
           "possibleValues": [
             2,
-            3,
             4,
-            5
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            3,
             5,
             6
           ]
@@ -6261,8 +2035,8 @@
           "value": 0,
           "possibleValues": [
             2,
-            4,
-            6
+            3,
+            5
           ]
         }
       ],
@@ -6270,46 +2044,54 @@
         {
           "value": 0,
           "possibleValues": [
-            1,
             2,
-            6
+            3,
+            5,
+            6,
+            7,
+            8
           ]
         },
         {
-          "value": 7,
-          "possibleValues": []
+          "value": 0,
+          "possibleValues": [
+            2,
+            3,
+            4,
+            5,
+            7,
+            8
+          ]
         },
         {
           "value": 0,
           "possibleValues": [
             2,
             4,
+            5,
+            7,
             8
           ]
         },
         {
           "value": 0,
           "possibleValues": [
-            1,
-            2,
-            8
+            4,
+            6
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            5,
+            6
           ]
         },
         {
           "value": 0,
           "possibleValues": [
             1,
-            2,
-            3,
-            6,
-            8
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            3,
+            4,
             6
           ]
         },
@@ -6322,79 +2104,8 @@
           "possibleValues": [
             1,
             2,
-            8
-          ]
-        },
-        {
-          "value": 5,
-          "possibleValues": []
-        }
-      ],
-      [
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            2
-          ]
-        },
-        {
-          "value": 3,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            8,
-            9
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            2,
-            7,
-            8,
-            9
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            2,
-            8
-          ]
-        },
-        {
-          "value": 5,
-          "possibleValues": []
-        },
-        {
-          "value": 6,
-          "possibleValues": []
-        },
-        {
-          "value": 4,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            2,
-            8
-          ]
-        }
-      ],
-      [
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            2,
+            4,
+            5,
             6
           ]
         },
@@ -6403,124 +2114,8 @@
           "possibleValues": [
             1,
             2,
-            6,
-            8,
-            9
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            5,
-            8,
-            9
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            2,
-            7,
-            8,
-            9
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            2,
-            6,
-            8
-          ]
-        },
-        {
-          "value": 4,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            2,
-            7,
-            8
-          ]
-        },
-        {
-          "value": 3,
-          "possibleValues": []
-        }
-      ],
-      [
-        {
-          "value": 5,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            8,
-            9
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
             3,
-            8,
-            9
-          ]
-        },
-        {
-          "value": 6,
-          "possibleValues": []
-        },
-        {
-          "value": 7,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            9
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            3,
-            4
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            2,
-            3,
-            9
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            2,
-            4,
-            9
+            5
           ]
         }
       ],
@@ -6528,52 +2123,14 @@
         {
           "value": 0,
           "possibleValues": [
-            2,
-            3,
-            6
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
+            5,
             6,
-            8,
-            9
-          ]
-        },
-        {
-          "value": 1,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            4,
-            5,
-            8,
             9
           ]
         },
         {
           "value": 0,
           "possibleValues": [
-            4,
-            5,
-            8
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            9
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            3,
             4,
             5
           ]
@@ -6581,11 +2138,37 @@
         {
           "value": 0,
           "possibleValues": [
-            2,
-            3,
+            4,
+            5
+          ]
+        },
+        {
+          "value": 3,
+          "possibleValues": []
+        },
+        {
+          "value": 8,
+          "possibleValues": []
+        },
+        {
+          "value": 2,
+          "possibleValues": []
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            1,
             5,
-            6,
-            9
+            6
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            1,
+            4,
+            5,
+            6
           ]
         },
         {
@@ -6595,32 +2178,35 @@
       ],
       [
         {
-          "value": 4,
-          "possibleValues": []
-        },
-        {
           "value": 0,
           "possibleValues": [
-            6,
-            9
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
+            3,
+            5,
             7,
-            9
+            8
           ]
         },
         {
-          "value": 3,
+          "value": 9,
           "possibleValues": []
         },
         {
           "value": 0,
           "possibleValues": [
             1,
-            5
+            4,
+            5,
+            7,
+            8
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            4,
+            6,
+            7,
+            8
           ]
         },
         {
@@ -6628,14 +2214,122 @@
           "possibleValues": []
         },
         {
-          "value": 8,
-          "possibleValues": []
+          "value": 0,
+          "possibleValues": [
+            4,
+            6,
+            8
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            1,
+            3,
+            5,
+            6
+          ]
         },
         {
           "value": 0,
           "possibleValues": [
             1,
             5,
+            6
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            1,
+            3,
+            5
+          ]
+        }
+      ],
+      [
+        {
+          "value": 0,
+          "possibleValues": [
+            2,
+            3,
+            7,
+            8
+          ]
+        },
+        {
+          "value": 6,
+          "possibleValues": []
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            2,
+            7,
+            8
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            7,
+            8
+          ]
+        },
+        {
+          "value": 1,
+          "possibleValues": []
+        },
+        {
+          "value": 5,
+          "possibleValues": []
+        },
+        {
+          "value": 4,
+          "possibleValues": []
+        },
+        {
+          "value": 9,
+          "possibleValues": []
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            2,
+            3
+          ]
+        }
+      ],
+      [
+        {
+          "value": 0,
+          "possibleValues": [
+            2,
+            5
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            1,
+            2,
+            4,
+            5
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            1,
+            2,
+            4,
+            5
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            4,
             6,
             9
           ]
@@ -6643,29 +2337,37 @@
         {
           "value": 0,
           "possibleValues": [
-            1,
             6,
             9
           ]
+        },
+        {
+          "value": 3,
+          "possibleValues": []
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            1,
+            2,
+            5,
+            6
+          ]
+        },
+        {
+          "value": 7,
+          "possibleValues": []
+        },
+        {
+          "value": 8,
+          "possibleValues": []
         }
       ]
     ],
     "solvedBoard": [
       [
         {
-          "value": 8,
-          "possibleValues": []
-        },
-        {
           "value": 5,
-          "possibleValues": []
-        },
-        {
-          "value": 6,
-          "possibleValues": []
-        },
-        {
-          "value": 1,
           "possibleValues": []
         },
         {
@@ -6677,33 +2379,11 @@
           "possibleValues": []
         },
         {
-          "value": 7,
-          "possibleValues": []
-        },
-        {
-          "value": 9,
+          "value": 1,
           "possibleValues": []
         },
         {
           "value": 4,
-          "possibleValues": []
-        }
-      ],
-      [
-        {
-          "value": 9,
-          "possibleValues": []
-        },
-        {
-          "value": 4,
-          "possibleValues": []
-        },
-        {
-          "value": 3,
-          "possibleValues": []
-        },
-        {
-          "value": 5,
           "possibleValues": []
         },
         {
@@ -6715,15 +2395,11 @@
           "possibleValues": []
         },
         {
-          "value": 1,
-          "possibleValues": []
-        },
-        {
-          "value": 2,
-          "possibleValues": []
-        },
-        {
           "value": 8,
+          "possibleValues": []
+        },
+        {
+          "value": 9,
           "possibleValues": []
         }
       ],
@@ -6737,11 +2413,11 @@
           "possibleValues": []
         },
         {
-          "value": 2,
+          "value": 6,
           "possibleValues": []
         },
         {
-          "value": 4,
+          "value": 5,
           "possibleValues": []
         },
         {
@@ -6753,7 +2429,45 @@
           "possibleValues": []
         },
         {
+          "value": 2,
+          "possibleValues": []
+        },
+        {
           "value": 3,
+          "possibleValues": []
+        },
+        {
+          "value": 4,
+          "possibleValues": []
+        }
+      ],
+      [
+        {
+          "value": 4,
+          "possibleValues": []
+        },
+        {
+          "value": 8,
+          "possibleValues": []
+        },
+        {
+          "value": 9,
+          "possibleValues": []
+        },
+        {
+          "value": 2,
+          "possibleValues": []
+        },
+        {
+          "value": 3,
+          "possibleValues": []
+        },
+        {
+          "value": 7,
+          "possibleValues": []
+        },
+        {
+          "value": 1,
           "possibleValues": []
         },
         {
@@ -6771,11 +2485,7 @@
           "possibleValues": []
         },
         {
-          "value": 7,
-          "possibleValues": []
-        },
-        {
-          "value": 4,
+          "value": 3,
           "possibleValues": []
         },
         {
@@ -6783,11 +2493,11 @@
           "possibleValues": []
         },
         {
-          "value": 3,
+          "value": 6,
           "possibleValues": []
         },
         {
-          "value": 6,
+          "value": 7,
           "possibleValues": []
         },
         {
@@ -6796,6 +2506,10 @@
         },
         {
           "value": 8,
+          "possibleValues": []
+        },
+        {
+          "value": 4,
           "possibleValues": []
         },
         {
@@ -6805,15 +2519,7 @@
       ],
       [
         {
-          "value": 2,
-          "possibleValues": []
-        },
-        {
-          "value": 3,
-          "possibleValues": []
-        },
-        {
-          "value": 9,
+          "value": 6,
           "possibleValues": []
         },
         {
@@ -6825,7 +2531,53 @@
           "possibleValues": []
         },
         {
+          "value": 4,
+          "possibleValues": []
+        },
+        {
           "value": 5,
+          "possibleValues": []
+        },
+        {
+          "value": 1,
+          "possibleValues": []
+        },
+        {
+          "value": 9,
+          "possibleValues": []
+        },
+        {
+          "value": 2,
+          "possibleValues": []
+        },
+        {
+          "value": 3,
+          "possibleValues": []
+        }
+      ],
+      [
+        {
+          "value": 9,
+          "possibleValues": []
+        },
+        {
+          "value": 5,
+          "possibleValues": []
+        },
+        {
+          "value": 4,
+          "possibleValues": []
+        },
+        {
+          "value": 3,
+          "possibleValues": []
+        },
+        {
+          "value": 8,
+          "possibleValues": []
+        },
+        {
+          "value": 2,
           "possibleValues": []
         },
         {
@@ -6833,7 +2585,45 @@
           "possibleValues": []
         },
         {
+          "value": 1,
+          "possibleValues": []
+        },
+        {
+          "value": 7,
+          "possibleValues": []
+        }
+      ],
+      [
+        {
+          "value": 8,
+          "possibleValues": []
+        },
+        {
+          "value": 9,
+          "possibleValues": []
+        },
+        {
+          "value": 5,
+          "possibleValues": []
+        },
+        {
+          "value": 7,
+          "possibleValues": []
+        },
+        {
+          "value": 2,
+          "possibleValues": []
+        },
+        {
           "value": 4,
+          "possibleValues": []
+        },
+        {
+          "value": 3,
+          "possibleValues": []
+        },
+        {
+          "value": 6,
           "possibleValues": []
         },
         {
@@ -6843,53 +2633,7 @@
       ],
       [
         {
-          "value": 6,
-          "possibleValues": []
-        },
-        {
-          "value": 8,
-          "possibleValues": []
-        },
-        {
-          "value": 5,
-          "possibleValues": []
-        },
-        {
-          "value": 9,
-          "possibleValues": []
-        },
-        {
-          "value": 1,
-          "possibleValues": []
-        },
-        {
-          "value": 4,
-          "possibleValues": []
-        },
-        {
-          "value": 2,
-          "possibleValues": []
-        },
-        {
-          "value": 7,
-          "possibleValues": []
-        },
-        {
           "value": 3,
-          "possibleValues": []
-        }
-      ],
-      [
-        {
-          "value": 5,
-          "possibleValues": []
-        },
-        {
-          "value": 9,
-          "possibleValues": []
-        },
-        {
-          "value": 8,
           "possibleValues": []
         },
         {
@@ -6898,86 +2642,6 @@
         },
         {
           "value": 7,
-          "possibleValues": []
-        },
-        {
-          "value": 1,
-          "possibleValues": []
-        },
-        {
-          "value": 4,
-          "possibleValues": []
-        },
-        {
-          "value": 3,
-          "possibleValues": []
-        },
-        {
-          "value": 2,
-          "possibleValues": []
-        }
-      ],
-      [
-        {
-          "value": 3,
-          "possibleValues": []
-        },
-        {
-          "value": 2,
-          "possibleValues": []
-        },
-        {
-          "value": 1,
-          "possibleValues": []
-        },
-        {
-          "value": 8,
-          "possibleValues": []
-        },
-        {
-          "value": 4,
-          "possibleValues": []
-        },
-        {
-          "value": 9,
-          "possibleValues": []
-        },
-        {
-          "value": 5,
-          "possibleValues": []
-        },
-        {
-          "value": 6,
-          "possibleValues": []
-        },
-        {
-          "value": 7,
-          "possibleValues": []
-        }
-      ],
-      [
-        {
-          "value": 4,
-          "possibleValues": []
-        },
-        {
-          "value": 6,
-          "possibleValues": []
-        },
-        {
-          "value": 7,
-          "possibleValues": []
-        },
-        {
-          "value": 3,
-          "possibleValues": []
-        },
-        {
-          "value": 5,
-          "possibleValues": []
-        },
-        {
-          "value": 2,
           "possibleValues": []
         },
         {
@@ -6989,188 +2653,101 @@
           "possibleValues": []
         },
         {
+          "value": 5,
+          "possibleValues": []
+        },
+        {
+          "value": 4,
+          "possibleValues": []
+        },
+        {
           "value": 9,
+          "possibleValues": []
+        },
+        {
+          "value": 2,
+          "possibleValues": []
+        }
+      ],
+      [
+        {
+          "value": 2,
+          "possibleValues": []
+        },
+        {
+          "value": 4,
+          "possibleValues": []
+        },
+        {
+          "value": 1,
+          "possibleValues": []
+        },
+        {
+          "value": 9,
+          "possibleValues": []
+        },
+        {
+          "value": 6,
+          "possibleValues": []
+        },
+        {
+          "value": 3,
+          "possibleValues": []
+        },
+        {
+          "value": 5,
+          "possibleValues": []
+        },
+        {
+          "value": 7,
+          "possibleValues": []
+        },
+        {
+          "value": 8,
           "possibleValues": []
         }
       ]
     ],
-    "sudokuBoard": [
+    "elapsedTimeSeconds": 35,
+    "difficulty": "HARD"
+  },
+  {
+    "originalBoard": [
       [
         {
-          "value": 8,
-          "possibleValues": []
-        },
-        {
-          "value": 5,
-          "possibleValues": []
-        },
-        {
-          "value": 6,
-          "possibleValues": []
+          "value": 0,
+          "possibleValues": [
+            2,
+            5,
+            8
+          ]
         },
         {
           "value": 0,
           "possibleValues": [
-            1,
-            4
+            2,
+            5,
+            8
           ]
-        },
-        {
-          "value": 2,
-          "possibleValues": []
         },
         {
           "value": 3,
           "possibleValues": []
         },
         {
-          "value": 7,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            9
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            4,
-            9
-          ]
-        }
-      ],
-      [
-        {
-          "value": 9,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            4
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            3,
-            4
-          ]
-        },
-        {
-          "value": 7,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            4,
-            6
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            6
-          ]
-        },
-        {
           "value": 1,
           "possibleValues": []
         },
         {
-          "value": 0,
-          "possibleValues": [
-            2,
-            3,
-            5,
-            6
-          ]
+          "value": 4,
+          "possibleValues": []
         },
         {
           "value": 0,
           "possibleValues": [
-            2,
-            4,
             6,
             8
           ]
-        }
-      ],
-      [
-        {
-          "value": 0,
-          "possibleValues": [
-            3,
-            7
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            2,
-            4
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            3,
-            4
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            4,
-            5
-          ]
-        },
-        {
-          "value": 9,
-          "possibleValues": []
-        },
-        {
-          "value": 8,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            3,
-            4,
-            5
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            3,
-            5,
-            6
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            4,
-            6
-          ]
-        }
-      ],
-      [
-        {
-          "value": 1,
-          "possibleValues": []
         },
         {
           "value": 7,
@@ -7179,46 +2756,40 @@
         {
           "value": 0,
           "possibleValues": [
-            4
-          ]
-        },
-        {
-          "value": 2,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            3,
-            6
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            6
+            2,
+            5,
+            8
           ]
         },
         {
           "value": 9,
           "possibleValues": []
-        },
-        {
-          "value": 8,
-          "possibleValues": []
-        },
-        {
-          "value": 5,
-          "possibleValues": []
         }
       ],
       [
         {
-          "value": 2,
+          "value": 0,
+          "possibleValues": [
+            2,
+            7,
+            8
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            1,
+            2,
+            7,
+            8
+          ]
+        },
+        {
+          "value": 6,
           "possibleValues": []
         },
         {
-          "value": 3,
+          "value": 5,
           "possibleValues": []
         },
         {
@@ -7230,139 +2801,51 @@
         {
           "value": 0,
           "possibleValues": [
-            1,
-            8
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            8
-          ]
-        },
-        {
-          "value": 5,
-          "possibleValues": []
-        },
-        {
-          "value": 6,
-          "possibleValues": []
-        },
-        {
-          "value": 4,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1
-          ]
-        }
-      ],
-      [
-        {
-          "value": 6,
-          "possibleValues": []
-        },
-        {
-          "value": 8,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            5
-          ]
-        },
-        {
-          "value": 9,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1
-          ]
-        },
-        {
-          "value": 4,
-          "possibleValues": []
-        },
-        {
-          "value": 2,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            1,
-            7
-          ]
-        },
-        {
-          "value": 3,
-          "possibleValues": []
-        }
-      ],
-      [
-        {
-          "value": 5,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            9
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            2,
-            3,
             8,
             9
           ]
         },
         {
-          "value": 6,
-          "possibleValues": []
-        },
-        {
-          "value": 7,
-          "possibleValues": []
-        },
-        {
-          "value": 1,
-          "possibleValues": []
-        },
-        {
           "value": 0,
           "possibleValues": [
-            3,
-            4
+            1,
+            2
           ]
         },
         {
-          "value": 0,
-          "possibleValues": [
-            2,
-            3,
-            9
-          ]
+          "value": 3,
+          "possibleValues": []
         },
         {
-          "value": 0,
-          "possibleValues": [
-            2,
-            4,
-            9
-          ]
+          "value": 4,
+          "possibleValues": []
         }
       ],
       [
+        {
+          "value": 4,
+          "possibleValues": []
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            1,
+            2,
+            5,
+            8
+          ]
+        },
+        {
+          "value": 9,
+          "possibleValues": []
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            2,
+            8
+          ]
+        },
         {
           "value": 0,
           "possibleValues": [
@@ -7370,12 +2853,32 @@
           ]
         },
         {
+          "value": 7,
+          "possibleValues": []
+        },
+        {
           "value": 0,
           "possibleValues": [
+            1,
             2,
-            6
+            5
           ]
         },
+        {
+          "value": 0,
+          "possibleValues": [
+            1,
+            2,
+            5,
+            8
+          ]
+        },
+        {
+          "value": 6,
+          "possibleValues": []
+        }
+      ],
+      [
         {
           "value": 1,
           "possibleValues": []
@@ -7383,24 +2886,7 @@
         {
           "value": 0,
           "possibleValues": [
-            4,
-            8
-          ]
-        },
-        {
-          "value": 0,
-          "possibleValues": [
-            4,
-            8
-          ]
-        },
-        {
-          "value": 9,
-          "possibleValues": []
-        },
-        {
-          "value": 0,
-          "possibleValues": [
+            2,
             3,
             4,
             5
@@ -7410,7 +2896,179 @@
           "value": 0,
           "possibleValues": [
             2,
+            4,
+            5
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            4,
+            6,
+            9
+          ]
+        },
+        {
+          "value": 7,
+          "possibleValues": []
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            4,
+            6,
+            9
+          ]
+        },
+        {
+          "value": 8,
+          "possibleValues": []
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            2,
+            4,
+            5,
+            6
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            2,
             3,
+            5
+          ]
+        }
+      ],
+      [
+        {
+          "value": 0,
+          "possibleValues": [
+            2,
+            3,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            2,
+            3,
+            4,
+            5,
+            7,
+            8
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            2,
+            4,
+            5,
+            7,
+            8
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            4,
+            6
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            5,
+            6
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            1,
+            4,
+            6
+          ]
+        },
+        {
+          "value": 9,
+          "possibleValues": []
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            1,
+            2,
+            4,
+            5,
+            6
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            1,
+            2,
+            3,
+            5
+          ]
+        }
+      ],
+      [
+        {
+          "value": 0,
+          "possibleValues": [
+            5,
+            6,
+            9
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            4,
+            5
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            4,
+            5
+          ]
+        },
+        {
+          "value": 3,
+          "possibleValues": []
+        },
+        {
+          "value": 8,
+          "possibleValues": []
+        },
+        {
+          "value": 2,
+          "possibleValues": []
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            1,
+            5,
+            6
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            1,
+            4,
             5,
             6
           ]
@@ -7422,8 +3080,161 @@
       ],
       [
         {
+          "value": 0,
+          "possibleValues": [
+            3,
+            5,
+            7,
+            8
+          ]
+        },
+        {
+          "value": 9,
+          "possibleValues": []
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            1,
+            4,
+            5,
+            7,
+            8
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            4,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "value": 2,
+          "possibleValues": []
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            4,
+            6,
+            8
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            1,
+            3,
+            5,
+            6
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            1,
+            5,
+            6
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            1,
+            3,
+            5
+          ]
+        }
+      ],
+      [
+        {
+          "value": 0,
+          "possibleValues": [
+            2,
+            3,
+            7,
+            8
+          ]
+        },
+        {
+          "value": 6,
+          "possibleValues": []
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            2,
+            7,
+            8
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            7,
+            8
+          ]
+        },
+        {
+          "value": 1,
+          "possibleValues": []
+        },
+        {
+          "value": 5,
+          "possibleValues": []
+        },
+        {
           "value": 4,
           "possibleValues": []
+        },
+        {
+          "value": 9,
+          "possibleValues": []
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            2,
+            3
+          ]
+        }
+      ],
+      [
+        {
+          "value": 0,
+          "possibleValues": [
+            2,
+            5
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            1,
+            2,
+            4,
+            5
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            1,
+            2,
+            4,
+            5
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            4,
+            6,
+            9
+          ]
         },
         {
           "value": 0,
@@ -7431,6 +3242,1163 @@
             6,
             9
           ]
+        },
+        {
+          "value": 3,
+          "possibleValues": []
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            1,
+            2,
+            5,
+            6
+          ]
+        },
+        {
+          "value": 7,
+          "possibleValues": []
+        },
+        {
+          "value": 8,
+          "possibleValues": []
+        }
+      ]
+    ],
+    "solvedBoard": [
+      [
+        {
+          "value": 5,
+          "possibleValues": []
+        },
+        {
+          "value": 2,
+          "possibleValues": []
+        },
+        {
+          "value": 3,
+          "possibleValues": []
+        },
+        {
+          "value": 1,
+          "possibleValues": []
+        },
+        {
+          "value": 4,
+          "possibleValues": []
+        },
+        {
+          "value": 6,
+          "possibleValues": []
+        },
+        {
+          "value": 7,
+          "possibleValues": []
+        },
+        {
+          "value": 8,
+          "possibleValues": []
+        },
+        {
+          "value": 9,
+          "possibleValues": []
+        }
+      ],
+      [
+        {
+          "value": 7,
+          "possibleValues": []
+        },
+        {
+          "value": 1,
+          "possibleValues": []
+        },
+        {
+          "value": 6,
+          "possibleValues": []
+        },
+        {
+          "value": 5,
+          "possibleValues": []
+        },
+        {
+          "value": 9,
+          "possibleValues": []
+        },
+        {
+          "value": 8,
+          "possibleValues": []
+        },
+        {
+          "value": 2,
+          "possibleValues": []
+        },
+        {
+          "value": 3,
+          "possibleValues": []
+        },
+        {
+          "value": 4,
+          "possibleValues": []
+        }
+      ],
+      [
+        {
+          "value": 4,
+          "possibleValues": []
+        },
+        {
+          "value": 8,
+          "possibleValues": []
+        },
+        {
+          "value": 9,
+          "possibleValues": []
+        },
+        {
+          "value": 2,
+          "possibleValues": []
+        },
+        {
+          "value": 3,
+          "possibleValues": []
+        },
+        {
+          "value": 7,
+          "possibleValues": []
+        },
+        {
+          "value": 1,
+          "possibleValues": []
+        },
+        {
+          "value": 5,
+          "possibleValues": []
+        },
+        {
+          "value": 6,
+          "possibleValues": []
+        }
+      ],
+      [
+        {
+          "value": 1,
+          "possibleValues": []
+        },
+        {
+          "value": 3,
+          "possibleValues": []
+        },
+        {
+          "value": 2,
+          "possibleValues": []
+        },
+        {
+          "value": 6,
+          "possibleValues": []
+        },
+        {
+          "value": 7,
+          "possibleValues": []
+        },
+        {
+          "value": 9,
+          "possibleValues": []
+        },
+        {
+          "value": 8,
+          "possibleValues": []
+        },
+        {
+          "value": 4,
+          "possibleValues": []
+        },
+        {
+          "value": 5,
+          "possibleValues": []
+        }
+      ],
+      [
+        {
+          "value": 6,
+          "possibleValues": []
+        },
+        {
+          "value": 7,
+          "possibleValues": []
+        },
+        {
+          "value": 8,
+          "possibleValues": []
+        },
+        {
+          "value": 4,
+          "possibleValues": []
+        },
+        {
+          "value": 5,
+          "possibleValues": []
+        },
+        {
+          "value": 1,
+          "possibleValues": []
+        },
+        {
+          "value": 9,
+          "possibleValues": []
+        },
+        {
+          "value": 2,
+          "possibleValues": []
+        },
+        {
+          "value": 3,
+          "possibleValues": []
+        }
+      ],
+      [
+        {
+          "value": 9,
+          "possibleValues": []
+        },
+        {
+          "value": 5,
+          "possibleValues": []
+        },
+        {
+          "value": 4,
+          "possibleValues": []
+        },
+        {
+          "value": 3,
+          "possibleValues": []
+        },
+        {
+          "value": 8,
+          "possibleValues": []
+        },
+        {
+          "value": 2,
+          "possibleValues": []
+        },
+        {
+          "value": 6,
+          "possibleValues": []
+        },
+        {
+          "value": 1,
+          "possibleValues": []
+        },
+        {
+          "value": 7,
+          "possibleValues": []
+        }
+      ],
+      [
+        {
+          "value": 8,
+          "possibleValues": []
+        },
+        {
+          "value": 9,
+          "possibleValues": []
+        },
+        {
+          "value": 5,
+          "possibleValues": []
+        },
+        {
+          "value": 7,
+          "possibleValues": []
+        },
+        {
+          "value": 2,
+          "possibleValues": []
+        },
+        {
+          "value": 4,
+          "possibleValues": []
+        },
+        {
+          "value": 3,
+          "possibleValues": []
+        },
+        {
+          "value": 6,
+          "possibleValues": []
+        },
+        {
+          "value": 1,
+          "possibleValues": []
+        }
+      ],
+      [
+        {
+          "value": 3,
+          "possibleValues": []
+        },
+        {
+          "value": 6,
+          "possibleValues": []
+        },
+        {
+          "value": 7,
+          "possibleValues": []
+        },
+        {
+          "value": 8,
+          "possibleValues": []
+        },
+        {
+          "value": 1,
+          "possibleValues": []
+        },
+        {
+          "value": 5,
+          "possibleValues": []
+        },
+        {
+          "value": 4,
+          "possibleValues": []
+        },
+        {
+          "value": 9,
+          "possibleValues": []
+        },
+        {
+          "value": 2,
+          "possibleValues": []
+        }
+      ],
+      [
+        {
+          "value": 2,
+          "possibleValues": []
+        },
+        {
+          "value": 4,
+          "possibleValues": []
+        },
+        {
+          "value": 1,
+          "possibleValues": []
+        },
+        {
+          "value": 9,
+          "possibleValues": []
+        },
+        {
+          "value": 6,
+          "possibleValues": []
+        },
+        {
+          "value": 3,
+          "possibleValues": []
+        },
+        {
+          "value": 5,
+          "possibleValues": []
+        },
+        {
+          "value": 7,
+          "possibleValues": []
+        },
+        {
+          "value": 8,
+          "possibleValues": []
+        }
+      ]
+    ],
+    "elapsedTimeSeconds": 201,
+    "difficulty": "HARD"
+  },
+  {
+    "originalBoard": [
+      [
+        {
+          "value": 0,
+          "possibleValues": [
+            4,
+            5
+          ]
+        },
+        {
+          "value": 3,
+          "possibleValues": []
+        },
+        {
+          "value": 9,
+          "possibleValues": []
+        },
+        {
+          "value": 1,
+          "possibleValues": []
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            2,
+            4,
+            5
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            4,
+            5
+          ]
+        },
+        {
+          "value": 7,
+          "possibleValues": []
+        },
+        {
+          "value": 6,
+          "possibleValues": []
+        },
+        {
+          "value": 8,
+          "possibleValues": []
+        }
+      ],
+      [
+        {
+          "value": 0,
+          "possibleValues": [
+            4,
+            5,
+            8
+          ]
+        },
+        {
+          "value": 2,
+          "possibleValues": []
+        },
+        {
+          "value": 7,
+          "possibleValues": []
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            3,
+            4,
+            5,
+            8
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            4,
+            5,
+            8
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            3,
+            4,
+            5,
+            6,
+            8
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            1,
+            4,
+            5
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            4,
+            5
+          ]
+        },
+        {
+          "value": 9,
+          "possibleValues": []
+        }
+      ],
+      [
+        {
+          "value": 6,
+          "possibleValues": []
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            1,
+            5
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            4,
+            5,
+            8
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            2,
+            4,
+            5,
+            7,
+            8
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            2,
+            4,
+            5,
+            8,
+            9
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            4,
+            5,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            1,
+            2,
+            4,
+            5
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            2,
+            4,
+            5
+          ]
+        },
+        {
+          "value": 3,
+          "possibleValues": []
+        }
+      ],
+      [
+        {
+          "value": 1,
+          "possibleValues": []
+        },
+        {
+          "value": 6,
+          "possibleValues": []
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            2,
+            4,
+            5
+          ]
+        },
+        {
+          "value": 9,
+          "possibleValues": []
+        },
+        {
+          "value": 3,
+          "possibleValues": []
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            4,
+            5,
+            7
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            2,
+            4,
+            5
+          ]
+        },
+        {
+          "value": 8,
+          "possibleValues": []
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            4,
+            7
+          ]
+        }
+      ],
+      [
+        {
+          "value": 0,
+          "possibleValues": [
+            2,
+            3,
+            4,
+            5,
+            7,
+            8
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            5,
+            7,
+            9
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            2,
+            4,
+            5,
+            8
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            2,
+            4,
+            5,
+            7,
+            8
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            1,
+            2,
+            4,
+            5,
+            8
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            4,
+            5,
+            7,
+            8
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            1,
+            2,
+            4,
+            5,
+            9
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            2,
+            4,
+            5,
+            7,
+            9
+          ]
+        },
+        {
+          "value": 6,
+          "possibleValues": []
+        }
+      ],
+      [
+        {
+          "value": 0,
+          "possibleValues": [
+            2,
+            4,
+            5,
+            7,
+            8
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            5,
+            7,
+            9
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            2,
+            4,
+            5,
+            8
+          ]
+        },
+        {
+          "value": 6,
+          "possibleValues": []
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            1,
+            2,
+            4,
+            5,
+            8
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            4,
+            5,
+            7,
+            8
+          ]
+        },
+        {
+          "value": 3,
+          "possibleValues": []
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            2,
+            4,
+            5,
+            7,
+            9
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            1,
+            4,
+            7
+          ]
+        }
+      ],
+      [
+        {
+          "value": 9,
+          "possibleValues": []
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            5,
+            7
+          ]
+        },
+        {
+          "value": 3,
+          "possibleValues": []
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            4,
+            5
+          ]
+        },
+        {
+          "value": 6,
+          "possibleValues": []
+        },
+        {
+          "value": 2,
+          "possibleValues": []
+        },
+        {
+          "value": 8,
+          "possibleValues": []
+        },
+        {
+          "value": 1,
+          "possibleValues": []
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            4,
+            7
+          ]
+        }
+      ],
+      [
+        {
+          "value": 0,
+          "possibleValues": [
+            5,
+            7
+          ]
+        },
+        {
+          "value": 4,
+          "possibleValues": []
+        },
+        {
+          "value": 1,
+          "possibleValues": []
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            3,
+            5,
+            8
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            5,
+            8,
+            9
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            3,
+            5,
+            8,
+            9
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            6,
+            9
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            7,
+            9
+          ]
+        },
+        {
+          "value": 2,
+          "possibleValues": []
+        }
+      ],
+      [
+        {
+          "value": 0,
+          "possibleValues": [
+            2
+          ]
+        },
+        {
+          "value": 8,
+          "possibleValues": []
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            2,
+            6
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            4
+          ]
+        },
+        {
+          "value": 7,
+          "possibleValues": []
+        },
+        {
+          "value": 1,
+          "possibleValues": []
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            4,
+            6,
+            9
+          ]
+        },
+        {
+          "value": 3,
+          "possibleValues": []
+        },
+        {
+          "value": 5,
+          "possibleValues": []
+        }
+      ]
+    ],
+    "solvedBoard": [
+      [
+        {
+          "value": 4,
+          "possibleValues": []
+        },
+        {
+          "value": 3,
+          "possibleValues": []
+        },
+        {
+          "value": 9,
+          "possibleValues": []
+        },
+        {
+          "value": 1,
+          "possibleValues": []
+        },
+        {
+          "value": 2,
+          "possibleValues": []
+        },
+        {
+          "value": 5,
+          "possibleValues": []
+        },
+        {
+          "value": 7,
+          "possibleValues": []
+        },
+        {
+          "value": 6,
+          "possibleValues": []
+        },
+        {
+          "value": 8,
+          "possibleValues": []
+        }
+      ],
+      [
+        {
+          "value": 8,
+          "possibleValues": []
+        },
+        {
+          "value": 2,
+          "possibleValues": []
+        },
+        {
+          "value": 7,
+          "possibleValues": []
+        },
+        {
+          "value": 3,
+          "possibleValues": []
+        },
+        {
+          "value": 4,
+          "possibleValues": []
+        },
+        {
+          "value": 6,
+          "possibleValues": []
+        },
+        {
+          "value": 1,
+          "possibleValues": []
+        },
+        {
+          "value": 5,
+          "possibleValues": []
+        },
+        {
+          "value": 9,
+          "possibleValues": []
+        }
+      ],
+      [
+        {
+          "value": 6,
+          "possibleValues": []
+        },
+        {
+          "value": 1,
+          "possibleValues": []
+        },
+        {
+          "value": 5,
+          "possibleValues": []
+        },
+        {
+          "value": 7,
+          "possibleValues": []
+        },
+        {
+          "value": 8,
+          "possibleValues": []
+        },
+        {
+          "value": 9,
+          "possibleValues": []
+        },
+        {
+          "value": 2,
+          "possibleValues": []
+        },
+        {
+          "value": 4,
+          "possibleValues": []
+        },
+        {
+          "value": 3,
+          "possibleValues": []
+        }
+      ],
+      [
+        {
+          "value": 1,
+          "possibleValues": []
+        },
+        {
+          "value": 6,
+          "possibleValues": []
+        },
+        {
+          "value": 2,
+          "possibleValues": []
+        },
+        {
+          "value": 9,
+          "possibleValues": []
+        },
+        {
+          "value": 3,
+          "possibleValues": []
+        },
+        {
+          "value": 4,
+          "possibleValues": []
+        },
+        {
+          "value": 5,
+          "possibleValues": []
+        },
+        {
+          "value": 8,
+          "possibleValues": []
+        },
+        {
+          "value": 7,
+          "possibleValues": []
+        }
+      ],
+      [
+        {
+          "value": 3,
+          "possibleValues": []
+        },
+        {
+          "value": 5,
+          "possibleValues": []
+        },
+        {
+          "value": 8,
+          "possibleValues": []
+        },
+        {
+          "value": 2,
+          "possibleValues": []
+        },
+        {
+          "value": 1,
+          "possibleValues": []
+        },
+        {
+          "value": 7,
+          "possibleValues": []
+        },
+        {
+          "value": 4,
+          "possibleValues": []
+        },
+        {
+          "value": 9,
+          "possibleValues": []
+        },
+        {
+          "value": 6,
+          "possibleValues": []
+        }
+      ],
+      [
+        {
+          "value": 7,
+          "possibleValues": []
+        },
+        {
+          "value": 9,
+          "possibleValues": []
+        },
+        {
+          "value": 4,
+          "possibleValues": []
+        },
+        {
+          "value": 6,
+          "possibleValues": []
+        },
+        {
+          "value": 5,
+          "possibleValues": []
+        },
+        {
+          "value": 8,
+          "possibleValues": []
+        },
+        {
+          "value": 3,
+          "possibleValues": []
+        },
+        {
+          "value": 2,
+          "possibleValues": []
+        },
+        {
+          "value": 1,
+          "possibleValues": []
+        }
+      ],
+      [
+        {
+          "value": 9,
+          "possibleValues": []
         },
         {
           "value": 7,
@@ -7445,6 +4413,10 @@
           "possibleValues": []
         },
         {
+          "value": 6,
+          "possibleValues": []
+        },
+        {
           "value": 2,
           "possibleValues": []
         },
@@ -7453,24 +4425,92 @@
           "possibleValues": []
         },
         {
-          "value": 0,
-          "possibleValues": [
-            1,
-            6,
-            9
-          ]
+          "value": 1,
+          "possibleValues": []
         },
         {
-          "value": 0,
-          "possibleValues": [
-            1,
-            6,
-            9
-          ]
+          "value": 4,
+          "possibleValues": []
+        }
+      ],
+      [
+        {
+          "value": 5,
+          "possibleValues": []
+        },
+        {
+          "value": 4,
+          "possibleValues": []
+        },
+        {
+          "value": 1,
+          "possibleValues": []
+        },
+        {
+          "value": 8,
+          "possibleValues": []
+        },
+        {
+          "value": 9,
+          "possibleValues": []
+        },
+        {
+          "value": 3,
+          "possibleValues": []
+        },
+        {
+          "value": 6,
+          "possibleValues": []
+        },
+        {
+          "value": 7,
+          "possibleValues": []
+        },
+        {
+          "value": 2,
+          "possibleValues": []
+        }
+      ],
+      [
+        {
+          "value": 2,
+          "possibleValues": []
+        },
+        {
+          "value": 8,
+          "possibleValues": []
+        },
+        {
+          "value": 6,
+          "possibleValues": []
+        },
+        {
+          "value": 4,
+          "possibleValues": []
+        },
+        {
+          "value": 7,
+          "possibleValues": []
+        },
+        {
+          "value": 1,
+          "possibleValues": []
+        },
+        {
+          "value": 9,
+          "possibleValues": []
+        },
+        {
+          "value": 3,
+          "possibleValues": []
+        },
+        {
+          "value": 5,
+          "possibleValues": []
         }
       ]
     ],
-    "elapsedTimeSeconds": 16,
-    "difficulty": "HARD"
+    "elapsedTimeSeconds": 9,
+    "difficulty": "MEDIUM"
   }
 ]

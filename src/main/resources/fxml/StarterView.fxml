@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
-<AnchorPane prefHeight="700.0" prefWidth="700.0" stylesheets="@menu-style.css" xmlns="http://javafx.com/javafx/21"
+<AnchorPane prefHeight="700.0" prefWidth="700.0" stylesheets="@../css/menu-style.css" xmlns="http://javafx.com/javafx/21"
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.unideb.sudoku.controller.StarterController">
     <VBox alignment="CENTER" layoutX="250.0" layoutY="172.0" spacing="30.0">
         <Text styleClass="title-text" text="Sudoku"/>

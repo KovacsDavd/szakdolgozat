@@ -50,6 +50,8 @@ public class GameController {
 
     @FXML
     private Button recalculateButton;
+    @FXML
+    private Button resetButton;
 
     public void initialize() {
         if (!GameModel.isNeedHistoryLoad()) {
@@ -115,6 +117,8 @@ public class GameController {
         possibleValuesCheckbox.selectedProperty().addListener((observable, oldValue, newValue) -> {
             getHelpButton().setDisable(!newValue);
             getRecalculateButton().setDisable(!newValue);
+            getResetButton().setDisable(!newValue);
+            model.resetPossibleValues();
             togglePossibleValuesDisplay(newValue);
         });
     }
@@ -127,8 +131,11 @@ public class GameController {
         return recalculateButton;
     }
 
+    public Button getResetButton() {
+        return resetButton;
+    }
+
     private void togglePossibleValuesDisplay(boolean show) {
-        model.storePossibleValues();
         boolean hasError = false;
         for (int row = 0; row < 9; row++) {
             for (int col = 0; col < 9; col++) {
@@ -190,7 +197,7 @@ public class GameController {
     @FXML
     public void saveGame() {
         long elapsedTimeSeconds = (long) time.toSeconds();
-        GameHistory gameHistory = new GameHistory(model.getOriginalBoard(), model.getSolvedBoard(), model.getSudokuBoard(), elapsedTimeSeconds, GameModel.getDifficult().toString());
+        GameHistory gameHistory = new GameHistory(model.getOriginalBoard(), model.getSolvedBoard(), elapsedTimeSeconds, GameModel.getDifficult().toString());
         GameHistoryService.saveGameHistory(gameHistory);
     }
 
@@ -415,13 +422,19 @@ public class GameController {
 
     @FXML
     public void updatePossibleValues() {
-        model.storePossibleValues();
+        model.storeActualPossibleValues();
+        togglePossibleValuesDisplay(true);
+    }
+
+    @FXML
+    public void resetPossibleValues() {
+        model.resetPossibleValues();
         togglePossibleValuesDisplay(true);
     }
 
     @FXML
     public void backToMainMenu(ActionEvent event) throws IOException {
-        Parent gameView = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("StarterView.fxml")));
+        Parent gameView = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("fxml/StarterView.fxml")));
         Scene gameScene = new Scene(gameView);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(gameScene);
@@ -436,6 +449,8 @@ public class GameController {
         togglePossibleValuesDisplay(possibleValuesCheckbox.isSelected());
         startTimer();
         needMoreHelp = false;
+        singleHelpSet = new HashSet<>();
+        nakedPairsType = null;
     }
 
     private void setEditingEnabled(boolean enabled) {
@@ -449,34 +464,44 @@ public class GameController {
         }
     }
 
-    //TODO: MÁS KELL MERT ez meghívja az ujra szamolást, amely az alapján számol ujra, hogy mik vannak beírva
-    // Talán ki kellene ezt cserélni
-    // VAGY MARADHAT DE UGY MODOSÍTANi, hogy csak elvegyen, hozzáadni ne
+    private void validateBoardAfterHelp() {
+        boolean conflictFound = false;
+        for (int row = 0; row < 9; row++) {
+            for (int col = 0; col < 9; col++) {
+                int cellValue = model.getValueAt(row, col);
+                if (cellValue != 0 && !model.isValueValid(row, col, cellValue)) {
+                    conflictFound = true;
+                    textAreas[row][col].getStyleClass().add(ERROR);
+                }
+            }
+        }
+        if (conflictFound) {
+            showAlert("Hiba", "A segítségnyújtás után konfliktus alakult ki a táblán.");
+        }
+    }
 
-    // Segítségnél, ujraszámolásnál csak elvegyen
-    // Lehetséges értékek reset (de ez elveszi a nakedpair-t is): letárolni honnan mit vett el, ezt ne rakja vissza
+
     @FXML
     public void helpStrategy() {
         if (!needMoreHelp) {
+            needMoreHelp = true;
             updatePossibleValues();
 
-            if (!singleHelpSet.addAll(model.checkFullHouse()) && (!singleHelpSet.addAll(model.checkNakedSingles())) &&
-                    (!singleHelpSet.addAll(model.checkHiddenSingles()))) {
+            if (!singleHelpSet.addAll(model.checkFullHouse()) && (!singleHelpSet.addAll(model.checkNakedSingles())) && (!singleHelpSet.addAll(model.checkHiddenSingles()))) {
                 nakedPairsType = model.checkNakedPairs();
-                if (nakedPairsType == null) {
+                if (nakedPairsType == null || nakedPairsType.getRemoveSet().isEmpty()) {
                     nakedPairsType = model.checkHiddenPairs();
                 }
             }
             if (!singleHelpSet.isEmpty()) {
-                Set<Pair<Integer, Integer>> simplifiedSet = singleHelpSet.stream()
-                        .map(Pair::getValue)
-                        .collect(Collectors.toSet());
+                Set<Pair<Integer, Integer>> simplifiedSet = singleHelpSet.stream().map(Pair::getValue).collect(Collectors.toSet());
                 applyStyleToCells(simplifiedSet);
-
             } else if (nakedPairsType != null) {
                 applyStyleToCells(nakedPairsType.getNakedPairsPositionSet());
+            } else {
+                needMoreHelp = false;
+                showAlert("Info", "Sajnos nem tudunk segíteni!");
             }
-            needMoreHelp = true;
         } else {
             needMoreHelp = false;
             if (!singleHelpSet.isEmpty()) {
@@ -485,18 +510,21 @@ public class GameController {
                     Pair<Integer, Integer> position = hint.getValue();
                     int row = position.getKey();
                     int col = position.getValue();
-                    if (value == model.getSolvedBoard()[row][col].getValue()) {
-                        TextArea textArea = textAreas[row][col];
-                        model.setValueAt(row, col, value);
-                        textArea.setText(String.valueOf(value));
-                        textArea.getStyleClass().remove(POSSIBLE_VALUES);
-                        textArea.getStyleClass().remove(HINT);
-                    }
+
+                    //itt lehetne letárolni, hogy itt volt az első hiba és reset
+                    TextArea textArea = textAreas[row][col];
+                    model.setValueAt(row, col, value);
+                    textArea.setText(String.valueOf(value));
+                    textArea.getStyleClass().remove(POSSIBLE_VALUES);
+                    textArea.getStyleClass().remove(HINT);
                 }
+                validateBoardAfterHelp();
                 singleHelpSet.clear();
             } else {
                 Set<Pair<Pair<Integer, Integer>, Set<Integer>>> removeSet = nakedPairsType.getRemoveSet();
                 Set<Pair<Integer, Integer>> nakedPairsPositionSet = nakedPairsType.getNakedPairsPositionSet();
+
+                model.addCheckedPair(removeSet);
 
                 for (Pair<Pair<Integer, Integer>, Set<Integer>> removeEntry : removeSet) {
                     Pair<Integer, Integer> position = removeEntry.getKey();
@@ -509,7 +537,7 @@ public class GameController {
 
                     togglePossibleValuesDisplay(true);
                 }
-                for (Pair<Integer, Integer> pair: nakedPairsPositionSet) {
+                for (Pair<Integer, Integer> pair : nakedPairsPositionSet) {
                     int row = pair.getKey();
                     int col = pair.getValue();
                     textAreas[row][col].getStyleClass().remove(HINT);

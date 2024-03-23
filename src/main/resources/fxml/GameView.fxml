@@ -11,7 +11,7 @@
 
 <AnchorPane prefHeight="700.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.unideb.sudoku.controller.GameController">
     <stylesheets>
-        <URL value="@sudoku-style.css" />
+        <URL value="@../css/sudoku-style.css" />
     </stylesheets>
     <GridPane fx:id="board" layoutX="140.0" layoutY="153.0" prefHeight="500.0" prefWidth="500.0" AnchorPane.bottomAnchor="-52.200000000000045" AnchorPane.leftAnchor="140.0" AnchorPane.rightAnchor="-39.19999999999993" AnchorPane.topAnchor="153.0">
         <columnConstraints>
@@ -46,5 +46,6 @@
     <Button layoutX="22.0" layoutY="350.0" mnemonicParsing="false" onAction="#checkSudoku" styleClass="button-common" text="Ellenőriz" />
     <Label fx:id="timerLabel" layoutX="306.0" layoutY="39.0" styleClass="label" text="Label" />
     <Label layoutX="270.0" layoutY="39.0" styleClass="label" text="IDŐ:" />
-   <Button layoutX="497.0" layoutY="106.0" mnemonicParsing="false" onAction="#saveGame" styleClass="button-common" text="Mentés" />
+   <Button layoutX="23.0" layoutY="402.0" mnemonicParsing="false" onAction="#saveGame" styleClass="button-common" text="Mentés" />
+   <Button fx:id="resetButton" layoutX="494.0" layoutY="107.0" mnemonicParsing="false" onAction="#resetPossibleValues" styleClass="button-common, button-special" text="Értékek visszaállítása" />
 </AnchorPane>

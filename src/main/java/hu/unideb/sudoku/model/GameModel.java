@@ -10,13 +10,24 @@ public class GameModel {
     private static final int SIZE = 9;
     private static final int EASY_MOD_REVOME_DIGITS = 40;
     private static final int MEDIUM_MOD_REVOME_DIGITS = 48;
-    private static final int HARD_MOD_REVOME_DIGITS = 55;
+    private static final int HARD_MOD_REVOME_DIGITS = 50;
     private static final String LOG_FORMAT = "[{}][{}] = {}";
     private CellPosition[][] sudokuBoard;
     private final CellPosition[][] solvedBoard;
     private final CellPosition[][] originalBoard;
     private static final Random rand = new Random();
     private static boolean needHistoryLoad = false;
+    private final Set<Pair<Pair<Integer, Integer>, Set<Integer>>> checkedPair = new HashSet<>();
+
+    public void addCheckedPair(Set<Pair<Pair<Integer, Integer>, Set<Integer>>> removeSet) {
+        for (Pair<Pair<Integer, Integer>, Set<Integer>> removeEntry : removeSet) {
+            Pair<Integer, Integer> position = removeEntry.getKey();
+            Set<Integer> valuesToRemove = removeEntry.getValue();
+
+            Pair<Pair<Integer, Integer>, Set<Integer>> checkedEntry = new Pair<>(position, valuesToRemove);
+            checkedPair.add(checkedEntry);
+        }
+    }
 
     public GameModel() {
         sudokuBoard = new CellPosition[SIZE][SIZE];
@@ -36,7 +47,7 @@ public class GameModel {
     public void loadGameFromHistory(GameHistory history) {
         difficult = GameDifficult.valueOf(history.getDifficulty());
         deepCopy(history.getOriginalBoard(), originalBoard);
-        deepCopy(history.getSudokuBoard(), sudokuBoard);
+        deepCopy(history.getOriginalBoard(), sudokuBoard);
         deepCopy(history.getSolvedBoard(), solvedBoard);
     }
 
@@ -82,7 +93,7 @@ public class GameModel {
         }
     }
 
-    public void storePossibleValues() {
+    private void storePossibleValues() {
         for (int i = 0; i < SIZE; i++) {
             for (int j = 0; j < SIZE; j++) {
                 if (sudokuBoard[i][j].getValue() == 0) {
@@ -93,6 +104,31 @@ public class GameModel {
         }
     }
 
+    public void storeActualPossibleValues() {
+        for (int i = 0; i < SIZE; i++) {
+            for (int j = 0; j < SIZE; j++) {
+                if (sudokuBoard[i][j].getValue() == 0) {
+                    Set<Integer> newPossibleValues = getNewPossibleValues(i, j);
+                    Set<Integer> currentPossibleValues = sudokuBoard[i][j].getPossibleValues();
+                    currentPossibleValues.retainAll(newPossibleValues);
+                    sudokuBoard[i][j].setPossibleValues(currentPossibleValues);
+                }
+            }
+        }
+    }
+
+    //TODO: Segítségnél, ujraszámolásnál csak elvegyen
+    // Lehetséges értékek reset (de ez elveszi a nakedpair-t is): letárolni honnan mit vett el, ezt ne rakja vissza
+    public void resetPossibleValues() {
+        for (int i = 0; i < SIZE; i++) {
+            for (int j = 0; j < SIZE; j++) {
+                if (sudokuBoard[i][j].getValue() == 0) {
+                    Set<Integer> possibleValues = getNewPossibleValues(i, j);
+                    sudokuBoard[i][j].setPossibleValues(possibleValues);
+                }
+            }
+        }
+    }
 
     public void setValueAt(int row, int col, int value) {
         sudokuBoard[row][col].setValue(value);
@@ -147,6 +183,13 @@ public class GameModel {
         for (int num = 1; num <= SIZE; num++) {
             if (!usedValues[num]) {
                 possibleValues.add(num);
+            }
+        }
+
+        Pair<Integer, Integer> currentPosition = new Pair<>(row, col);
+        for (Pair<Pair<Integer, Integer>, Set<Integer>> checkedEntry : checkedPair) {
+            if (checkedEntry.getKey().equals(currentPosition)) {
+                possibleValues.removeAll(checkedEntry.getValue());
             }
         }
 
@@ -421,7 +464,7 @@ public class GameModel {
         if (possibleValues.size() == 1) {
             int value = possibleValues.iterator().next();
             results.add(new Pair<>(value, new Pair<>(targetRow, targetCol)));
-            Logger.debug(LOG_FORMAT, targetRow, targetCol, value);
+            Logger.debug("FULL HOUSE: " + LOG_FORMAT, targetRow, targetCol, value);
         }
     }
 
@@ -459,7 +502,7 @@ public class GameModel {
         if (possibleValues.size() == 1) {
             int value = possibleValues.iterator().next();
             results.add(new Pair<>(value, lastEmptyCell));
-            Logger.debug(LOG_FORMAT, lastEmptyCell.getKey(), lastEmptyCell.getValue(), value);
+            Logger.debug("FULL HOUSE: " + LOG_FORMAT, lastEmptyCell.getKey(), lastEmptyCell.getValue(), value);
         }
     }
 
@@ -475,7 +518,7 @@ public class GameModel {
                     if (possibleValues.size() == 1) {
                         int value = possibleValues.iterator().next();
                         results.add(new Pair<>(value, new Pair<>(row, col)));
-                        Logger.debug(LOG_FORMAT, row, col, value);
+                        Logger.debug("NAKED SINGLE: " + LOG_FORMAT, row, col, value);
                     }
                 }
             }
@@ -493,7 +536,7 @@ public class GameModel {
                     for (int value : cell.getPossibleValues()) {
                         if (isHiddenSingleCell(row, col, value)) {
                             results.add(new Pair<>(value, new Pair<>(row, col)));
-                            Logger.debug(LOG_FORMAT, row, col, value);
+                            Logger.debug("HIDDEN SINGLE: " + LOG_FORMAT, row, col, value);
                         }
                     }
                 }
@@ -553,6 +596,7 @@ public class GameModel {
                     // Sorban keresés
                     for (int j = 0; j < SIZE; j++) {
                         if (j != col && sudokuBoard[row][j].getPossibleValues().equals(pairValues)) {
+                            Logger.debug("NAKED PAIR: " + LOG_FORMAT, row, col + LOG_FORMAT, row, j);
                             nakedPairsPositionSet.add(new Pair<>(row, col));
                             nakedPairsPositionSet.add(new Pair<>(row, j));
                             addRemovePostionAndValuesRow(row, col, j, pairValues, removeSet);
@@ -562,10 +606,10 @@ public class GameModel {
                     // Oszlopban keresés
                     for (int i = 0; i < SIZE; i++) {
                         if (i != row && sudokuBoard[i][col].getPossibleValues().equals(pairValues)) {
+                            Logger.debug("NAKED PAIR: " + LOG_FORMAT, row, col + LOG_FORMAT, i, col);
                             nakedPairsPositionSet.add(new Pair<>(row, col));
                             nakedPairsPositionSet.add(new Pair<>(i, col));
                             addRemovePostionAndValuesCol(row, col, i, pairValues, removeSet);
-                            Logger.debug("Naked Pair found at ({}, {}) and ({}, {})", row, col, i, col);
                         }
                     }
                     // 3x3-as blokkban keresés
@@ -574,10 +618,10 @@ public class GameModel {
                     for (int i = startRow; i < startRow + 3; i++) {
                         for (int j = startCol; j < startCol + 3; j++) {
                             if ((i != row || j != col) && sudokuBoard[i][j].getPossibleValues().equals(pairValues)) {
+                                Logger.debug("NAKED PAIR: " + LOG_FORMAT, row, col + LOG_FORMAT, i, j);
                                 nakedPairsPositionSet.add(new Pair<>(row, col));
                                 nakedPairsPositionSet.add(new Pair<>(i, j));
                                 addRemovePositionAndValuesBox(startRow, startCol, pairValues, removeSet);
-                                Logger.debug("Naked Pair found at ({}, {}) and ({}, {})", row, col, i, j);
                             }
                         }
                     }
@@ -720,9 +764,11 @@ public class GameModel {
                     if (!otherEntry.getKey().equals(value) && otherEntry.getValue().equals(positions)) {
                         // Megtaláltunk egy rejtett párt
                         hiddenPairsPositionSet.addAll(positions);
+                        Logger.debug("HIDDEN PAIR: " + LOG_FORMAT, positions.get(0).getKey(), positions.get(0).getValue() + LOG_FORMAT, positions.get(1).getKey(), positions.get(1).getValue());
+
                         for (Pair<Integer, Integer> position : positions) {
-                            for (int removeValue :sudokuBoard[position.getKey()][position.getValue()].getPossibleValues()) {
-                                if (removeValue != value && removeValue!= otherEntry.getKey()) {
+                            for (int removeValue : sudokuBoard[position.getKey()][position.getValue()].getPossibleValues()) {
+                                if (removeValue != value && removeValue != otherEntry.getKey()) {
                                     removeSet.add(new Pair<>(position, new HashSet<>(List.of(removeValue))));
                                 }
                             }

@@ -14,7 +14,7 @@ import java.util.Objects;
 public class StarterController {
     @FXML
     public void showChooseLevelScene(ActionEvent event) throws IOException {
-        Parent gameView = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("ChooseLevelView.fxml")));
+        Parent gameView = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("fxml/ChooseLevelView.fxml")));
         Scene scene = new Scene(gameView);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(scene);
@@ -23,7 +23,7 @@ public class StarterController {
 
     @FXML
     public void showHistoryView(ActionEvent event) throws IOException {
-        Parent historyView = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("historyView.fxml"))); // Ellenőrizd, hogy a fájl neve megfelelő-e
+        Parent historyView = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("fxml/historyView.fxml"))); // Ellenőrizd, hogy a fájl neve megfelelő-e
         Scene scene = new Scene(historyView);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(scene);

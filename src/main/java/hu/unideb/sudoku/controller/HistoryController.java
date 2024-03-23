@@ -4,8 +4,10 @@ import hu.unideb.sudoku.model.GameHistory;
 import hu.unideb.sudoku.model.GameHistoryService;
 import hu.unideb.sudoku.model.GameModel;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -17,6 +19,7 @@ import org.tinylog.Logger;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Objects;
 
 public class HistoryController {
 
@@ -82,7 +85,7 @@ public class HistoryController {
     @FXML
     private void replayGame(GameHistory history) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("GameView.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/GameView.fxml"));
             GameModel.setNeedHistoryLoad(true);
             Parent gameView = loader.load();
 
@@ -102,5 +105,14 @@ public class HistoryController {
         if (histories != null) {
             historyTable.getItems().setAll(histories);
         }
+    }
+
+    @FXML
+    private void backToMainMenu(ActionEvent event) throws IOException {
+        Parent gameView = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("fxml/StarterView.fxml")));
+        Scene gameScene = new Scene(gameView);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(gameScene);
+        window.show();
     }
 }

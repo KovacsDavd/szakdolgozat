@@ -12,7 +12,7 @@ import java.util.Objects;
 public class SudokuApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/StarterView.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/StarterView.fxml")));
         stage.setTitle("Sudoku");
         Scene scene = new Scene(root);
         stage.setScene(scene);
