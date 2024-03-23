@@ -25,7 +25,7 @@ public class GameController {
     private final TextArea[][] textAreas = new TextArea[9][9];
     private Set<Pair<Integer, Pair<Integer, Integer>>> singleHelpSet = new HashSet<>();
 
-    NakedPairsType nakedPairsType = new NakedPairsType();
+    NakedPairsType nakedPairsType;
 
     private static final String INITIAL_NUMBER = "initial-number";
     private static final String POSSIBLE_VALUES = "possible-values";
@@ -447,17 +447,24 @@ public class GameController {
         }
     }
 
+    //TODO: MÁS KELL MERT ez meghívja az ujra szamolást, amely az alapján számol ujra, hogy mik vannak beírva
+    // Talán ki kellene ezt cserélni
+    // VAGY MARADHAT DE UGY MODOSÍTANi, hogy csak elvegyen, hozzáadni ne
+
+    // Segítségnél csak elvegyen
+    // Lehetségés értékek mutatása
+    // Lehetséges értékek reset (de ez elveszi a nakedpair-t is): letárolni honnan mit vett el, ezt ne rakja vissza
     @FXML
     public void helpStrategy() {
         if (!needMoreHelp) {
             updatePossibleValues();
-            //TODO: MÁS KELL MERT ez meghívja az ujra szamolást, amely az alapján számol ujra, hogy mik vannak beírva
-            // Talán ki kellene ezt cserélni
-            // VAGY MARADHAT DE UGY MODOSÍTANi, hogy csak elvegyen, hozzáadni ne
 
             if (!singleHelpSet.addAll(model.checkFullHouse()) && (!singleHelpSet.addAll(model.checkNakedSingles())) &&
                     (!singleHelpSet.addAll(model.checkHiddenSingles()))) {
-                nakedPairsType = model.checkNakedPairs();
+                //nakedPairsType = model.checkNakedPairs();
+                if (nakedPairsType == null) {
+                    nakedPairsType = model.checkHiddenPairs();
+                }
             }
             if (!singleHelpSet.isEmpty()) {
                 Set<Pair<Integer, Integer>> simplifiedSet = singleHelpSet.stream()

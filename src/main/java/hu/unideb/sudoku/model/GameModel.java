@@ -538,8 +538,6 @@ public class GameModel {
         return false;
     }
 
-    //TODO: Pair<Set<Pair<szin>, Set<Pair<Pair<eltavolitando>>, ertek>
-
     public NakedPairsType checkNakedPairs() {
         NakedPairsType nakedPairsType = new NakedPairsType();
 
@@ -648,13 +646,11 @@ public class GameModel {
                     if (sudokuBoard[i][j].getPossibleValues().contains(value)) {
                         removeValueSet.add(value);
                         removePositionSet.add(new Pair<>(i, j));
-                        break; // Ha egy értéket megtalálunk, nem kell továbbiakat keresnünk az adott cellában
                     }
                 }
             }
         }
 
-        // Ha vannak eltávolítandó értékek, hozzáadjuk őket az eredményhalmazhoz
         if (!removeValueSet.isEmpty()) {
             for (Pair<Integer, Integer> position : removePositionSet) {
                 results.add(new Pair<>(position, new HashSet<>(removeValueSet)));
@@ -662,4 +658,78 @@ public class GameModel {
         }
     }
 
+    public NakedPairsType checkHiddenPairs() {
+        NakedPairsType hiddenPairsType = new NakedPairsType();
+        Set<Pair<Integer, Integer>> hiddenPairsPositionSet = new HashSet<>();
+        Set<Pair<Pair<Integer, Integer>, Set<Integer>>> removeSet = new HashSet<>();
+
+        // Iterálás a táblán
+        for (int row = 0; row < SIZE; row++) {
+            for (int col = 0; col < SIZE; col++) {
+                CellPosition cell = sudokuBoard[row][col];
+                // Csak a több lehetséges értékkel rendelkező cellák érdekelnek
+                if (cell.getPossibleValues().size() > 2) {
+                    // Ellenőrizzük, hogy van-e rejtett pár a sorban, oszlopban és blokkban
+                    checkDirectionForHiddenPairs(row, col, hiddenPairsPositionSet, removeSet, "row");
+                    checkDirectionForHiddenPairs(row, col, hiddenPairsPositionSet, removeSet, "col");
+                    checkDirectionForHiddenPairs(row, col, hiddenPairsPositionSet, removeSet, "box");
+                }
+            }
+        }
+
+        if (hiddenPairsPositionSet.isEmpty()) {
+            return null;
+        }
+        hiddenPairsType.setNakedPairsPositionSet(hiddenPairsPositionSet);
+        hiddenPairsType.setRemoveSet(removeSet);
+
+        return hiddenPairsType;
+    }
+
+    private void checkDirectionForHiddenPairs(int row, int col, Set<Pair<Integer, Integer>> hiddenPairsPositionSet, Set<Pair<Pair<Integer, Integer>, Set<Integer>>> removeSet, String direction) {
+        // Tároljuk el a lehetséges értékeket és azok előfordulásait.
+        Map<Integer, List<Pair<Integer, Integer>>> valueOccurrences = new HashMap<>();
+
+        // A vizsgálati terület meghatározása
+        int startRow = direction.equals("box") ? row - row % 3 : row;
+        int startCol = direction.equals("box") ? col - col % 3 : col;
+        int endRow = direction.equals("box") ? startRow + 3 : row;
+        int endCol = direction.equals("box") ? startCol + 3 : col;
+
+        // Összegyűjtjük a lehetséges értékek előfordulásait
+        for (int r = startRow; r < endRow; r++) {
+            for (int c = startCol; c < endCol; c++) {
+                if (direction.equals("row") && c == col) continue;
+                if (direction.equals("col") && r == row) continue;
+
+                Set<Integer> possibleValues = sudokuBoard[r][c].getPossibleValues();
+                for (Integer value : possibleValues) {
+                    valueOccurrences.computeIfAbsent(value, k -> new ArrayList<>()).add(new Pair<>(r, c));
+                }
+            }
+        }
+
+        // Keresünk rejtett párokat: értékek, amik pontosan két helyen fordulnak elő
+        for (Map.Entry<Integer, List<Pair<Integer, Integer>>> entry : valueOccurrences.entrySet()) {
+            if (entry.getValue().size() == 2) { // Ha csak két cellában fordul elő az érték
+                Integer value = entry.getKey();
+                List<Pair<Integer, Integer>> positions = entry.getValue();
+
+                // Ellenőrizzük, hogy van-e párosítás az előfordulások között
+                for (Map.Entry<Integer, List<Pair<Integer, Integer>>> otherEntry : valueOccurrences.entrySet()) {
+                    if (!otherEntry.getKey().equals(value) && otherEntry.getValue().equals(positions)) {
+                        // Megtaláltunk egy rejtett párt
+                        hiddenPairsPositionSet.addAll(positions);
+                        for (Pair<Integer, Integer> position : positions) {
+                            for (int removeValue :sudokuBoard[position.getKey()][position.getValue()].getPossibleValues()) {
+                                if (removeValue != value && removeValue!= otherEntry.getKey()) {
+                                    removeSet.add(new Pair<>(position, new HashSet<>(List.of(removeValue))));
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
