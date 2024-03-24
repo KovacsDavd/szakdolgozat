@@ -418,6 +418,20 @@ public class GameModel {
         return true;
     }
 
+    public Set<Pair<Integer, Integer>> getIncorrectValues() {
+        Set<Pair<Integer, Integer>> incorrectValues = new HashSet<>();
+        for (int i = 0; i < SIZE; i++) {
+            for (int j = 0; j < SIZE; j++) {
+                int value = sudokuBoard[i][j].getValue();
+                int correctValue = solvedBoard[i][j].getValue();
+                if (value != 0 && value != correctValue) {
+                    incorrectValues.add(new Pair<>(i + 1, j + 1));
+                }
+            }
+        }
+        return incorrectValues;
+    }
+
     public Set<Pair<Integer, Pair<Integer, Integer>>> checkFullHouse() {
         Set<Pair<Integer, Pair<Integer, Integer>>> results = new HashSet<>();
 

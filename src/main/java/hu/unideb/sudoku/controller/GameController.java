@@ -220,7 +220,18 @@ public class GameController {
                 showAlert("Hiba", "Helytelen megoldás");
             }
         } else {
-            showAlert("Hiba", "A megoldás befejezetlen.");
+            Set<Pair<Integer, Integer>> incorrectValues = model.getIncorrectValues();
+            if (incorrectValues.isEmpty()) {
+                showAlert("Info", "Eddig nincs hiba!");
+            } else {
+                StringBuilder sb = new StringBuilder();
+                for (Pair<Integer, Integer> pair : incorrectValues) {
+                    sb.append('[').append(pair.getKey()).append(']').append('[').append(pair.getValue()).append("], ");
+                }
+                sb.setLength(sb.length() - 2);
+
+                showAlert("Info", "Található hiba: " + sb);
+            }
         }
     }
 
