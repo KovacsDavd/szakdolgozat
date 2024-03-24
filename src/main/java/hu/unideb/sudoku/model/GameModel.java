@@ -10,23 +10,27 @@ public class GameModel {
     private static final int SIZE = 9;
     private static final int EASY_MOD_REVOME_DIGITS = 40;
     private static final int MEDIUM_MOD_REVOME_DIGITS = 48;
-    private static final int HARD_MOD_REVOME_DIGITS = 50;
+    private static final int HARD_MOD_REVOME_DIGITS = 52;
     private static final String LOG_FORMAT = "[{}][{}] = {}";
     private CellPosition[][] sudokuBoard;
     private final CellPosition[][] solvedBoard;
     private final CellPosition[][] originalBoard;
     private static final Random rand = new Random();
     private static boolean needHistoryLoad = false;
-    private final Set<Pair<Pair<Integer, Integer>, Set<Integer>>> checkedPair = new HashSet<>();
+    private final Set<Pair<Pair<Integer, Integer>, Set<Integer>>> checkedPairSet = new HashSet<>();
 
-    public void addCheckedPair(Set<Pair<Pair<Integer, Integer>, Set<Integer>>> removeSet) {
+    public void addCheckedPairSet(Set<Pair<Pair<Integer, Integer>, Set<Integer>>> removeSet) {
         for (Pair<Pair<Integer, Integer>, Set<Integer>> removeEntry : removeSet) {
             Pair<Integer, Integer> position = removeEntry.getKey();
             Set<Integer> valuesToRemove = removeEntry.getValue();
 
             Pair<Pair<Integer, Integer>, Set<Integer>> checkedEntry = new Pair<>(position, valuesToRemove);
-            checkedPair.add(checkedEntry);
+            checkedPairSet.add(checkedEntry);
         }
+    }
+
+    public void setEmptyCheckedPairSet() {
+        checkedPairSet.clear();
     }
 
     public GameModel() {
@@ -187,7 +191,7 @@ public class GameModel {
         }
 
         Pair<Integer, Integer> currentPosition = new Pair<>(row, col);
-        for (Pair<Pair<Integer, Integer>, Set<Integer>> checkedEntry : checkedPair) {
+        for (Pair<Pair<Integer, Integer>, Set<Integer>> checkedEntry : checkedPairSet) {
             if (checkedEntry.getKey().equals(currentPosition)) {
                 possibleValues.removeAll(checkedEntry.getValue());
             }
@@ -596,7 +600,9 @@ public class GameModel {
                     // Sorban keresés
                     for (int j = 0; j < SIZE; j++) {
                         if (j != col && sudokuBoard[row][j].getPossibleValues().equals(pairValues)) {
-                            Logger.debug("NAKED PAIR: " + LOG_FORMAT, row, col + LOG_FORMAT, row, j);
+                            if (!nakedPairsPositionSet.contains(new Pair<>(row, col)) && !nakedPairsPositionSet.contains(new Pair<>(row, j))) {
+                                Logger.debug("NAKED PAIR: ({}, {}) and ({}, {})", row, col, row, j);
+                            }
                             nakedPairsPositionSet.add(new Pair<>(row, col));
                             nakedPairsPositionSet.add(new Pair<>(row, j));
                             addRemovePostionAndValuesRow(row, col, j, pairValues, removeSet);
@@ -606,7 +612,9 @@ public class GameModel {
                     // Oszlopban keresés
                     for (int i = 0; i < SIZE; i++) {
                         if (i != row && sudokuBoard[i][col].getPossibleValues().equals(pairValues)) {
-                            Logger.debug("NAKED PAIR: " + LOG_FORMAT, row, col + LOG_FORMAT, i, col);
+                            if (!nakedPairsPositionSet.contains(new Pair<>(row, col)) && !nakedPairsPositionSet.contains(new Pair<>(i, col))) {
+                                Logger.debug("NAKED PAIR: ({}, {}) and ({}, {})", row, col, i, col);
+                            }
                             nakedPairsPositionSet.add(new Pair<>(row, col));
                             nakedPairsPositionSet.add(new Pair<>(i, col));
                             addRemovePostionAndValuesCol(row, col, i, pairValues, removeSet);
@@ -618,7 +626,9 @@ public class GameModel {
                     for (int i = startRow; i < startRow + 3; i++) {
                         for (int j = startCol; j < startCol + 3; j++) {
                             if ((i != row || j != col) && sudokuBoard[i][j].getPossibleValues().equals(pairValues)) {
-                                Logger.debug("NAKED PAIR: " + LOG_FORMAT, row, col + LOG_FORMAT, i, j);
+                                if (!nakedPairsPositionSet.contains(new Pair<>(row, col)) && !nakedPairsPositionSet.contains(new Pair<>(i, j))) {
+                                    Logger.debug("NAKED PAIR: ({}, {}) and ({}, {})", row, col, i, j);
+                                }
                                 nakedPairsPositionSet.add(new Pair<>(row, col));
                                 nakedPairsPositionSet.add(new Pair<>(i, j));
                                 addRemovePositionAndValuesBox(startRow, startCol, pairValues, removeSet);
@@ -734,17 +744,17 @@ public class GameModel {
         // Tároljuk el a lehetséges értékeket és azok előfordulásait.
         Map<Integer, List<Pair<Integer, Integer>>> valueOccurrences = new HashMap<>();
 
-        // A vizsgálati terület meghatározása
-        int startRow = direction.equals("box") ? row - row % 3 : row;
-        int startCol = direction.equals("box") ? col - col % 3 : col;
-        int endRow = direction.equals("box") ? startRow + 3 : row;
-        int endCol = direction.equals("box") ? startCol + 3 : col;
+        // A vizsgálati terület meghatározása a direction alapján
+        int startRow = direction.equals("row") ? row : (direction.equals("box") ? row - row % 3 : 0);
+        int startCol = direction.equals("col") ? col : (direction.equals("box") ? col - col % 3 : 0);
+        int endRow = direction.equals("row") ? row + 1 : (direction.equals("box") ? startRow + 3 : SIZE);
+        int endCol = direction.equals("col") ? col + 1 : (direction.equals("box") ? startCol + 3 : SIZE);
 
         // Összegyűjtjük a lehetséges értékek előfordulásait
         for (int r = startRow; r < endRow; r++) {
             for (int c = startCol; c < endCol; c++) {
-                if (direction.equals("row") && c == col) continue;
-                if (direction.equals("col") && r == row) continue;
+                // Kihagyjuk a vizsgálati területen kívüli cellákat
+                if ((direction.equals("row") && r != row) || (direction.equals("col") && c != col)) continue;
 
                 Set<Integer> possibleValues = sudokuBoard[r][c].getPossibleValues();
                 for (Integer value : possibleValues) {
@@ -763,8 +773,14 @@ public class GameModel {
                 for (Map.Entry<Integer, List<Pair<Integer, Integer>>> otherEntry : valueOccurrences.entrySet()) {
                     if (!otherEntry.getKey().equals(value) && otherEntry.getValue().equals(positions)) {
                         // Megtaláltunk egy rejtett párt
+
+                        if (!hiddenPairsPositionSet.contains(new Pair<>(positions.get(0).getKey(), positions.get(0).getValue()))
+                                && !hiddenPairsPositionSet.contains(new Pair<>(positions.get(1).getKey(), positions.get(1).getValue()))) {
+                            Logger.debug("HIDDEN PAIR: ({}, {}) and ({}, {})", positions.get(0).getKey(), positions.get(0).getValue(),
+                                    positions.get(1).getKey(), positions.get(1).getValue());
+                        }
+
                         hiddenPairsPositionSet.addAll(positions);
-                        Logger.debug("HIDDEN PAIR: " + LOG_FORMAT, positions.get(0).getKey(), positions.get(0).getValue() + LOG_FORMAT, positions.get(1).getKey(), positions.get(1).getValue());
 
                         for (Pair<Integer, Integer> position : positions) {
                             for (int removeValue : sudokuBoard[position.getKey()][position.getValue()].getPossibleValues()) {

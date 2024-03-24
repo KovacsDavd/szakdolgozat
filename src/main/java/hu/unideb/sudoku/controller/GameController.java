@@ -451,6 +451,7 @@ public class GameController {
         needMoreHelp = false;
         singleHelpSet = new HashSet<>();
         nakedPairsType = null;
+        model.setEmptyCheckedPairSet();
     }
 
     private void setEditingEnabled(boolean enabled) {
@@ -496,11 +497,12 @@ public class GameController {
             if (!singleHelpSet.isEmpty()) {
                 Set<Pair<Integer, Integer>> simplifiedSet = singleHelpSet.stream().map(Pair::getValue).collect(Collectors.toSet());
                 applyStyleToCells(simplifiedSet);
-            } else if (nakedPairsType != null) {
+            } else if (nakedPairsType != null && !nakedPairsType.getRemoveSet().isEmpty()) {
                 applyStyleToCells(nakedPairsType.getNakedPairsPositionSet());
             } else {
                 needMoreHelp = false;
-                showAlert("Info", "Sajnos nem tudunk segíteni!");
+                showAlert("Info", "Sajnos a tudatos segítség nem talált eredményt! Megmutatunk egy véletlenszerű cellát.");
+                revealRandomCell();
             }
         } else {
             needMoreHelp = false;
@@ -524,7 +526,7 @@ public class GameController {
                 Set<Pair<Pair<Integer, Integer>, Set<Integer>>> removeSet = nakedPairsType.getRemoveSet();
                 Set<Pair<Integer, Integer>> nakedPairsPositionSet = nakedPairsType.getNakedPairsPositionSet();
 
-                model.addCheckedPair(removeSet);
+                model.addCheckedPairSet(removeSet);
 
                 for (Pair<Pair<Integer, Integer>, Set<Integer>> removeEntry : removeSet) {
                     Pair<Integer, Integer> position = removeEntry.getKey();
@@ -558,5 +560,32 @@ public class GameController {
             }
         }
     }
+
+    private void revealRandomCell() {
+        List<Pair<Integer, Integer>> emptyCells = new ArrayList<>();
+        for (int row = 0; row < 9; row++) {
+            for (int col = 0; col < 9; col++) {
+                if (model.getSudokuBoard()[row][col].getValue() == 0) { // Feltételezve, hogy a sudokuBoard az aktuális játékállapot
+                    emptyCells.add(new Pair<>(row, col));
+                }
+            }
+        }
+
+        if (!emptyCells.isEmpty()) {
+            Collections.shuffle(emptyCells); // Véletlenszerű sorrendbe keverjük az üres cellákat
+            Pair<Integer, Integer> chosenCell = emptyCells.get(0); // Kiválasztjuk az elsőt a kevert listából
+            int row = chosenCell.getKey();
+            int col = chosenCell.getValue();
+            int correctValue = model.getSolvedBoard()[row][col].getValue(); // Feltételezve, hogy getSolvedBoard() a teljes megoldást adja vissza
+
+            // Érték beállítása és a megjelenítés frissítése
+            model.setValueAt(row, col, correctValue);
+            TextArea textArea = textAreas[row][col];
+            textArea.setText(String.valueOf(correctValue));
+            textArea.getStyleClass().remove(POSSIBLE_VALUES);
+            textArea.getStyleClass().remove(HINT);
+        }
+    }
+
 
 }
