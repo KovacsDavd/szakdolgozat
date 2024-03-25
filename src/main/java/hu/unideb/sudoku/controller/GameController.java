@@ -41,13 +41,12 @@ public class GameController {
 
     @FXML
     private CheckBox possibleValuesCheckbox;
-
     @FXML
     private Label timerLabel;
-
+    @FXML
+    private Label helpCounter;
     @FXML
     private Button helpButton;
-
     @FXML
     private Button recalculateButton;
     @FXML
@@ -58,6 +57,7 @@ public class GameController {
             createBoard();
             addCheckboxListener();
             startTimer();
+            updateHelpCounterDisplay();
         }
     }
 
@@ -325,7 +325,7 @@ public class GameController {
         Set<Integer> possibleValues = model.getNewPossibleValues(row, col);
 
         if (possibleValuesCheckbox.isSelected()) {
-            String text =  formatNumbers(possibleValues);
+            String text = formatNumbers(possibleValues);
             model.setPossibleValuesAt(row, col, possibleValues);
             updateTextArea(textArea, text, !possibleValues.isEmpty());
         } else {
@@ -506,6 +506,8 @@ public class GameController {
 
     @FXML
     public void helpStrategy() {
+        model.increaseHelpCounter();
+        updateHelpCounterDisplay();
         Set<Pair<Integer, Integer>> errorSet = model.getIncorrectValues();
         if (!errorSet.isEmpty()) {
             showAlert("Hiba", "Sajnos hiba van a táblában!");
@@ -582,6 +584,10 @@ public class GameController {
                 nakedPairsType = new NakedPairsType();
             }
         }
+    }
+
+    private void updateHelpCounterDisplay() {
+        helpCounter.setText(String.valueOf(model.getHelpCounter()));
     }
 
     public void applyStyleToCells(Set<Pair<Integer, Integer>> cells) {

@@ -8,7 +8,7 @@ import java.util.*;
 public class GameModel {
     private static GameDifficult difficult;
     private static final int SIZE = 9;
-    private static final int EASY_MOD_REVOME_DIGITS = 40;
+    private static final int EASY_MOD_REVOME_DIGITS = 44;
     private static final int MEDIUM_MOD_REVOME_DIGITS = 48;
     private static final int HARD_MOD_REVOME_DIGITS = 52;
     private static final String LOG_FORMAT = "[{}][{}] = {}";
@@ -17,6 +17,7 @@ public class GameModel {
     private final CellPosition[][] originalBoard;
     private static final Random rand = new Random();
     private static boolean needHistoryLoad = false;
+    private int helpCounter = 0;
     private final Set<Pair<Pair<Integer, Integer>, Set<Integer>>> checkedPairSet = new HashSet<>();
 
     public void addCheckedPairSet(Set<Pair<Pair<Integer, Integer>, Set<Integer>>> removeSet) {
@@ -27,6 +28,14 @@ public class GameModel {
             Pair<Pair<Integer, Integer>, Set<Integer>> checkedEntry = new Pair<>(position, valuesToRemove);
             checkedPairSet.add(checkedEntry);
         }
+    }
+
+    public int getHelpCounter() {
+        return helpCounter;
+    }
+
+    public void increaseHelpCounter() {
+        this.helpCounter++;
     }
 
     public void setEmptyCheckedPairSet() {

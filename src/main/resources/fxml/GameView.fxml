@@ -44,8 +44,10 @@
     <Button fx:id="recalculateButton" layoutX="196.0" layoutY="107.0" mnemonicParsing="false" onAction="#updatePossibleValues" styleClass="button-common, button-special" text="Értékek újra számolása" />
     <Button layoutX="21.0" layoutY="296.0" mnemonicParsing="false" onAction="#resetBoard" prefHeight="26.0" prefWidth="62.0" styleClass="button-common" text="Újra" />
     <Button layoutX="22.0" layoutY="350.0" mnemonicParsing="false" onAction="#checkSudoku" styleClass="button-common" text="Ellenőriz" />
-    <Label fx:id="timerLabel" layoutX="306.0" layoutY="39.0" styleClass="label" text="Label" />
-    <Label layoutX="270.0" layoutY="39.0" styleClass="label" text="IDŐ:" />
+    <Label fx:id="timerLabel" layoutX="238.0" layoutY="39.0" styleClass="label" text="Label" />
+    <Label layoutX="196.0" layoutY="39.0" styleClass="label" text="IDŐ:" />
    <Button layoutX="23.0" layoutY="402.0" mnemonicParsing="false" onAction="#saveGame" styleClass="button-common" text="Mentés" />
    <Button fx:id="resetButton" layoutX="494.0" layoutY="107.0" mnemonicParsing="false" onAction="#resetPossibleValues" styleClass="button-common, button-special" text="Értékek visszaállítása" />
+   <Label layoutX="332.0" layoutY="39.0" styleClass="label" text="Lekért segítségek száma:" />
+   <Label fx:id="helpCounter" layoutX="519.0" layoutY="39.0" styleClass="label" text="Label" />
 </AnchorPane>
