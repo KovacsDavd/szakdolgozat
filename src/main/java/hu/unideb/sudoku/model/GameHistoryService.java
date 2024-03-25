@@ -36,7 +36,7 @@ public class GameHistoryService {
                     }
                 }
             } catch (IOException e) {
-                Logger.debug("Failed to read game histories from file", e);
+                Logger.debug("Nem tudtuk beolvasni a json file-t!", e);
             }
         }
 
@@ -49,7 +49,7 @@ public class GameHistoryService {
         try (Writer writer = Files.newBufferedWriter(path)) {
             gson.toJson(histories, writer);
         } catch (IOException e) {
-            Logger.debug("Failed to save game history to file", e);
+            Logger.debug("Nem tudtuk file-ba írni!", e);
         }
     }
 
@@ -63,7 +63,7 @@ public class GameHistoryService {
                 return gson.fromJson(content, gameHistoryListType);
             }
         } catch (IOException e) {
-            Logger.debug("Failed to load game histories from file", e);
+            Logger.debug("Nem tudtuk beolvasni a json file-t", e);
         }
         return Collections.emptyList();
     }

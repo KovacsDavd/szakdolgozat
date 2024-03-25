@@ -7,7 +7,6 @@ public class CellPosition {
     private int value;
     private Set<Integer> possibleValues;
 
-
     public CellPosition() {
         this.possibleValues = new HashSet<>();
     }

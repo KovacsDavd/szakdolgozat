@@ -4,7 +4,6 @@ public class GameHistory {
     private final CellPosition[][] originalBoard;
     private final CellPosition[][] solvedBoard;
     private final long elapsedTimeSeconds;
-
     private final String difficulty;
 
     public GameHistory(CellPosition[][] originalBoard, CellPosition[][] solvedBoard, long elapsedTimeSeconds, String difficulty) {

@@ -78,7 +78,6 @@ public class HistoryController {
             }
         });
 
-
         loadHistories();
     }
 
