@@ -20,28 +20,6 @@ public class GameModel {
     private int helpCounter = 0;
     private final Set<Pair<Pair<Integer, Integer>, Set<Integer>>> checkedPairSet = new HashSet<>();
 
-    public void addCheckedPairSet(Set<Pair<Pair<Integer, Integer>, Set<Integer>>> removeSet) {
-        for (Pair<Pair<Integer, Integer>, Set<Integer>> removeEntry : removeSet) {
-            Pair<Integer, Integer> position = removeEntry.getKey();
-            Set<Integer> valuesToRemove = removeEntry.getValue();
-
-            Pair<Pair<Integer, Integer>, Set<Integer>> checkedEntry = new Pair<>(position, valuesToRemove);
-            checkedPairSet.add(checkedEntry);
-        }
-    }
-
-    public int getHelpCounter() {
-        return helpCounter;
-    }
-
-    public void increaseHelpCounter() {
-        this.helpCounter++;
-    }
-
-    public void setEmptyCheckedPairSet() {
-        checkedPairSet.clear();
-    }
-
     public GameModel() {
         sudokuBoard = new CellPosition[SIZE][SIZE];
         solvedBoard = new CellPosition[SIZE][SIZE];
@@ -64,12 +42,8 @@ public class GameModel {
         deepCopy(history.getSolvedBoard(), solvedBoard);
     }
 
-    public static void setNeedHistoryLoad(boolean needHistoryLoad) {
-        GameModel.needHistoryLoad = needHistoryLoad;
-    }
-
-    public static boolean isNeedHistoryLoad() {
-        return needHistoryLoad;
+    public void solve() {
+        deepCopy(solvedBoard, sudokuBoard);
     }
 
     private void generateSudoku() {
@@ -141,28 +115,12 @@ public class GameModel {
         }
     }
 
-    public void setValueAt(int row, int col, int value) {
-        sudokuBoard[row][col].setValue(value);
-    }
-
-    public int getValueAt(int row, int col) {
-        return sudokuBoard[row][col].getValue();
-    }
-
     public void removePossibleValuesAt(int row, int col, Set<Integer> valuesToRemove) {
         if (sudokuBoard[row][col] != null) {
             Set<Integer> possibleValues = new HashSet<>(sudokuBoard[row][col].getPossibleValues());
             possibleValues.removeAll(valuesToRemove);
             sudokuBoard[row][col].setPossibleValues(possibleValues);
         }
-    }
-
-    public void setPossibleValuesAt(int row, int col, Set<Integer> values) {
-        sudokuBoard[row][col].setPossibleValues(values);
-    }
-
-    public Set<Integer> getPossibleValuesAt(int row, int col) {
-        return sudokuBoard[row][col].getPossibleValues();
     }
 
     public Set<Integer> getNewPossibleValues(int row, int col) {
@@ -366,30 +324,6 @@ public class GameModel {
             }
         }
         return true;
-    }
-
-    public void solve() {
-        deepCopy(solvedBoard, sudokuBoard);
-    }
-
-    public CellPosition[][] getSudokuBoard() {
-        return sudokuBoard;
-    }
-
-    public static GameDifficult getDifficult() {
-        return difficult;
-    }
-
-    public static void setDifficult(GameDifficult dif) {
-        difficult = dif;
-    }
-
-    public CellPosition[][] getSolvedBoard() {
-        return solvedBoard;
-    }
-
-    public CellPosition[][] getOriginalBoard() {
-        return originalBoard;
     }
 
     public void resetBoard() {
@@ -795,10 +729,8 @@ public class GameModel {
                     if (!otherEntry.getKey().equals(value) && otherEntry.getValue().equals(positions)) {
                         // Megtaláltunk egy rejtett párt
 
-                        if (!hiddenPairsPositionSet.contains(new Pair<>(positions.get(0).getKey(), positions.get(0).getValue()))
-                                && !hiddenPairsPositionSet.contains(new Pair<>(positions.get(1).getKey(), positions.get(1).getValue()))) {
-                            Logger.debug("HIDDEN PAIR: ({}, {}) and ({}, {})", positions.get(0).getKey(), positions.get(0).getValue(),
-                                    positions.get(1).getKey(), positions.get(1).getValue());
+                        if (!hiddenPairsPositionSet.contains(new Pair<>(positions.get(0).getKey(), positions.get(0).getValue())) && !hiddenPairsPositionSet.contains(new Pair<>(positions.get(1).getKey(), positions.get(1).getValue()))) {
+                            Logger.debug("HIDDEN PAIR: ({}, {}) and ({}, {})", positions.get(0).getKey(), positions.get(0).getValue(), positions.get(1).getKey(), positions.get(1).getValue());
                         }
 
                         hiddenPairsPositionSet.addAll(positions);
@@ -814,5 +746,71 @@ public class GameModel {
                 }
             }
         }
+    }
+
+    public void addCheckedPairSet(Set<Pair<Pair<Integer, Integer>, Set<Integer>>> removeSet) {
+        for (Pair<Pair<Integer, Integer>, Set<Integer>> removeEntry : removeSet) {
+            Pair<Integer, Integer> position = removeEntry.getKey();
+            Set<Integer> valuesToRemove = removeEntry.getValue();
+
+            Pair<Pair<Integer, Integer>, Set<Integer>> checkedEntry = new Pair<>(position, valuesToRemove);
+            checkedPairSet.add(checkedEntry);
+        }
+    }
+
+    public int getHelpCounter() {
+        return helpCounter;
+    }
+
+    public void increaseHelpCounter() {
+        this.helpCounter++;
+    }
+
+    public void setEmptyCheckedPairSet() {
+        checkedPairSet.clear();
+    }
+
+    public CellPosition[][] getSudokuBoard() {
+        return sudokuBoard;
+    }
+
+    public static GameDifficult getDifficult() {
+        return difficult;
+    }
+
+    public static void setDifficult(GameDifficult dif) {
+        difficult = dif;
+    }
+
+    public CellPosition[][] getSolvedBoard() {
+        return solvedBoard;
+    }
+
+    public CellPosition[][] getOriginalBoard() {
+        return originalBoard;
+    }
+
+    public static void setNeedHistoryLoad(boolean needHistoryLoad) {
+        GameModel.needHistoryLoad = needHistoryLoad;
+    }
+
+    public static boolean isNeedHistoryLoad() {
+        return needHistoryLoad;
+    }
+
+    public void setValueAt(int row, int col, int value) {
+        sudokuBoard[row][col].setValue(value);
+    }
+
+    public int getValueAt(int row, int col) {
+        return sudokuBoard[row][col].getValue();
+    }
+
+    public void setPossibleValuesAt(int row, int col, Set<Integer> values) {
+        sudokuBoard[row][col].setPossibleValues(values);
+    }
+
+    public Set<Integer> getPossibleValuesAt(int row, int col) {
+        return sudokuBoard[row][col].getPossibleValues();
     }
 }

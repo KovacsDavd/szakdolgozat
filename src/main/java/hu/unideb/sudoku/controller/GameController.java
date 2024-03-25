@@ -123,18 +123,6 @@ public class GameController {
         });
     }
 
-    private Button getHelpButton() {
-        return helpButton;
-    }
-
-    private Button getRecalculateButton() {
-        return recalculateButton;
-    }
-
-    public Button getResetButton() {
-        return resetButton;
-    }
-
     private void togglePossibleValuesDisplay(boolean show) {
         boolean hasError = false;
         for (int row = 0; row < 9; row++) {
@@ -194,7 +182,7 @@ public class GameController {
     }
 
     @FXML
-    public void saveGame() {
+    private void saveGame() {
         long elapsedTimeSeconds = (long) time.toSeconds();
         GameHistory gameHistory = new GameHistory(model.getOriginalBoard(), model.getSolvedBoard(), elapsedTimeSeconds, GameModel.getDifficult().toString());
         GameHistoryService.saveGameHistory(gameHistory);
@@ -208,7 +196,7 @@ public class GameController {
 
         DialogPane dialogPane = alert.getDialogPane();
         dialogPane.getStylesheets().add(
-                getClass().getResource("/css/sudoku-style.css").toExternalForm()
+                Objects.requireNonNull(getClass().getResource("/css/sudoku-style.css")).toExternalForm()
         );
         dialogPane.getStyleClass().add("myDialog");
 
@@ -415,7 +403,7 @@ public class GameController {
     }
 
     @FXML
-    public void solveSudoku() {
+    private void solveSudoku() {
         model.solve();
         updateViewWithSudokuBoard(model.getSolvedBoard());
         timeline.stop();
@@ -443,19 +431,19 @@ public class GameController {
     }
 
     @FXML
-    public void updatePossibleValues() {
+    private void updatePossibleValues() {
         model.storeActualPossibleValues();
         togglePossibleValuesDisplay(true);
     }
 
     @FXML
-    public void resetPossibleValues() {
+     void resetPossibleValues() {
         model.resetPossibleValues();
         togglePossibleValuesDisplay(true);
     }
 
     @FXML
-    public void backToMainMenu(ActionEvent event) throws IOException {
+    private void backToMainMenu(ActionEvent event) throws IOException {
         Parent gameView = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("fxml/StarterView.fxml")));
         Scene gameScene = new Scene(gameView);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -464,7 +452,7 @@ public class GameController {
     }
 
     @FXML
-    public void resetBoard() {
+    private void resetBoard() {
         model.resetBoard();
         updateViewWithSudokuBoard(model.getOriginalBoard());
         setEditingEnabled(true);
@@ -505,7 +493,7 @@ public class GameController {
 
 
     @FXML
-    public void helpStrategy() {
+    private void helpStrategy() {
         model.increaseHelpCounter();
         updateHelpCounterDisplay();
         Set<Pair<Integer, Integer>> errorSet = model.getIncorrectValues();
@@ -590,7 +578,7 @@ public class GameController {
         helpCounter.setText(String.valueOf(model.getHelpCounter()));
     }
 
-    public void applyStyleToCells(Set<Pair<Integer, Integer>> cells) {
+    private void applyStyleToCells(Set<Pair<Integer, Integer>> cells) {
         for (Pair<Integer, Integer> cell : cells) {
             int row = cell.getKey();
             int col = cell.getValue();
@@ -628,5 +616,15 @@ public class GameController {
         }
     }
 
+    private Button getHelpButton() {
+        return helpButton;
+    }
 
+    private Button getRecalculateButton() {
+        return recalculateButton;
+    }
+
+    private Button getResetButton() {
+        return resetButton;
+    }
 }

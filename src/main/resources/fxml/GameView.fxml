@@ -1,53 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import java.net.URL?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.CheckBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
-
-<AnchorPane prefHeight="700.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.unideb.sudoku.controller.GameController">
+<AnchorPane prefHeight="700.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="hu.unideb.sudoku.controller.GameController">
     <stylesheets>
-        <URL value="@../css/sudoku-style.css" />
+        <URL value="@../css/sudoku-style.css"/>
     </stylesheets>
-    <GridPane fx:id="board" layoutX="140.0" layoutY="153.0" prefHeight="500.0" prefWidth="500.0" AnchorPane.bottomAnchor="-52.200000000000045" AnchorPane.leftAnchor="140.0" AnchorPane.rightAnchor="-39.19999999999993" AnchorPane.topAnchor="153.0">
+    <GridPane fx:id="board" layoutX="140.0" layoutY="153.0" prefHeight="500.0" prefWidth="500.0"
+              AnchorPane.bottomAnchor="-52.200000000000045" AnchorPane.leftAnchor="140.0"
+              AnchorPane.rightAnchor="-39.19999999999993" AnchorPane.topAnchor="153.0">
         <columnConstraints>
-            <ColumnConstraints percentWidth="9.5" />
-            <ColumnConstraints percentWidth="9.5" />
-            <ColumnConstraints percentWidth="9.5" />
-            <ColumnConstraints percentWidth="9.5" />
-            <ColumnConstraints percentWidth="9.5" />
-            <ColumnConstraints percentWidth="9.5" />
-            <ColumnConstraints percentWidth="9.5" />
-            <ColumnConstraints percentWidth="9.5" />
-            <ColumnConstraints percentWidth="9.5" />
+            <ColumnConstraints percentWidth="9.5"/>
+            <ColumnConstraints percentWidth="9.5"/>
+            <ColumnConstraints percentWidth="9.5"/>
+            <ColumnConstraints percentWidth="9.5"/>
+            <ColumnConstraints percentWidth="9.5"/>
+            <ColumnConstraints percentWidth="9.5"/>
+            <ColumnConstraints percentWidth="9.5"/>
+            <ColumnConstraints percentWidth="9.5"/>
+            <ColumnConstraints percentWidth="9.5"/>
         </columnConstraints>
         <rowConstraints>
-            <RowConstraints percentHeight="9.5" />
-            <RowConstraints percentHeight="9.5" />
-            <RowConstraints percentHeight="9.5" />
-            <RowConstraints percentHeight="9.5" />
-            <RowConstraints percentHeight="9.5" />
-            <RowConstraints percentHeight="9.5" />
-            <RowConstraints percentHeight="9.5" />
-            <RowConstraints percentHeight="9.5" />
-            <RowConstraints percentHeight="9.5" />
+            <RowConstraints percentHeight="9.5"/>
+            <RowConstraints percentHeight="9.5"/>
+            <RowConstraints percentHeight="9.5"/>
+            <RowConstraints percentHeight="9.5"/>
+            <RowConstraints percentHeight="9.5"/>
+            <RowConstraints percentHeight="9.5"/>
+            <RowConstraints percentHeight="9.5"/>
+            <RowConstraints percentHeight="9.5"/>
+            <RowConstraints percentHeight="9.5"/>
         </rowConstraints>
     </GridPane>
-    <Button focusTraversable="false" layoutX="23.0" layoutY="197.0" mnemonicParsing="false" onAction="#backToMainMenu" prefHeight="26.0" prefWidth="58.0" styleClass="button-common, exit-button" text="Vége" />
-    <Button fx:id="helpButton" focusTraversable="false" layoutX="384.0" layoutY="107.0" mnemonicParsing="false" onAction="#helpStrategy" styleClass="button-common" text="Segítség" />
-    <Button focusTraversable="false" layoutX="23.0" layoutY="246.0" mnemonicParsing="false" onAction="#solveSudoku" prefHeight="26.0" prefWidth="58.0" styleClass="button-common" text="Megold" />
-    <CheckBox fx:id="possibleValuesCheckbox" layoutX="20.0" layoutY="111.0" mnemonicParsing="false" styleClass="check-box" text="Lehetséges értékek" />
-    <Button fx:id="recalculateButton" layoutX="196.0" layoutY="107.0" mnemonicParsing="false" onAction="#updatePossibleValues" styleClass="button-common, button-special" text="Értékek újra számolása" />
-    <Button layoutX="21.0" layoutY="296.0" mnemonicParsing="false" onAction="#resetBoard" prefHeight="26.0" prefWidth="62.0" styleClass="button-common" text="Újra" />
-    <Button layoutX="22.0" layoutY="350.0" mnemonicParsing="false" onAction="#checkSudoku" styleClass="button-common" text="Ellenőriz" />
-    <Label fx:id="timerLabel" layoutX="238.0" layoutY="39.0" styleClass="label" text="Label" />
-    <Label layoutX="196.0" layoutY="39.0" styleClass="label" text="IDŐ:" />
-   <Button layoutX="23.0" layoutY="402.0" mnemonicParsing="false" onAction="#saveGame" styleClass="button-common" text="Mentés" />
-   <Button fx:id="resetButton" layoutX="494.0" layoutY="107.0" mnemonicParsing="false" onAction="#resetPossibleValues" styleClass="button-common, button-special" text="Értékek visszaállítása" />
-   <Label layoutX="332.0" layoutY="39.0" styleClass="label" text="Lekért segítségek száma:" />
-   <Label fx:id="helpCounter" layoutX="519.0" layoutY="39.0" styleClass="label" text="Label" />
+    <Button focusTraversable="false" layoutX="23.0" layoutY="197.0" mnemonicParsing="false" onAction="#backToMainMenu"
+            prefHeight="26.0" prefWidth="58.0" styleClass="button-common, exit-button" text="Vége"/>
+    <Button fx:id="helpButton" focusTraversable="false" layoutX="384.0" layoutY="107.0" mnemonicParsing="false"
+            onAction="#helpStrategy" styleClass="button-common" text="Segítség"/>
+    <Button focusTraversable="false" layoutX="23.0" layoutY="246.0" mnemonicParsing="false" onAction="#solveSudoku"
+            prefHeight="26.0" prefWidth="58.0" styleClass="button-common" text="Megold"/>
+    <CheckBox fx:id="possibleValuesCheckbox" layoutX="20.0" layoutY="111.0" mnemonicParsing="false"
+              styleClass="check-box" text="Lehetséges értékek"/>
+    <Button fx:id="recalculateButton" layoutX="196.0" layoutY="107.0" mnemonicParsing="false"
+            onAction="#updatePossibleValues" styleClass="button-common, button-special" text="Értékek újra számolása"/>
+    <Button layoutX="21.0" layoutY="296.0" mnemonicParsing="false" onAction="#resetBoard" prefHeight="26.0"
+            prefWidth="62.0" styleClass="button-common" text="Újra"/>
+    <Button layoutX="22.0" layoutY="350.0" mnemonicParsing="false" onAction="#checkSudoku" styleClass="button-common"
+            text="Ellenőriz"/>
+    <Label fx:id="timerLabel" layoutX="238.0" layoutY="39.0" styleClass="label" text="Label"/>
+    <Label layoutX="196.0" layoutY="39.0" styleClass="label" text="IDŐ:"/>
+    <Button layoutX="23.0" layoutY="402.0" mnemonicParsing="false" onAction="#saveGame" styleClass="button-common"
+            text="Mentés"/>
+    <Button fx:id="resetButton" layoutX="494.0" layoutY="107.0" mnemonicParsing="false" onAction="#resetPossibleValues"
+            styleClass="button-common, button-special" text="Értékek visszaállítása"/>
+    <Label layoutX="332.0" layoutY="39.0" styleClass="label" text="Lekért segítségek száma:"/>
+    <Label fx:id="helpCounter" layoutX="519.0" layoutY="39.0" styleClass="label" text="Label"/>
 </AnchorPane>
