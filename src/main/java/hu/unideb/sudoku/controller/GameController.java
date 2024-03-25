@@ -118,7 +118,7 @@ public class GameController {
             getHelpButton().setDisable(!newValue);
             getRecalculateButton().setDisable(!newValue);
             getResetButton().setDisable(!newValue);
-            model.resetPossibleValues();
+            model.storePossibleValues();
             togglePossibleValuesDisplay(newValue);
         });
     }
@@ -438,7 +438,7 @@ public class GameController {
 
     @FXML
      void resetPossibleValues() {
-        model.resetPossibleValues();
+        model.storePossibleValues();
         togglePossibleValuesDisplay(true);
     }
 

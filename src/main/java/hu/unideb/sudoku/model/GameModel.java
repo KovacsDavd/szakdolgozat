@@ -30,6 +30,7 @@ public class GameModel {
                 sudokuBoard[i][j] = new CellPosition();
             }
         }
+
         if (!needHistoryLoad) {
             generateSudoku();
         }
@@ -47,14 +48,6 @@ public class GameModel {
     }
 
     private void generateSudoku() {
-        sudokuBoard = new CellPosition[SIZE][SIZE];
-
-        for (int i = 0; i < SIZE; i++) {
-            for (int j = 0; j < SIZE; j++) {
-                sudokuBoard[i][j] = new CellPosition();
-            }
-        }
-
         fillDiagonal();
         fillRemaining(0, 3);
 
@@ -80,7 +73,80 @@ public class GameModel {
         }
     }
 
-    private void storePossibleValues() {
+    private void fillDiagonal() {
+        for (int i = 0; i < SIZE; i = i + 3) {
+            fillBox(i, i);
+        }
+    }
+
+    private void fillBox(int row, int col) {
+        int num;
+        for (int i = 0; i < 3; i++)
+            for (int j = 0; j < 3; j++) {
+                do {
+                    num = rand.nextInt(SIZE) + 1;
+                } while (!unUsedInBox(sudokuBoard, row, col, num));
+
+                sudokuBoard[row + i][col + j].setValue(num);
+            }
+    }
+
+    private boolean unUsedInRow(CellPosition[][] board, int row, int value) {
+        for (int col = 0; col < SIZE; col++) {
+            if (board[row][col].getValue() == value) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private boolean unUsedInCol(CellPosition[][] board, int col, int value) {
+        for (int row = 0; row < SIZE; row++) {
+            if (board[row][col].getValue() == value) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private boolean unUsedInBox(CellPosition[][] board, int rowStart, int colStart, int value) {
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                if (board[rowStart + i][colStart + j].getValue() == value) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    private boolean fillRemaining(int i, int j) {
+        if (i == SIZE - 1 && j == SIZE) {
+            return true;
+        }
+
+        if (j == SIZE) {
+            i++;
+            j = 0;
+        }
+
+        if (sudokuBoard[i][j].getValue() != 0) {
+            return fillRemaining(i, j + 1);
+        }
+
+        for (int num = 1; num <= SIZE; num++) {
+            if (isPlacementValid(sudokuBoard, i, j, num)) {
+                sudokuBoard[i][j].setValue(num);
+                if (fillRemaining(i, j + 1)) {
+                    return true;
+                }
+                sudokuBoard[i][j].setValue(0);
+            }
+        }
+        return false;
+    }
+
+    public void storePossibleValues() {
         for (int i = 0; i < SIZE; i++) {
             for (int j = 0; j < SIZE; j++) {
                 if (sudokuBoard[i][j].getValue() == 0) {
@@ -104,23 +170,10 @@ public class GameModel {
         }
     }
 
-    public void resetPossibleValues() {
-        for (int i = 0; i < SIZE; i++) {
-            for (int j = 0; j < SIZE; j++) {
-                if (sudokuBoard[i][j].getValue() == 0) {
-                    Set<Integer> possibleValues = getNewPossibleValues(i, j);
-                    sudokuBoard[i][j].setPossibleValues(possibleValues);
-                }
-            }
-        }
-    }
-
     public void removePossibleValuesAt(int row, int col, Set<Integer> valuesToRemove) {
-        if (sudokuBoard[row][col] != null) {
-            Set<Integer> possibleValues = new HashSet<>(sudokuBoard[row][col].getPossibleValues());
-            possibleValues.removeAll(valuesToRemove);
-            sudokuBoard[row][col].setPossibleValues(possibleValues);
-        }
+        Set<Integer> possibleValues = new HashSet<>(sudokuBoard[row][col].getPossibleValues());
+        possibleValues.removeAll(valuesToRemove);
+        sudokuBoard[row][col].setPossibleValues(possibleValues);
     }
 
     public Set<Integer> getNewPossibleValues(int row, int col) {
@@ -156,9 +209,9 @@ public class GameModel {
         }
 
         Pair<Integer, Integer> currentPosition = new Pair<>(row, col);
-        for (Pair<Pair<Integer, Integer>, Set<Integer>> checkedEntry : checkedPairSet) {
-            if (checkedEntry.getKey().equals(currentPosition)) {
-                possibleValues.removeAll(checkedEntry.getValue());
+        for (Pair<Pair<Integer, Integer>, Set<Integer>> checkedPosition : checkedPairSet) {
+            if (checkedPosition.getKey().equals(currentPosition)) {
+                possibleValues.removeAll(checkedPosition.getValue());
             }
         }
 
@@ -200,67 +253,19 @@ public class GameModel {
         return true;
     }
 
-
-    private void fillDiagonal() {
-        for (int i = 0; i < SIZE; i = i + 3)
-            fillBox(i, i);
-    }
-
-    private void fillBox(int row, int col) {
-        int num;
-        for (int i = 0; i < 3; i++)
-            for (int j = 0; j < 3; j++) {
-                do {
-                    num = randomGenerator();
-                } while (!unUsedInBox(sudokuBoard, row, col, num));
-
-                sudokuBoard[row + i][col + j].setValue(num);
-            }
-    }
-
-    private int randomGenerator() {
-        return rand.nextInt(9) + 1;
-    }
-
-    private boolean unUsedInRow(CellPosition[][] board, int row, int num) {
-        for (int j = 0; j < SIZE; j++)
-            if (board[row][j].getValue() == num) return false;
-        return true;
-    }
-
-    private boolean fillRemaining(int i, int j) {
-        if (i == SIZE - 1 && j == SIZE) return true;
-
-        if (j == SIZE) {
-            i++;
-            j = 0;
-        }
-
-        if (sudokuBoard[i][j].getValue() != 0) return fillRemaining(i, j + 1);
-
-        for (int num = 1; num <= SIZE; num++) {
-            if (checkIfSafe(sudokuBoard, i, j, num)) {
-                sudokuBoard[i][j].setValue(num);
-                if (fillRemaining(i, j + 1)) return true;
-                sudokuBoard[i][j].setValue(0);
-            }
-        }
-        return false;
-    }
-
     private void removeDigits(int count) {
         Set<Pair<Integer, Integer>> cellsToRemove = new HashSet<>();
         while (cellsToRemove.size() < count) {
             int i = rand.nextInt(SIZE);
             int j = rand.nextInt(SIZE);
             if (sudokuBoard[i][j].getValue() != 0) {
-                int backup = sudokuBoard[i][j].getValue();
+                int backupValue = sudokuBoard[i][j].getValue();
                 sudokuBoard[i][j].setValue(0);
 
                 // Ellenőrizze az egyediséget
                 if (!hasUniqueSolution()) {
                     // Ha nincs egyedi megoldás, visszaállítja a számot
-                    sudokuBoard[i][j].setValue(backup);
+                    sudokuBoard[i][j].setValue(backupValue);
                 } else {
                     // Sikeres eltávolítás, hozzáadjuk a sethez
                     cellsToRemove.add(new Pair<>(i, j));
@@ -271,11 +276,11 @@ public class GameModel {
 
     public boolean hasUniqueSolution() {
         int[] numberOfSolutions = new int[1]; // Egy tömb, hogy referencia típusként viselkedjen
-        solveSudoku(0, 0, numberOfSolutions);
+        checkForUniqueSolution(0, 0, numberOfSolutions);
         return numberOfSolutions[0] == 1;
     }
 
-    private boolean solveSudoku(int row, int col, int[] numberOfSolutions) {
+    private boolean checkForUniqueSolution(int row, int col, int[] numberOfSolutions) {
         if (row == SIZE) {
             numberOfSolutions[0]++; // Egy lehetséges megoldás megtalálva
             return numberOfSolutions[0] == 1; // Csak akkor tér vissza igaz értékkel, ha ez az első megoldás
@@ -286,12 +291,12 @@ public class GameModel {
 
         if (sudokuBoard[row][col].getValue() != 0) {
             // Ugrás a következő cellára, ha ez már ki van töltve
-            return solveSudoku(nextRow, nextCol, numberOfSolutions);
+            return checkForUniqueSolution(nextRow, nextCol, numberOfSolutions);
         } else {
             for (int num = 1; num <= SIZE; num++) {
                 if (isValueValid(row, col, num)) {
                     sudokuBoard[row][col].setValue(num);
-                    if (solveSudoku(nextRow, nextCol, numberOfSolutions) && (numberOfSolutions[0] > 1)) {
+                    if (checkForUniqueSolution(nextRow, nextCol, numberOfSolutions) && (numberOfSolutions[0] > 1)) {
                         return false; // Már több mint egy megoldás van, nem kell többet keresni
 
                     }
@@ -302,28 +307,8 @@ public class GameModel {
         return numberOfSolutions[0] == 1;
     }
 
-    private boolean checkIfSafe(CellPosition[][] board, int row, int col, int num) {
+    private boolean isPlacementValid(CellPosition[][] board, int row, int col, int num) {
         return (unUsedInRow(board, row, num) && unUsedInCol(board, col, num) && unUsedInBox(board, row - row % 3, col - col % 3, num));
-    }
-
-    private boolean unUsedInCol(CellPosition[][] board, int col, int num) {
-        for (int row = 0; row < SIZE; row++) {
-            if (board[row][col].getValue() == num) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    private boolean unUsedInBox(CellPosition[][] board, int rowStart, int colStart, int num) {
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                if (board[rowStart + i][colStart + j].getValue() == num) {
-                    return false;
-                }
-            }
-        }
-        return true;
     }
 
     public void resetBoard() {
