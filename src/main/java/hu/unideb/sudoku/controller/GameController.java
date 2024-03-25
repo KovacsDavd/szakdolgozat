@@ -321,10 +321,15 @@ public class GameController {
 
     private void revertTextAreaToModelValues(TextArea textArea, int row, int col) {
         textArea.getStyleClass().remove(ERROR);
+        model.setValueAt(row, col, 0);
         Set<Integer> possibleValues = model.getNewPossibleValues(row, col);
+
         if (possibleValuesCheckbox.isSelected()) {
-            String text = possibleValues.isEmpty() ? formatNumbers(Collections.singleton(model.getValueAt(row, col))) : formatNumbers(possibleValues);
+            String text =  formatNumbers(possibleValues);
+            model.setPossibleValuesAt(row, col, possibleValues);
             updateTextArea(textArea, text, !possibleValues.isEmpty());
+        } else {
+            textArea.getStyleClass().add(POSSIBLE_VALUES);
         }
     }
 
