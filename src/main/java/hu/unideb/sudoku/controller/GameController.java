@@ -193,7 +193,6 @@ public class GameController {
         }
     }
 
-
     @FXML
     public void saveGame() {
         long elapsedTimeSeconds = (long) time.toSeconds();
@@ -206,6 +205,13 @@ public class GameController {
         alert.setTitle(title);
         alert.setHeaderText(null);
         alert.setContentText(message);
+
+        DialogPane dialogPane = alert.getDialogPane();
+        dialogPane.getStylesheets().add(
+                getClass().getResource("/css/sudoku-style.css").toExternalForm()
+        );
+        dialogPane.getStyleClass().add("myDialog");
+
         alert.showAndWait();
     }
 
@@ -224,13 +230,13 @@ public class GameController {
             if (incorrectValues.isEmpty()) {
                 showAlert("Info", "Eddig nincs hiba!");
             } else {
-                StringBuilder sb = new StringBuilder();
-                for (Pair<Integer, Integer> pair : incorrectValues) {
-                    sb.append('[').append(pair.getKey()).append(']').append('[').append(pair.getValue()).append("], ");
+                showAlert("Hiba", "Sajnos hiba van a táblában!");
+                for (Pair<Integer, Integer> position : incorrectValues) {
+                    TextArea textArea = textAreas[position.getKey()][position.getValue()];
+                    if (!textArea.getStyleClass().contains(ERROR)) {
+                        textArea.getStyleClass().add(ERROR);
+                    }
                 }
-                sb.setLength(sb.length() - 2);
-
-                showAlert("Info", "Található hiba: " + sb);
             }
         }
     }
@@ -495,6 +501,17 @@ public class GameController {
 
     @FXML
     public void helpStrategy() {
+        Set<Pair<Integer, Integer>> errorSet = model.getIncorrectValues();
+        if (!errorSet.isEmpty()) {
+            showAlert("Hiba", "Sajnos hiba van a táblában!");
+            for (Pair<Integer, Integer> position : errorSet) {
+                TextArea textArea = textAreas[position.getKey()][position.getValue()];
+                if (!textArea.getStyleClass().contains(ERROR)) {
+                    textArea.getStyleClass().add(ERROR);
+                }
+            }
+            return;
+        }
         if (!needMoreHelp) {
             needMoreHelp = true;
             updatePossibleValues();
@@ -512,8 +529,10 @@ public class GameController {
                 applyStyleToCells(nakedPairsType.getNakedPairsPositionSet());
             } else {
                 needMoreHelp = false;
-                showAlert("Info", "Sajnos a tudatos segítség nem talált eredményt! Megmutatunk egy véletlenszerű cellát.");
-                revealRandomCell();
+                if (!model.isComplete()) {
+                    showAlert("Info", "Sajnos a tudatos segítség nem talált eredményt! Megmutatunk egy véletlenszerű cellát.");
+                    revealRandomCell();
+                }
             }
         } else {
             needMoreHelp = false;

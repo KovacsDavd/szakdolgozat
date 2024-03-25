@@ -121,8 +121,6 @@ public class GameModel {
         }
     }
 
-    //TODO: Segítségnél, ujraszámolásnál csak elvegyen
-    // Lehetséges értékek reset (de ez elveszi a nakedpair-t is): letárolni honnan mit vett el, ezt ne rakja vissza
     public void resetPossibleValues() {
         for (int i = 0; i < SIZE; i++) {
             for (int j = 0; j < SIZE; j++) {
@@ -425,7 +423,7 @@ public class GameModel {
                 int value = sudokuBoard[i][j].getValue();
                 int correctValue = solvedBoard[i][j].getValue();
                 if (value != 0 && value != correctValue) {
-                    incorrectValues.add(new Pair<>(i + 1, j + 1));
+                    incorrectValues.add(new Pair<>(i, j));
                 }
             }
         }
