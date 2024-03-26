@@ -5,7 +5,7 @@ import org.tinylog.Logger;
 
 import java.util.*;
 
-public class  GameModel {
+public class GameModel {
     private static GameDifficult difficult;
     private static final int SIZE = 9;
     private static final int EASY_MOD_REVOME_DIGITS = 44;
@@ -510,43 +510,12 @@ public class  GameModel {
                 if (cell.getPossibleValues().size() == 2) {
                     Set<Integer> pairValues = cell.getPossibleValues();
                     // Sorban keresés
-                    for (int j = 0; j < SIZE; j++) {
-                        if (j != col && sudokuBoard[row][j].getPossibleValues().equals(pairValues)) {
-                            if (!nakedPairsPositionSet.contains(new Pair<>(row, col)) && !nakedPairsPositionSet.contains(new Pair<>(row, j))) {
-                                Logger.debug("NAKED PAIR: ({}, {}) and ({}, {})", row, col, row, j);
-                            }
-                            nakedPairsPositionSet.add(new Pair<>(row, col));
-                            nakedPairsPositionSet.add(new Pair<>(row, j));
-                            addRemovePostionAndValuesRow(row, col, j, pairValues, removeSet);
-                        }
-                    }
+                    checkNakedPairForRow(row, col, pairValues, nakedPairsPositionSet, removeSet);
 
                     // Oszlopban keresés
-                    for (int i = 0; i < SIZE; i++) {
-                        if (i != row && sudokuBoard[i][col].getPossibleValues().equals(pairValues)) {
-                            if (!nakedPairsPositionSet.contains(new Pair<>(row, col)) && !nakedPairsPositionSet.contains(new Pair<>(i, col))) {
-                                Logger.debug("NAKED PAIR: ({}, {}) and ({}, {})", row, col, i, col);
-                            }
-                            nakedPairsPositionSet.add(new Pair<>(row, col));
-                            nakedPairsPositionSet.add(new Pair<>(i, col));
-                            addRemovePostionAndValuesCol(row, col, i, pairValues, removeSet);
-                        }
-                    }
+                    checkNakedPairForCol(row, col, pairValues, nakedPairsPositionSet, removeSet);
                     // 3x3-as blokkban keresés
-                    int startRow = row - row % 3;
-                    int startCol = col - col % 3;
-                    for (int i = startRow; i < startRow + 3; i++) {
-                        for (int j = startCol; j < startCol + 3; j++) {
-                            if ((i != row || j != col) && sudokuBoard[i][j].getPossibleValues().equals(pairValues)) {
-                                if (!nakedPairsPositionSet.contains(new Pair<>(row, col)) && !nakedPairsPositionSet.contains(new Pair<>(i, j))) {
-                                    Logger.debug("NAKED PAIR: " + PAIR_LOG_FORMAT, row, col, i, j);
-                                }
-                                nakedPairsPositionSet.add(new Pair<>(row, col));
-                                nakedPairsPositionSet.add(new Pair<>(i, j));
-                                addRemovePositionAndValuesBox(startRow, startCol, pairValues, removeSet);
-                            }
-                        }
-                    }
+                    checkNakedPairForBox(row, col, pairValues, nakedPairsPositionSet, removeSet);
                 }
             }
         }
@@ -557,6 +526,64 @@ public class  GameModel {
         nakedPairsType.setRemoveSet(removeSet);
 
         return nakedPairsType;
+    }
+
+    private void checkNakedPairForBox(int row, int col, Set<Integer> pairValues, Set<Pair<Integer, Integer>> nakedPairsPositionSet, Set<Pair<Pair<Integer, Integer>, Set<Integer>>> removeSet) {
+        int startRow = row - row % 3;
+        int startCol = col - col % 3;
+        for (int i = startRow; i < startRow + 3; i++) {
+            for (int j = startCol; j < startCol + 3; j++) {
+                if ((i != row || j != col) && sudokuBoard[i][j].getPossibleValues().equals(pairValues)) {
+                    if (!nakedPairsPositionSet.contains(new Pair<>(row, col)) && !nakedPairsPositionSet.contains(new Pair<>(i, j))) {
+                        Logger.debug("NAKED PAIR: " + PAIR_LOG_FORMAT, row, col, i, j);
+                    }
+
+                    nakedPairsPositionSet.add(new Pair<>(row, col));
+                    nakedPairsPositionSet.add(new Pair<>(i, j));
+
+                    addRemovePositionAndValuesBox(startRow, startCol, pairValues, removeSet);
+                }
+            }
+        }
+    }
+
+    private void checkNakedPairForRow(int row, int col, Set<Integer> pairValues, Set<Pair<Integer, Integer>> nakedPairsPositionSet, Set<Pair<Pair<Integer, Integer>, Set<Integer>>> removeSet) {
+        for (int j = 0; j < SIZE; j++) {
+            if (j != col && sudokuBoard[row][j].getPossibleValues().equals(pairValues)) {
+                logForNakedPairRowCol(row, col, nakedPairsPositionSet, j, true);
+
+                nakedPairsPositionSet.add(new Pair<>(row, col));
+                nakedPairsPositionSet.add(new Pair<>(row, j));
+
+                addRemovePostionAndValuesRow(row, col, j, pairValues, removeSet);
+            }
+        }
+    }
+
+    private void checkNakedPairForCol(int row, int col, Set<Integer> pairValues, Set<Pair<Integer, Integer>> nakedPairsPositionSet, Set<Pair<Pair<Integer, Integer>, Set<Integer>>> removeSet) {
+        for (int i = 0; i < SIZE; i++) {
+            if (i != row && sudokuBoard[i][col].getPossibleValues().equals(pairValues)) {
+                logForNakedPairRowCol(row, col, nakedPairsPositionSet, i, false);
+
+                nakedPairsPositionSet.add(new Pair<>(row, col));
+                nakedPairsPositionSet.add(new Pair<>(i, col));
+
+                addRemovePostionAndValuesCol(row, col, i, pairValues, removeSet);
+            }
+        }
+    }
+
+    private void logForNakedPairRowCol(int row, int col, Set<Pair<Integer, Integer>> nakedPairsPositionSet, int otherIndex, boolean isRow) {
+        Pair<Integer, Integer> currentPair = new Pair<>(row, col);
+        Pair<Integer, Integer> otherPair = isRow ? new Pair<>(row, otherIndex) : new Pair<>(otherIndex, col);
+
+        if (!nakedPairsPositionSet.contains(currentPair) && !nakedPairsPositionSet.contains(otherPair)) {
+            if (isRow) {
+                Logger.debug(PAIR_LOG_FORMAT, row, col, row, otherIndex);
+            } else {
+                Logger.debug(PAIR_LOG_FORMAT, row, col, otherIndex, col);
+            }
+        }
     }
 
     private void addRemovePostionAndValuesRow(int row, int col, int j, Set<Integer> pairValues, Set<Pair<Pair<Integer, Integer>, Set<Integer>>> results) {
