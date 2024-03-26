@@ -13,7 +13,8 @@ public class GameModel {
     private static final int HARD_MOD_REVOME_DIGITS = 52;
     private static final String SINGLE_LOG_FORMAT = "[{}][{}] = {}";
     private static final String PAIR_LOG_FORMAT = "[{}, {}] and [{}, {}]";
-    private CellPosition[][] sudokuBoard;
+    private static final String NAKED_PAIR = "NAKED PAIR:";
+    private final CellPosition[][] sudokuBoard;
     private final CellPosition[][] solvedBoard;
     private final CellPosition[][] originalBoard;
     private static final Random rand = new Random();
@@ -511,7 +512,6 @@ public class GameModel {
                     Set<Integer> pairValues = cell.getPossibleValues();
                     // Sorban keresés
                     checkNakedPairForRow(row, col, pairValues, nakedPairsPositionSet, removeSet);
-
                     // Oszlopban keresés
                     checkNakedPairForCol(row, col, pairValues, nakedPairsPositionSet, removeSet);
                     // 3x3-as blokkban keresés
@@ -528,25 +528,6 @@ public class GameModel {
         return nakedPairsType;
     }
 
-    private void checkNakedPairForBox(int row, int col, Set<Integer> pairValues, Set<Pair<Integer, Integer>> nakedPairsPositionSet, Set<Pair<Pair<Integer, Integer>, Set<Integer>>> removeSet) {
-        int startRow = row - row % 3;
-        int startCol = col - col % 3;
-        for (int i = startRow; i < startRow + 3; i++) {
-            for (int j = startCol; j < startCol + 3; j++) {
-                if ((i != row || j != col) && sudokuBoard[i][j].getPossibleValues().equals(pairValues)) {
-                    if (!nakedPairsPositionSet.contains(new Pair<>(row, col)) && !nakedPairsPositionSet.contains(new Pair<>(i, j))) {
-                        Logger.debug("NAKED PAIR: " + PAIR_LOG_FORMAT, row, col, i, j);
-                    }
-
-                    nakedPairsPositionSet.add(new Pair<>(row, col));
-                    nakedPairsPositionSet.add(new Pair<>(i, j));
-
-                    addRemovePositionAndValuesBox(startRow, startCol, pairValues, removeSet);
-                }
-            }
-        }
-    }
-
     private void checkNakedPairForRow(int row, int col, Set<Integer> pairValues, Set<Pair<Integer, Integer>> nakedPairsPositionSet, Set<Pair<Pair<Integer, Integer>, Set<Integer>>> removeSet) {
         for (int j = 0; j < SIZE; j++) {
             if (j != col && sudokuBoard[row][j].getPossibleValues().equals(pairValues)) {
@@ -555,7 +536,7 @@ public class GameModel {
                 nakedPairsPositionSet.add(new Pair<>(row, col));
                 nakedPairsPositionSet.add(new Pair<>(row, j));
 
-                addRemovePostionAndValuesRow(row, col, j, pairValues, removeSet);
+                addRemovePositionAndValuesRowCol(row, col, j, pairValues, removeSet, true);
             }
         }
     }
@@ -568,7 +549,26 @@ public class GameModel {
                 nakedPairsPositionSet.add(new Pair<>(row, col));
                 nakedPairsPositionSet.add(new Pair<>(i, col));
 
-                addRemovePostionAndValuesCol(row, col, i, pairValues, removeSet);
+                addRemovePositionAndValuesRowCol(row, col, i, pairValues, removeSet, false);
+            }
+        }
+    }
+
+    private void checkNakedPairForBox(int row, int col, Set<Integer> pairValues, Set<Pair<Integer, Integer>> nakedPairsPositionSet, Set<Pair<Pair<Integer, Integer>, Set<Integer>>> removeSet) {
+        int startRow = row - row % 3;
+        int startCol = col - col % 3;
+        for (int i = startRow; i < startRow + 3; i++) {
+            for (int j = startCol; j < startCol + 3; j++) {
+                if ((i != row || j != col) && sudokuBoard[i][j].getPossibleValues().equals(pairValues)) {
+                    if (!nakedPairsPositionSet.contains(new Pair<>(row, col)) && !nakedPairsPositionSet.contains(new Pair<>(i, j))) {
+                        Logger.debug(NAKED_PAIR  + PAIR_LOG_FORMAT, row, col, i, j);
+                    }
+
+                    nakedPairsPositionSet.add(new Pair<>(row, col));
+                    nakedPairsPositionSet.add(new Pair<>(i, j));
+
+                    addRemovePositionAndValuesBox(startRow, startCol, pairValues, removeSet);
+                }
             }
         }
     }
@@ -579,41 +579,35 @@ public class GameModel {
 
         if (!nakedPairsPositionSet.contains(currentPair) && !nakedPairsPositionSet.contains(otherPair)) {
             if (isRow) {
-                Logger.debug(PAIR_LOG_FORMAT, row, col, row, otherIndex);
+                Logger.debug(NAKED_PAIR + PAIR_LOG_FORMAT, row, col, row, otherIndex);
             } else {
-                Logger.debug(PAIR_LOG_FORMAT, row, col, otherIndex, col);
+                Logger.debug(NAKED_PAIR + PAIR_LOG_FORMAT, row, col, otherIndex, col);
             }
         }
     }
 
-    private void addRemovePostionAndValuesRow(int row, int col, int j, Set<Integer> pairValues, Set<Pair<Pair<Integer, Integer>, Set<Integer>>> results) {
+    private void addRemovePositionAndValuesRowCol(int row, int col, int j, Set<Integer> pairValues, Set<Pair<Pair<Integer, Integer>, Set<Integer>>> results, boolean isRow) {
+        int otherIndex = isRow ? col : row;
         for (int i = 0; i < SIZE; i++) {
-            if (i != col && i != j) {
+            if (i != otherIndex && i != j) {
+                CellPosition cell = isRow ? sudokuBoard[row][i] : sudokuBoard[i][col];
                 Set<Integer> removeValueSet = new HashSet<>();
                 for (int value : pairValues) {
-                    if (sudokuBoard[row][i].getPossibleValues().contains(value)) {
+                    if (cell.getPossibleValues().contains(value)) {
                         removeValueSet.add(value);
                     }
                 }
-                if (!removeValueSet.isEmpty()) {
-                    results.add(new Pair<>(new Pair<>(row, i), removeValueSet));
-                }
+                addRemoveValueToSet(row, col, i, removeValueSet, results, isRow);
             }
         }
     }
 
-    private void addRemovePostionAndValuesCol(int row, int col, int j, Set<Integer> pairValues, Set<Pair<Pair<Integer, Integer>, Set<Integer>>> results) {
-        for (int i = 0; i < SIZE; i++) {
-            if (i != row && i != j) {
-                Set<Integer> removeValueSet = new HashSet<>();
-                for (int value : pairValues) {
-                    if (sudokuBoard[i][col].getPossibleValues().contains(value)) {
-                        removeValueSet.add(value);
-                    }
-                }
-                if (!removeValueSet.isEmpty()) {
-                    results.add(new Pair<>(new Pair<>(i, col), removeValueSet));
-                }
+    private void addRemoveValueToSet(int row, int col, int i, Set<Integer> removeValueSet, Set<Pair<Pair<Integer, Integer>, Set<Integer>>> results, boolean isRow) {
+        if (!removeValueSet.isEmpty()) {
+            if (isRow) {
+                results.add(new Pair<>(new Pair<>(row, i), removeValueSet));
+            } else {
+                results.add(new Pair<>(new Pair<>(i, col), removeValueSet));
             }
         }
     }
