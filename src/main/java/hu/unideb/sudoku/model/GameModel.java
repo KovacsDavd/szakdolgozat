@@ -606,8 +606,16 @@ public class GameModel {
         if (!removeValueSet.isEmpty()) {
             if (isRow) {
                 results.add(new Pair<>(new Pair<>(row, i), removeValueSet));
-            } else {
+            } else  {
                 results.add(new Pair<>(new Pair<>(i, col), removeValueSet));
+            }
+        }
+    }
+
+    private void addRemoveValueToSetBox(Set<Integer> removeValueSet, Set<Pair<Pair<Integer, Integer>, Set<Integer>>> results, Set<Pair<Integer, Integer>> removePositionSet) {
+        if (!removeValueSet.isEmpty()) {
+            for (Pair<Integer, Integer> position : removePositionSet) {
+                results.add(new Pair<>(position, new HashSet<>(removeValueSet)));
             }
         }
     }
@@ -637,12 +645,7 @@ public class GameModel {
                 }
             }
         }
-
-        if (!removeValueSet.isEmpty()) {
-            for (Pair<Integer, Integer> position : removePositionSet) {
-                results.add(new Pair<>(position, new HashSet<>(removeValueSet)));
-            }
-        }
+        addRemoveValueToSetBox(removeValueSet, results, removePositionSet);
     }
 
     public NakedPairsType checkHiddenPairs() {
