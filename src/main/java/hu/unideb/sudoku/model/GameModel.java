@@ -426,8 +426,9 @@ public class GameModel {
 
         for (int row = 0; row < SIZE; row++) {
             for (int col = 0; col < SIZE; col++) {
-                if (sudokuBoard[row][col].getValue() == 0) {
-                    Set<Integer> possibleValues = sudokuBoard[row][col].getPossibleValues();
+                CellPosition cell = sudokuBoard[row][col];
+                if (cell.getValue() == 0) {
+                    Set<Integer> possibleValues = cell.getPossibleValues();
 
                     if (possibleValues.size() == 1) {
                         int value = possibleValues.iterator().next();
@@ -460,34 +461,34 @@ public class GameModel {
     }
 
     private boolean isHiddenSingleCell(int row, int col, int value) {
-        return !isValueInRow(row, col, value) && !isValueInCol(row, col, value) && !isValueInBox(row, col, value);
+        return !isPossibleValueInRow(row, col, value) && !isPossibleValueInCol(row, col, value) && !isPossibleValueInBox(row, col, value);
     }
 
-    private boolean isValueInRow(int row, int col, int value) {
-        for (int c = 0; c < SIZE; c++) {
-            if (c != col && sudokuBoard[row][c].getPossibleValues().contains(value)) {
+    private boolean isPossibleValueInRow(int row, int col, int value) {
+        for (int j = 0; j < SIZE; j++) {
+            if (j != col && sudokuBoard[row][j].getPossibleValues().contains(value)) {
                 return true;
             }
         }
         return false;
     }
 
-    private boolean isValueInCol(int row, int col, int value) {
-        for (int r = 0; r < SIZE; r++) {
-            if (r != row && sudokuBoard[r][col].getPossibleValues().contains(value)) {
+    private boolean isPossibleValueInCol(int row, int col, int value) {
+        for (int i = 0; i < SIZE; i++) {
+            if (i != row && sudokuBoard[i][col].getPossibleValues().contains(value)) {
                 return true;
             }
         }
         return false;
     }
 
-    private boolean isValueInBox(int row, int col, int value) {
+    private boolean isPossibleValueInBox(int row, int col, int value) {
         int boxRow = row - row % 3;
         int boxCol = col - col % 3;
 
-        for (int r = boxRow; r < boxRow + 3; r++) {
-            for (int c = boxCol; c < boxCol + 3; c++) {
-                if ((r != row || c != col) && sudokuBoard[r][c].getPossibleValues().contains(value)) {
+        for (int i = boxRow; i < boxRow + 3; i++) {
+            for (int j = boxCol; j < boxCol + 3; j++) {
+                if ((i != row || j != col) && sudokuBoard[i][j].getPossibleValues().contains(value)) {
                     return true;
                 }
             }
