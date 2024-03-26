@@ -5,13 +5,14 @@ import org.tinylog.Logger;
 
 import java.util.*;
 
-public class GameModel {
+public class  GameModel {
     private static GameDifficult difficult;
     private static final int SIZE = 9;
     private static final int EASY_MOD_REVOME_DIGITS = 44;
     private static final int MEDIUM_MOD_REVOME_DIGITS = 48;
     private static final int HARD_MOD_REVOME_DIGITS = 52;
-    private static final String LOG_FORMAT = "[{}][{}] = {}";
+    private static final String SINGLE_LOG_FORMAT = "[{}][{}] = {}";
+    private static final String PAIR_LOG_FORMAT = "[{}, {}] and [{}, {}]";
     private CellPosition[][] sudokuBoard;
     private final CellPosition[][] solvedBoard;
     private final CellPosition[][] originalBoard;
@@ -417,7 +418,7 @@ public class GameModel {
     private void addFullHouseResult(int emptyCellCount, int value, Pair<Integer, Integer> fullHousePosition, Set<Pair<Integer, Pair<Integer, Integer>>> results) {
         if (emptyCellCount == 1) {
             results.add(new Pair<>(value, fullHousePosition));
-            Logger.debug("FULL HOUSE: " + LOG_FORMAT, fullHousePosition.getKey(), fullHousePosition.getValue(), value);
+            Logger.debug("FULL HOUSE: " + SINGLE_LOG_FORMAT, fullHousePosition.getKey(), fullHousePosition.getValue(), value);
         }
     }
 
@@ -433,7 +434,7 @@ public class GameModel {
                     if (possibleValues.size() == 1) {
                         int value = possibleValues.iterator().next();
                         results.add(new Pair<>(value, new Pair<>(row, col)));
-                        Logger.debug("NAKED SINGLE: " + LOG_FORMAT, row, col, value);
+                        Logger.debug("NAKED SINGLE: " + SINGLE_LOG_FORMAT, row, col, value);
                     }
                 }
             }
@@ -451,7 +452,7 @@ public class GameModel {
                     for (int value : cell.getPossibleValues()) {
                         if (isHiddenSingleCell(row, col, value)) {
                             results.add(new Pair<>(value, new Pair<>(row, col)));
-                            Logger.debug("HIDDEN SINGLE: " + LOG_FORMAT, row, col, value);
+                            Logger.debug("HIDDEN SINGLE: " + SINGLE_LOG_FORMAT, row, col, value);
                         }
                     }
                 }
@@ -501,7 +502,7 @@ public class GameModel {
 
         Set<Pair<Integer, Integer>> nakedPairsPositionSet = new HashSet<>();
         Set<Pair<Pair<Integer, Integer>, Set<Integer>>> removeSet = new HashSet<>();
-        // Iterálás a táblán
+
         for (int row = 0; row < SIZE; row++) {
             for (int col = 0; col < SIZE; col++) {
                 CellPosition cell = sudokuBoard[row][col];
@@ -538,7 +539,7 @@ public class GameModel {
                         for (int j = startCol; j < startCol + 3; j++) {
                             if ((i != row || j != col) && sudokuBoard[i][j].getPossibleValues().equals(pairValues)) {
                                 if (!nakedPairsPositionSet.contains(new Pair<>(row, col)) && !nakedPairsPositionSet.contains(new Pair<>(i, j))) {
-                                    Logger.debug("NAKED PAIR: ({}, {}) and ({}, {})", row, col, i, j);
+                                    Logger.debug("NAKED PAIR: " + PAIR_LOG_FORMAT, row, col, i, j);
                                 }
                                 nakedPairsPositionSet.add(new Pair<>(row, col));
                                 nakedPairsPositionSet.add(new Pair<>(i, j));
@@ -686,7 +687,7 @@ public class GameModel {
                         // Megtaláltunk egy rejtett párt
 
                         if (!hiddenPairsPositionSet.contains(new Pair<>(positions.get(0).getKey(), positions.get(0).getValue())) && !hiddenPairsPositionSet.contains(new Pair<>(positions.get(1).getKey(), positions.get(1).getValue()))) {
-                            Logger.debug("HIDDEN PAIR: ({}, {}) and ({}, {})", positions.get(0).getKey(), positions.get(0).getValue(), positions.get(1).getKey(), positions.get(1).getValue());
+                            Logger.debug("HIDDEN PAIR: " + PAIR_LOG_FORMAT, positions.get(0).getKey(), positions.get(0).getValue(), positions.get(1).getKey(), positions.get(1).getValue());
                         }
 
                         hiddenPairsPositionSet.addAll(positions);

@@ -511,13 +511,13 @@ public class GameController {
         if (!needMoreHelp) {
             needMoreHelp = true;
             updatePossibleValues();
-            singleHelpSet.addAll(model.checkFullHouse());
-//            if (!singleHelpSet.addAll(model.checkFullHouse()) && (!singleHelpSet.addAll(model.checkNakedSingles())) && (!singleHelpSet.addAll(model.checkHiddenSingles()))) {
-//                nakedPairsType = model.checkNakedPairs();
-//                if (nakedPairsType == null || nakedPairsType.getRemoveSet().isEmpty()) {
-//                    nakedPairsType = model.checkHiddenPairs();
-//                }
-//            }
+
+            if (!singleHelpSet.addAll(model.checkFullHouse()) && (!singleHelpSet.addAll(model.checkNakedSingles())) && (!singleHelpSet.addAll(model.checkHiddenSingles()))) {
+                nakedPairsType = model.checkNakedPairs();
+                if (nakedPairsType == null || nakedPairsType.getRemoveSet().isEmpty()) {
+                    nakedPairsType = model.checkHiddenPairs();
+                }
+            }
             if (!singleHelpSet.isEmpty()) {
                 Set<Pair<Integer, Integer>> simplifiedSet = singleHelpSet.stream().map(Pair::getValue).collect(Collectors.toSet());
                 applyStyleToCells(simplifiedSet);
