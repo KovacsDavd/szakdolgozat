@@ -312,6 +312,8 @@ public class GameModel {
     }
 
     public void resetBoard() {
+        helpCounter = 0;
+        checkedPairSet.clear();
         for (int i = 0; i < SIZE; i++) {
             for (int j = 0; j < SIZE; j++) {
                 sudokuBoard[i][j] = new CellPosition(originalBoard[i][j].getValue(), new HashSet<>(originalBoard[i][j].getPossibleValues()));
@@ -361,95 +363,63 @@ public class GameModel {
     public Set<Pair<Integer, Pair<Integer, Integer>>> checkFullHouse() {
         Set<Pair<Integer, Pair<Integer, Integer>>> results = new HashSet<>();
 
-        // Sorok vizsgálata
-        results.addAll(checkFullHouseByRowORCol(results, true));
-
-        // Oszlopok vizsgálata
-        results.addAll(checkFullHouseByRowORCol(results, false));
-
-        // 3x3-as blokkok vizsgálata
-        results.addAll(checkFullHouseByBoxes(results));
+        results.addAll(checkFullHouseForRowCOl(true));
+        results.addAll(checkFullHouseForRowCOl(false));
+        results.addAll(checkFullHouseByBoxes());
 
         return results;
     }
 
-    private Set<Pair<Integer, Pair<Integer, Integer>>> checkFullHouseByRowORCol(Set<Pair<Integer, Pair<Integer, Integer>>> results, boolean isRowCheck) {
+    private Set<Pair<Integer, Pair<Integer, Integer>>> checkFullHouseForRowCOl(boolean isRow) {
+        Set<Pair<Integer, Pair<Integer, Integer>>> results = new HashSet<>();
         for (int i = 0; i < SIZE; i++) {
-            Pair<Integer, Integer> emptyInfo = getEmptyInfo(i, isRowCheck);
-            int emptyCount = emptyInfo.getKey();
-            int lastEmptyIndex = emptyInfo.getValue();
+            int emptyCellCount = 0;
+            Pair<Integer, Integer> fullHousePosition = null;
+            int value = 0;
+            for (int j = 0; j < SIZE; j++) {
+                CellPosition cell = isRow ? sudokuBoard[i][j] : sudokuBoard[j][i];
+                if (cell.getValue() == 0) {
+                    emptyCellCount++;
+                    value = cell.getPossibleValues().iterator().next();
+                    fullHousePosition = isRow ? new Pair<>(i, j) : new Pair<>(j, i);
+                }
+            }
+            addFullHouseResult(emptyCellCount, value, fullHousePosition, results);
+        }
+        return results;
+    }
 
-            if (emptyCount == 1) {
-                addResultIfValid(results, i, lastEmptyIndex, isRowCheck);
+    private Set<Pair<Integer, Pair<Integer, Integer>>> checkFullHouseByBoxes() {
+        Set<Pair<Integer, Pair<Integer, Integer>>> results = new HashSet<>();
+        int boxSize = 3;
+        for (int boxRow = 0; boxRow < SIZE; boxRow += boxSize) {
+            for (int boxCol = 0; boxCol < SIZE; boxCol += boxSize) {
+                int emptyCellCount = 0;
+                Pair<Integer, Integer> fullHousePosition = null;
+                int value = 0;
+
+                for (int i = 0; i < boxSize; i++) {
+                    for (int j = 0; j < boxSize; j++) {
+                        CellPosition cell = sudokuBoard[boxRow + i][boxCol + j];
+                        if (cell.getValue() == 0) {
+                            emptyCellCount++;
+                            value = cell.getPossibleValues().iterator().next();
+                            fullHousePosition = new Pair<>(boxRow + i, boxCol + j);
+                        }
+                    }
+                }
+                addFullHouseResult(emptyCellCount, value, fullHousePosition, results);
             }
         }
         return results;
     }
 
-    private Pair<Integer, Integer> getEmptyInfo(int index, boolean isRowCheck) {
-        int emptyCount = 0;
-        int lastEmptyIndex = -1;
-        for (int j = 0; j < SIZE; j++) {
-            int row = isRowCheck ? index : j;
-            int col = isRowCheck ? j : index;
-            if (sudokuBoard[row][col].getValue() == 0) {
-                emptyCount++;
-                lastEmptyIndex = j;
-            }
-        }
-        return new Pair<>(emptyCount, lastEmptyIndex);
-    }
-
-    private void addResultIfValid(Set<Pair<Integer, Pair<Integer, Integer>>> results, int index, int lastEmptyIndex, boolean isRowCheck) {
-        int targetRow = isRowCheck ? index : lastEmptyIndex;
-        int targetCol = isRowCheck ? lastEmptyIndex : index;
-        Set<Integer> possibleValues = getPossibleValuesAt(targetRow, targetCol);
-
-        if (possibleValues.size() == 1) {
-            int value = possibleValues.iterator().next();
-            results.add(new Pair<>(value, new Pair<>(targetRow, targetCol)));
-            Logger.debug("FULL HOUSE: " + LOG_FORMAT, targetRow, targetCol, value);
+    private void addFullHouseResult(int emptyCellCount, int value, Pair<Integer, Integer> fullHousePosition, Set<Pair<Integer, Pair<Integer, Integer>>> results) {
+        if (emptyCellCount == 1) {
+            results.add(new Pair<>(value, fullHousePosition));
+            Logger.debug("FULL HOUSE: " + LOG_FORMAT, fullHousePosition.getKey(), fullHousePosition.getValue(), value);
         }
     }
-
-    private Set<Pair<Integer, Pair<Integer, Integer>>> checkFullHouseByBoxes(Set<Pair<Integer, Pair<Integer, Integer>>> results) {
-        for (int boxRow = 0; boxRow < SIZE; boxRow += 3) {
-            for (int boxCol = 0; boxCol < SIZE; boxCol += 3) {
-                Pair<Integer, Pair<Integer, Integer>> emptyCellInfo = findSingleEmptyCellInBox(boxRow, boxCol);
-                int emptyCount = emptyCellInfo.getKey();
-                Pair<Integer, Integer> lastEmptyCell = emptyCellInfo.getValue();
-
-                if (emptyCount == 1) {
-                    addResultForBoxIfValid(results, lastEmptyCell);
-                }
-            }
-        }
-        return results;
-    }
-
-    private Pair<Integer, Pair<Integer, Integer>> findSingleEmptyCellInBox(int boxRow, int boxCol) {
-        int emptyCount = 0;
-        Pair<Integer, Integer> lastEmptyCell = null;
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                if (sudokuBoard[boxRow + i][boxCol + j].getValue() == 0) {
-                    emptyCount++;
-                    lastEmptyCell = new Pair<>(boxRow + i, boxCol + j);
-                }
-            }
-        }
-        return new Pair<>(emptyCount, lastEmptyCell);
-    }
-
-    private void addResultForBoxIfValid(Set<Pair<Integer, Pair<Integer, Integer>>> results, Pair<Integer, Integer> lastEmptyCell) {
-        Set<Integer> possibleValues = getPossibleValuesAt(lastEmptyCell.getKey(), lastEmptyCell.getValue());
-        if (possibleValues.size() == 1) {
-            int value = possibleValues.iterator().next();
-            results.add(new Pair<>(value, lastEmptyCell));
-            Logger.debug("FULL HOUSE: " + LOG_FORMAT, lastEmptyCell.getKey(), lastEmptyCell.getValue(), value);
-        }
-    }
-
 
     public Set<Pair<Integer, Pair<Integer, Integer>>> checkNakedSingles() {
         Set<Pair<Integer, Pair<Integer, Integer>>> results = new HashSet<>();
@@ -749,10 +719,6 @@ public class GameModel {
 
     public void increaseHelpCounter() {
         this.helpCounter++;
-    }
-
-    public void setEmptyCheckedPairSet() {
-        checkedPairSet.clear();
     }
 
     public CellPosition[][] getSudokuBoard() {

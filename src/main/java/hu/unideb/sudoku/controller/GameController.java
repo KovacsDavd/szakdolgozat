@@ -407,6 +407,7 @@ public class GameController {
         model.solve();
         updateViewWithSudokuBoard(model.getSolvedBoard());
         timeline.stop();
+        //setEditingEnabled(false);
     }
 
     private void updateViewWithSudokuBoard(CellPosition[][] sudokuBoard) {
@@ -458,10 +459,10 @@ public class GameController {
         setEditingEnabled(true);
         togglePossibleValuesDisplay(possibleValuesCheckbox.isSelected());
         startTimer();
+        updateHelpCounterDisplay();
         needMoreHelp = false;
         singleHelpSet = new HashSet<>();
         nakedPairsType = null;
-        model.setEmptyCheckedPairSet();
     }
 
     private void setEditingEnabled(boolean enabled) {
@@ -510,13 +511,13 @@ public class GameController {
         if (!needMoreHelp) {
             needMoreHelp = true;
             updatePossibleValues();
-
-            if (!singleHelpSet.addAll(model.checkFullHouse()) && (!singleHelpSet.addAll(model.checkNakedSingles())) && (!singleHelpSet.addAll(model.checkHiddenSingles()))) {
-                nakedPairsType = model.checkNakedPairs();
-                if (nakedPairsType == null || nakedPairsType.getRemoveSet().isEmpty()) {
-                    nakedPairsType = model.checkHiddenPairs();
-                }
-            }
+            singleHelpSet.addAll(model.checkFullHouse());
+//            if (!singleHelpSet.addAll(model.checkFullHouse()) && (!singleHelpSet.addAll(model.checkNakedSingles())) && (!singleHelpSet.addAll(model.checkHiddenSingles()))) {
+//                nakedPairsType = model.checkNakedPairs();
+//                if (nakedPairsType == null || nakedPairsType.getRemoveSet().isEmpty()) {
+//                    nakedPairsType = model.checkHiddenPairs();
+//                }
+//            }
             if (!singleHelpSet.isEmpty()) {
                 Set<Pair<Integer, Integer>> simplifiedSet = singleHelpSet.stream().map(Pair::getValue).collect(Collectors.toSet());
                 applyStyleToCells(simplifiedSet);
