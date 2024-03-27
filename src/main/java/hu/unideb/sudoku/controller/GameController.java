@@ -139,7 +139,7 @@ public class GameController {
 
     private boolean updateTextAreaBasedOnVisibility(boolean show, int row, int col) {
         TextArea textArea = textAreas[row][col];
-        if (!isInitialNumber(textArea) && textArea.getStyleClass().contains(POSSIBLE_VALUES)) {
+        if (isNotInitialNumber(textArea) && textArea.getStyleClass().contains(POSSIBLE_VALUES)) {
             if (show) {
                 return updateForVisibleState(textArea, row, col);
             } else {
@@ -195,9 +195,7 @@ public class GameController {
         alert.setContentText(message);
 
         DialogPane dialogPane = alert.getDialogPane();
-        dialogPane.getStylesheets().add(
-                Objects.requireNonNull(getClass().getResource("/css/sudoku-style.css")).toExternalForm()
-        );
+        dialogPane.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/css/sudoku-style.css")).toExternalForm());
         dialogPane.getStyleClass().add("myDialog");
 
         alert.showAndWait();
@@ -218,19 +216,13 @@ public class GameController {
             if (incorrectValues.isEmpty()) {
                 showAlert("Info", "Eddig nincs hiba!");
             } else {
-                showAlert("Hiba", "Sajnos hiba van a táblában!");
-                for (Pair<Integer, Integer> position : incorrectValues) {
-                    TextArea textArea = textAreas[position.getKey()][position.getValue()];
-                    if (!textArea.getStyleClass().contains(ERROR)) {
-                        textArea.getStyleClass().add(ERROR);
-                    }
-                }
+                setTextAreasIncorrectValues(incorrectValues);
             }
         }
     }
 
     private void setupTextArea(TextArea textArea, int row, int col) {
-        if (!isInitialNumber(textArea)) {
+        if (isNotInitialNumber(textArea)) {
             textArea.textProperty().addListener((obs, oldVal, newVal) -> {
                 if (!newVal.matches("([1-9,\\n ]*)")) {
                     textArea.setText(oldVal);
@@ -249,7 +241,7 @@ public class GameController {
 
     private void handleCellFocusLost(TextArea textArea, int row, int col) {
         String text = textArea.getText().trim();
-        if (!isInitialNumber(textArea)) {
+        if (isNotInitialNumber(textArea)) {
             if (text.isEmpty()) {
                 revertTextAreaToModelValues(textArea, row, col);
             } else if (isSingleDigit(text)) {
@@ -260,8 +252,8 @@ public class GameController {
         }
     }
 
-    private boolean isInitialNumber(TextArea textArea) {
-        return textArea.getStyleClass().contains(INITIAL_NUMBER);
+    private boolean isNotInitialNumber(TextArea textArea) {
+        return !textArea.getStyleClass().contains(INITIAL_NUMBER);
     }
 
     private boolean isSingleDigit(String text) {
@@ -407,7 +399,6 @@ public class GameController {
         model.solve();
         updateViewWithSudokuBoard(model.getSolvedBoard());
         timeline.stop();
-        //setEditingEnabled(false);
     }
 
     private void updateViewWithSudokuBoard(CellPosition[][] sudokuBoard) {
@@ -438,7 +429,7 @@ public class GameController {
     }
 
     @FXML
-     void resetPossibleValues() {
+    void resetPossibleValues() {
         model.storePossibleValues();
         togglePossibleValuesDisplay(true);
     }
@@ -492,44 +483,53 @@ public class GameController {
         }
     }
 
+    private void setTextAreasIncorrectValues(Set<Pair<Integer, Integer>> incorrectValues) {
+        showAlert("Hiba", "Sajnos hiba van a táblában!");
+        for (Pair<Integer, Integer> position : incorrectValues) {
+            TextArea textArea = textAreas[position.getKey()][position.getValue()];
+            if (!textArea.getStyleClass().contains(ERROR)) {
+                textArea.getStyleClass().add(ERROR);
+            }
+        }
+    }
+
+    private void applyStrategyforHelp() {
+        needMoreHelp = true;
+        updatePossibleValues();
+
+        if (!singleHelpSet.addAll(model.checkFullHouse()) && (!singleHelpSet.addAll(model.checkNakedSingles())) && (!singleHelpSet.addAll(model.checkHiddenSingles()))) {
+            nakedPairsType = model.checkNakedPairs();
+            if (nakedPairsType == null || nakedPairsType.getRemoveSet().isEmpty()) {
+                nakedPairsType = model.checkHiddenPairs();
+            }
+        }
+        if (!singleHelpSet.isEmpty()) {
+            Set<Pair<Integer, Integer>> simplifiedSet = singleHelpSet.stream().map(Pair::getValue).collect(Collectors.toSet());
+            applyStyleToCells(simplifiedSet);
+        } else if (nakedPairsType != null && !nakedPairsType.getRemoveSet().isEmpty()) {
+            applyStyleToCells(nakedPairsType.getNakedPairsPositionSet());
+        } else {
+            needMoreHelp = false;
+            if (!model.isComplete()) {
+                showAlert("Info", "Megmutatunk egy véletlenszerű cellát.");
+                revealRandomCell();
+            }
+        }
+    }
 
     @FXML
     private void helpStrategy() {
         model.increaseHelpCounter();
         updateHelpCounterDisplay();
-        Set<Pair<Integer, Integer>> errorSet = model.getIncorrectValues();
-        if (!errorSet.isEmpty()) {
-            showAlert("Hiba", "Sajnos hiba van a táblában!");
-            for (Pair<Integer, Integer> position : errorSet) {
-                TextArea textArea = textAreas[position.getKey()][position.getValue()];
-                if (!textArea.getStyleClass().contains(ERROR)) {
-                    textArea.getStyleClass().add(ERROR);
-                }
-            }
+
+        Set<Pair<Integer, Integer>> incorrectValues = model.getIncorrectValues();
+        if (!incorrectValues.isEmpty()) {
+            setTextAreasIncorrectValues(incorrectValues);
             return;
         }
-        if (!needMoreHelp) {
-            needMoreHelp = true;
-            updatePossibleValues();
 
-            if (!singleHelpSet.addAll(model.checkFullHouse()) && (!singleHelpSet.addAll(model.checkNakedSingles())) && (!singleHelpSet.addAll(model.checkHiddenSingles()))) {
-                nakedPairsType = model.checkNakedPairs();
-                if (nakedPairsType == null || nakedPairsType.getRemoveSet().isEmpty()) {
-                    nakedPairsType = model.checkHiddenPairs();
-                }
-            }
-            if (!singleHelpSet.isEmpty()) {
-                Set<Pair<Integer, Integer>> simplifiedSet = singleHelpSet.stream().map(Pair::getValue).collect(Collectors.toSet());
-                applyStyleToCells(simplifiedSet);
-            } else if (nakedPairsType != null && !nakedPairsType.getRemoveSet().isEmpty()) {
-                applyStyleToCells(nakedPairsType.getNakedPairsPositionSet());
-            } else {
-                needMoreHelp = false;
-                if (!model.isComplete()) {
-                    showAlert("Info", "Sajnos a tudatos segítség nem talált eredményt! Megmutatunk egy véletlenszerű cellát.");
-                    revealRandomCell();
-                }
-            }
+        if (!needMoreHelp) {
+            applyStrategyforHelp();
         } else {
             needMoreHelp = false;
             if (!singleHelpSet.isEmpty()) {
@@ -539,7 +539,6 @@ public class GameController {
                     int row = position.getKey();
                     int col = position.getValue();
 
-                    //itt lehetne letárolni, hogy itt volt az első hiba és reset
                     TextArea textArea = textAreas[row][col];
                     model.setValueAt(row, col, value);
                     textArea.setText(String.valueOf(value));
