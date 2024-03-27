@@ -39,7 +39,7 @@ public class GameModel {
     }
 
     public void loadGameFromHistory(GameHistory history) {
-        difficult = GameDifficult.valueOf(history.getDifficulty());
+        setDifficult(GameDifficult.valueOf(history.getDifficulty()));
         deepCopy(history.getOriginalBoard(), originalBoard);
         deepCopy(history.getOriginalBoard(), sudokuBoard);
         deepCopy(history.getSolvedBoard(), solvedBoard);
@@ -657,7 +657,6 @@ public class GameModel {
         Set<Pair<Integer, Integer>> hiddenPairsPositionSet = new HashSet<>();
         Set<Pair<Pair<Integer, Integer>, Set<Integer>>> removeSet = new HashSet<>();
 
-        // Iterálás a táblán
         for (int row = 0; row < SIZE; row++) {
             for (int col = 0; col < SIZE; col++) {
                 CellPosition cell = sudokuBoard[row][col];
