@@ -519,13 +519,17 @@ public class GameModel {
                 }
             }
         }
-        if (nakedPairsPositionSet.isEmpty()) {
+        return returnNakedPairsType(nakedPairsType, nakedPairsPositionSet, removeSet);
+    }
+
+    private NakedPairsType returnNakedPairsType(NakedPairsType pairsType, Set<Pair<Integer, Integer>> pirsPositionSet, Set<Pair<Pair<Integer, Integer>, Set<Integer>>> removeSet) {
+        if (pirsPositionSet.isEmpty()) {
             return null;
         }
-        nakedPairsType.setNakedPairsPositionSet(nakedPairsPositionSet);
-        nakedPairsType.setRemoveSet(removeSet);
+        pairsType.setNakedPairsPositionSet(pirsPositionSet);
+        pairsType.setRemoveSet(removeSet);
 
-        return nakedPairsType;
+        return pairsType;
     }
 
     private void checkNakedPairForRow(int row, int col, Set<Integer> pairValues, Set<Pair<Integer, Integer>> nakedPairsPositionSet, Set<Pair<Pair<Integer, Integer>, Set<Integer>>> removeSet) {
@@ -561,7 +565,7 @@ public class GameModel {
             for (int j = startCol; j < startCol + 3; j++) {
                 if ((i != row || j != col) && sudokuBoard[i][j].getPossibleValues().equals(pairValues)) {
                     if (!nakedPairsPositionSet.contains(new Pair<>(row, col)) && !nakedPairsPositionSet.contains(new Pair<>(i, j))) {
-                        Logger.debug(NAKED_PAIR  + PAIR_LOG_FORMAT, row, col, i, j);
+                        Logger.debug(NAKED_PAIR + PAIR_LOG_FORMAT, row, col, i, j);
                     }
 
                     nakedPairsPositionSet.add(new Pair<>(row, col));
@@ -606,7 +610,7 @@ public class GameModel {
         if (!removeValueSet.isEmpty()) {
             if (isRow) {
                 results.add(new Pair<>(new Pair<>(row, i), removeValueSet));
-            } else  {
+            } else {
                 results.add(new Pair<>(new Pair<>(i, col), removeValueSet));
             }
         }
@@ -660,46 +664,54 @@ public class GameModel {
                 // Csak a több lehetséges értékkel rendelkező cellák érdekelnek
                 if (cell.getPossibleValues().size() > 2) {
                     // Ellenőrizzük, hogy van-e rejtett pár a sorban, oszlopban és blokkban
-                    checkDirectionForHiddenPairs(row, col, hiddenPairsPositionSet, removeSet, "row");
-                    checkDirectionForHiddenPairs(row, col, hiddenPairsPositionSet, removeSet, "col");
-                    checkDirectionForHiddenPairs(row, col, hiddenPairsPositionSet, removeSet, "box");
+                    checkHiddenPairForRowCol(row, hiddenPairsPositionSet, removeSet, true);
+                    checkHiddenPairForRowCol(row, hiddenPairsPositionSet, removeSet, false);
+                    checkHiddenPairForBox(row, col, hiddenPairsPositionSet, removeSet);
                 }
             }
         }
-
-        if (hiddenPairsPositionSet.isEmpty()) {
-            return null;
-        }
-        hiddenPairsType.setNakedPairsPositionSet(hiddenPairsPositionSet);
-        hiddenPairsType.setRemoveSet(removeSet);
-
-        return hiddenPairsType;
+        return returnNakedPairsType(hiddenPairsType, hiddenPairsPositionSet, removeSet);
     }
 
-    private void checkDirectionForHiddenPairs(int row, int col, Set<Pair<Integer, Integer>> hiddenPairsPositionSet, Set<Pair<Pair<Integer, Integer>, Set<Integer>>> removeSet, String direction) {
-        // Tároljuk el a lehetséges értékeket és azok előfordulásait.
+    private void checkHiddenPairForRowCol(int index, Set<Pair<Integer, Integer>> hiddenPairsPositionSet, Set<Pair<Pair<Integer, Integer>, Set<Integer>>> removeSet, boolean isRow) {
         Map<Integer, List<Pair<Integer, Integer>>> valueOccurrences = new HashMap<>();
-
-        // A vizsgálati terület meghatározása a direction alapján
-        int startRow = direction.equals("row") ? row : (direction.equals("box") ? row - row % 3 : 0);
-        int startCol = direction.equals("col") ? col : (direction.equals("box") ? col - col % 3 : 0);
-        int endRow = direction.equals("row") ? row + 1 : (direction.equals("box") ? startRow + 3 : SIZE);
-        int endCol = direction.equals("col") ? col + 1 : (direction.equals("box") ? startCol + 3 : SIZE);
-
-        // Összegyűjtjük a lehetséges értékek előfordulásait
-        for (int r = startRow; r < endRow; r++) {
-            for (int c = startCol; c < endCol; c++) {
-                // Kihagyjuk a vizsgálati területen kívüli cellákat
-                if ((direction.equals("row") && r != row) || (direction.equals("col") && c != col)) continue;
-
-                Set<Integer> possibleValues = sudokuBoard[r][c].getPossibleValues();
-                for (Integer value : possibleValues) {
-                    valueOccurrences.computeIfAbsent(value, k -> new ArrayList<>()).add(new Pair<>(r, c));
+        // Összegyűjtjük az értékek előfordulásait a sorban
+        for (int i = 0; i < SIZE; i++) {
+            Set<Integer> possibleValues = isRow ? sudokuBoard[index][i].getPossibleValues() : sudokuBoard[i][index].getPossibleValues();
+            for (Integer value : possibleValues) {
+                List<Pair<Integer, Integer>> positions = valueOccurrences.computeIfAbsent(value, k -> new ArrayList<>());
+                if (isRow) {
+                    positions.add(new Pair<>(index, i));
+                } else {
+                    positions.add(new Pair<>(i, index));
                 }
             }
         }
 
-        // Keresünk rejtett párokat: értékek, amik pontosan két helyen fordulnak elő
+        // Keresünk olyan értékeket, amelyek pontosan két helyen fordulnak elő
+        findAndProcessHiddenPairs(valueOccurrences, hiddenPairsPositionSet, removeSet);
+    }
+
+    private void checkHiddenPairForBox(int row, int col, Set<Pair<Integer, Integer>> hiddenPairsPositionSet, Set<Pair<Pair<Integer, Integer>, Set<Integer>>> removeSet) {
+        Map<Integer, List<Pair<Integer, Integer>>> valueOccurrences = new HashMap<>();
+        int startRow = row - row % 3;
+        int startCol = col - col % 3;
+
+        // Iterálás a 3x3-as blokkon belül
+        for (int i = startRow; i < startRow + 3; i++) {
+            for (int j = startCol; j < startCol + 3; j++) {
+                Set<Integer> possibleValues = sudokuBoard[i][j].getPossibleValues();
+                for (Integer value : possibleValues) {
+                    valueOccurrences.computeIfAbsent(value, k -> new ArrayList<>()).add(new Pair<>(i, j));
+                }
+            }
+        }
+
+        // Keresünk olyan értékeket, amelyek pontosan két helyen fordulnak elő
+        findAndProcessHiddenPairs(valueOccurrences, hiddenPairsPositionSet, removeSet);
+    }
+
+    private void findAndProcessHiddenPairs(Map<Integer, List<Pair<Integer, Integer>>> valueOccurrences, Set<Pair<Integer, Integer>> hiddenPairsPositionSet, Set<Pair<Pair<Integer, Integer>, Set<Integer>>> removeSet) {
         for (Map.Entry<Integer, List<Pair<Integer, Integer>>> entry : valueOccurrences.entrySet()) {
             if (entry.getValue().size() == 2) { // Ha csak két cellában fordul elő az érték
                 Integer value = entry.getKey();
@@ -709,21 +721,24 @@ public class GameModel {
                 for (Map.Entry<Integer, List<Pair<Integer, Integer>>> otherEntry : valueOccurrences.entrySet()) {
                     if (!otherEntry.getKey().equals(value) && otherEntry.getValue().equals(positions)) {
                         // Megtaláltunk egy rejtett párt
-
-                        if (!hiddenPairsPositionSet.contains(new Pair<>(positions.get(0).getKey(), positions.get(0).getValue())) && !hiddenPairsPositionSet.contains(new Pair<>(positions.get(1).getKey(), positions.get(1).getValue()))) {
-                            Logger.debug("HIDDEN PAIR: " + PAIR_LOG_FORMAT, positions.get(0).getKey(), positions.get(0).getValue(), positions.get(1).getKey(), positions.get(1).getValue());
-                        }
-
-                        hiddenPairsPositionSet.addAll(positions);
-
-                        for (Pair<Integer, Integer> position : positions) {
-                            for (int removeValue : sudokuBoard[position.getKey()][position.getValue()].getPossibleValues()) {
-                                if (removeValue != value && removeValue != otherEntry.getKey()) {
-                                    removeSet.add(new Pair<>(position, new HashSet<>(List.of(removeValue))));
-                                }
-                            }
-                        }
+                        processHiddenPair(positions, value, otherEntry, hiddenPairsPositionSet, removeSet);
                     }
+                }
+            }
+        }
+    }
+
+    private void processHiddenPair(List<Pair<Integer, Integer>> positions, Integer value, Map.Entry<Integer, List<Pair<Integer, Integer>>> otherEntry, Set<Pair<Integer, Integer>> hiddenPairsPositionSet, Set<Pair<Pair<Integer, Integer>, Set<Integer>>> removeSet) {
+        if (!hiddenPairsPositionSet.contains(new Pair<>(positions.get(0).getKey(), positions.get(0).getValue())) && !hiddenPairsPositionSet.contains(new Pair<>(positions.get(1).getKey(), positions.get(1).getValue()))) {
+            Logger.debug("HIDDEN PAIR: " + PAIR_LOG_FORMAT, positions.get(0).getKey(), positions.get(0).getValue(), positions.get(1).getKey(), positions.get(1).getValue());
+        }
+
+        hiddenPairsPositionSet.addAll(positions);
+
+        for (Pair<Integer, Integer> position : positions) {
+            for (int removeValue : sudokuBoard[position.getKey()][position.getValue()].getPossibleValues()) {
+                if (removeValue != value && removeValue != otherEntry.getKey()) {
+                    removeSet.add(new Pair<>(position, new HashSet<>(List.of(removeValue))));
                 }
             }
         }
