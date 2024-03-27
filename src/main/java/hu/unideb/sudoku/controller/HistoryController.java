@@ -56,16 +56,7 @@ public class HistoryController {
         });
 
         replayColumn.setCellFactory(col -> new TableCell<>() {
-            private final Button btn = new Button("Újra");
-
-            // Inicializáló blokk
-            {
-                btn.setOnAction(event -> {
-                    GameHistory data = getTableView().getItems().get(getIndex());
-                    replayGame(data);
-                });
-                btn.getStyleClass().add("button-common");
-            }
+            private final Button btn = createReplayButton();
 
             @Override
             protected void updateItem(String item, boolean empty) {
@@ -73,12 +64,21 @@ public class HistoryController {
                 if (empty) {
                     setGraphic(null);
                 } else {
+                    GameHistory data = getTableView().getItems().get(getIndex());
+                    btn.setOnAction(event -> replayGame(data));
                     setGraphic(btn);
                 }
             }
         });
 
         loadHistories();
+    }
+
+    private Button createReplayButton() {
+        Button btn = new Button("Újra");
+        btn.getStyleClass().add("button-common");
+
+        return btn;
     }
 
     @FXML
