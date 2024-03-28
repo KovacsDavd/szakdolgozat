@@ -14,14 +14,27 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * A játék mentett állásainak kezeléséért felelős.
+ * Segítségével menthetjük és betölthetjük a korábbi játékmeneteket.
+ */
 public class GameHistoryService {
     private static final String FILE_PATH = "src/main/resources/json/sudoku_history.json";
     private static final int MAX_HISTORY_SIZE = 5;
     private static final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
+    /**
+     * Privát konstruktor.
+     */
     private GameHistoryService() {
     }
 
+    /**
+     * Játék mentése JSON fájlba.
+     * Maximum 5 játékot tartalmazhat a file
+     *
+     * @param gameHistory A mentendő játékmenet.
+     */
     public static void saveGameHistory(GameHistory gameHistory) {
         List<GameHistory> histories = new ArrayList<>();
 
@@ -53,6 +66,11 @@ public class GameHistoryService {
         }
     }
 
+    /**
+     * Betölti és visszaadja az összes korábban mentett játékot.
+     *
+     * @return A betöltött játékmenetek listája.
+     */
     public static List<GameHistory> loadGameHistories() {
         try {
             Path path = Paths.get(FILE_PATH).toAbsolutePath();

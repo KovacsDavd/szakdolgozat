@@ -21,6 +21,9 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * Mentések kontrollerje.
+ */
 public class HistoryController {
 
     @FXML
@@ -38,6 +41,9 @@ public class HistoryController {
     @FXML
     private TableColumn<GameHistory, String> difficultyColumn;
 
+    /**
+     * Inicializálja az oszlopokat.
+     */
     @FXML
     public void initialize() {
         timeColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getElapsedTimeFormatted()));
@@ -74,6 +80,11 @@ public class HistoryController {
         loadHistories();
     }
 
+    /**
+     * Létrehozza az újra játszás gombot, és rárakja a stílust.
+     *
+     * @return visszaadja az elkészült gombot
+     */
     private Button createReplayButton() {
         Button btn = new Button("Újra");
         btn.getStyleClass().add("button-common");
@@ -81,6 +92,11 @@ public class HistoryController {
         return btn;
     }
 
+    /**
+     * Betölti a játék kinézetet a megadott adatok alapján.
+     *
+     * @param history tárolja az adatokat, amelykből dolgozva újra töltjük a táblát
+     */
     @FXML
     private void replayGame(GameHistory history) {
         try {
@@ -99,6 +115,9 @@ public class HistoryController {
         }
     }
 
+    /**
+     * Json fileból betölti az adatokat.
+     */
     private void loadHistories() {
         List<GameHistory> histories = GameHistoryService.loadGameHistories();
         if (histories != null) {
@@ -106,6 +125,12 @@ public class HistoryController {
         }
     }
 
+    /**
+     * Betölti a főmenü ablakot.
+     *
+     * @param event esemény, mely kiváltja a metódus hívását, tárolja az adatokat
+     * @throws IOException kivételt dob, ha hiba történne a képernyő betöltése során
+     */
     @FXML
     private void backToMainMenu(ActionEvent event) throws IOException {
         Parent gameView = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("fxml/StarterView.fxml")));

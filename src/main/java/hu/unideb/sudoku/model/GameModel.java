@@ -5,12 +5,15 @@ import org.tinylog.Logger;
 
 import java.util.*;
 
+/**
+ * Játék üzleti logikáját valósítja meg.
+ */
 public class GameModel {
-    private static GameDifficult difficult;
+    private static GameDifficulty difficulty;
     private static final int SIZE = 9;
     private static final int EASY_MOD_REVOME_DIGITS = 44;
     private static final int MEDIUM_MOD_REVOME_DIGITS = 48;
-    private static final int HARD_MOD_REVOME_DIGITS = 52;
+    private static final int HARD_MOD_REVOME_DIGITS = 55;
     private static final String SINGLE_LOG_FORMAT = "[{}][{}] = {}";
     private static final String PAIR_LOG_FORMAT = "[{}, {}] and [{}, {}]";
     private static final String NAKED_PAIR = "NAKED PAIR:";
@@ -22,6 +25,11 @@ public class GameModel {
     private int helpCounter = 0;
     private final Set<Pair<Pair<Integer, Integer>, Set<Integer>>> checkedPairSet = new HashSet<>();
 
+    /**
+     * Inicializálja a játékot.
+     * Létrehozza a játéktáblát, a megoldott táblát és az eredeti táblát.
+     * Amennyiben nincs szükség előzmények betöltésére, generál egy új Sudoku táblát.
+     */
     public GameModel() {
         sudokuBoard = new CellPosition[SIZE][SIZE];
         solvedBoard = new CellPosition[SIZE][SIZE];
@@ -38,26 +46,40 @@ public class GameModel {
         }
     }
 
+    /**
+     * Betölti a játékot egy korábban mentett állapotból.
+     * Beállítja a játék nehézségi szintjét és a táblákat az előzmények alapján.
+     *
+     * @param history A betöltendő játék előzménye.
+     */
     public void loadGameFromHistory(GameHistory history) {
-        setDifficult(GameDifficult.valueOf(history.getDifficulty()));
+        setDifficulty(GameDifficulty.valueOf(history.getDifficulty()));
         deepCopy(history.getOriginalBoard(), originalBoard);
         deepCopy(history.getOriginalBoard(), sudokuBoard);
         deepCopy(history.getSolvedBoard(), solvedBoard);
     }
 
+    /**
+     * Megoldja a játékot, átmásolva a megoldott tábla állapotát a jelenlegi táblába.
+     */
     public void solve() {
         deepCopy(solvedBoard, sudokuBoard);
     }
 
+    /**
+     * Generál egy új Sudoku táblát.
+     * Először kitölti az átlós 3x3-as blokkokat, majd a maradék helyeket.
+     * végül eltávolít néhány számot a nehézségi szintnek megfelelően.
+     */
     private void generateSudoku() {
         fillDiagonal();
         fillRemaining(0, 3);
 
         deepCopy(sudokuBoard, solvedBoard);
 
-        if (difficult == GameDifficult.EASY) {
+        if (difficulty == GameDifficulty.EASY) {
             removeDigits(EASY_MOD_REVOME_DIGITS);
-        } else if (difficult == GameDifficult.MEDIUM) {
+        } else if (difficulty == GameDifficulty.MEDIUM) {
             removeDigits(MEDIUM_MOD_REVOME_DIGITS);
         } else {
             removeDigits(HARD_MOD_REVOME_DIGITS);
@@ -67,6 +89,12 @@ public class GameModel {
         deepCopy(sudokuBoard, originalBoard);
     }
 
+    /**
+     * Átmásolja a source tábla értékeit, a destination táblába.
+     *
+     * @param source      tábla amelyet szeretnénk másolni
+     * @param destination tábla ahova szeeretnénk másolni
+     */
     public void deepCopy(CellPosition[][] source, CellPosition[][] destination) {
         for (int i = 0; i < SIZE; i++) {
             for (int j = 0; j < SIZE; j++) {
@@ -75,12 +103,21 @@ public class GameModel {
         }
     }
 
+    /**
+     * Kitölti tábla átlós 3x3-as blokkjait véletlenszerű számokkal.
+     */
     private void fillDiagonal() {
         for (int i = 0; i < SIZE; i = i + 3) {
             fillBox(i, i);
         }
     }
 
+    /**
+     * Kitölt egy 3x3-as blokkot véletlenszerű számokkal,.
+     *
+     * @param row A blokk kezdő sorának indexe.
+     * @param col A blokk kezdő oszlopának indexe.
+     */
     private void fillBox(int row, int col) {
         int num;
         for (int i = 0; i < 3; i++)
@@ -93,6 +130,14 @@ public class GameModel {
             }
     }
 
+    /**
+     * Ellenőrzi, hogy egy adott szám szerepel-e már az adott sorban.
+     *
+     * @param board A tábla.
+     * @param row   A sor indexe.
+     * @param value Az ellenőrizendő szám.
+     * @return Igaz, ha a szám nincs jelen a sorban, különben hamis.
+     */
     private boolean unUsedInRow(CellPosition[][] board, int row, int value) {
         for (int col = 0; col < SIZE; col++) {
             if (board[row][col].getValue() == value) {
@@ -102,6 +147,14 @@ public class GameModel {
         return true;
     }
 
+    /**
+     * Ellenőrzi, hogy egy adott szám szerepel-e már az adott oszlopban.
+     *
+     * @param board A tábla.
+     * @param col   A sor indexe, amiben keresünk.
+     * @param value Az ellenőrizendő szám.
+     * @return Igaz, ha a szám nincs jelen a oszlopban, különben hamis.
+     */
     private boolean unUsedInCol(CellPosition[][] board, int col, int value) {
         for (int row = 0; row < SIZE; row++) {
             if (board[row][col].getValue() == value) {
@@ -111,6 +164,15 @@ public class GameModel {
         return true;
     }
 
+    /**
+     * Ellenőrzi, hogy egy adott szám szerepel-e már az adott blokkban.
+     *
+     * @param board    A tábla.
+     * @param rowStart A blokk kezdő sorának indexe.
+     * @param colStart A blokk kezdő oszlopának indexe.
+     * @param value    Az ellenőrizendő szám.
+     * @return Igaz, ha a szám nincs jelen a blokkban, különben hamis.
+     */
     private boolean unUsedInBox(CellPosition[][] board, int rowStart, int colStart, int value) {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
@@ -122,6 +184,14 @@ public class GameModel {
         return true;
     }
 
+    /**
+     * Megpróbálja kitölteni a tábla maradék részeit anélkül, hogy szabályokat sértenénk.
+     * Rekurzív megoldást használ, visszalépéssel, ha nem talál megoldást egy adott útvonalon.
+     *
+     * @param i A jelenlegi sor indexe.
+     * @param j A jelenlegi oszlop indexe.
+     * @return Igaz, ha sikerült kitölteni az egész táblát, különben hamis.
+     */
     private boolean fillRemaining(int i, int j) {
         if (i == SIZE - 1 && j == SIZE) {
             return true;
@@ -148,6 +218,9 @@ public class GameModel {
         return false;
     }
 
+    /**
+     * Eltárolja az összes cella lehetséges értékeit.
+     */
     public void storePossibleValues() {
         for (int i = 0; i < SIZE; i++) {
             for (int j = 0; j < SIZE; j++) {
@@ -159,6 +232,9 @@ public class GameModel {
         }
     }
 
+    /**
+     * Eltárolja a cellák lehetséges értékeit az aktuális tábla állapota alapján.
+     */
     public void storeActualPossibleValues() {
         for (int i = 0; i < SIZE; i++) {
             for (int j = 0; j < SIZE; j++) {
@@ -172,12 +248,26 @@ public class GameModel {
         }
     }
 
+    /**
+     * Eltávolítja a megadott értékeket a cella lehetséges értékei közül.
+     *
+     * @param row            A cella sorának indexe.
+     * @param col            A cella oszlopának indexe.
+     * @param valuesToRemove Az eltávolítandó értékek halmaza.
+     */
     public void removePossibleValuesAt(int row, int col, Set<Integer> valuesToRemove) {
         Set<Integer> possibleValues = new HashSet<>(sudokuBoard[row][col].getPossibleValues());
         possibleValues.removeAll(valuesToRemove);
         sudokuBoard[row][col].setPossibleValues(possibleValues);
     }
 
+    /**
+     * Kiszámítja egy adott cella számára az új lehetséges értékeket a tábla aktuális állapota alapján.
+     *
+     * @param row A cella sorának indexe.
+     * @param col A cella oszlopának indexe.
+     * @return A cella számára lehetséges új értékek halmaza.
+     */
     public Set<Integer> getNewPossibleValues(int row, int col) {
         boolean[] usedValues = new boolean[SIZE + 1];
 
@@ -220,10 +310,26 @@ public class GameModel {
         return possibleValues;
     }
 
+    /**
+     * Ellenőrzi, hogy egy adott érték hozzáadható-e az adott cellához anélkül, hogy szabályokat sértenénk.
+     *
+     * @param row   A cella sorának indexe.
+     * @param col   A cella oszlopának indexe.
+     * @param value A hozzáadni kívánt érték.
+     * @return Igaz, ha az érték hozzáadható anélkül, hogy szabályokat sértenénk, egyébként hamis.
+     */
     public boolean isValueValid(int row, int col, int value) {
         return isValueUnusedInRow(row, col, value) && isValueUnusedInCol(row, col, value) && isValueUnusedInBox(row, col, value);
     }
 
+    /**
+     * Ellenőrzi, hogy egy adott érték szerepel-e egy adott sorban.
+     *
+     * @param row   A sor indexe.
+     * @param col   A oszlop indexe .
+     * @param value Az ellenőrizendő érték.
+     * @return Igaz, ha az érték nem szerepel a sorban, egyébként hamis.
+     */
     private boolean isValueUnusedInRow(int row, int col, int value) {
         for (int j = 0; j < 9; j++) {
             if (j != col && sudokuBoard[row][j].getValue() == value) {
@@ -233,6 +339,14 @@ public class GameModel {
         return true;
     }
 
+    /**
+     * Ellenőrzi, hogy egy adott érték szerepel-e egy adott oszlopban.
+     *
+     * @param row   A sor indexe.
+     * @param col   A cella oszlopának indexe
+     * @param value Az ellenőrizendő érték.
+     * @return Igaz, ha az érték nem szerepel a oszlopban, egyébként hamis.
+     */
     private boolean isValueUnusedInCol(int row, int col, int value) {
         for (int i = 0; i < 9; i++) {
             if (i != row && sudokuBoard[i][col].getValue() == value) {
@@ -242,6 +356,14 @@ public class GameModel {
         return true;
     }
 
+    /**
+     * Ellenőrzi, hogy egy adott érték szerepel-e egy adott blokkban.
+     *
+     * @param row   A sor indexe.
+     * @param col   A cella oszlopának indexe
+     * @param value Az ellenőrizendő érték.
+     * @return Igaz, ha az érték nem szerepel a blokkban, egyébként hamis.
+     */
     private boolean isValueUnusedInBox(int row, int col, int value) {
         int boxRowStart = row - row % 3;
         int boxColStart = col - col % 3;
@@ -255,6 +377,12 @@ public class GameModel {
         return true;
     }
 
+    /**
+     * Eltávolít véletlenszerűen számokat a cellából.
+     * Biztosítja, hogy minden eltávolított szám után a tábla még mindig egyedi megoldással rendelkezzen.
+     *
+     * @param count Az eltávolítandó számok száma.
+     */
     private void removeDigits(int count) {
         Set<Pair<Integer, Integer>> cellsToRemove = new HashSet<>();
         while (cellsToRemove.size() < count) {
@@ -276,12 +404,31 @@ public class GameModel {
         }
     }
 
+    /**
+     * Ellenőrzi, hogy a táblának van-e egyedi megoldása.
+     * Ez a metódus a backtracking algoritmust használja, hogy megtalálja az összes lehetséges megoldást,
+     * és megszakítja a keresést, ha több mint egy megoldást talál.
+     *
+     * @return Igaz, ha a táblának pontosan egy egyedi megoldása van, egyébként hamis.
+     */
     public boolean hasUniqueSolution() {
-        int[] numberOfSolutions = new int[1]; // Egy tömb, hogy referencia típusként viselkedjen
+        int[] numberOfSolutions = new int[1];
         checkForUniqueSolution(0, 0, numberOfSolutions);
         return numberOfSolutions[0] == 1;
     }
 
+    /**
+     * Rekurzív metódus, amely megszámolja a tábla összes lehetséges megoldását.
+     * A tábla minden lehetséges értékével próbálkozik minden üres cellában,
+     * és rekurzívan ellenőrzi, hogy a tábla ezekkel az értékekkel megoldható-e.
+     * A metódus az első megoldás megtalálása után is folytatja a keresést, hogy meghatározza,
+     * van-e több megoldás.
+     *
+     * @param row               A jelenlegi cella sorának indexe.
+     * @param col               A jelenlegi cella oszlopának indexe.
+     * @param numberOfSolutions Az eddig megtalált megoldások számát tartalmazó tömb.
+     * @return Igaz, ha csak egy megoldás van, egyébként hamis.
+     */
     private boolean checkForUniqueSolution(int row, int col, int[] numberOfSolutions) {
         if (row == SIZE) {
             numberOfSolutions[0]++; // Egy lehetséges megoldás megtalálva
@@ -309,10 +456,22 @@ public class GameModel {
         return numberOfSolutions[0] == 1;
     }
 
+    /**
+     * Ellenőrzi, hogy egy adott érték hozzáadható-e egy cellához anélkül, hogy megsértené a Sudoku szabályait.
+     *
+     * @param board aktuális tábla
+     * @param row   A cella sorának indexe.
+     * @param col   A cella oszlopának indexe.
+     * @param num   érték amit vizsgálunk
+     * @return Igaz, ha az érték hozzáadható a cellához, egyébként hamis.
+     */
     private boolean isPlacementValid(CellPosition[][] board, int row, int col, int num) {
         return (unUsedInRow(board, row, num) && unUsedInCol(board, col, num) && unUsedInBox(board, row - row % 3, col - col % 3, num));
     }
 
+    /**
+     * Alaphelyzetbe állítja a játéktáblát, visszaállítva az eredeti állapotot.
+     */
     public void resetBoard() {
         helpCounter = 0;
         checkedPairSet.clear();
@@ -323,6 +482,11 @@ public class GameModel {
         }
     }
 
+    /**
+     * Ellenőrzi, hogy a játék befejeződött-e, azaz minden cellában van érték.
+     *
+     * @return Igaz, ha a játék befejeződött, egyébként hamis.
+     */
     public boolean isComplete() {
         for (int i = 0; i < SIZE; i++) {
             for (int j = 0; j < SIZE; j++) {
@@ -335,6 +499,12 @@ public class GameModel {
         return true;
     }
 
+    /**
+     * Ellenőrzi, hogy a játéktábla helyes-e.
+     * Összeveti a jelenlegi tábla és a helyesen megoldott tábla értékeit.
+     *
+     * @return Igaz, ha a két tábla értékei azonosak, egyébként hamis.
+     */
     public boolean isCorrect() {
         for (int i = 0; i < SIZE; i++) {
             for (int j = 0; j < SIZE; j++) {
@@ -348,6 +518,12 @@ public class GameModel {
         return true;
     }
 
+    /**
+     * Azon cellák halmazát adja vissza, ahol a játékos által beírt érték helytelen.
+     * Egy cella helytelen, ha eltér a megoldástól és nem üres.
+     *
+     * @return A helytelenül kitöltött cellák halmaza.
+     */
     public Set<Pair<Integer, Integer>> getIncorrectValues() {
         Set<Pair<Integer, Integer>> incorrectValues = new HashSet<>();
         for (int i = 0; i < SIZE; i++) {
@@ -362,6 +538,14 @@ public class GameModel {
         return incorrectValues;
     }
 
+    /**
+     * Segítő algoritmus.
+     * Bejárja a sorokat, oszlopokat és 3x3 boxokat.
+     * Olyan cellákat keres ahol már csak egy cella maradt kitöltetlen.
+     * Ekkor az értéket, és a pozícót letárolja egy halmazba
+     *
+     * @return a letárolt pozíció és értékek halmaza.
+     */
     public Set<Pair<Integer, Pair<Integer, Integer>>> checkFullHouse() {
         Set<Pair<Integer, Pair<Integer, Integer>>> results = new HashSet<>();
 
@@ -372,6 +556,12 @@ public class GameModel {
         return results;
     }
 
+    /**
+     * A full house algoritmus sorokban és oszlopokban való keresésre van.
+     *
+     * @param isRow Igaz, ha sorokat kell ellenőrizni, hamis, ha oszlopokat.
+     * @return a letárolt pozíció és értékek halmaza.
+     */
     private Set<Pair<Integer, Pair<Integer, Integer>>> checkFullHouseForRowCOl(boolean isRow) {
         Set<Pair<Integer, Pair<Integer, Integer>>> results = new HashSet<>();
         for (int i = 0; i < SIZE; i++) {
@@ -391,6 +581,11 @@ public class GameModel {
         return results;
     }
 
+    /**
+     * A full house algoritmus 3x3 blokk való keresésre van.
+     *
+     * @return a letárolt pozíció és értékek halmaza.
+     */
     private Set<Pair<Integer, Pair<Integer, Integer>>> checkFullHouseByBoxes() {
         Set<Pair<Integer, Pair<Integer, Integer>>> results = new HashSet<>();
         int boxSize = 3;
@@ -416,6 +611,14 @@ public class GameModel {
         return results;
     }
 
+    /**
+     * Hozzáadja a megtalált cella értékét és pozícióját a halmazhoz.
+     *
+     * @param emptyCellCount    ennyi üres cella van (nincs értéke)
+     * @param value             beírandó érték
+     * @param fullHousePosition megtalált cella pozíciója
+     * @param results           ezeket tároló halmaz
+     */
     private void addFullHouseResult(int emptyCellCount, int value, Pair<Integer, Integer> fullHousePosition, Set<Pair<Integer, Pair<Integer, Integer>>> results) {
         if (emptyCellCount == 1) {
             results.add(new Pair<>(value, fullHousePosition));
@@ -423,6 +626,14 @@ public class GameModel {
         }
     }
 
+    /**
+     * Segítő algortmus.
+     * Azokat a cellákat keresi, amelyekben pontosan egy lehetséges szám található, amit biztonságosan elhelyezhetünk.
+     * Ezek a cellák olyan egyértelmű választást jelentenek, ahol nincs más lehetőség.
+     *
+     * @return Egy halmazt ad vissza, amely tartalmazza azon cellák pozícióját és az egyetlen lehetséges számot,
+     * amelyet az adott cellákban elhelyezhetünk.
+     */
     public Set<Pair<Integer, Pair<Integer, Integer>>> checkNakedSingles() {
         Set<Pair<Integer, Pair<Integer, Integer>>> results = new HashSet<>();
 
@@ -443,6 +654,14 @@ public class GameModel {
         return results;
     }
 
+    /**
+     * Segítő algortmus.
+     * Azokat a cellákat keresi, ahol egy adott szám csak egyetlen cellában lehetséges egy sorban, oszlopban vagy 3x3-as blokkban.
+     * Bár a cella több lehetséges számot is tartalmazhat, de adott szám máshol nem lehetséges, így az adott cellába kell kerülnie.
+     *
+     * @return Egy halmazt ad vissza, amely tartalmazza azon cellák pozícióját és az egyetlen lehetséges számot,
+     * amelyet az adott cellákban elhelyezhetünk.
+     */
     public Set<Pair<Integer, Pair<Integer, Integer>>> checkHiddenSingles() {
         Set<Pair<Integer, Pair<Integer, Integer>>> results = new HashSet<>();
 
@@ -462,10 +681,28 @@ public class GameModel {
         return results;
     }
 
+    /**
+     * Megvizsgálja, hogy az adott érték szerepel-e más cellában is mint lehetséges érték.
+     *
+     * @param row   cella sora
+     * @param col   cella oszlopa
+     * @param value ellenőrizendő érték
+     * @return Igaz, ha a vizsgált szám csak az adott cellában lehetséges az adott kontextusban (sor, oszlop, blokk),
+     * egyébként hamis.
+     */
     private boolean isHiddenSingleCell(int row, int col, int value) {
         return !isPossibleValueInRow(row, col, value) && !isPossibleValueInCol(row, col, value) && !isPossibleValueInBox(row, col, value);
     }
 
+    /**
+     * Megvizsgálja, hogy az adott sorban, az adott érték szerepel-e más cellában is mint lehetséges érték.
+     *
+     * @param row   cella sora
+     * @param col   cella oszlopa
+     * @param value ellenőrizendő érték
+     * @return Igaz, ha a vizsgált szám csak az adott cellában lehetséges az adott sorban,
+     * egyébként hamis.
+     */
     private boolean isPossibleValueInRow(int row, int col, int value) {
         for (int j = 0; j < SIZE; j++) {
             if (j != col && sudokuBoard[row][j].getPossibleValues().contains(value)) {
@@ -475,6 +712,15 @@ public class GameModel {
         return false;
     }
 
+    /**
+     * Megvizsgálja, hogy az adott oszlopban, az adott érték szerepel-e más cellában is mint lehetséges érték.
+     *
+     * @param row   cella sora
+     * @param col   cella oszlopa
+     * @param value ellenőrizendő érték
+     * @return Igaz, ha a vizsgált szám csak az adott cellában lehetséges az adott oszlopban,
+     * egyébként hamis.
+     */
     private boolean isPossibleValueInCol(int row, int col, int value) {
         for (int i = 0; i < SIZE; i++) {
             if (i != row && sudokuBoard[i][col].getPossibleValues().contains(value)) {
@@ -484,6 +730,15 @@ public class GameModel {
         return false;
     }
 
+    /**
+     * Megvizsgálja, hogy az adott blokkban, az adott érték szerepel-e más cellában is mint lehetséges érték.
+     *
+     * @param row   cella sora
+     * @param col   cella oszlopa
+     * @param value ellenőrizendő érték
+     * @return Igaz, ha a vizsgált szám csak az adott cellában lehetséges az adott blokkban,
+     * egyébként hamis.
+     */
     private boolean isPossibleValueInBox(int row, int col, int value) {
         int boxRow = row - row % 3;
         int boxCol = col - col % 3;
@@ -498,8 +753,17 @@ public class GameModel {
         return false;
     }
 
-    public NakedPairsType checkNakedPairs() {
-        NakedPairsType nakedPairsType = new NakedPairsType();
+    /**
+     * Segítő algoritmus.
+     * Azokat a cellapárokat keresi egy sorban, oszlopban vagy blokkban,
+     * ahol csak két lehetséges szám található, és ezek a számok megegyeznek a két cellában.
+     * Ez lehetővé teszi, hogy kizárjuk ezeket a számokat más cellák lehetséges értékei közül az adott területen.
+     *
+     * @return Egy NakedPairsType objektumot ad vissza, amely tárolja ezeket az értékeket és azok
+     * pozícióit, valamint azon cellák pozícióit, ahonnan el kell távolítani a lehetséges értékeket.
+     */
+    public PairsType checkNakedPairs() {
+        PairsType nakedPairsType = new PairsType();
 
         Set<Pair<Integer, Integer>> nakedPairsPositionSet = new HashSet<>();
         Set<Pair<Pair<Integer, Integer>, Set<Integer>>> removeSet = new HashSet<>();
@@ -519,19 +783,36 @@ public class GameModel {
                 }
             }
         }
-        return returnNakedPairsType(nakedPairsType, nakedPairsPositionSet, removeSet);
+        return returnPairsType(nakedPairsType, nakedPairsPositionSet, removeSet);
     }
 
-    private NakedPairsType returnNakedPairsType(NakedPairsType pairsType, Set<Pair<Integer, Integer>> pirsPositionSet, Set<Pair<Pair<Integer, Integer>, Set<Integer>>> removeSet) {
-        if (pirsPositionSet.isEmpty()) {
+    /**
+     * Visszaad egy PairsType objektumot, amely tartalmazza az azonosított párok pozícióit és a kizárandó értékeket.
+     *
+     * @param pairsType        Az előkészített PairsType objektum.
+     * @param pairsPositionSet A talált párok pozícióinak halmaza.
+     * @param removeSet        Az eltávolítandó értékek és azok pozícióinak halmaza.
+     * @return A PairsType objektum, amelyet frissítettek az azonosított párokkal és eltávolítandó értékekkel.
+     */
+    private PairsType returnPairsType(PairsType pairsType, Set<Pair<Integer, Integer>> pairsPositionSet, Set<Pair<Pair<Integer, Integer>, Set<Integer>>> removeSet) {
+        if (pairsPositionSet.isEmpty()) {
             return null;
         }
-        pairsType.setNakedPairsPositionSet(pirsPositionSet);
+        pairsType.setPairsPositionSet(pairsPositionSet);
         pairsType.setRemoveSet(removeSet);
 
         return pairsType;
     }
 
+    /**
+     * Felfedi a Naked párokat egy sorban, és eltávolítja a megfelelő értékeket más cellákból.
+     *
+     * @param row                   A vizsgált sor indexe.
+     * @param col                   A vizsgált oszlop indexe.
+     * @param pairValues            A talált párban szereplő értékek halmaza.
+     * @param nakedPairsPositionSet A talált párok pozícióinak halmaza.
+     * @param removeSet             Az eltávolítandó értékek és azok pozícióinak halmaza.
+     */
     private void checkNakedPairForRow(int row, int col, Set<Integer> pairValues, Set<Pair<Integer, Integer>> nakedPairsPositionSet, Set<Pair<Pair<Integer, Integer>, Set<Integer>>> removeSet) {
         for (int j = 0; j < SIZE; j++) {
             if (j != col && sudokuBoard[row][j].getPossibleValues().equals(pairValues)) {
@@ -545,6 +826,15 @@ public class GameModel {
         }
     }
 
+    /**
+     * Felfedi a Naked párokat egy oszlopban, és eltávolítja a megfelelő értékeket más cellákból.
+     *
+     * @param row                   A vizsgált sor indexe.
+     * @param col                   A vizsgált oszlop indexe.
+     * @param pairValues            A talált párban szereplő értékek halmaza.
+     * @param nakedPairsPositionSet A talált párok pozícióinak halmaza.
+     * @param removeSet             Az eltávolítandó értékek és azok pozícióinak halmaza.
+     */
     private void checkNakedPairForCol(int row, int col, Set<Integer> pairValues, Set<Pair<Integer, Integer>> nakedPairsPositionSet, Set<Pair<Pair<Integer, Integer>, Set<Integer>>> removeSet) {
         for (int i = 0; i < SIZE; i++) {
             if (i != row && sudokuBoard[i][col].getPossibleValues().equals(pairValues)) {
@@ -558,6 +848,15 @@ public class GameModel {
         }
     }
 
+    /**
+     * Felfedi a Naked párokat egy blokkban, és eltávolítja a megfelelő értékeket más cellákból.
+     *
+     * @param row                   A vizsgált sor indexe.
+     * @param col                   A vizsgált oszlop indexe.
+     * @param pairValues            A talált párban szereplő értékek halmaza.
+     * @param nakedPairsPositionSet A talált párok pozícióinak halmaza.
+     * @param removeSet             Az eltávolítandó értékek és azok pozícióinak halmaza.
+     */
     private void checkNakedPairForBox(int row, int col, Set<Integer> pairValues, Set<Pair<Integer, Integer>> nakedPairsPositionSet, Set<Pair<Pair<Integer, Integer>, Set<Integer>>> removeSet) {
         int startRow = row - row % 3;
         int startCol = col - col % 3;
@@ -577,6 +876,15 @@ public class GameModel {
         }
     }
 
+    /**
+     * Logolja a talált párok információit a megadott sorban vagy oszlopban.
+     *
+     * @param row                   A vizsgált sor indexe.
+     * @param col                   A vizsgált oszlop indexe.
+     * @param nakedPairsPositionSet A meztelen párok pozícióinak halmaza.
+     * @param otherIndex            A pár másik cellájának indexe.
+     * @param isRow                 Igaz, ha a pár egy sorban található, hamis, ha egy oszlopban.
+     */
     private void logForNakedPairRowCol(int row, int col, Set<Pair<Integer, Integer>> nakedPairsPositionSet, int otherIndex, boolean isRow) {
         Pair<Integer, Integer> currentPair = new Pair<>(row, col);
         Pair<Integer, Integer> otherPair = isRow ? new Pair<>(row, otherIndex) : new Pair<>(otherIndex, col);
@@ -590,6 +898,16 @@ public class GameModel {
         }
     }
 
+    /**
+     * Eltávolítja a talált párokban szereplő értékeket más cellákból egy adott sorban vagy oszlopban.
+     *
+     * @param row        A vizsgált sor indexe.
+     * @param col        A vizsgált oszlop indexe.
+     * @param j          A pár másik cellájának indexe (sornál aktuális oszlop, oszlop esetén az aktuális sor)
+     * @param pairValues A meztelen párban szereplő értékek halmaza.
+     * @param results    Az eltávolítandó értékek és azok pozícióinak halmaza.
+     * @param isRow      Igaz, ha a pár egy sorban található, hamis, ha egy oszlopban.
+     */
     private void addRemovePositionAndValuesRowCol(int row, int col, int j, Set<Integer> pairValues, Set<Pair<Pair<Integer, Integer>, Set<Integer>>> results, boolean isRow) {
         int otherIndex = isRow ? col : row;
         for (int i = 0; i < SIZE; i++) {
@@ -606,6 +924,16 @@ public class GameModel {
         }
     }
 
+    /**
+     * Hozzáad egy értéket és annak eltávolítási pozícióját a megadott halmazhoz.
+     *
+     * @param row            A sor indexe, ahol az értéket eltávolítják.
+     * @param col            Az oszlop indexe, ahol az értéket eltávolítják.
+     * @param i              Sor vizsgálat esetén oszlop index, oszlop vizsgálat esetén sor index.
+     * @param removeValueSet Az eltávolítandó értékek halmaza.
+     * @param results        A végeredmények halmaza, amely tartalmazza az eltávolítási pozíciókat és a hozzájuk tartozó értékeket.
+     * @param isRow          Igaz, ha a sorban történik az eltávolítás, hamis, ha oszlopban.
+     */
     private void addRemoveValueToSet(int row, int col, int i, Set<Integer> removeValueSet, Set<Pair<Pair<Integer, Integer>, Set<Integer>>> results, boolean isRow) {
         if (!removeValueSet.isEmpty()) {
             if (isRow) {
@@ -616,6 +944,13 @@ public class GameModel {
         }
     }
 
+    /**
+     * Hozzáadja az eltávolítandó értékeket a megfelelő cellákhoz egy 3x3-as blokkban.
+     *
+     * @param removeValueSet    Az eltávolítandó értékek halmaza.
+     * @param results           Az eredmények halmaza, amely tartalmazza a pozíciókat és az eltávolítandó értékeket.
+     * @param removePositionSet Azon pozíciók halmaza, ahonnan értékeket kell eltávolítani.
+     */
     private void addRemoveValueToSetBox(Set<Integer> removeValueSet, Set<Pair<Pair<Integer, Integer>, Set<Integer>>> results, Set<Pair<Integer, Integer>> removePositionSet) {
         if (!removeValueSet.isEmpty()) {
             for (Pair<Integer, Integer> position : removePositionSet) {
@@ -624,6 +959,14 @@ public class GameModel {
         }
     }
 
+    /**
+     * Eltávolítja a meztelen párokban szereplő értékeket más cellákból egy adott 3x3-as blokkban.
+     *
+     * @param row        A vizsgált sor indexe a blokkban.
+     * @param col        A vizsgált oszlop indexe a blokkban.
+     * @param pairValues Talált párban szereplő értékek halmaza.
+     * @param results    Az eltávolítandó értékek és azok pozícióinak halmaza.
+     */
     private void addRemovePositionAndValuesBox(int row, int col, Set<Integer> pairValues, Set<Pair<Pair<Integer, Integer>, Set<Integer>>> results) {
         // Meghatározzuk a 3x3-as blokk kezdő pozícióját
         int startRow = row - row % 3;
@@ -652,8 +995,16 @@ public class GameModel {
         addRemoveValueToSetBox(removeValueSet, results, removePositionSet);
     }
 
-    public NakedPairsType checkHiddenPairs() {
-        NakedPairsType hiddenPairsType = new NakedPairsType();
+    /**
+     * Segítő algortmus.
+     * Olyan cellákat keres, amelyeknek a lehetséges értéke több mint kettő.
+     * Ezután bejárja sorokat, oszlopokat és blokkokat és összeszedi a rejtett párokat.
+     *
+     * @return Egy NakedPairsType objektumot ad vissza, amely tárolja ezeket az értékeket és azok
+     * pozícióit, valamint azon cellák pozícióit, ahonnan el kell távolítani a lehetséges értékeket.
+     */
+    public PairsType checkHiddenPairs() {
+        PairsType hiddenPairsType = new PairsType();
         Set<Pair<Integer, Integer>> hiddenPairsPositionSet = new HashSet<>();
         Set<Pair<Pair<Integer, Integer>, Set<Integer>>> removeSet = new HashSet<>();
 
@@ -669,12 +1020,20 @@ public class GameModel {
                 }
             }
         }
-        return returnNakedPairsType(hiddenPairsType, hiddenPairsPositionSet, removeSet);
+        return returnPairsType(hiddenPairsType, hiddenPairsPositionSet, removeSet);
     }
 
+    /**
+     * Összeszedi az értékek előfordulásait sorban/oszlopban, majd továbbítja, hogy megtaláljuk és feldolgozzuk azokat.
+     *
+     * @param index                  sor vizsgálat esetén oszlop index, oszlop vizsgálat esetén sor index
+     * @param hiddenPairsPositionSet rejtett párok pozíciói
+     * @param removeSet              eltávolítandó értékek halmaza
+     * @param isRow                  Igaz ha sor, hamis ha oszlop vizsgálat
+     */
     private void checkHiddenPairForRowCol(int index, Set<Pair<Integer, Integer>> hiddenPairsPositionSet, Set<Pair<Pair<Integer, Integer>, Set<Integer>>> removeSet, boolean isRow) {
         Map<Integer, List<Pair<Integer, Integer>>> valueOccurrences = new HashMap<>();
-        // Összegyűjtjük az értékek előfordulásait a sorban
+        // Összegyűjtjük az értékek előfordulásait a sorban/oszlopban
         for (int i = 0; i < SIZE; i++) {
             Set<Integer> possibleValues = isRow ? sudokuBoard[index][i].getPossibleValues() : sudokuBoard[i][index].getPossibleValues();
             for (Integer value : possibleValues) {
@@ -691,6 +1050,14 @@ public class GameModel {
         findAndProcessHiddenPairs(valueOccurrences, hiddenPairsPositionSet, removeSet);
     }
 
+    /**
+     * Összeszedi az értékek előfordulásait a blokkokban, majd továbbítja, hogy megtaláljuk és feldolgozzuk azokat.
+     *
+     * @param row                    sor index
+     * @param col                    oszlop index
+     * @param hiddenPairsPositionSet rejtett párok pozíciói
+     * @param removeSet              eltávolítandó értékek halmaza
+     */
     private void checkHiddenPairForBox(int row, int col, Set<Pair<Integer, Integer>> hiddenPairsPositionSet, Set<Pair<Pair<Integer, Integer>, Set<Integer>>> removeSet) {
         Map<Integer, List<Pair<Integer, Integer>>> valueOccurrences = new HashMap<>();
         int startRow = row - row % 3;
@@ -710,6 +1077,16 @@ public class GameModel {
         findAndProcessHiddenPairs(valueOccurrences, hiddenPairsPositionSet, removeSet);
     }
 
+    /**
+     * Megkeresi a rejtett párokat.
+     * Ha egy érték csak két cellában szerepel, akkor azt tovább vizsgálja
+     * Eztuán ellenőrzi, hogy van-e másik érték, amely ugyanazokban a cellákban fordul elő
+     * HA igen, akkor az egy rejtett pár
+     *
+     * @param valueOccurrences       az értékeket tárolja és azok pozícióit
+     * @param hiddenPairsPositionSet rejtett párok pozíciói
+     * @param removeSet              eltávolítandó értékek halmaza
+     */
     private void findAndProcessHiddenPairs(Map<Integer, List<Pair<Integer, Integer>>> valueOccurrences, Set<Pair<Integer, Integer>> hiddenPairsPositionSet, Set<Pair<Pair<Integer, Integer>, Set<Integer>>> removeSet) {
         for (Map.Entry<Integer, List<Pair<Integer, Integer>>> entry : valueOccurrences.entrySet()) {
             if (entry.getValue().size() == 2) { // Ha csak két cellában fordul elő az érték
@@ -727,6 +1104,17 @@ public class GameModel {
         }
     }
 
+    /**
+     * Feldolgozza a rejtett párokat.
+     * Eltávolítja ezekből a felesleges lehetséges értékeket.
+     * Logol
+     *
+     * @param positions              A rejtett pár celláinak pozíciói.
+     * @param value                  Az egyik érték a rejtett párból.
+     * @param otherEntry             A másik érték és annak pozíciói a rejtett párból.
+     * @param hiddenPairsPositionSet eddigi rejtett párok pozíciói
+     * @param removeSet              eltávolítandó értékek halmaza
+     */
     private void processHiddenPair(List<Pair<Integer, Integer>> positions, Integer value, Map.Entry<Integer, List<Pair<Integer, Integer>>> otherEntry, Set<Pair<Integer, Integer>> hiddenPairsPositionSet, Set<Pair<Pair<Integer, Integer>, Set<Integer>>> removeSet) {
         if (!hiddenPairsPositionSet.contains(new Pair<>(positions.get(0).getKey(), positions.get(0).getValue())) && !hiddenPairsPositionSet.contains(new Pair<>(positions.get(1).getKey(), positions.get(1).getValue()))) {
             Logger.debug("HIDDEN PAIR: " + PAIR_LOG_FORMAT, positions.get(0).getKey(), positions.get(0).getValue(), positions.get(1).getKey(), positions.get(1).getValue());
@@ -743,6 +1131,11 @@ public class GameModel {
         }
     }
 
+    /**
+     * NakedPair és HiddenPair által eltávolított értékeket letárolja (és azok pozícióját).
+     *
+     * @param removeSet eltávolított értékeket és pozíciójuk halmaza.
+     */
     public void addCheckedPairSet(Set<Pair<Pair<Integer, Integer>, Set<Integer>>> removeSet) {
         for (Pair<Pair<Integer, Integer>, Set<Integer>> removeEntry : removeSet) {
             Pair<Integer, Integer> position = removeEntry.getKey();
@@ -753,54 +1146,125 @@ public class GameModel {
         }
     }
 
+    /**
+     * Visszaadja a segítség lehívásainak számát.
+     *
+     * @return A segítség lehívásainak száma.
+     */
     public int getHelpCounter() {
         return helpCounter;
     }
 
+    /**
+     * Megnöveli segítség lehívásainak számát.
+     */
     public void increaseHelpCounter() {
         this.helpCounter++;
     }
 
+    /**
+     * Visszaadja a játéktábla aktuális állapotát.
+     *
+     * @return A játéktábla aktuális állapota.
+     */
     public CellPosition[][] getSudokuBoard() {
         return sudokuBoard;
     }
 
-    public static GameDifficult getDifficult() {
-        return difficult;
+    /**
+     * Visszaadja a játék nehézségi szintjét.
+     *
+     * @return A játék nehézségi szintje.
+     */
+    public static GameDifficulty getDifficulty() {
+        return difficulty;
     }
 
-    public static void setDifficult(GameDifficult dif) {
-        difficult = dif;
+    /**
+     * Beállítja a játék nehézségi szintjét.
+     *
+     * @param dif A beállítandó nehézségi szint.
+     */
+    public static void setDifficulty(GameDifficulty dif) {
+        difficulty = dif;
     }
 
+    /**
+     * Visszaadja a megoldott táblát.
+     *
+     * @return megoldott tábla.
+     */
     public CellPosition[][] getSolvedBoard() {
         return solvedBoard;
     }
 
+    /**
+     * Visszaadja a játék eredeti állapotát tartalmazó táblát.
+     *
+     * @return A játék eredeti állapotát tartalmazó tábla.
+     */
     public CellPosition[][] getOriginalBoard() {
         return originalBoard;
     }
 
+    /**
+     * Beállítja, hogy szükség van-e a játék előzményeinek betöltésére.
+     *
+     * @param needHistoryLoad Igaz, ha szükség van az előzmények betöltésére, egyébként hamis.
+     */
     public static void setNeedHistoryLoad(boolean needHistoryLoad) {
         GameModel.needHistoryLoad = needHistoryLoad;
     }
 
+    /**
+     * Visszaadja, hogy szükség van-e a játék előzményeinek betöltésére.
+     *
+     * @return Igaz, ha szükség van az előzmények betöltésére, egyébként hamis.
+     */
     public static boolean isNeedHistoryLoad() {
         return needHistoryLoad;
     }
 
+    /**
+     * Megadott értéket hozzárendeli az adott sor és oszlop pároshoz.
+     *
+     * @param row   A cella sorának indexe.
+     * @param col   A cella oszlopának indexe.
+     * @param value Az adott cellához hozzáadandó érték.
+     */
     public void setValueAt(int row, int col, int value) {
         sudokuBoard[row][col].setValue(value);
     }
 
+    /**
+     * Visszaadja egy adott sorban és oszlopban lévő cella értékét.
+     *
+     * @param row A cella sorának indexe.
+     * @param col A cella oszlopának indexe.
+     * @return A cella értéke.
+     */
     public int getValueAt(int row, int col) {
         return sudokuBoard[row][col].getValue();
     }
 
+    /**
+     * Beállítja az adott sorban és oszlopban lévő cella lehetséges értékeit.
+     *
+     * @param row    A cella sorának indexe.
+     * @param col    A cella oszlopának indexe.
+     * @param values A cellához beállítandó lehetséges értékek halmaza.
+     */
     public void setPossibleValuesAt(int row, int col, Set<Integer> values) {
         sudokuBoard[row][col].setPossibleValues(values);
     }
 
+    /**
+     * Visszaadja egy adott sorban és oszlopban lévő cella lehetséges értékeit.
+     *
+     * @param row A cella sorának indexe.
+     * @param col A cella oszlopának indexe.
+     * @return A cella lehetséges értékeinek halmaza.
+     */
     public Set<Integer> getPossibleValuesAt(int row, int col) {
         return sudokuBoard[row][col].getPossibleValues();
     }
