@@ -93,7 +93,7 @@ public class GameModel {
      * Átmásolja a source tábla értékeit, a destination táblába.
      *
      * @param source      tábla amelyet szeretnénk másolni
-     * @param destination tábla ahova szeeretnénk másolni
+     * @param destination tábla ahova szeretnénk másolni
      */
     public void deepCopy(CellPosition[][] source, CellPosition[][] destination) {
         for (int i = 0; i < SIZE; i++) {
@@ -540,9 +540,9 @@ public class GameModel {
 
     /**
      * Segítő algoritmus.
-     * Bejárja a sorokat, oszlopokat és 3x3 boxokat.
+     * Bejárja a sorokat, oszlopokat és 3x3 blokkot.
      * Olyan cellákat keres ahol már csak egy cella maradt kitöltetlen.
-     * Ekkor az értéket, és a pozícót letárolja egy halmazba
+     * Ekkor az értéket, és a pozíciót letárolja egy halmazba
      *
      * @return a letárolt pozíció és értékek halmaza.
      */
@@ -582,7 +582,7 @@ public class GameModel {
     }
 
     /**
-     * A full house algoritmus 3x3 blokk való keresésre van.
+     * A full house algoritmus 3x3 blokkban való keresésre van.
      *
      * @return a letárolt pozíció és értékek halmaza.
      */
@@ -627,7 +627,7 @@ public class GameModel {
     }
 
     /**
-     * Segítő algortmus.
+     * Segítő algoritmus.
      * Azokat a cellákat keresi, amelyekben pontosan egy lehetséges szám található, amit biztonságosan elhelyezhetünk.
      * Ezek a cellák olyan egyértelmű választást jelentenek, ahol nincs más lehetőség.
      *
@@ -655,7 +655,7 @@ public class GameModel {
     }
 
     /**
-     * Segítő algortmus.
+     * Segítő algoritmus.
      * Azokat a cellákat keresi, ahol egy adott szám csak egyetlen cellában lehetséges egy sorban, oszlopban vagy 3x3-as blokkban.
      * Bár a cella több lehetséges számot is tartalmazhat, de adott szám máshol nem lehetséges, így az adott cellába kell kerülnie.
      *
@@ -996,7 +996,7 @@ public class GameModel {
     }
 
     /**
-     * Segítő algortmus.
+     * Segítő algoritmus.
      * Olyan cellákat keres, amelyeknek a lehetséges értéke több mint kettő.
      * Ezután bejárja sorokat, oszlopokat és blokkokat és összeszedi a rejtett párokat.
      *
@@ -1080,7 +1080,7 @@ public class GameModel {
     /**
      * Megkeresi a rejtett párokat.
      * Ha egy érték csak két cellában szerepel, akkor azt tovább vizsgálja
-     * Eztuán ellenőrzi, hogy van-e másik érték, amely ugyanazokban a cellákban fordul elő
+     * Aztán ellenőrzi, hogy van-e másik érték, amely ugyanazokban a cellákban fordul elő
      * HA igen, akkor az egy rejtett pár
      *
      * @param valueOccurrences       az értékeket tárolja és azok pozícióit

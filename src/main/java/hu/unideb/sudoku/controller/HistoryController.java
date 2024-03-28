@@ -95,7 +95,7 @@ public class HistoryController {
     /**
      * Betölti a játék kinézetet a megadott adatok alapján.
      *
-     * @param history tárolja az adatokat, amelykből dolgozva újra töltjük a táblát
+     * @param history tárolja az adatokat, amelyből dolgozva újra töltjük a táblát
      */
     @FXML
     private void replayGame(GameHistory history) {
@@ -111,7 +111,7 @@ public class HistoryController {
             stage.setScene(new Scene(gameView));
             stage.show();
         } catch (IOException e) {
-            Logger.debug("Failed to load the game view", e);
+            Logger.debug("Nem tudtuk betölteni a játék ablakot!", e);
         }
     }
 

@@ -17,7 +17,7 @@ import static hu.unideb.sudoku.model.GameModel.setDifficulty;
 
 /**
  * Nehézségi szint választó kontrollerje
- * Itt állítjuk be a neghézsi szintet
+ * Itt állítjuk be a nehézségi  szintet
  * Átirányít a játék vagy a főmenü ablakhoz.
  */
 public class ChooseLevelController {

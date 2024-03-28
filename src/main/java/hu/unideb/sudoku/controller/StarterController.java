@@ -41,7 +41,7 @@ public class StarterController {
     }
 
     /**
-     * Megjeleníti a megadott elerés alapján az ablakot.
+     * Megjeleníti a megadott az ablak elérésútja alapján az ablakot.
      *
      * @param event    esemény, mely kiváltja a metódus hívását, tárolja az adatokat
      * @param fxmlPath a betöltendő ablak útvonala

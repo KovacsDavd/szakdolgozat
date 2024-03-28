@@ -205,7 +205,7 @@ public class GameController {
     }
 
     /**
-     * Kirörli a szöveget a cellából és eltávolítja az 'error' stílust.
+     * Kitörli a szöveget a cellából és eltávolítja az 'error' stílust.
      *
      * @param textArea a cella amelyet kezelünk
      */
@@ -256,7 +256,7 @@ public class GameController {
     }
 
     /**
-     * Ellenörzi a táblát, hogy milyen állapotban van.
+     * Ellenőrzi a táblát, hogy milyen állapotban van.
      * Készen van-e vagy sem
      * Hibás vagy sem
      */
@@ -268,7 +268,7 @@ public class GameController {
                 showAlert("Gratulálunk!", "Sikeresen megoldottad a Sudoku-t!");
                 setEditingEnabled(false);
             } else {
-                showAlert("Hiba", "Helytelen megoldás");
+                showAlert("Hiba", "Helytelen megoldás!");
             }
         } else {
             Set<Pair<Integer, Integer>> incorrectValues = model.getIncorrectValues();
@@ -360,14 +360,14 @@ public class GameController {
 
         if (!model.isValueValid(row, col, value)) {
             textArea.getStyleClass().add(ERROR);
-            showAlert("Hiba", "A(z) " + value + " szám már szerepel a sorban, oszlopban, vagy a 3x3-as dobozban.");
+            showAlert("Hiba", "A(z) " + value + " szám már szerepel a sorban, oszlopban, vagy a 3x3-as blokkban!");
         }
         model.setValueAt(row, col, value);
     }
 
     /**
      * Feldolgozza a több értékű cellát.
-     * Egy Set-ben tárolja ezeket, így kiszürve az azonosokat
+     * Egy Set-ben tárolja ezeket, így kiszűrve az azonosokat
      * Ha egy elemű lesz a Set- akkor visszaállítja az eredetit
      * Ha validak az értékek akkor frissíti a cellát
      *
@@ -568,7 +568,7 @@ public class GameController {
     }
 
     /**
-     * Meghívja a megoldó algortimust.
+     * Meghívja a megoldó algoritmust.
      * Frissíti a kinézetet
      * Leállítja a stoppert
      */
@@ -622,7 +622,7 @@ public class GameController {
     }
 
     /**
-     * Elmenti az eredeti lehetséges értékeket, amjd frissítni a kinézetet.
+     * Elmenti az eredeti lehetséges értékeket, majd frissíti a kinézetet.
      */
     @FXML
     void resetPossibleValues() {
@@ -664,7 +664,7 @@ public class GameController {
     /**
      * A cellák szerkeszthetőségét állítja.
      *
-     * @param enabled true ha engedályezi, false ha nem
+     * @param enabled true ha engedélyezi, false ha nem
      */
     private void setEditingEnabled(boolean enabled) {
         for (int row = 0; row < 9; row++) {
@@ -739,6 +739,8 @@ public class GameController {
 
     /**
      * Alkalmazza a kiválasztott segítő algoritmust.
+     * Először megtalálja, hogy melyik algoritmus tud segíteni.
+     * Másodszor ezeket az értékeket, cellákat megjelöli a kinézetben is.
      */
     @FXML
     private void helpStrategy() {

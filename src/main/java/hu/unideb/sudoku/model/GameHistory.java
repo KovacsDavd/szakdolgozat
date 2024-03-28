@@ -47,7 +47,7 @@ public class GameHistory {
     /**
      * Az eltelt idő formázott megjelenítése percekben és másodpercekben.
      *
-     * @return Az eltelt idő formázott stringje.
+     * @return Az eltelt idő formázott alakban Stringként.
      */
     public String getElapsedTimeFormatted() {
         long minutes = (elapsedTimeSeconds % 3600) / 60;
