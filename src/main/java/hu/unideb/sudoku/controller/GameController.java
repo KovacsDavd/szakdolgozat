@@ -353,7 +353,9 @@ public class GameController {
      */
     private void processSingleDigit(TextArea textArea, int row, int col, String text) {
         int value = Integer.parseInt(text);
-        textArea.getStyleClass().remove(ERROR);
+        if (!model.getIncorrectValues().contains(new Pair<>(row, col))) {
+            textArea.getStyleClass().remove(ERROR);
+        }
         updateTextArea(textArea, text, false);
 
         if (!model.isValueValid(row, col, value)) {
@@ -845,6 +847,7 @@ public class GameController {
 
     /**
      * Visszaadja a 'segítség' gombot.
+     *
      * @return 'segítség' gomb
      */
     private Button getHelpButton() {
@@ -853,6 +856,7 @@ public class GameController {
 
     /**
      * Visszaadja a 'lehetséges értékek újra számolása' gombot.
+     *
      * @return 'lehetséges értékek újra számolása' gomb
      */
     private Button getRecalculateButton() {
@@ -861,6 +865,7 @@ public class GameController {
 
     /**
      * Visszaadja a 'lehetséges értékek alaphelyzetbe állítása' gombot.
+     *
      * @return 'lehetséges értékek alaphelyzetbe állítása'
      */
     private Button getResetButton() {
