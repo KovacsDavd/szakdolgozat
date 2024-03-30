@@ -2,7 +2,8 @@ package hu.unideb.sudoku.model;
 
 
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class GameDifficultyTest {
 

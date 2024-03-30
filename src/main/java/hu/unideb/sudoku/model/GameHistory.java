@@ -14,10 +14,10 @@ public class GameHistory {
     /**
      * Teljes konstruktor a játék mentett állásának létrehozásához.
      *
-     * @param originalBoard A játék eredeti táblája.
-     * @param solvedBoard A játék megoldott táblája.
+     * @param originalBoard      A játék eredeti táblája.
+     * @param solvedBoard        A játék megoldott táblája.
      * @param elapsedTimeSeconds Az eltelt idő másodpercben.
-     * @param difficulty A játék nehézségi szintje.
+     * @param difficulty         A játék nehézségi szintje.
      */
     public GameHistory(CellPosition[][] originalBoard, CellPosition[][] solvedBoard, long elapsedTimeSeconds, String difficulty) {
         this.originalBoard = originalBoard;

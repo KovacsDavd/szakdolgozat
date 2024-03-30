@@ -503,11 +503,13 @@ class GameModelTest {
         underTest.setValueAt(1, 2, 0);
         underTest.setValueAt(1, 3, 0);
     }
+
     private void setValueCol() {
         underTest.setValueAt(1, 1, 0);
         underTest.setValueAt(2, 1, 0);
         underTest.setValueAt(3, 1, 0);
     }
+
     private void setValueBox() {
         underTest.setValueAt(1, 1, 0);
         underTest.setValueAt(1, 3, 0);

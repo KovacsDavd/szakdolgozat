@@ -1,10 +1,6 @@
 package hu.unideb.sudoku.model;
 
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Spy;
-import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -23,7 +19,7 @@ class CellPositionTest {
 
     @Test
     void testGetPossibleValues() {
-        CellPosition cellPosition =  new CellPosition();
+        CellPosition cellPosition = new CellPosition();
         cellPosition.setPossibleValues(new HashSet<>(Set.of(10, 11)));
 
         assertEquals(2, cellPosition.getPossibleValues().size());
