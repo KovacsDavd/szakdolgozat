@@ -268,19 +268,19 @@ public class GameModel {
     public Set<Integer> getNewPossibleValues(int row, int col) {
         boolean[] usedValues = new boolean[SIZE + 1];
 
-        // Ellenőrizzi a sorban lévő értékeket
+        // Sor
         for (int j = 0; j < SIZE; j++) {
             int value = sudokuBoard[row][j].getValue();
             usedValues[value] = true;
         }
 
-        // Ellenőrizzi az oszlopban lévő értékeket
+        // oszlop
         for (int i = 0; i < SIZE; i++) {
             int value = sudokuBoard[i][col].getValue();
             usedValues[value] = true;
         }
 
-        // Ellenőrizzi a 3x3-as blokkban lévő értékeket
+        // blokk
         int boxStartRow = row - row % 3;
         int boxStartCol = col - col % 3;
         for (int i = 0; i < 3; i++) {
@@ -425,7 +425,7 @@ public class GameModel {
      */
     private boolean checkForUniqueSolution(int row, int col, int[] numberOfSolutions) {
         if (row == SIZE) {
-            numberOfSolutions[0]++; // Egy lehetséges megoldás megtalálva
+            numberOfSolutions[0]++; // lehetséges megoldás pipa
             return numberOfSolutions[0] == 1; // Csak akkor tér vissza igaz értékkel, ha ez az első megoldás
         }
 
@@ -440,7 +440,7 @@ public class GameModel {
                 if (isValueValid(row, col, num)) {
                     sudokuBoard[row][col].setValue(num);
                     if (checkForUniqueSolution(nextRow, nextCol, numberOfSolutions) && (numberOfSolutions[0] > 1)) {
-                        return false; // Már több mint egy megoldás van, nem kell többet keresni
+                        return false; // Már több mint egy megoldás van
 
                     }
                     sudokuBoard[row][col].setValue(0); // BackTrack
@@ -765,14 +765,10 @@ public class GameModel {
         for (int row = 0; row < SIZE; row++) {
             for (int col = 0; col < SIZE; col++) {
                 CellPosition cell = sudokuBoard[row][col];
-                // Csak a két lehetséges értékkel rendelkező cellák érdekelnek
                 if (cell.getPossibleValues().size() == 2) {
                     Set<Integer> pairValues = cell.getPossibleValues();
-                    // Sorban keresés
                     checkNakedPairForRow(row, col, pairValues, nakedPairsPositionSet, removeSet);
-                    // Oszlopban keresés
                     checkNakedPairForCol(row, col, pairValues, nakedPairsPositionSet, removeSet);
-                    // 3x3-as blokkban keresés
                     checkNakedPairForBox(row, col, pairValues, nakedPairsPositionSet, removeSet);
                 }
             }
@@ -962,22 +958,18 @@ public class GameModel {
      * @param results    Az eltávolítandó értékek és azok pozícióinak halmaza.
      */
     private void addRemovePositionAndValuesBox(int row, int col, Set<Integer> pairValues, Set<Pair<Pair<Integer, Integer>, Set<Integer>>> results) {
-        // Meghatározzuk a 3x3-as blokk kezdő pozícióját
         int startRow = row - row % 3;
         int startCol = col - col % 3;
 
-        // Halmazok az eltávolítandó pozíciók és értékek tárolására
         Set<Pair<Integer, Integer>> removePositionSet = new HashSet<>();
         Set<Integer> removeValueSet = new HashSet<>();
 
-        // Végigmegyünk a 3x3-as blokkon
         for (int i = startRow; i < startRow + 3; i++) {
             for (int j = startCol; j < startCol + 3; j++) {
-                // Kizárjuk a meztelen pár celláit
                 if ((i == row && j == col) || sudokuBoard[i][j].getPossibleValues().equals(pairValues)) {
                     continue;
                 }
-                // Ellenőrizzük, hogy mely értékeket kell eltávolítani
+
                 for (Integer value : pairValues) {
                     if (sudokuBoard[i][j].getPossibleValues().contains(value)) {
                         removeValueSet.add(value);
@@ -1005,9 +997,7 @@ public class GameModel {
         for (int row = 0; row < SIZE; row++) {
             for (int col = 0; col < SIZE; col++) {
                 CellPosition cell = sudokuBoard[row][col];
-                // Csak a több lehetséges értékkel rendelkező cellák érdekelnek
                 if (cell.getPossibleValues().size() > 2) {
-                    // Ellenőrizzük, hogy van-e rejtett pár a sorban, oszlopban és blokkban
                     checkHiddenPairForRowCol(row, hiddenPairsPositionSet, removeSet, true);
                     checkHiddenPairForRowCol(row, hiddenPairsPositionSet, removeSet, false);
                     checkHiddenPairForBox(row, col, hiddenPairsPositionSet, removeSet);
@@ -1027,7 +1017,7 @@ public class GameModel {
      */
     private void checkHiddenPairForRowCol(int index, Set<Pair<Integer, Integer>> hiddenPairsPositionSet, Set<Pair<Pair<Integer, Integer>, Set<Integer>>> removeSet, boolean isRow) {
         Map<Integer, List<Pair<Integer, Integer>>> valueOccurrences = new HashMap<>();
-        // Összegyűjtjük az értékek előfordulásait a sorban/oszlopban
+        // Lehetséges kombinációk
         for (int i = 0; i < SIZE; i++) {
             Set<Integer> possibleValues = isRow ? sudokuBoard[index][i].getPossibleValues() : sudokuBoard[i][index].getPossibleValues();
             for (Integer value : possibleValues) {
@@ -1040,7 +1030,6 @@ public class GameModel {
             }
         }
 
-        // Keresünk olyan értékeket, amelyek pontosan két helyen fordulnak elő
         findAndProcessHiddenPairs(valueOccurrences, hiddenPairsPositionSet, removeSet);
     }
 
@@ -1057,7 +1046,6 @@ public class GameModel {
         int startRow = row - row % 3;
         int startCol = col - col % 3;
 
-        // Iterálás a 3x3-as blokkon belül
         for (int i = startRow; i < startRow + 3; i++) {
             for (int j = startCol; j < startCol + 3; j++) {
                 Set<Integer> possibleValues = sudokuBoard[i][j].getPossibleValues();
@@ -1067,7 +1055,6 @@ public class GameModel {
             }
         }
 
-        // Keresünk olyan értékeket, amelyek pontosan két helyen fordulnak elő
         findAndProcessHiddenPairs(valueOccurrences, hiddenPairsPositionSet, removeSet);
     }
 
@@ -1083,14 +1070,12 @@ public class GameModel {
      */
     private void findAndProcessHiddenPairs(Map<Integer, List<Pair<Integer, Integer>>> valueOccurrences, Set<Pair<Integer, Integer>> hiddenPairsPositionSet, Set<Pair<Pair<Integer, Integer>, Set<Integer>>> removeSet) {
         for (Map.Entry<Integer, List<Pair<Integer, Integer>>> entry : valueOccurrences.entrySet()) {
-            if (entry.getValue().size() == 2) { // Ha csak két cellában fordul elő az érték
+            if (entry.getValue().size() == 2) {
                 Integer value = entry.getKey();
                 List<Pair<Integer, Integer>> positions = entry.getValue();
 
-                // Ellenőrizzük, hogy van-e párosítás az előfordulások között
                 for (Map.Entry<Integer, List<Pair<Integer, Integer>>> otherEntry : valueOccurrences.entrySet()) {
                     if (!otherEntry.getKey().equals(value) && otherEntry.getValue().equals(positions)) {
-                        // Megtaláltunk egy rejtett párt
                         processHiddenPair(positions, value, otherEntry, hiddenPairsPositionSet, removeSet);
                     }
                 }

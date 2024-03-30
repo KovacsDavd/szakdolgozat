@@ -2625,5 +2625,935 @@
     ],
     "elapsedTimeSeconds": 3,
     "difficulty": "MEDIUM"
+  },
+  {
+    "originalBoard": [
+      [
+        {
+          "value": 0,
+          "possibleValues": [
+            4,
+            5,
+            6,
+            7,
+            9
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            3,
+            4,
+            7
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            5,
+            6,
+            7,
+            9
+          ]
+        },
+        {
+          "value": 1,
+          "possibleValues": []
+        },
+        {
+          "value": 2,
+          "possibleValues": []
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            4,
+            6,
+            7
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            3,
+            5,
+            6
+          ]
+        },
+        {
+          "value": 8,
+          "possibleValues": []
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            3,
+            5,
+            6,
+            7,
+            9
+          ]
+        }
+      ],
+      [
+        {
+          "value": 8,
+          "possibleValues": []
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            1,
+            2,
+            3,
+            4,
+            7
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            2,
+            5,
+            6,
+            7,
+            9
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            3,
+            4,
+            5,
+            6,
+            7
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            4,
+            6
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            4,
+            6,
+            7
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            2,
+            3,
+            5,
+            6
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            1,
+            2,
+            4,
+            6,
+            9
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            1,
+            2,
+            3,
+            5,
+            6,
+            7,
+            9
+          ]
+        }
+      ],
+      [
+        {
+          "value": 0,
+          "possibleValues": [
+            1,
+            4,
+            5,
+            6,
+            7
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            1,
+            2,
+            3,
+            4,
+            7
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            2,
+            5,
+            6,
+            7
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            3,
+            4,
+            5,
+            6,
+            7
+          ]
+        },
+        {
+          "value": 8,
+          "possibleValues": []
+        },
+        {
+          "value": 9,
+          "possibleValues": []
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            2,
+            3,
+            5,
+            6
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            1,
+            2,
+            4,
+            6
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            1,
+            2,
+            3,
+            5,
+            6,
+            7
+          ]
+        }
+      ],
+      [
+        {
+          "value": 0,
+          "possibleValues": [
+            1,
+            9
+          ]
+        },
+        {
+          "value": 8,
+          "possibleValues": []
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            2,
+            9
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            2,
+            4,
+            6,
+            9
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            1,
+            4,
+            6,
+            9
+          ]
+        },
+        {
+          "value": 5,
+          "possibleValues": []
+        },
+        {
+          "value": 7,
+          "possibleValues": []
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            2,
+            6,
+            9
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            2,
+            3,
+            6,
+            9
+          ]
+        }
+      ],
+      [
+        {
+          "value": 3,
+          "possibleValues": []
+        },
+        {
+          "value": 6,
+          "possibleValues": []
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            2,
+            7,
+            9
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            2,
+            7,
+            9
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            1,
+            9
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            1,
+            2,
+            7,
+            8
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            2,
+            8
+          ]
+        },
+        {
+          "value": 5,
+          "possibleValues": []
+        },
+        {
+          "value": 4,
+          "possibleValues": []
+        }
+      ],
+      [
+        {
+          "value": 0,
+          "possibleValues": [
+            5,
+            7,
+            9
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            2,
+            7
+          ]
+        },
+        {
+          "value": 4,
+          "possibleValues": []
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            2,
+            6,
+            7,
+            9
+          ]
+        },
+        {
+          "value": 3,
+          "possibleValues": []
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            2,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "value": 1,
+          "possibleValues": []
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            2,
+            6,
+            9
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            2,
+            6,
+            8,
+            9
+          ]
+        }
+      ],
+      [
+        {
+          "value": 2,
+          "possibleValues": []
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            4
+          ]
+        },
+        {
+          "value": 1,
+          "possibleValues": []
+        },
+        {
+          "value": 8,
+          "possibleValues": []
+        },
+        {
+          "value": 5,
+          "possibleValues": []
+        },
+        {
+          "value": 3,
+          "possibleValues": []
+        },
+        {
+          "value": 9,
+          "possibleValues": []
+        },
+        {
+          "value": 7,
+          "possibleValues": []
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            6
+          ]
+        }
+      ],
+      [
+        {
+          "value": 0,
+          "possibleValues": [
+            6
+          ]
+        },
+        {
+          "value": 5,
+          "possibleValues": []
+        },
+        {
+          "value": 3,
+          "possibleValues": []
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            2,
+            6,
+            9
+          ]
+        },
+        {
+          "value": 7,
+          "possibleValues": []
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            1,
+            2,
+            6
+          ]
+        },
+        {
+          "value": 4,
+          "possibleValues": []
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            1,
+            2,
+            6
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            1,
+            2,
+            6,
+            8
+          ]
+        }
+      ],
+      [
+        {
+          "value": 0,
+          "possibleValues": [
+            4,
+            6,
+            7
+          ]
+        },
+        {
+          "value": 9,
+          "possibleValues": []
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            2,
+            4,
+            6
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            1,
+            4,
+            6
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            1,
+            2,
+            4,
+            6
+          ]
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            2,
+            5,
+            6,
+            8
+          ]
+        },
+        {
+          "value": 3,
+          "possibleValues": []
+        },
+        {
+          "value": 0,
+          "possibleValues": [
+            1,
+            2,
+            5,
+            6,
+            8
+          ]
+        }
+      ]
+    ],
+    "solvedBoard": [
+      [
+        {
+          "value": 9,
+          "possibleValues": []
+        },
+        {
+          "value": 3,
+          "possibleValues": []
+        },
+        {
+          "value": 7,
+          "possibleValues": []
+        },
+        {
+          "value": 1,
+          "possibleValues": []
+        },
+        {
+          "value": 2,
+          "possibleValues": []
+        },
+        {
+          "value": 4,
+          "possibleValues": []
+        },
+        {
+          "value": 6,
+          "possibleValues": []
+        },
+        {
+          "value": 8,
+          "possibleValues": []
+        },
+        {
+          "value": 5,
+          "possibleValues": []
+        }
+      ],
+      [
+        {
+          "value": 8,
+          "possibleValues": []
+        },
+        {
+          "value": 1,
+          "possibleValues": []
+        },
+        {
+          "value": 5,
+          "possibleValues": []
+        },
+        {
+          "value": 3,
+          "possibleValues": []
+        },
+        {
+          "value": 6,
+          "possibleValues": []
+        },
+        {
+          "value": 7,
+          "possibleValues": []
+        },
+        {
+          "value": 2,
+          "possibleValues": []
+        },
+        {
+          "value": 4,
+          "possibleValues": []
+        },
+        {
+          "value": 9,
+          "possibleValues": []
+        }
+      ],
+      [
+        {
+          "value": 4,
+          "possibleValues": []
+        },
+        {
+          "value": 2,
+          "possibleValues": []
+        },
+        {
+          "value": 6,
+          "possibleValues": []
+        },
+        {
+          "value": 5,
+          "possibleValues": []
+        },
+        {
+          "value": 8,
+          "possibleValues": []
+        },
+        {
+          "value": 9,
+          "possibleValues": []
+        },
+        {
+          "value": 3,
+          "possibleValues": []
+        },
+        {
+          "value": 1,
+          "possibleValues": []
+        },
+        {
+          "value": 7,
+          "possibleValues": []
+        }
+      ],
+      [
+        {
+          "value": 1,
+          "possibleValues": []
+        },
+        {
+          "value": 8,
+          "possibleValues": []
+        },
+        {
+          "value": 2,
+          "possibleValues": []
+        },
+        {
+          "value": 4,
+          "possibleValues": []
+        },
+        {
+          "value": 9,
+          "possibleValues": []
+        },
+        {
+          "value": 5,
+          "possibleValues": []
+        },
+        {
+          "value": 7,
+          "possibleValues": []
+        },
+        {
+          "value": 6,
+          "possibleValues": []
+        },
+        {
+          "value": 3,
+          "possibleValues": []
+        }
+      ],
+      [
+        {
+          "value": 3,
+          "possibleValues": []
+        },
+        {
+          "value": 6,
+          "possibleValues": []
+        },
+        {
+          "value": 9,
+          "possibleValues": []
+        },
+        {
+          "value": 7,
+          "possibleValues": []
+        },
+        {
+          "value": 1,
+          "possibleValues": []
+        },
+        {
+          "value": 2,
+          "possibleValues": []
+        },
+        {
+          "value": 8,
+          "possibleValues": []
+        },
+        {
+          "value": 5,
+          "possibleValues": []
+        },
+        {
+          "value": 4,
+          "possibleValues": []
+        }
+      ],
+      [
+        {
+          "value": 5,
+          "possibleValues": []
+        },
+        {
+          "value": 7,
+          "possibleValues": []
+        },
+        {
+          "value": 4,
+          "possibleValues": []
+        },
+        {
+          "value": 6,
+          "possibleValues": []
+        },
+        {
+          "value": 3,
+          "possibleValues": []
+        },
+        {
+          "value": 8,
+          "possibleValues": []
+        },
+        {
+          "value": 1,
+          "possibleValues": []
+        },
+        {
+          "value": 9,
+          "possibleValues": []
+        },
+        {
+          "value": 2,
+          "possibleValues": []
+        }
+      ],
+      [
+        {
+          "value": 2,
+          "possibleValues": []
+        },
+        {
+          "value": 4,
+          "possibleValues": []
+        },
+        {
+          "value": 1,
+          "possibleValues": []
+        },
+        {
+          "value": 8,
+          "possibleValues": []
+        },
+        {
+          "value": 5,
+          "possibleValues": []
+        },
+        {
+          "value": 3,
+          "possibleValues": []
+        },
+        {
+          "value": 9,
+          "possibleValues": []
+        },
+        {
+          "value": 7,
+          "possibleValues": []
+        },
+        {
+          "value": 6,
+          "possibleValues": []
+        }
+      ],
+      [
+        {
+          "value": 6,
+          "possibleValues": []
+        },
+        {
+          "value": 5,
+          "possibleValues": []
+        },
+        {
+          "value": 3,
+          "possibleValues": []
+        },
+        {
+          "value": 9,
+          "possibleValues": []
+        },
+        {
+          "value": 7,
+          "possibleValues": []
+        },
+        {
+          "value": 1,
+          "possibleValues": []
+        },
+        {
+          "value": 4,
+          "possibleValues": []
+        },
+        {
+          "value": 2,
+          "possibleValues": []
+        },
+        {
+          "value": 8,
+          "possibleValues": []
+        }
+      ],
+      [
+        {
+          "value": 7,
+          "possibleValues": []
+        },
+        {
+          "value": 9,
+          "possibleValues": []
+        },
+        {
+          "value": 8,
+          "possibleValues": []
+        },
+        {
+          "value": 2,
+          "possibleValues": []
+        },
+        {
+          "value": 4,
+          "possibleValues": []
+        },
+        {
+          "value": 6,
+          "possibleValues": []
+        },
+        {
+          "value": 5,
+          "possibleValues": []
+        },
+        {
+          "value": 3,
+          "possibleValues": []
+        },
+        {
+          "value": 1,
+          "possibleValues": []
+        }
+      ]
+    ],
+    "elapsedTimeSeconds": 164,
+    "difficulty": "HARD"
   }
 ]
