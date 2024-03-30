@@ -13,7 +13,7 @@ public class GameModel {
     private static final int SIZE = 9;
     private static final int EASY_MOD_REVOME_DIGITS = 44;
     private static final int MEDIUM_MOD_REVOME_DIGITS = 48;
-    private static final int HARD_MOD_REVOME_DIGITS = 55;
+    private static final int HARD_MOD_REVOME_DIGITS = 52;
     private static final String SINGLE_LOG_FORMAT = "[{}][{}] = {}";
     private static final String PAIR_LOG_FORMAT = "[{}, {}] and [{}, {}]";
     private static final String NAKED_PAIR = "NAKED PAIR:";
@@ -389,12 +389,9 @@ public class GameModel {
                 int backupValue = sudokuBoard[i][j].getValue();
                 sudokuBoard[i][j].setValue(0);
 
-                // Ellenőrizze az egyediséget
                 if (!hasUniqueSolution()) {
-                    // Ha nincs egyedi megoldás, visszaállítja a számot
                     sudokuBoard[i][j].setValue(backupValue);
                 } else {
-                    // Sikeres eltávolítás, hozzáadjuk a sethez
                     cellsToRemove.add(new Pair<>(i, j));
                 }
             }
