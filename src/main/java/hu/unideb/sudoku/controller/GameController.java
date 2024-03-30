@@ -58,11 +58,16 @@ public class GameController {
      */
     public void initialize() {
         if (!GameModel.isNeedHistoryLoad()) {
-            createBoard();
-            addCheckboxListener();
-            startTimer();
-            updateHelpCounterDisplay();
+            model.generateSudoku();
+            loadBoard();
         }
+    }
+
+    private void loadBoard() {
+        createBoard();
+        addCheckboxListener();
+        startTimer();
+        updateHelpCounterDisplay();
     }
 
     /**
@@ -72,8 +77,7 @@ public class GameController {
      */
     public void initializeWithHistory(GameHistory history) {
         model.loadGameFromHistory(history);
-        GameModel.setNeedHistoryLoad(false);
-        initialize();
+        loadBoard();
     }
 
     /**

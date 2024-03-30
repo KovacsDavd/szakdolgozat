@@ -40,11 +40,8 @@ public class GameModel {
                 sudokuBoard[i][j] = new CellPosition();
             }
         }
-
-        if (!needHistoryLoad) {
-            generateSudoku();
-        }
     }
+
 
     /**
      * Betölti a játékot egy korábban mentett állapotból.
@@ -71,7 +68,7 @@ public class GameModel {
      * Először kitölti az átlós 3x3-as blokkokat, majd a maradék helyeket.
      * végül eltávolít néhány számot a nehézségi szintnek megfelelően.
      */
-    private void generateSudoku() {
+    public void generateSudoku() {
         fillDiagonal();
         fillRemaining(0, 3);
 
@@ -549,8 +546,8 @@ public class GameModel {
     public Set<Pair<Integer, Pair<Integer, Integer>>> checkFullHouse() {
         Set<Pair<Integer, Pair<Integer, Integer>>> results = new HashSet<>();
 
-        results.addAll(checkFullHouseForRowCOl(true));
-        results.addAll(checkFullHouseForRowCOl(false));
+        results.addAll(checkFullHouseForRowCol(true));
+        results.addAll(checkFullHouseForRowCol(false));
         results.addAll(checkFullHouseByBoxes());
 
         return results;
@@ -562,7 +559,7 @@ public class GameModel {
      * @param isRow Igaz, ha sorokat kell ellenőrizni, hamis, ha oszlopokat.
      * @return a letárolt pozíció és értékek halmaza.
      */
-    private Set<Pair<Integer, Pair<Integer, Integer>>> checkFullHouseForRowCOl(boolean isRow) {
+    private Set<Pair<Integer, Pair<Integer, Integer>>> checkFullHouseForRowCol(boolean isRow) {
         Set<Pair<Integer, Pair<Integer, Integer>>> results = new HashSet<>();
         for (int i = 0; i < SIZE; i++) {
             int emptyCellCount = 0;
